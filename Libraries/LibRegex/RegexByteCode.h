@@ -142,7 +142,7 @@ struct CompareTypeAndValuePair {
 
 class OpCode;
 
-struct StringTable {
+struct LIBREGEX_EXPORT StringTable {
     StringTable()
         : m_serial(next_serial++)
     {

@@ -11,4 +11,5 @@ if(SERENITYOS)
 endif()
 
 serenity_lib(LibRegex regex)
+add_lagom_library_explicit_symbol_export(LibRegex)
 target_link_libraries(LibRegex PRIVATE LibUnicode)
