@@ -154,3 +154,14 @@ if (NOT COMMAND swizzle_target_properties_for_swift)
     function(swizzle_target_properties_for_swift target)
     endfunction()
 endif()
+
+# Temporary helper to allow libraries to opt-in to using LIBX_EXPORT macros 
+# to export symbols required by external consumers. This allows the codebase 
+# to gradually slowly migrate instead of an all-or-nothing approach.
+function(add_lagom_library_explicit_symbol_export target_name)
+    if (NOT WIN32)
+        add_cxx_compile_options(-fvisibility=hidden)
+    endif()
+    include(GenerateExportHeader)
+    generate_export_header(${target_name} EXPORT_FILE_NAME "Export.h")
+endfunction()
