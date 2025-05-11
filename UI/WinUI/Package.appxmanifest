@@ -8,11 +8,11 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="32e70168-9506-4476-bb8f-f043b89d3a5b"
+    Name="0157a3b7-ec8b-441f-9a60-df9e10b5a71c"
     Publisher="CN=ashton"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="32e70168-9506-4476-bb8f-f043b89d3a5b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="0157a3b7-ec8b-441f-9a60-df9e10b5a71c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Ladybird</DisplayName>
