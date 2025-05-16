@@ -24,6 +24,10 @@
 
 namespace Ladybird {
 
+namespace WebGPUTestBed {
+class WebGPUTabWidget;
+}
+
 class WebContentView;
 
 class BrowserWindow : public QMainWindow {
@@ -210,6 +214,8 @@ private:
     ByteString m_navigator_compatibility_mode {};
 
     IsPopupWindow m_is_popup_window { IsPopupWindow::No };
+#ifdef WEBGPU_EXPERIMENTAL
+    WebGPUTestBed::WebGPUTabWidget* m_webgpu_test_bed { nullptr };
+#endif
 };
-
 }

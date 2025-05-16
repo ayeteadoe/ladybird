@@ -23,11 +23,15 @@
 #include <UI/Qt/StringUtils.h>
 #include <UI/Qt/TabBar.h>
 #include <UI/Qt/WebContentView.h>
+#ifdef WEBGPU_EXPERIMENTAL
+#    include <UI/Qt/WebGPUTestBed/WebGPUTabWidget.h>
+#endif
 
 #include <QAction>
 #include <QActionGroup>
 #include <QApplication>
 #include <QClipboard>
+#include <QDockWidget>
 #include <QGuiApplication>
 #include <QInputDialog>
 #include <QMessageBox>
@@ -77,6 +81,17 @@ BrowserWindow::BrowserWindow(Vector<URL::URL> const& initial_urls, IsPopupWindow
     , m_is_popup_window(is_popup_window)
 {
     setWindowIcon(app_icon());
+
+#ifdef WEBGPU_EXPERIMENTAL
+    auto webGPU = new QDockWidget("WebGPU", this);
+    webGPU->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    webGPU->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+
+    m_webgpu_test_bed = new WebGPUTestBed::WebGPUTabWidget(webGPU);
+    m_webgpu_test_bed->hide();
+    webGPU->setWidget(m_webgpu_test_bed);
+    addDockWidget(Qt::LeftDockWidgetArea, webGPU);
+#endif
 
     // Listen for DPI changes
     m_device_pixel_ratio = devicePixelRatio();

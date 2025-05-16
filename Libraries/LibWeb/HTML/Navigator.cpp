@@ -107,6 +107,13 @@ GC::Ref<CredentialManagement::CredentialsContainer> Navigator::credentials()
     return *m_credentials;
 }
 
+GC::Ref<WebGPU::GPU> Navigator::gpu()
+{
+    if (!m_gpu)
+        m_gpu = realm().create<WebGPU::GPU>(realm());
+    return *m_gpu;
+}
+
 // https://w3c.github.io/pointerevents/#dom-navigator-maxtouchpoints
 WebIDL::Long Navigator::max_touch_points()
 {

@@ -913,6 +913,7 @@ set(SOURCES
     WebGL/WebGLTransformFeedback.cpp
     WebGL/WebGLUniformLocation.cpp
     WebGL/WebGLVertexArrayObject.cpp
+    WebGPU/GPU.cpp
     WebIDL/AbstractOperations.cpp
     WebIDL/AsyncIterator.cpp
     WebIDL/Buffers.cpp
@@ -976,6 +977,7 @@ invoke_generator(
     #       and we need to make sure it's generated before we generate the WebGLRenderingContext implementation.
     dependencies WebGL/WebGL2RenderingContextBase.idl WebGL/WebGL2RenderingContextOverloads.idl WebGL/WebGLRenderingContextBase.idl WebGL/WebGLRenderingContextOverloads.idl CSS/GeneratedCSSStyleProperties.idl
 )
+# TODO: Add GPUCanvasContext here
 
 set(GENERATED_SOURCES
     ARIA/AriaRoles.cpp
@@ -1002,6 +1004,10 @@ set(GENERATED_SOURCES
 )
 
 serenity_lib(LibWeb web)
+
+if(ENABLE_EXPERIMENTAL_WEBGPU)
+    add_subdirectory(WebGPU)
+endif()
 
 target_link_libraries(LibWeb PRIVATE LibCore LibCompress LibCrypto LibJS LibHTTP LibGfx LibIPC LibRegex LibSyntax LibTextCodec LibUnicode LibMedia LibWasm LibXML LibIDL LibURL LibTLS LibRequests LibGC LibThreading skia)
 

@@ -1,5 +1,6 @@
 #import <Clipboard/Clipboard.idl>
 #import <CredentialManagement/CredentialsContainer.idl>
+#import <WebGPU/GPU.idl>
 #import <HTML/MimeTypeArray.idl>
 #import <HTML/NavigatorBeacon.idl>
 #import <HTML/NavigatorConcurrentHardware.idl>
@@ -38,6 +39,9 @@ interface Navigator {
 
     // https://w3c.github.io/webappsec-credential-management/#framework-credential-management
     [SecureContext, SameObject] readonly attribute CredentialsContainer credentials;
+
+    // https://www.w3.org/TR/webgpu/#navigator-gpu
+    [SameObject, SecureContext] readonly attribute GPU gpu;
 };
 
 // NOTE: As NavigatorContentUtils, NavigatorCookies, NavigatorPlugins, and NavigatorAutomationInformation

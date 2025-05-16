@@ -1,0 +1,7 @@
+
+// https://www.w3.org/TR/webgpu/#navigator-gpu
+
+[Exposed=(Window,Worker)]
+interface GPU {
+
+};

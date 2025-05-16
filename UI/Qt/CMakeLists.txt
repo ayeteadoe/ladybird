@@ -16,4 +16,7 @@ target_sources(ladybird PRIVATE
     main.cpp
 )
 target_link_libraries(ladybird PRIVATE Qt::Core Qt::Gui Qt::Widgets)
+if(ENABLE_EXPERIMENTAL_WEBGPU)
+    add_subdirectory(WebGPUTestBed)
+endif()
 create_ladybird_bundle(ladybird)
