@@ -499,7 +499,7 @@ if (BUILD_TESTING)
         LibXML
     )
 
-    if (ENABLE_GUI_TARGETS)
+    if (ENABLE_GUI_TARGETS AND ENABLE_WEB_TARGETS)
         list(APPEND TEST_DIRECTORIES
             LibGfx
             LibMedia
