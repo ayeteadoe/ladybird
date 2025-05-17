@@ -12,7 +12,7 @@ set(TEST_SOURCES
 )
 
 foreach(source IN LISTS TEST_SOURCES)
-    serenity_test("${source}" LibCore)
+    serenity_test("${source}" LibCore ENABLE_WINDOWS)
 endforeach()
 
 target_link_libraries(TestLibCoreDateTime PRIVATE LibUnicode)

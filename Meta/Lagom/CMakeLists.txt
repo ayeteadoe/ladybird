@@ -542,12 +542,6 @@ if (BUILD_TESTING)
 
     # FIXME: Add Support for these tests on Windows
     if (BUILD_LAGOM_TARGETS)
-        lagom_test(../../Tests/LibCore/TestLibCoreDateTime.cpp LIBS LibUnicode)
-
-        # RegexLibC test POSIX <regex.h> and contains many Serenity extensions
-        # It is therefore not reasonable to run it on Lagom, and we only run the Regex test
-        lagom_test(../../Tests/LibRegex/Regex.cpp LIBS LibRegex WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../Tests/LibRegex)
-
         # JavaScriptTestRunner + LibTest tests
         # test-js
         add_executable(test-js
