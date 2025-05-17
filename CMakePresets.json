@@ -38,11 +38,13 @@
         "strategy": "external"
       },
       "cacheVariables": {
-        "ENABLE_QT": "OFF"
+        "ENABLE_QT": "OFF",
+        "ENABLE_GUI_TARGETS": "OFF",
+        "ENABLE_WEB_TARGETS": "OFF"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
-            "intelliSenseMode": "windows-clang-x64"
+          "intelliSenseMode": "windows-clang-x64"
         }
       },
       "condition": {
@@ -63,6 +65,7 @@
       }
     },
     {
+      "hidden": true,
       "name": "windows_ninja",
       "displayName": "Default with ClangCL and Ninja",
       "description": "Windows build using Ninja generator (experimental)",
@@ -77,6 +80,29 @@
       }
     },
     {
+      "name": "windows_ci_ninja",
+      "displayName": "Default CI build with ClangCL and Ninja",
+      "description": "Windows CI build using Ninja generator (experimental)",
+      "inherits": [
+        "windows_ninja"
+      ],
+      "cacheVariables": {
+        "ENABLE_WINDOWS_CI": "ON"
+      }
+    },
+    {
+      "name": "windows_dev_ninja",
+      "displayName": "Default Dev build with ClangCL and Ninja",
+      "description": "Windows Dev build using Ninja generator (experimental)",
+      "inherits": [
+        "windows_ninja"
+      ],
+      "cacheVariables": {
+        "ENABLE_WINDOWS_DEV": "ON"
+      }
+    },
+    {
+      "hidden": true,
       "name": "windows_msbuild",
       "displayName": "Default with ClangCL and MSBuild",
       "description": "Default build using Visual Studio generator (experimental)",
@@ -219,7 +245,7 @@
       "displayName": "Build",
       "description": "Build the project in debug",
       "targets": [
-          "all"
+        "all"
       ]
     },
     {
