@@ -6,22 +6,18 @@
 
 #pragma once
 
-#include <LibWeb/WebGPU/Native/GPUAdapter.h>
+#ifdef EXPERIMENTAL_WEBGPU_WGPU_IMPL
+#    include <LibWeb/WebGPU/Native/WGPU/GPUInstance.h>
+#else
+#    include <LibWeb/WebGPU/Native/Stub/GPUInstance.h>
+#endif
 
 namespace Web::WebGPU::Native {
 
-// FIXME: Formally expose API required in spec
-//  https://developer.mozilla.org/en-US/docs/Web/API/GPU
-template<typename Impl>
-class GPU {
-public:
-    GPUAdapter<Impl> request_adapter() const
-    {
-        return static_cast<Impl*>(this)->request_adapter();
-    }
-
-protected:
-    GPU() = default;
-};
+#ifdef EXPERIMENTAL_WEBGPU_WGPU_IMPL
+using GPU = Web::WebGPU::Native::WGPU::GPUInstance;
+#else
+using GPU = Web::WebGPU::Native::Stub::GPUInstance;
+#endif
 
 }

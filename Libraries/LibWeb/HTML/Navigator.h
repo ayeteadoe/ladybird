@@ -18,7 +18,9 @@
 #include <LibWeb/HTML/UserActivation.h>
 #include <LibWeb/MediaCapabilitiesAPI/MediaCapabilities.h>
 #include <LibWeb/StorageAPI/NavigatorStorage.h>
-#include <LibWeb/WebGPU/GPU.h>
+#ifdef EXPERIMENTAL_WEBGPU_WGPU_IMPL
+#    include <LibWeb/WebGPU/GPU.h>
+#endif
 
 namespace Web::HTML {
 
@@ -56,7 +58,9 @@ public:
     [[nodiscard]] GC::Ref<Clipboard::Clipboard> clipboard();
     [[nodiscard]] GC::Ref<UserActivation> user_activation();
     [[nodiscard]] GC::Ref<CredentialManagement::CredentialsContainer> credentials();
+#ifdef EXPERIMENTAL_WEBGPU_WGPU_IMPL
     [[nodiscard]] GC::Ref<WebGPU::GPU> gpu();
+#endif
 
     Optional<FlyString> do_not_track() const;
 

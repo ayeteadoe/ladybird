@@ -7,34 +7,35 @@
 #pragma once
 
 #include "webgpu/include/webgpu/webgpu.h"
-#include <AK/Function.h>
-#include <LibWeb/WebGPU/Native/GPU.h>
+#include <LibCore/Promise.h>
+#include <LibWeb/WebGPU/Native/WGPU/GPUAdapter.h>
 
 struct wl_display;
 struct wl_surface;
 
 namespace Web::WebGPU::Native::WGPU {
 
-class GPUSurface;
-class GPUAdapter;
-
-class GPUInstance : public Native::GPU<GPUInstance> {
+class GPUInstance {
 public:
-    explicit GPUInstance();
+    GPUInstance();
 
-    GPUSurface create_surface(struct wl_display* display, struct wl_surface* surface);
-
-    void request_adapter(GPUSurface& surface, AK::Function<void(GPUAdapter)> callback);
+    void set_surface(struct wl_display* display, struct wl_surface* surface);
 
     WGPUInstance& get() { return m_instance; }
 
-private:
-    WGPUInstance m_instance;
+    AK::NonnullRefPtr<Core::Promise<GPUAdapter>> request_adapter();
 
+private:
     static void handle_request_adapter(WGPURequestAdapterStatus status,
         WGPUAdapter adapter, WGPUStringView message,
         void* userdata1, void* userdata2);
-    AK::Function<void(GPUAdapter)> m_adapter_callback { nullptr };
+
+    WGPUInstance m_instance { wgpuCreateInstance(nullptr) };
+
+    WGPUSurface m_surface;
+    [[maybe_unused]] WGPUSurfaceConfiguration m_surface_config;
+
+    AK::NonnullRefPtr<Core::Promise<GPUAdapter>> m_adapter_request_promise;
 };
 
 }

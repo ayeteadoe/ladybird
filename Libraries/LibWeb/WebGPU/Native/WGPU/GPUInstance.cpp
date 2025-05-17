@@ -5,25 +5,35 @@
  */
 #include <LibWeb/WebGPU/Native/WGPU/GPUAdapter.h>
 #include <LibWeb/WebGPU/Native/WGPU/GPUInstance.h>
-#include <LibWeb/WebGPU/Native/WGPU/GPUSurface.h>
 
 namespace Web::WebGPU::Native::WGPU {
 
 GPUInstance::GPUInstance()
-    : m_instance(wgpuCreateInstance(nullptr))
+    : m_adapter_request_promise(MUST(Core::Promise<GPUAdapter>::try_create()))
 {
 }
 
-GPUSurface GPUInstance::create_surface(struct wl_display* display, struct wl_surface* surface)
+void GPUInstance::set_surface(struct wl_display* display, struct wl_surface* surface)
 {
-    return GPUSurface(*this, display, surface);
+    WGPUSurfaceSourceWaylandSurface source = {
+        .chain = WGPUChainedStruct { .next = nullptr, .sType = WGPUSType_SurfaceSourceWaylandSurface },
+        .display = display,
+        .surface = surface
+    };
+    WGPUSurfaceDescriptor descriptor = {
+        .nextInChain = reinterpret_cast<WGPUChainedStruct const*>(&source),
+        .label = WGPUStringView { .data = nullptr, .length = WGPU_STRLEN }
+    };
+
+    m_surface = wgpuInstanceCreateSurface(
+        m_instance, &descriptor);
 }
 
-void GPUInstance::request_adapter(GPUSurface& surface, AK::Function<void(GPUAdapter)> callback)
+AK::NonnullRefPtr<Core::Promise<GPUAdapter>> GPUInstance::request_adapter()
 {
-    m_adapter_callback = std::move(callback);
+    VERIFY(m_surface != nullptr);
     WGPURequestAdapterOptions options = {};
-    options.compatibleSurface = surface.get();
+    options.compatibleSurface = m_surface;
 
     WGPURequestAdapterCallbackInfo callback_info = {};
     callback_info.callback = handle_request_adapter;
@@ -32,14 +42,16 @@ void GPUInstance::request_adapter(GPUSurface& surface, AK::Function<void(GPUAdap
     wgpuInstanceRequestAdapter(m_instance,
         &options,
         callback_info);
+    return m_adapter_request_promise;
 }
 
 void GPUInstance::handle_request_adapter(WGPURequestAdapterStatus status,
-    WGPUAdapter adapter, [[maybe_unused]] WGPUStringView message,
-    void* userdata1, [[maybe_unused]] void* userdata2)
+    [[maybe_unused]] WGPUAdapter adapter, [[maybe_unused]] WGPUStringView message,
+    [[maybe_unused]] void* userdata1, [[maybe_unused]] void* userdata2)
 {
     if (status == WGPURequestAdapterStatus_Success) {
-        static_cast<GPUInstance*>(userdata1)->m_adapter_callback(GPUAdapter(adapter));
+
+        // static_cast<GPUInstance*>(userdata1)->m_adapter_request_promise->resolve(GPUAdapter(adapter));
     } else {
         // FIXME: Log error?
     }

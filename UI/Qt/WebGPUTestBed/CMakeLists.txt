@@ -12,7 +12,7 @@ target_sources(ladybird
 )
 target_compile_definitions(ladybird
     PRIVATE
-        WEBGPU_EXPERIMENTAL
+        EXPERIMENTAL_WEBGPU_WGPU_IMPL
 )
 
 

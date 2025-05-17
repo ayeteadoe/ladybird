@@ -24,8 +24,7 @@ serenity_option(LAGOM_USE_LINKER "" CACHE STRING "The linker to use (e.g. lld, m
 serenity_option(LAGOM_LINK_POOL_SIZE "" CACHE STRING "The maximum number of parallel jobs to use for linking")
 serenity_option(ENABLE_LTO_FOR_RELEASE ${RELEASE_LTO_DEFAULT} CACHE BOOL "Enable link-time optimization for release builds")
 serenity_option(ENABLE_LAGOM_COVERAGE_COLLECTION OFF CACHE STRING "Enable code coverage instrumentation for lagom binaries in clang")
-serenity_option(ENABLE_EXPERIMENTAL_WEBGPU OFF CACHE BOOL "Enable experimental WebGPU support")
-serenity_option(ENABLE_EXPERIMENTAL_WGPU_WEBGPU_IMPL OFF CACHE BOOL "Enable experimental implementation of WebGPU via wgpu-native")
+serenity_option(ENABLE_EXPERIMENTAL_WEBGPU_WGPU_IMPL OFF CACHE BOOL "Enable experimental implementation of WebGPU via wgpu-native")
 
 if (ANDROID OR APPLE)
     serenity_option(ENABLE_QT OFF CACHE BOOL "Build ladybird application using Qt GUI")

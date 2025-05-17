@@ -6,6 +6,13 @@
 
 #pragma once
 
-namespace Web::WebGPU::Native {
+namespace Web::WebGPU::Native::Stub {
+
+class GPUDevice;
+
+class GPUAdapter {
+protected:
+    void print_info() const;
+};
 
 }

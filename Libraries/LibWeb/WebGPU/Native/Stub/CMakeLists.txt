@@ -1,0 +1,9 @@
+target_sources(LibWeb
+    PRIVATE
+        GPUInstance.h
+        GPUInstance.cpp
+        GPUAdapter.h
+        GPUAdapter.cpp
+        #GPUDevice.h
+        #GPUDevice.cpp
+)

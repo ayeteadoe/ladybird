@@ -1,7 +1,9 @@
+#import <WebGPU/GPUAdapter.idl>
+
 
 // https://www.w3.org/TR/webgpu/#navigator-gpu
 
-[Exposed=(Window,Worker)]
+[Exposed=(Window,Worker), SecureContext]
 interface GPU {
-
+    Promise<GPUAdapter> requestAdapter();
 };

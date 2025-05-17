@@ -110,7 +110,7 @@ GC::Ref<CredentialManagement::CredentialsContainer> Navigator::credentials()
 GC::Ref<WebGPU::GPU> Navigator::gpu()
 {
     if (!m_gpu)
-        m_gpu = realm().create<WebGPU::GPU>(realm());
+        m_gpu = WebGPU::GPU::create(realm());
     return *m_gpu;
 }
 

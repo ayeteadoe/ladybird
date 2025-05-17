@@ -214,7 +214,7 @@ private:
     ByteString m_navigator_compatibility_mode {};
 
     IsPopupWindow m_is_popup_window { IsPopupWindow::No };
-#ifdef WEBGPU_EXPERIMENTAL
+#ifdef EXPERIMENTAL_WEBGPU_WGPU_IMPL
     WebGPUTestBed::WebGPUTabWidget* m_webgpu_test_bed { nullptr };
 #endif
 };

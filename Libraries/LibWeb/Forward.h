@@ -1059,9 +1059,11 @@ class WebGLVertexArrayObjectOES;
 
 }
 
+#ifdef EXPERIMENTAL_WEBGPU_WGPU_IMPL
 namespace Web::WebGPU {
 class GPU;
 }
+#endif
 
 namespace Web::WebIDL {
 

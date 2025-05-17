@@ -265,6 +265,8 @@ JS::ThrowCompletionOr<HTMLCanvasElement::RenderingContext> HTMLCanvasElement::ge
         return Empty {};
     }
 
+    // TODO: Create webgpu canvas context here
+
     return Empty {};
 }
 

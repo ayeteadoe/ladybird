@@ -23,7 +23,7 @@
 #include <UI/Qt/StringUtils.h>
 #include <UI/Qt/TabBar.h>
 #include <UI/Qt/WebContentView.h>
-#ifdef WEBGPU_EXPERIMENTAL
+#ifdef EXPERIMENTAL_WEBGPU_WGPU_IMPL
 #    include <UI/Qt/WebGPUTestBed/WebGPUTabWidget.h>
 #endif
 
@@ -82,7 +82,7 @@ BrowserWindow::BrowserWindow(Vector<URL::URL> const& initial_urls, IsPopupWindow
 {
     setWindowIcon(app_icon());
 
-#ifdef WEBGPU_EXPERIMENTAL
+#ifdef EXPERIMENTAL_WEBGPU_WGPU_IMPL
     auto webGPU = new QDockWidget("WebGPU", this);
     webGPU->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     webGPU->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
