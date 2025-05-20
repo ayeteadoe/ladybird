@@ -109,6 +109,9 @@ def main(platform):
     subparsers.add_parser('install', help='Installs the target binary',
                           parents=[preset_parser, compiler_parser, target_parser])
 
+    subparsers.add_parser('vcpkg', help='Ensure that dependencies are available',
+                          parents=[preset_parser, compiler_parser])
+
     args = parser.parse_args()
     kwargs = vars(args)
     command = kwargs.pop('command', None)
@@ -155,6 +158,9 @@ def main(platform):
         _build_main(build_dir, **kwargs)
         kwargs['target'] = 'install'
         _build_main(build_dir, **kwargs)
+    elif command == 'vcpkg':
+        _configure_build_env(**kwargs)
+        _build_vcpkg()
 
 
 def _configure_main(platform, **kwargs):
