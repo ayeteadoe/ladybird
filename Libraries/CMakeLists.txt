@@ -28,6 +28,7 @@ add_subdirectory(LibWasm)
 add_subdirectory(LibWebSocket)
 
 if (ENABLE_GUI_TARGETS)
+    add_subdirectory(LibWebGPUNative)
     add_subdirectory(LibDevTools)
     add_subdirectory(LibGfx)
     add_subdirectory(LibImageDecoderClient)

@@ -1,0 +1,25 @@
+/*
+ * Copyright (c) 2025, ayeteadoe <ayeteadoe@gmail.com>
+ *
+ * SPDX-License-Identifier: BSD-2-Clause
+ */
+
+#include <LibWebGPUNative/Vulkan/InstanceImpl.h>
+
+namespace WebGPUNative {
+
+Instance::Instance()
+    : m_impl(make<Impl>())
+{
+}
+
+Instance::~Instance() = default;
+
+bool Instance::supported() { return true; }
+
+ErrorOr<void> Instance::initialize()
+{
+    return m_impl->initialize();
+}
+
+}
