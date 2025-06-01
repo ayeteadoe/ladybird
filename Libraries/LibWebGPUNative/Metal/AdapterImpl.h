@@ -8,25 +8,9 @@
 
 #include <AK/OwnPtr.h>
 #include <LibWebGPUNative/Adapter.h>
-#include <objc/objc.h>
+#include <LibWebGPUNative/Metal/Handle.h>
 
 namespace WebGPUNative {
-
-class MetalDeviceHandle {
-public:
-    explicit MetalDeviceHandle(id device);
-    ~MetalDeviceHandle();
-
-    MetalDeviceHandle(MetalDeviceHandle const&) = delete;
-    MetalDeviceHandle& operator=(MetalDeviceHandle const&) = delete;
-    MetalDeviceHandle(MetalDeviceHandle&&) noexcept;
-    MetalDeviceHandle& operator=(MetalDeviceHandle&&) noexcept;
-
-    id get() const { return m_device; }
-
-private:
-    id m_device;
-};
 
 struct Adapter::Impl {
     explicit Impl(Instance const& gpu);

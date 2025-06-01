@@ -13,12 +13,14 @@ if (ENABLE_WEBGPUNATIVE_METAL_IMPL)
         PRIVATE
             Metal/Adapter.cpp
             Metal/AdapterImpl.mm
+            Metal/Device.cpp
+            Metal/DeviceImpl.mm
+            Metal/Handle.mm
             Metal/Instance.cpp
     )
     target_link_libraries(LibWebGPUNative PRIVATE
         "-framework Foundation"
         "-framework Metal"
-        "-framework MetalKit"
     )
 elseif (ENABLE_WEBGPUNATIVE_DIRECTX_IMPL)
     target_sources(LibWebGPUNative
@@ -41,6 +43,8 @@ elseif (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
         PRIVATE
             Vulkan/Adapter.cpp
             Vulkan/AdapterImpl.cpp
+            Vulkan/Device.cpp
+            Vulkan/DeviceImpl.cpp
             Vulkan/Instance.cpp
             Vulkan/InstanceImpl.cpp
     )
