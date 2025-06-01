@@ -31,6 +31,11 @@ Queue Device::queue() const
     return Queue(*this);
 }
 
+Texture Device::texture(Gfx::IntSize const size) const
+{
+    return Texture(*this, size);
+}
+
 CommandEncoder Device::command_encoder() const
 {
     return CommandEncoder(*this);

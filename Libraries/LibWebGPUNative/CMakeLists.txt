@@ -17,6 +17,8 @@ if (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
         Vulkan/InstanceImpl.cpp
         Vulkan/Queue.cpp
         Vulkan/QueueImpl.cpp
+        Vulkan/Texture.cpp
+        Vulkan/TextureImpl.cpp
     )
 elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
     set(SOURCES
@@ -32,6 +34,8 @@ elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
         Metal/Instance.cpp
         Metal/Queue.cpp
         Metal/QueueImpl.mm
+        Metal/Texture.cpp
+        Metal/TextureImpl.mm
     )
 else()
     message(FATAL_ERROR "No backend implementation for WebGPUNative selected")

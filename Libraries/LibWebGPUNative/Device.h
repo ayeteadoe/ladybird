@@ -7,17 +7,20 @@
 #pragma once
 
 #include <AK/NonnullOwnPtr.h>
+#include <LibGfx/Forward.h>
 
 namespace WebGPUNative {
 
 class Adapter;
 class CommandEncoder;
 class Queue;
+class Texture;
 
 class Device {
 public:
     friend class CommandEncoder;
     friend class Queue;
+    friend class Texture;
 
     explicit Device(Adapter const&);
     Device(Device&&) noexcept;
@@ -27,6 +30,8 @@ public:
     ErrorOr<void> initialize();
 
     Queue queue() const;
+
+    Texture texture(Gfx::IntSize) const;
 
     CommandEncoder command_encoder() const;
 
