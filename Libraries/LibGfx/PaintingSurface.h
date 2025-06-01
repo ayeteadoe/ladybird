@@ -18,6 +18,12 @@
 #    include <LibGfx/MetalContext.h>
 #endif
 
+namespace wgpu {
+
+class Texture;
+
+}
+
 class SkCanvas;
 class SkSurface;
 
@@ -42,6 +48,8 @@ public:
 #ifdef USE_VULKAN_IMAGES
     static NonnullRefPtr<PaintingSurface> create_from_vkimage(NonnullRefPtr<SkiaBackendContext> context, NonnullRefPtr<VulkanImage> vulkan_image, Origin origin);
 #endif
+
+    static NonnullRefPtr<PaintingSurface> create_from_wgputexture(NonnullRefPtr<SkiaBackendContext> context, wgpu::Texture texture);
 
     void read_into_bitmap(Bitmap&);
     void write_from_bitmap(Bitmap const&);

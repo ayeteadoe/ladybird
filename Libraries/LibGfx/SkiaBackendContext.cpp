@@ -4,6 +4,12 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+// NOTE: Need to include before any AK headers as SkCPURecorder has a method TODO() that conflicts with the Ak/Assertions.h TODO macro
+#include <gpu/graphite/Context.h>
+#include <gpu/graphite/ContextOptions.h>
+#include <gpu/graphite/Recorder.h>
+#include <gpu/graphite/dawn/DawnBackendContext.h>
+
 #include <AK/NonnullOwnPtr.h>
 #include <AK/RefPtr.h>
 #include <LibGfx/Bitmap.h>
@@ -130,5 +136,43 @@ RefPtr<SkiaBackendContext> SkiaBackendContext::create_metal_context(NonnullRefPt
     return adopt_ref(*new SkiaMetalBackendContext(move(ctx), move(metal_context)));
 }
 #endif
+
+class SkiaDawnBackendContext final : public SkiaBackendContext {
+    AK_MAKE_NONCOPYABLE(SkiaDawnBackendContext);
+    AK_MAKE_NONMOVABLE(SkiaDawnBackendContext);
+
+public:
+    SkiaDawnBackendContext(std::unique_ptr<skgpu::graphite::Context> context, std::unique_ptr<skgpu::graphite::Recorder> recorder)
+        : m_dawn_context(move(context))
+        , m_dawn_recorder(move(recorder))
+    {
+    }
+
+    ~SkiaDawnBackendContext() override { }
+
+    GrDirectContext* sk_context() const override { VERIFY_NOT_REACHED(); }
+
+    skgpu::graphite::Recorder* skgpu_recorder() const override
+    {
+        return m_dawn_recorder.get();
+    }
+
+    VulkanContext const& vulkan_context() override { VERIFY_NOT_REACHED(); }
+
+    MetalContext& metal_context() override { VERIFY_NOT_REACHED(); }
+
+private:
+    std::unique_ptr<skgpu::graphite::Context> m_dawn_context;
+    std::unique_ptr<skgpu::graphite::Recorder> m_dawn_recorder;
+};
+
+RefPtr<SkiaBackendContext> SkiaBackendContext::create_dawn_context(skgpu::graphite::DawnBackendContext& dawn_context)
+{
+    skgpu::graphite::ContextOptions context_options;
+    std::unique_ptr<skgpu::graphite::Context> ctx = skgpu::graphite::ContextFactory::MakeDawn(dawn_context, context_options);
+    skgpu::graphite::RecorderOptions recorder_options;
+    std::unique_ptr<skgpu::graphite::Recorder> recorder = ctx->makeRecorder(recorder_options);
+    return adopt_ref(*new SkiaDawnBackendContext(move(ctx), move(recorder)));
+}
 
 }

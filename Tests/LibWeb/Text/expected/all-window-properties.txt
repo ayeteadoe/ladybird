@@ -160,6 +160,9 @@ GPU
 GPUAdapter
 GPUAdapterInfo
 GPUBuffer
+GPUCanvasContext
+GPUCommandBuffer
+GPUCommandEncoder
 GPUDevice
 GPUQueue
 GPUSupportedFeatures
