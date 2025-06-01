@@ -7,9 +7,11 @@
 #pragma once
 
 #include <AK/NonnullOwnPtr.h>
+#include <LibCore/Promise.h>
 
 namespace WebGPUNative {
 
+class Device;
 class Instance;
 
 class Adapter {
@@ -22,6 +24,10 @@ public:
     ~Adapter();
 
     ErrorOr<void> initialize();
+
+    Device device() const;
+
+    NonnullRefPtr<Core::Promise<Device>> request_device();
 
 private:
     struct Impl;

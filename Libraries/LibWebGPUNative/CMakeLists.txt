@@ -7,6 +7,8 @@ if (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
     set(SOURCES
         Vulkan/Adapter.cpp
         Vulkan/AdapterImpl.cpp
+        Vulkan/Device.cpp
+        Vulkan/DeviceImpl.cpp
         Vulkan/Instance.cpp
         Vulkan/InstanceImpl.cpp
     )
@@ -14,6 +16,9 @@ elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
     set(SOURCES
         Metal/Adapter.cpp
         Metal/AdapterImpl.mm
+        Metal/Device.cpp
+        Metal/DeviceImpl.mm
+        Metal/Handle.mm
         Metal/Instance.cpp
     )
 else()
@@ -29,6 +34,5 @@ elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
     target_link_libraries(LibWebGPUNative PRIVATE
         "-framework Foundation"
         "-framework Metal"
-        "-framework MetalKit"
     )
 endif()

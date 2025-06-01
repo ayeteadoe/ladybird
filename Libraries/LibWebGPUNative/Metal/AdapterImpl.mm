@@ -10,32 +10,6 @@
 
 namespace WebGPUNative {
 
-MetalDeviceHandle::MetalDeviceHandle(id device) : m_device(device) {
-    [m_device retain];
-}
-
-MetalDeviceHandle::~MetalDeviceHandle() {
-    if (m_device) {
-        [m_device release];
-        m_device = nullptr;
-    }
-}
-
-MetalDeviceHandle::MetalDeviceHandle(MetalDeviceHandle&& other) noexcept : m_device(other.m_device) {
-    other.m_device = nullptr;
-}
-
-MetalDeviceHandle& MetalDeviceHandle::operator=(MetalDeviceHandle&& other) noexcept {
-    if (this != &other) {
-        if (m_device) {
-            [m_device release];
-        }
-        m_device = other.m_device;
-        other.m_device = nullptr;
-    }
-    return *this;
-}
-
 Adapter::Impl::Impl(Instance const&) {
 }
 
@@ -43,7 +17,7 @@ ErrorOr<void> Adapter::Impl::initialize() {
     NSArray<id<MTLDevice>> *devices = MTLCopyAllDevices();
     if (!devices || devices.count == 0) {
         [devices release];
-        return make_error("No Metal devices found");
+        return make_error("No devices found");
     }
 
     id<MTLDevice> selected_device = nil;
@@ -73,7 +47,7 @@ ErrorOr<void> Adapter::Impl::initialize() {
     [devices release];
 
     if (!selected_device) {
-        return make_error("No supported Metal devices available");
+        return make_error("No supported devices available");
     }
 
     m_metal_device = make<MetalDeviceHandle>(selected_device);
