@@ -18,6 +18,8 @@ if (ENABLE_WEBGPUNATIVE_METAL_IMPL)
             Metal/Device.cpp
             Metal/DeviceImpl.mm
             Metal/Handle.mm
+            Metal/Queue.cpp
+            Metal/QueueImpl.mm
     )
     find_library(METAL_FRAMEWORK Metal REQUIRED)
     find_library(FOUNDATION_FRAMEWORK Foundation REQUIRED)
@@ -48,6 +50,8 @@ elseif (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
             Vulkan/DeviceImpl.cpp
             Vulkan/Instance.cpp
             Vulkan/InstanceImpl.cpp
+            Vulkan/Queue.cpp
+            Vulkan/QueueImpl.cpp
     )
     find_package(Vulkan REQUIRED)
     find_package(VulkanUtilityLibraries CONFIG REQUIRED)
