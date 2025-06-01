@@ -24,6 +24,8 @@ if (ENABLE_WEBGPUNATIVE_METAL_IMPL)
             Metal/Handle.mm
             Metal/Queue.cpp
             Metal/QueueImpl.mm
+            Metal/RenderPassEncoder.cpp
+            Metal/RenderPassEncoderImpl.mm
             Metal/Texture.cpp
             Metal/TextureImpl.mm
             Metal/TextureView.cpp
@@ -64,6 +66,8 @@ elseif (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
             Vulkan/InstanceImpl.cpp
             Vulkan/Queue.cpp
             Vulkan/QueueImpl.cpp
+            Vulkan/RenderPassEncoder.cpp
+            Vulkan/RenderPassEncoderImpl.cpp
             Vulkan/Texture.cpp
             Vulkan/TextureImpl.cpp
             Vulkan/TextureView.cpp
