@@ -6,11 +6,13 @@ endif()
 set(SOURCES)
 serenity_lib(LibWebGPUNative webgpunative EXPLICIT_SYMBOL_EXPORT)
 target_compile_definitions(LibWebGPUNative PRIVATE $<$<CONFIG:Debug>:WEBGPUNATIVE_DEBUG>)
-target_link_libraries(LibWebGPUNative PRIVATE AK)
+target_link_libraries(LibWebGPUNative PRIVATE AK LibCore)
 
 if (ENABLE_WEBGPUNATIVE_METAL_IMPL)
     target_sources(LibWebGPUNative
         PRIVATE
+            Metal/Adapter.cpp
+            Metal/AdapterImpl.mm
             Metal/Instance.cpp
     )
     target_link_libraries(LibWebGPUNative PRIVATE
@@ -21,6 +23,8 @@ if (ENABLE_WEBGPUNATIVE_METAL_IMPL)
 elseif (ENABLE_WEBGPUNATIVE_DIRECTX_IMPL)
     target_sources(LibWebGPUNative
         PRIVATE
+            DirectX/Adapter.cpp
+            DirectX/AdapterImpl.cpp
             DirectX/Instance.cpp
     )
     find_package(directx-headers CONFIG REQUIRED)
@@ -35,6 +39,8 @@ elseif (ENABLE_WEBGPUNATIVE_DIRECTX_IMPL)
 elseif (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
     target_sources(LibWebGPUNative
         PRIVATE
+            Vulkan/Adapter.cpp
+            Vulkan/AdapterImpl.cpp
             Vulkan/Instance.cpp
             Vulkan/InstanceImpl.cpp
     )
