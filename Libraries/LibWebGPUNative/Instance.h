@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/NonnullOwnPtr.h>
+#include <LibCore/Promise.h>
 
 namespace WebGPUNative {
 
@@ -24,6 +25,10 @@ public:
     static bool supported();
 
     ErrorOr<void> initialize();
+
+    Adapter adapter() const;
+
+    NonnullRefPtr<Core::Promise<Adapter>> request_adapter();
 
 private:
     struct Impl;

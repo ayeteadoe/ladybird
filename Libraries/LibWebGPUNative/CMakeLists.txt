@@ -5,11 +5,15 @@ if (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
         message(FATAL_ERROR "Vulkan not found")
     endif()
     set(SOURCES
+        Vulkan/Adapter.cpp
+        Vulkan/AdapterImpl.cpp
         Vulkan/Instance.cpp
         Vulkan/InstanceImpl.cpp
     )
 elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
     set(SOURCES
+        Metal/Adapter.cpp
+        Metal/AdapterImpl.mm
         Metal/Instance.cpp
     )
 else()
@@ -18,7 +22,7 @@ endif()
 
 serenity_lib(LibWebGPUNative webgpunative)
 target_compile_definitions(LibWebGPUNative PRIVATE $<$<CONFIG:Debug>:WEBGPUNATIVE_DEBUG>)
-target_link_libraries(LibWebGPUNative PRIVATE AK)
+target_link_libraries(LibWebGPUNative PRIVATE AK LibCore)
 if (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
     target_link_libraries(LibWebGPUNative PRIVATE Vulkan::Vulkan)
 elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
