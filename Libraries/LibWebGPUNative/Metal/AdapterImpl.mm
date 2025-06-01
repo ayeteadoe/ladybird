@@ -7,40 +7,44 @@
 #include <LibWebGPUNative/Metal/AdapterImpl.h>
 #include <LibWebGPUNative/include/LibWebGPUNative-Swift.h>
 
-#import <Metal/Metal.h>
+#include <LibWebGPUNative/Metal/Error.h>
 
 namespace WebGPUNative {
 
 AdapterImplBridge::AdapterImplBridge()
 {
-    // Create Swift AdapterImpl instance
     auto swift_adapter = WebGPUNative::AdapterImpl::init();
-    m_swift_impl = new WebGPUNative::AdapterImpl(std::move(swift_adapter));
+    m_metal_device = new WebGPUNative::AdapterImpl(std::move(swift_adapter));
 }
 
 AdapterImplBridge::~AdapterImplBridge()
 {
-    if (m_swift_impl) {
-        delete static_cast<WebGPUNative::AdapterImpl*>(m_swift_impl);
+    if (m_metal_device) {
+        delete static_cast<WebGPUNative::AdapterImpl*>(m_metal_device);
     }
 }
 
 bool AdapterImplBridge::initialize()
 {
-    auto* swift_adapter = static_cast<WebGPUNative::AdapterImpl*>(m_swift_impl);
+    auto* swift_adapter = static_cast<WebGPUNative::AdapterImpl*>(m_metal_device);
     return swift_adapter->initialize();
 }
 
-void* AdapterImplBridge::get_metal_device()
+id AdapterImplBridge::metal_device()
 {
-    auto* swift_adapter = static_cast<WebGPUNative::AdapterImpl*>(m_swift_impl);
-    return swift_adapter->getMetalDevice();
+    auto* swift_adapter = static_cast<WebGPUNative::AdapterImpl*>(m_metal_device);
+    return static_cast<id>(swift_adapter->getMetalDevice());
 }
 
-id<MTLDevice> metal_device_from_opaque(void* opaque_device)
+ErrorOr<void> Adapter::Impl::initialize()
 {
-    if (!opaque_device) return nil;
-    return (__bridge id<MTLDevice>)opaque_device;
+    bool const success = adapter_bridge.initialize();
+    if (!success) {
+        return make_error("Failed to initialize Metal adapter");
+    }
+
+    m_metal_device = adapter_bridge.metal_device();
+    return {};
 }
 
 }

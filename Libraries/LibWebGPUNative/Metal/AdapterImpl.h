@@ -1,33 +1,41 @@
 /*
-* Copyright (c) 2025, ayeteadoe <ayeteadoe@gmail.com>
+ * Copyright (c) 2025, ayeteadoe <ayeteadoe@gmail.com>
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
 #pragma once
 
-#include <LibWebGPUNative/Forward.h>
-
-#ifdef __OBJC__
-@protocol MTLDevice;
-#endif
+#include <LibWebGPUNative/Adapter.h>
+#include <LibWebGPUNative/Metal/Handle.h>
 
 namespace WebGPUNative {
 
 class AdapterImplBridge {
 public:
-    AdapterImplBridge();
+    explicit AdapterImplBridge();
     ~AdapterImplBridge();
 
     bool initialize();
-    void* get_metal_device();
+    id metal_device();
 
 private:
-    void* m_swift_impl; // Opaque pointer to Swift AdapterImpl
+    void* m_metal_device;
 };
 
-#ifdef __OBJC__
-id<MTLDevice> metal_device_from_opaque(void* opaque_device);
-#endif
+struct Adapter::Impl {
+    explicit Impl(Instance const&) { }
+
+    ErrorOr<void> initialize();
+
+    id metal_device() const
+    {
+        return m_metal_device;
+    }
+
+private:
+    AdapterImplBridge adapter_bridge;
+    id m_metal_device = nullptr;
+};
 
 }
