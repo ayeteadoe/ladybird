@@ -26,4 +26,9 @@ ErrorOr<void> Device::initialize()
     return m_impl->initialize();
 }
 
+Queue Device::queue() const
+{
+    return Queue(*this);
+}
+
 }

@@ -7,6 +7,8 @@ if (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
     set(SOURCES
         Vulkan/Adapter.cpp
         Vulkan/AdapterImpl.cpp
+        Vulkan/CommandBuffer.cpp
+        Vulkan/CommandBufferImpl.cpp
         Vulkan/Device.cpp
         Vulkan/DeviceImpl.cpp
         Vulkan/Instance.cpp
@@ -18,6 +20,8 @@ elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
     set(SOURCES
         Metal/Adapter.cpp
         Metal/AdapterImpl.mm
+        Metal/CommandBuffer.cpp
+        Metal/CommandBufferImpl.mm
         Metal/Device.cpp
         Metal/DeviceImpl.mm
         Metal/Handle.mm

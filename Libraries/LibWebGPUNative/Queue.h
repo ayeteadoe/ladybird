@@ -21,6 +21,9 @@ public:
     Queue& operator=(Queue&&) noexcept;
     ~Queue();
 
+    ErrorOr<void> submit(Vector<NonnullRawPtr<CommandBuffer>> const&);
+    void on_submitted(Function<void()> callback);
+
 private:
     struct Impl;
     NonnullOwnPtr<Impl> m_impl;
