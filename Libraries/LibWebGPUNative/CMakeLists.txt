@@ -9,6 +9,8 @@ if (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
         Vulkan/AdapterImpl.cpp
         Vulkan/CommandBuffer.cpp
         Vulkan/CommandBufferImpl.cpp
+        Vulkan/CommandEncoder.cpp
+        Vulkan/CommandEncoderImpl.cpp
         Vulkan/Device.cpp
         Vulkan/DeviceImpl.cpp
         Vulkan/Instance.cpp
@@ -22,6 +24,8 @@ elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
         Metal/AdapterImpl.mm
         Metal/CommandBuffer.cpp
         Metal/CommandBufferImpl.mm
+        Metal/CommandEncoder.cpp
+        Metal/CommandEncoderImpl.mm
         Metal/Device.cpp
         Metal/DeviceImpl.mm
         Metal/Handle.mm

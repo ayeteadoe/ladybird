@@ -31,4 +31,9 @@ Queue Device::queue() const
     return Queue(*this);
 }
 
+CommandEncoder Device::command_encoder() const
+{
+    return CommandEncoder(*this);
+}
+
 }

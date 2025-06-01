@@ -11,10 +11,12 @@
 namespace WebGPUNative {
 
 class Adapter;
+class CommandEncoder;
 class Queue;
 
 class Device {
 public:
+    friend class CommandEncoder;
     friend class Queue;
 
     explicit Device(Adapter const&);
@@ -25,6 +27,8 @@ public:
     ErrorOr<void> initialize();
 
     Queue queue() const;
+
+    CommandEncoder command_encoder() const;
 
 private:
     struct Impl;
