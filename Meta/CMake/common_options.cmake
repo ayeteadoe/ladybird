@@ -35,6 +35,7 @@ serenity_option(ENABLE_NETWORK_DOWNLOADS ON CACHE BOOL "Allow downloads of requi
 serenity_option(ENABLE_CLANG_PLUGINS OFF CACHE BOOL "Enable building with the Clang plugins")
 serenity_option(ENABLE_CLANG_PLUGINS_INVALID_FUNCTION_MEMBERS OFF CACHE BOOL "Enable detecting invalid function types as members of GC-allocated objects")
 
+serenity_option(ENABLE_WEBGPUNATIVE_TESTS OFF CACHE BOOL "Enable building and running LibWebGPUNative test targets")
 serenity_option(ENABLE_GUI_TARGETS ON CACHE BOOL "Enable building GUI targets")
 serenity_option(ENABLE_INSTALL_HEADERS ON CACHE BOOL "Enable installing headers")
 serenity_option(ENABLE_SWIFT OFF CACHE BOOL "Enable building Swift files")
@@ -44,14 +45,15 @@ serenity_option(ENABLE_WINDOWS_CI OFF CACHE BOOL "Enable building targets suppor
 if (NOT APPLE)
     serenity_option(ENABLE_WEBGPUNATIVE_VULKAN_IMPL ON CACHE BOOL "Enable the Vulkan backend for LibWebGPUNative")
 else()
+    # NOTE: CMAKE_OSX_DEPLOYMENT_TARGET must be 15.0 for LibCore+Swift's event loop implementation
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 15.0)
+    include(${CMAKE_CURRENT_LIST_DIR}/Swift/swift-settings.cmake)
     serenity_option(ENABLE_WEBGPUNATIVE_METAL_IMPL ON CACHE BOOL "Enable the Metal backend for LibWebGPUNative")
 endif()
 if (WIN32)
     serenity_option(ENABLE_WEBGPUNATIVE_DIRECTX_IMPL ON CACHE BOOL "Enable the DirectX backend for LibWebGPUNative")
 endif()
 set(ENABLE_WEBGPUNATIVE ${ENABLE_WEBGPUNATIVE_VULKAN_IMPL} OR ${ENABLE_WEBGPUNATIVE_METAL_IMPL} OR ${ENABLE_WEBGPUNATIVE_DIRECTX_IMPL})
-
-serenity_option(ENABLE_WEBGPUNATIVE_TESTS OFF CACHE BOOL "Enable building and running LibWebGPUNative test targets")
 
 if (ENABLE_FUZZERS_LIBFUZZER)
     # With libfuzzer, we need to avoid a duplicate main() linker error giving false negatives
