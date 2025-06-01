@@ -21,6 +21,13 @@
 class GrDirectContext;
 class SkSurface;
 
+namespace skgpu::graphite {
+
+struct DawnBackendContext;
+class Recorder;
+
+}
+
 namespace Gfx {
 
 struct VulkanContext;
@@ -39,11 +46,15 @@ public:
     static RefPtr<SkiaBackendContext> create_metal_context(NonnullRefPtr<MetalContext>);
 #endif
 
+    static RefPtr<SkiaBackendContext> create_dawn_context(skgpu::graphite::DawnBackendContext&);
+
     SkiaBackendContext() { }
     virtual ~SkiaBackendContext() { }
 
     virtual void flush_and_submit(SkSurface*) { }
     virtual GrDirectContext* sk_context() const = 0;
+
+    virtual skgpu::graphite::Recorder* skgpu_recorder() const { VERIFY_NOT_REACHED(); }
 
     virtual MetalContext& metal_context() = 0;
     virtual VulkanContext const& vulkan_context() = 0;
