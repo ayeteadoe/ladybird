@@ -20,6 +20,8 @@ Instance::Instance()
 
 Instance::~Instance() = default;
 
+bool Instance::supported() { return true; }
+
 ErrorOr<void> Instance::initialize()
 {
     return m_impl->initialize();
