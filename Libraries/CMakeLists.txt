@@ -12,6 +12,7 @@ add_subdirectory(LibTextCodec)
 add_subdirectory(LibUnicode)
 add_subdirectory(LibURL)
 add_subdirectory(LibXML)
+add_subdirectory(LibWGSL)
 
 # FIXME: Increase support for building targets on Windows
 if (WIN32 AND ENABLE_WINDOWS_CI)
