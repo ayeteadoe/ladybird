@@ -11,6 +11,7 @@ add_subdirectory(LibTest)
 add_subdirectory(LibTextCodec)
 add_subdirectory(LibUnicode)
 add_subdirectory(LibURL)
+add_subdirectory(LibWebGPUNative)
 add_subdirectory(LibXML)
 
 # FIXME: Increase support for building targets on Windows
