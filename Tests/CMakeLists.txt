@@ -6,6 +6,7 @@ add_subdirectory(LibGC)
 add_subdirectory(LibJS)
 add_subdirectory(LibRegex)
 add_subdirectory(LibURL)
+add_subdirectory(LibWebGPUNative)
 
 # FIXME: Increase support for building targets on Windows
 if (WIN32 AND ENABLE_WINDOWS_CI)
