@@ -1,0 +1,9 @@
+<!doctype html>
+<script>
+    async function initWebGPU() {
+        let gpu = navigator.gpu;
+        console.log(`GPU instanceof GPU: ${gpu instanceof GPU}`);
+        console.log(`GPU is null: ${gpu === null}`);
+    }
+    initWebGPU();
+</script>

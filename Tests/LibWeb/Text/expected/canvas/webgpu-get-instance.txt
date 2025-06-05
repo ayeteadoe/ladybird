@@ -1,0 +1,2 @@
+gpu instanceof GPU: true
+gpu is null: false
