@@ -12,6 +12,10 @@ if (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
         Vulkan/Instance.cpp
         Vulkan/InstanceImpl.cpp
     )
+elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
+    set(SOURCES
+        Metal/Instance.cpp
+    )
 endif()
 
 serenity_lib(LibWebGPUNative webgpunative EXPLICIT_SYMBOL_EXPORT)
@@ -19,4 +23,10 @@ target_compile_definitions(LibWebGPUNative PRIVATE $<$<CONFIG:Debug>:WEBGPUNATIV
 target_link_libraries(LibWebGPUNative PRIVATE AK)
 if (ENABLE_WEBGPUNATIVE_VULKAN_IMPL)
     target_link_libraries(LibWebGPUNative PRIVATE Vulkan::Vulkan Vulkan::UtilityHeaders vk-bootstrap::vk-bootstrap)
+elseif (ENABLE_WEBGPUNATIVE_METAL_IMPL)
+    target_link_libraries(LibWebGPUNative PRIVATE
+        "-framework Foundation"
+        "-framework Metal"
+        "-framework MetalKit"
+    )
 endif()
