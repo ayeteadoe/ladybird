@@ -48,7 +48,10 @@ else()
     include(${CMAKE_CURRENT_LIST_DIR}/Swift/swift-settings.cmake)
     ladybird_option(ENABLE_WEBGPUNATIVE_METAL_IMPL ON CACHE BOOL "Enable the Metal backend for LibWebGPUNative")
 endif()
-set(ENABLE_WEBGPUNATIVE ${ENABLE_WEBGPUNATIVE_VULKAN_IMPL} OR ${ENABLE_WEBGPUNATIVE_METAL_IMPL})
+if (WIN32)
+    serenity_option(ENABLE_WEBGPUNATIVE_DIRECTX_IMPL OFF CACHE BOOL "Enable the DirectX backend for LibWebGPUNative")
+endif()
+set(ENABLE_WEBGPUNATIVE ${ENABLE_WEBGPUNATIVE_VULKAN_IMPL} OR ${ENABLE_WEBGPUNATIVE_METAL_IMPL} OR ${ENABLE_WEBGPUNATIVE_DIRECTX_IMPL})
 
 # FIXME: Get SwiftShader working so CI can run WebGPU tests with the Vulkan backend
 ladybird_option(ENABLE_WEBGPUNATIVE_TESTS OFF CACHE BOOL "Enable building and running LibWebGPUNative test targets")
