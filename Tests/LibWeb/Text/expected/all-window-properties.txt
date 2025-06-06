@@ -166,6 +166,11 @@ FontFaceSet
 FormData
 FormDataEvent
 Function
+GPU
+GPUAdapter
+GPUAdapterInfo
+GPUSupportedFeatures
+GPUSupportedLimits
 GainNode
 Gamepad
 GamepadButton
@@ -490,6 +495,7 @@ VideoTrack
 VideoTrackList
 ViewTransition
 VisualViewport
+WGSLLanguageFeatures
 WeakMap
 WeakRef
 WeakSet
