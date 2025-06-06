@@ -67,8 +67,7 @@
       "binaryDir": "${fileDir}/Build/debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "ENABLE_WINDOWS_CI": "OFF",
-        "ENABLE_WEBGPUNATIVE_TESTS": "ON"
+        "ENABLE_WINDOWS_CI": "OFF"
       }
     },
     {
