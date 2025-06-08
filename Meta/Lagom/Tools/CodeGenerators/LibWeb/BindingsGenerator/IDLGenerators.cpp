@@ -71,6 +71,7 @@ static bool is_platform_object(Type const& type)
         "GPUCommandBuffer"sv,
         "GPUCommandEncoder"sv,
         "GPUDevice"sv,
+        "GPURenderPassEncoder"sv,
         "GPUQueue"sv,
         "GPUTexture"sv,
         "GPUTextureView"sv,
