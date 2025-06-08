@@ -55,6 +55,8 @@ elseif (ENABLE_WEBGPUNATIVE_DIRECTX_IMPL)
             DirectX/Device.cpp
             DirectX/DeviceImpl.cpp
             DirectX/Instance.cpp
+            DirectX/Queue.cpp
+            DirectX/QueueImpl.cpp
     )
     find_package(directx-headers CONFIG REQUIRED)
     find_package(directx12-agility CONFIG REQUIRED)
