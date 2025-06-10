@@ -1,9 +1,6 @@
 name: Nightly Windows
 
-on:
-  # Automatically run at the end of every day.
-  schedule:
-    - cron: '0 0 * * *'
+on: [push]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,8 +14,6 @@ env:
 
 jobs:
   CI:
-    if: github.repository == 'LadybirdBrowser/ladybird'
-
     runs-on: windows-2025
 
     steps:
