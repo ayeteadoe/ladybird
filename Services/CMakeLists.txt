@@ -1,3 +1,7 @@
+if (WIN32)
+    return()
+endif()
+
 add_subdirectory(ImageDecoder)
 add_subdirectory(RequestServer)
 add_subdirectory(WebContent)

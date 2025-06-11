@@ -33,3 +33,9 @@ if (ENABLE_SWIFT)
     target_link_libraries(TestLibWebSwift PRIVATE AK LibWeb LibGC SwiftTesting::SwiftTesting)
     add_test(NAME TestLibWebSwift COMMAND TestLibWebSwift)
 endif()
+
+if (WIN32)
+    return()
+endif()
+
+add_subdirectory("test-web")

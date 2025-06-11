@@ -1,3 +1,7 @@
+if (WIN32)
+    return()
+endif()
+
 include(cmake/ResourceFiles.cmake)
 
 function(create_ladybird_bundle target_name)
