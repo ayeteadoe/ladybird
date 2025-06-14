@@ -72,8 +72,8 @@ jobs:
         run: ctest --preset Windows_Sanitizer_CI --timeout 1800
         env:
           TESTS_ONLY: 1
-          ASAN_OPTIONS: 'log_path=${{ github.workspace }}/asan.log'
-          UBSAN_OPTIONS: 'log_path=${{ github.workspace }}/ubsan.log'
+          ASAN_OPTIONS: 'log_path="${{ github.workspace }}\asan.log"'
+          UBSAN_OPTIONS: 'log_path="${{ github.workspace }}\ubsan.log"'
 
       - name: Sanitizer Output
         if: ${{ !cancelled() && inputs.build_preset == 'Windows_Sanitizer_CI' }}
