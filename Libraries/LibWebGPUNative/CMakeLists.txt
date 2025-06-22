@@ -6,7 +6,7 @@ endif()
 set(SOURCES)
 ladybird_lib(LibWebGPUNative webgpunative EXPLICIT_SYMBOL_EXPORT)
 target_compile_definitions(LibWebGPUNative PRIVATE $<$<CONFIG:Debug>:WEBGPUNATIVE_DEBUG>)
-target_link_libraries(LibWebGPUNative PRIVATE AK LibCore)
+target_link_libraries(LibWebGPUNative PRIVATE AK LibCore LibWGSL)
 
 if (ENABLE_WEBGPUNATIVE_METAL_IMPL)
     set(WEBGPUNATIVE_METAL_BRIDGE_SOURCES
@@ -63,6 +63,8 @@ elseif (ENABLE_WEBGPUNATIVE_DIRECTX_IMPL)
             DirectX/QueueImpl.cpp
             DirectX/RenderPassEncoder.cpp
             DirectX/RenderPassEncoderImpl.cpp
+            DirectX/ShaderModule.cpp
+            DirectX/ShaderModuleImpl.cpp
             DirectX/Texture.cpp
             DirectX/TextureImpl.cpp
             DirectX/TextureView.cpp
@@ -70,7 +72,7 @@ elseif (ENABLE_WEBGPUNATIVE_DIRECTX_IMPL)
     )
     find_package(directx-headers CONFIG REQUIRED)
     find_package(directx12-agility CONFIG REQUIRED)
-    target_link_libraries(LibWebGPUNative PRIVATE d3d12 dxgi Microsoft::DirectX-Headers Microsoft::DirectX-Guids Microsoft::DirectX12-Agility)
+    target_link_libraries(LibWebGPUNative PRIVATE d3d12 dxgi d3dcompiler Microsoft::DirectX-Headers Microsoft::DirectX-Guids Microsoft::DirectX12-Agility)
     target_compile_definitions(LibWebGPUNative PUBLIC WEBGPUNATIVE_DIRECTX)
     file(MAKE_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/D3D12")
     add_custom_command(TARGET LibWebGPUNative POST_BUILD

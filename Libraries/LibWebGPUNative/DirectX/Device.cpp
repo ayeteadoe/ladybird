@@ -8,6 +8,7 @@
 #include <LibWebGPUNative/Device.h>
 #include <LibWebGPUNative/DirectX/DeviceImpl.h>
 #include <LibWebGPUNative/Queue.h>
+#include <LibWebGPUNative/ShaderModule.h>
 #include <LibWebGPUNative/Texture.h>
 
 namespace WebGPUNative {
@@ -39,6 +40,11 @@ Texture Device::texture(Gfx::IntSize const size) const
 CommandEncoder Device::command_encoder() const
 {
     return CommandEncoder(*this);
+}
+
+ShaderModule Device::shader_module(ShaderModuleDescriptor const& gpu_shader_module_descriptor) const
+{
+    return ShaderModule(*this, gpu_shader_module_descriptor);
 }
 
 }

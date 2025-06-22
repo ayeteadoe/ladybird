@@ -15,6 +15,8 @@ namespace WebGPUNative {
 class Adapter;
 class CommandEncoder;
 class Queue;
+class ShaderModule;
+struct ShaderModuleDescriptor;
 class Texture;
 
 class WEBGPUNATIVE_API Device {
@@ -22,6 +24,7 @@ public:
     friend class Adapter;
     friend class CommandEncoder;
     friend class Queue;
+    friend class ShaderModule;
     friend class Texture;
 
     explicit Device(Adapter const&);
@@ -36,6 +39,8 @@ public:
     Texture texture(Gfx::IntSize) const;
 
     CommandEncoder command_encoder() const;
+
+    ShaderModule shader_module(ShaderModuleDescriptor const&) const;
 
 private:
     struct Impl;
