@@ -13,6 +13,7 @@
 #include <LibWebGPUNative/Instance.h>
 #include <LibWebGPUNative/Queue.h>
 #include <LibWebGPUNative/RenderPassEncoder.h>
+#include <LibWebGPUNative/ShaderModule.h>
 #include <LibWebGPUNative/Texture.h>
 #include <LibWebGPUNative/TextureView.h>
 
@@ -21,7 +22,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ladybird WebGPU: Clear</title>
+    <title>Ladybird WebGPU: Triangle</title>
     <style>
         body {
             margin: 0;
@@ -42,6 +43,31 @@
     const ctx = webgpuCanvas.getContext("webgpu");
     let device;
     let greenValue = 0;
+
+    let triangleWGSL = `
+        struct VertexIn {
+          @location(0) position: vec4f,
+          @location(1) color: vec4f,
+        };
+
+        struct VertexOut {
+          @builtin(position) position : vec4f,
+          @location(0) color : vec4f
+        }
+
+        @vertex
+        fn vertex_main(input: VertexIn) -> VertexOut {
+          var output : VertexOut;
+          output.position = input.position;
+          output.color = input.color;
+          return output;
+        }
+
+        @fragment
+        fn fragment_main(fragData: VertexOut) -> @location(0) vec4f {
+          return fragData.color;
+        }
+    `;
 
     function render() {
         greenValue += 0.01;
@@ -81,7 +107,8 @@
 </body>
 </html>
  */
-TEST_CASE(clear)
+
+TEST_CASE(triangle)
 {
     WebGPUNative::Instance instance;
     if (auto instance_result = instance.initialize(); instance_result.is_error()) {
@@ -115,6 +142,41 @@ TEST_CASE(clear)
         return;
     }
     device = std::move(device_result.value());
+
+#if defined(WEBGPUNATIVE_DIRECTX)
+    WebGPUNative::ShaderModuleDescriptor shader_module_descriptor;
+    shader_module_descriptor.code = R"(
+struct VertexIn {
+  @location(0) position: vec4f,
+  @location(1) color: vec4f,
+};
+
+struct VertexOut {
+  @builtin(position) position : vec4f,
+  @location(0) color : vec4f
+}
+
+@vertex
+fn vertex_main(input: VertexIn) -> VertexOut {
+  var output : VertexOut;
+  output.position = input.position;
+  output.color = input.color;
+  return output;
+}
+
+@fragment
+fn fragment_main(fragData: VertexOut) -> @location(0) vec4f {
+  return fragData.color;
+}
+)"_string;
+
+    WebGPUNative::ShaderModule shader_module = device.shader_module(shader_module_descriptor);
+    auto shader_module_result = shader_module.initialize();
+    if (shader_module_result.is_error()) {
+        FAIL("ShaderModule initialization failed");
+        return;
+    }
+#endif
 
     WebGPUNative::CommandEncoder command_encoder = device.command_encoder();
     auto command_encoder_result = command_encoder.initialize();
