@@ -8,6 +8,7 @@
 #include <LibWebGPUNative/Device.h>
 #include <LibWebGPUNative/DirectX/DeviceImpl.h>
 #include <LibWebGPUNative/Queue.h>
+#include <LibWebGPUNative/RenderPipeline.h>
 #include <LibWebGPUNative/ShaderModule.h>
 #include <LibWebGPUNative/Texture.h>
 
@@ -40,6 +41,11 @@ Texture Device::texture(Gfx::IntSize const size) const
 CommandEncoder Device::command_encoder() const
 {
     return CommandEncoder(*this);
+}
+
+RenderPipeline Device::render_pipeline(RenderPipelineDescriptor const& gpu_render_pipeline_descriptor) const
+{
+    return RenderPipeline(*this, gpu_render_pipeline_descriptor);
 }
 
 ShaderModule Device::shader_module(ShaderModuleDescriptor const& gpu_shader_module_descriptor) const

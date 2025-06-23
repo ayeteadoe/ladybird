@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <AK/StdLibExtras.h>
 #include <AK/Vector.h>
 #include <LibWebGPUNative/DirectX/DeviceImpl.h>
 #include <LibWebGPUNative/ShaderModule.h>
@@ -31,7 +32,8 @@ struct ShaderModule::Impl {
 
     ErrorOr<void> initialize();
 
-    Vector<ShaderTarget> const& shader_targets() const { return m_shader_targets; }
+    RawPtr<VertexShader const> vertex(StringView entry_point) const;
+    RawPtr<FragmentShader const> fragment(StringView entry_point) const;
 
 private:
     ComPtr<ID3D12Device> m_device;

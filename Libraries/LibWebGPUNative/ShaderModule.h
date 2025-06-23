@@ -20,6 +20,8 @@ struct ShaderModuleDescriptor {
 
 class WEBGPUNATIVE_API ShaderModule {
 public:
+    friend class RenderPipeline;
+
     explicit ShaderModule(Device const&, ShaderModuleDescriptor const&);
     ShaderModule(ShaderModule&&) noexcept;
     ShaderModule& operator=(ShaderModule&&) noexcept;

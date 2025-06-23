@@ -28,6 +28,11 @@ RenderPassDescriptor const& RenderPassEncoder::render_pass_descriptor() const
     return m_impl->render_pass_descriptor();
 }
 
+void RenderPassEncoder::set_pipeline(NonnullRawPtr<RenderPipeline> const& gpu_render_pipeline)
+{
+    m_impl->set_pipeline(gpu_render_pipeline);
+}
+
 void RenderPassEncoder::end()
 {
     m_impl->end();
