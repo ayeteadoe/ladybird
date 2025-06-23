@@ -12,6 +12,7 @@
 
 namespace WebGPUNative {
 
+class Buffer;
 class Device;
 class CommandBuffer;
 
@@ -24,6 +25,8 @@ public:
 
     ErrorOr<void> submit(Vector<NonnullRawPtr<CommandBuffer>> const&);
     void on_submitted(Function<void()> callback);
+
+    ErrorOr<void> write_buffer(NonnullRawPtr<Buffer> const&, size_t, Vector<float> const&, size_t, size_t);
 
 private:
     struct Impl;

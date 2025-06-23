@@ -7,5 +7,5 @@ set(TEST_SOURCES
 )
 
 foreach(source IN LISTS TEST_SOURCES)
-    serenity_test("${source}" LibWebGPUNative LIBS LibWebGPUNative)
+    serenity_test("${source}" LibWebGPUNative LIBS LibWebGPUNative LibCore LibGfx)
 endforeach()

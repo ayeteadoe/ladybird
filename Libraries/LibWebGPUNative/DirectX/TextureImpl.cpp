@@ -22,6 +22,8 @@ Texture::Impl::Impl(Device const& gpu_device, Gfx::IntSize const size)
 ErrorOr<void> Texture::Impl::initialize()
 {
     // FIXME: Don't hardcode these settings
+
+    // FIXME: Use CD3DX12 API for heap and resource description definition (e.g. CD3DX12_RESOURCE_DESC::Tex2D())
     D3D12_RESOURCE_DESC texture_desc = {};
     texture_desc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
     texture_desc.Width = static_cast<UINT64>(m_size.width());

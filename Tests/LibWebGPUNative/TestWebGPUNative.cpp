@@ -4,17 +4,21 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <LibCore/File.h>
+#include <LibGfx/Bitmap.h>
 #include <LibGfx/Color.h>
+#include <LibGfx/ImageFormats/PNGWriter.h>
 #include <LibTest/TestCase.h>
 #include <LibWebGPUNative/Adapter.h>
+#include <LibWebGPUNative/Buffer.h>
 #include <LibWebGPUNative/CommandBuffer.h>
 #include <LibWebGPUNative/CommandEncoder.h>
 #include <LibWebGPUNative/Device.h>
 #include <LibWebGPUNative/Instance.h>
 #include <LibWebGPUNative/Queue.h>
 #include <LibWebGPUNative/RenderPassEncoder.h>
-#include <LibWebGPUNative/ShaderModule.h>
 #include <LibWebGPUNative/RenderPipeline.h>
+#include <LibWebGPUNative/ShaderModule.h>
 #include <LibWebGPUNative/Texture.h>
 #include <LibWebGPUNative/TextureView.h>
 
@@ -143,8 +147,18 @@ TEST_CASE(triangle)
         return;
     }
     device = std::move(device_result.value());
+    WebGPUNative::Queue queue = device.queue();
 
 #if defined(WEBGPUNATIVE_DIRECTX)
+    Vector const vertices = {
+        // clang-format off
+        // position                 // colour
+         0.0f,  0.5f, 0.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,
+        -0.5f, -0.0f, 0.0f, 1.0f,   0.0f, 1.0f, 0.0f, 1.0f,
+         0.5f, -0.5f, 0.0f, 1.0f,   0.0f, 0.0f, 1.0f, 1.0f,
+        // clang-format on
+    };
+
     WebGPUNative::ShaderModuleDescriptor shader_module_descriptor;
     shader_module_descriptor.code = R"(
 struct VertexIn {
@@ -175,6 +189,22 @@ fn fragment_main(fragData: VertexOut) -> @location(0) vec4f {
     auto shader_module_result = shader_module.initialize();
     if (shader_module_result.is_error()) {
         FAIL("ShaderModule initialization failed");
+        return;
+    }
+
+    WebGPUNative::BufferDescriptor vertex_buffer_descriptor;
+    vertex_buffer_descriptor.size = vertices.size();
+
+    WebGPUNative::Buffer vertex_buffer = device.buffer(vertex_buffer_descriptor);
+    auto vertex_buffer_result = vertex_buffer.initialize();
+    if (vertex_buffer_result.is_error()) {
+        FAIL("Buffer initialization failed");
+        return;
+    }
+
+    auto write_vertex_buffer_result = queue.write_buffer(vertex_buffer, 0, vertices, 0, vertices.size());
+    if (write_vertex_buffer_result.is_error()) {
+        FAIL("Queue vertex buffer upload failed");
         return;
     }
 
@@ -230,7 +260,7 @@ fn fragment_main(fragData: VertexOut) -> @location(0) vec4f {
     }
 
     Vector<WebGPUNative::RenderPassColorAttachment> render_pass_color_attachments;
-    render_pass_color_attachments.append(WebGPUNative::RenderPassColorAttachment { .view = texture_view, .clear_value = WebGPUNative::Color { 1.0, 0.0, 0.0, 1.0 } });
+    render_pass_color_attachments.append(WebGPUNative::RenderPassColorAttachment { .view = texture_view, .clear_value = WebGPUNative::Color { 0.0, 0.0, 1.0, 1.0 } });
 
     WebGPUNative::RenderPassDescriptor render_pass_descriptor;
     render_pass_descriptor.color_attachments = render_pass_color_attachments;
@@ -243,6 +273,8 @@ fn fragment_main(fragData: VertexOut) -> @location(0) vec4f {
     WebGPUNative::RenderPassEncoder render_pass_encoder = std::move(render_pass_encoder_result.value());
 #if defined(WEBGPUNATIVE_DIRECTX)
     render_pass_encoder.set_pipeline(render_pipeline);
+    render_pass_encoder.set_vertex_buffer(0, vertex_buffer);
+    render_pass_encoder.draw(3);
 #endif
     render_pass_encoder.end();
 
@@ -254,7 +286,6 @@ fn fragment_main(fragData: VertexOut) -> @location(0) vec4f {
 
     WebGPUNative::CommandBuffer command_buffer = std::move(finish_result.value());
 
-    WebGPUNative::Queue queue = device.queue();
     Vector<NonnullRawPtr<WebGPUNative::CommandBuffer>> command_buffers;
     command_buffers.append(command_buffer);
     auto submit_result = queue.submit(command_buffers);
@@ -269,15 +300,23 @@ fn fragment_main(fragData: VertexOut) -> @location(0) vec4f {
         return;
     }
     auto const mapped_buffer = std::move(mapped_buffer_result.value());
-    constexpr Color expected_clear_value { 255, 0, 0, 255 };
+    auto actual_bitmap = MUST(Gfx::Bitmap::create(Gfx::BitmapFormat::RGBA8888, texture_size));
+    constexpr Color expected_clear_value { 0, 0, 255, 255 };
     for (auto const& [pixel, x, y] : mapped_buffer->pixels()) {
+        actual_bitmap->set_pixel(x, y, pixel);
         if (pixel != expected_clear_value) {
             auto const r = pixel.red();
             auto const g = pixel.green();
             auto const b = pixel.blue();
             auto const a = pixel.alpha();
             FAIL(String::formatted("Unexpected clear pixel colour ({}, {}, {}, {}) at ({}, {})", r, g, b, a, x, y));
-            return;
         }
     }
+
+    ByteBuffer const actual_png_bytes = MUST(Gfx::PNGWriter::encode(*actual_bitmap));
+    auto output_stream = MUST(Core::File::open("triangle.png"sv, Core::File::OpenMode::Write));
+    auto output_file = MUST(Core::OutputBufferedFile::create(move(output_stream)));
+    MUST(output_file->write_until_depleted(actual_png_bytes));
+
+    // FIXME: Read in expected_bitmap and compare results
 }

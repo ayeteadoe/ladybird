@@ -33,6 +33,16 @@ void RenderPassEncoder::set_pipeline(NonnullRawPtr<RenderPipeline> const& gpu_re
     m_impl->set_pipeline(gpu_render_pipeline);
 }
 
+void RenderPassEncoder::set_vertex_buffer(size_t const slot, NonnullRawPtr<Buffer> const& buffer)
+{
+    m_impl->set_vertex_buffer(slot, buffer);
+}
+
+void RenderPassEncoder::draw(size_t const vertex_count)
+{
+    m_impl->draw(vertex_count);
+}
+
 void RenderPassEncoder::end()
 {
     m_impl->end();

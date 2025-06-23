@@ -14,6 +14,7 @@
 
 namespace WebGPUNative {
 
+class Buffer;
 class CommandEncoder;
 class RenderPipeline;
 
@@ -44,6 +45,10 @@ public:
     RenderPassDescriptor const& render_pass_descriptor() const;
 
     void set_pipeline(NonnullRawPtr<RenderPipeline> const&);
+
+    void set_vertex_buffer(size_t slot, NonnullRawPtr<Buffer> const&);
+
+    void draw(size_t vertex_count);
 
     void end();
 

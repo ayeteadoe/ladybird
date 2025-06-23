@@ -67,7 +67,7 @@ ErrorOr<void> RenderPipeline::Impl::initialize()
     }
 
     pipeline_state_desc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
-    pipeline_state_desc.RasterizerState.CullMode = D3D12_CULL_MODE_BACK;
+    pipeline_state_desc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
     pipeline_state_desc.RasterizerState.FrontCounterClockwise = FALSE;
 
     pipeline_state_desc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
@@ -85,7 +85,8 @@ ErrorOr<void> RenderPipeline::Impl::initialize()
     pipeline_state_desc.NumRenderTargets = 1;
     pipeline_state_desc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
 
-    pipeline_state_desc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
+    // FIXME: Support depth stencil views
+    pipeline_state_desc.DSVFormat = DXGI_FORMAT_UNKNOWN;
 
     pipeline_state_desc.SampleDesc.Count = 1;
     pipeline_state_desc.SampleDesc.Quality = 0;
