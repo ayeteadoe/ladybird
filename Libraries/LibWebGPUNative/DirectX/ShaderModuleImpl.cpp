@@ -55,4 +55,34 @@ ErrorOr<void> ShaderModule::Impl::initialize()
     return {};
 }
 
+RawPtr<VertexShader const> ShaderModule::Impl::vertex(StringView const entry_point) const
+{
+    RawPtr<VertexShader const> shader = { nullptr };
+    for (auto const& shader_target : m_shader_targets) {
+        shader_target.visit(
+            [](auto const&) {
+            },
+            [&entry_point, &shader](VertexShader const& vertex_shader) {
+                if (vertex_shader.entry_point == entry_point)
+                    shader = &vertex_shader;
+            });
+    }
+    return shader;
+}
+
+RawPtr<FragmentShader const> ShaderModule::Impl::fragment(StringView const entry_point) const
+{
+    RawPtr<FragmentShader const> shader = { nullptr };
+    for (auto const& shader_target : m_shader_targets) {
+        shader_target.visit(
+            [](auto const&) {
+            },
+            [&entry_point, &shader](FragmentShader const& fragment_shader) {
+                if (fragment_shader.entry_point == entry_point)
+                    shader = &fragment_shader;
+            });
+    }
+    return shader;
+}
+
 }

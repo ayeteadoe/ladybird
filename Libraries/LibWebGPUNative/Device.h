@@ -15,6 +15,8 @@ namespace WebGPUNative {
 class Adapter;
 class CommandEncoder;
 class Queue;
+class RenderPipeline;
+struct RenderPipelineDescriptor;
 class ShaderModule;
 struct ShaderModuleDescriptor;
 class Texture;
@@ -24,6 +26,7 @@ public:
     friend class Adapter;
     friend class CommandEncoder;
     friend class Queue;
+    friend class RenderPipeline;
     friend class ShaderModule;
     friend class Texture;
 
@@ -39,6 +42,8 @@ public:
     Texture texture(Gfx::IntSize) const;
 
     CommandEncoder command_encoder() const;
+
+    RenderPipeline render_pipeline(RenderPipelineDescriptor const&) const;
 
     ShaderModule shader_module(ShaderModuleDescriptor const&) const;
 

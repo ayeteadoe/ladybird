@@ -9,11 +9,13 @@
 #include <AK/NonnullOwnPtr.h>
 #include <AK/NonnullRawPtr.h>
 #include <AK/Vector.h>
+#include <LibWebGPUNative/RenderPipeline.h>
 #include <LibWebGPUNative/TextureView.h>
 
 namespace WebGPUNative {
 
 class CommandEncoder;
+class RenderPipeline;
 
 struct Color {
     double r, g, b, a = { 0.0 };
@@ -40,6 +42,8 @@ public:
     ErrorOr<void> initialize();
 
     RenderPassDescriptor const& render_pass_descriptor() const;
+
+    void set_pipeline(NonnullRawPtr<RenderPipeline> const&);
 
     void end();
 

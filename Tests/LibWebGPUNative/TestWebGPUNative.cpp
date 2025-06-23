@@ -14,6 +14,7 @@
 #include <LibWebGPUNative/Queue.h>
 #include <LibWebGPUNative/RenderPassEncoder.h>
 #include <LibWebGPUNative/ShaderModule.h>
+#include <LibWebGPUNative/RenderPipeline.h>
 #include <LibWebGPUNative/Texture.h>
 #include <LibWebGPUNative/TextureView.h>
 
@@ -176,6 +177,14 @@ fn fragment_main(fragData: VertexOut) -> @location(0) vec4f {
         FAIL("ShaderModule initialization failed");
         return;
     }
+
+    WebGPUNative::RenderPipelineDescriptor const render_pipeline_descriptor { .vertex = WebGPUNative::VertexState { shader_module, "vertex_main"_string }, .fragment = WebGPUNative::FragmentState { shader_module, "fragment_main"_string } };
+    WebGPUNative::RenderPipeline render_pipeline = device.render_pipeline(render_pipeline_descriptor);
+    auto render_pipeline_result = render_pipeline.initialize();
+    if (render_pipeline_result.is_error()) {
+        FAIL("RenderPipeline initialization failed");
+        return;
+    }
 #endif
 
     WebGPUNative::CommandEncoder command_encoder = device.command_encoder();
@@ -232,6 +241,9 @@ fn fragment_main(fragData: VertexOut) -> @location(0) vec4f {
         return;
     }
     WebGPUNative::RenderPassEncoder render_pass_encoder = std::move(render_pass_encoder_result.value());
+#if defined(WEBGPUNATIVE_DIRECTX)
+    render_pass_encoder.set_pipeline(render_pipeline);
+#endif
     render_pass_encoder.end();
 
     auto finish_result = command_encoder.finish();

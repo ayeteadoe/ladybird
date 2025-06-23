@@ -23,6 +23,8 @@ struct RenderPassEncoder::Impl {
 
     RenderPassDescriptor const& render_pass_descriptor() const { return m_render_pass_descriptor; }
 
+    void set_pipeline(NonnullRawPtr<RenderPipeline> const&);
+
     void end();
 
 private:
