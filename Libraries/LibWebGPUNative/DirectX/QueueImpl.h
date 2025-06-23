@@ -23,6 +23,8 @@ struct Queue::Impl {
     ErrorOr<void> submit(Vector<NonnullRawPtr<CommandBuffer>> const&);
     void on_submitted(Function<void()> callback);
 
+    ErrorOr<void> write_buffer(NonnullRawPtr<Buffer> const&, size_t, Vector<float> const&, size_t, size_t);
+
 private:
     ComPtr<ID3D12Device> m_device;
     ComPtr<ID3D12CommandQueue> m_command_queue;

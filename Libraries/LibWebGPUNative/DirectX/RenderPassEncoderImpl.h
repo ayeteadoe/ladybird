@@ -25,6 +25,10 @@ struct RenderPassEncoder::Impl {
 
     void set_pipeline(NonnullRawPtr<RenderPipeline> const&);
 
+    void set_vertex_buffer(size_t slot, NonnullRawPtr<Buffer> const&);
+
+    void draw(size_t vertex_count);
+
     void end();
 
 private:

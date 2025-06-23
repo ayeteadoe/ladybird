@@ -52,6 +52,8 @@ elseif (ENABLE_WEBGPUNATIVE_DIRECTX_IMPL)
         PRIVATE
             DirectX/Adapter.cpp
             DirectX/AdapterImpl.cpp
+            DirectX/Buffer.cpp
+            DirectX/BufferImpl.cpp
             DirectX/CommandBuffer.cpp
             DirectX/CommandBufferImpl.cpp
             DirectX/CommandEncoder.cpp

@@ -13,6 +13,8 @@
 namespace WebGPUNative {
 
 class Adapter;
+class Buffer;
+struct BufferDescriptor;
 class CommandEncoder;
 class Queue;
 class RenderPipeline;
@@ -24,6 +26,7 @@ class Texture;
 class WEBGPUNATIVE_API Device {
 public:
     friend class Adapter;
+    friend class Buffer;
     friend class CommandEncoder;
     friend class Queue;
     friend class RenderPipeline;
@@ -38,6 +41,8 @@ public:
     ErrorOr<void> initialize();
 
     Queue queue() const;
+
+    Buffer buffer(BufferDescriptor const&) const;
 
     Texture texture(Gfx::IntSize) const;
 

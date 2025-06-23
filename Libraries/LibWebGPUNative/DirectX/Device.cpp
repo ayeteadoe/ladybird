@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <LibWebGPUNative/Buffer.h>
 #include <LibWebGPUNative/CommandEncoder.h>
 #include <LibWebGPUNative/Device.h>
 #include <LibWebGPUNative/DirectX/DeviceImpl.h>
@@ -31,6 +32,11 @@ ErrorOr<void> Device::initialize()
 Queue Device::queue() const
 {
     return Queue(*this);
+}
+
+Buffer Device::buffer(BufferDescriptor const& gpu_buffer_descriptor) const
+{
+    return Buffer(*this, gpu_buffer_descriptor);
 }
 
 Texture Device::texture(Gfx::IntSize const size) const
