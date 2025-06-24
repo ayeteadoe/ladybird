@@ -142,6 +142,24 @@ endif()
 
 if (NOT ANDROID)
     pkg_check_modules(Jxl REQUIRED IMPORTED_TARGET libjxl)
+    if (WIN32)
+        # FIXME: Get libjxl authors/vcpkg port maintainers to only link with libm on Unix platforms
+        get_target_property(LIBJXL_INTERFACE_LINK_LIBS PkgConfig::Jxl INTERFACE_LINK_LIBRARIES)
+        list(REMOVE_ITEM LIBJXL_INTERFACE_LINK_LIBS "m")
+        set_target_properties(PkgConfig::Jxl PROPERTIES INTERFACE_LINK_LIBRARIES "${LIBJXL_INTERFACE_LINK_LIBS}")
+
+        # FIXME: Build vcpkg libraries with clang-cl so they can also build in sanitize. Currently the woff2 lib causes
+        #  the following linker error in Windows_Sanitizer* presets only:
+        #   lld-link: error: /failifmismatch: mismatch detected for 'annotate_string':
+        #   >>> SkiaBackendContext.cpp.obj has value 1
+        #   >>> woff2dec.lib(woff2_dec.cc.obj) has value 0
+        # https://learn.microsoft.com/en-us/answers/questions/864574/enabling-address-sanitizer-results-in-error-lnk203
+        if (ENABLE_WINDOWS_CI)
+            # We have to disable ASAN for the full target as fixing the issue in the initial SkiaBackendContext.cpp TU
+            #  alone causes transitive issues in other TUs that depend on it
+            target_compile_options(LibGfx PRIVATE -fno-sanitize=address)
+        endif()
+    endif()
     target_link_libraries(LibGfx PRIVATE PkgConfig::Jxl)
 else()
     find_package(libjxl REQUIRED)
