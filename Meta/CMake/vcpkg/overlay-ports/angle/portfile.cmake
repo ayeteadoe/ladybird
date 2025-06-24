@@ -156,7 +156,16 @@ function(checkout_in_path PATH URL REF)
         URL "${URL}"
         REF "${REF}"
     )
-    file(RENAME "${DEP_SOURCE_PATH}" "${PATH}")
+    if (WIN32)
+        if(EXISTS "${PATH}")
+            file(REMOVE_RECURSE "${PATH}")
+        endif()
+        get_filename_component(PARENT_DIR "${PATH}" DIRECTORY)
+        file(MAKE_DIRECTORY "${PARENT_DIR}")
+        file(COPY "${DEP_SOURCE_PATH}/" DESTINATION "${PATH}")
+    else()
+        file(RENAME "${DEP_SOURCE_PATH}" "${PATH}")
+    endif()
     file(REMOVE_RECURSE "${DEP_SOURCE_PATH}")
 endfunction()
 

@@ -172,13 +172,15 @@ Optional<Vector<String>> WebGLRenderingContext::get_supported_extensions()
     return context().get_supported_extensions();
 }
 
-JS::Object* WebGLRenderingContext::get_extension(String const& name)
+JS::Object* WebGLRenderingContext::get_extension([[maybe_unused]] String const& name)
 {
     // Returns an object if, and only if, name is an ASCII case-insensitive match [HTML] for one of the names returned
     // from getSupportedExtensions; otherwise, returns null. The object returned from getExtension contains any constants
     // or functions provided by the extension. A returned object may have no constants or functions if the extension does
     // not define any, but a unique object must still be returned. That object is used to indicate that the extension has
     // been enabled.
+    // FIXME: Add extension support on Linux/Windows
+#if defined(AK_OS_MACOS)
     auto supported_extensions = get_supported_extensions();
     auto supported_extension_iterator = supported_extensions->find_if([&name](String const& supported_extension) {
         return supported_extension.equals_ignoring_ascii_case(name);
@@ -230,7 +232,7 @@ JS::Object* WebGLRenderingContext::get_extension(String const& name)
         VERIFY(m_webgl_draw_buffers_extension);
         return m_webgl_draw_buffers_extension;
     }
-
+#endif
     return nullptr;
 }
 

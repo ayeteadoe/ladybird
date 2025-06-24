@@ -897,13 +897,14 @@ set(SOURCES
     WebDriver/TimeoutsConfiguration.cpp
     WebDriver/UserPrompt.cpp
     WebGL/EventNames.cpp
-    WebGL/Extensions/ANGLEInstancedArrays.cpp
-    WebGL/Extensions/EXTBlendMinMax.cpp
-    WebGL/Extensions/EXTColorBufferFloat.cpp
-    WebGL/Extensions/OESVertexArrayObject.cpp
-    WebGL/Extensions/WebGLCompressedTextureS3tc.cpp
-    WebGL/Extensions/WebGLDrawBuffers.cpp
-    WebGL/Extensions/WebGLVertexArrayObjectOES.cpp
+    # FIXME: Create PVRVFrame equivalent for Windows/Linux
+    $<$<PLATFORM_ID:Darwin>:WebGL/Extensions/ANGLEInstancedArrays.cpp>
+    $<$<PLATFORM_ID:Darwin>:WebGL/Extensions/EXTBlendMinMax.cpp>
+    $<$<PLATFORM_ID:Darwin>:WebGL/Extensions/EXTColorBufferFloat.cpp>
+    $<$<PLATFORM_ID:Darwin>:WebGL/Extensions/OESVertexArrayObject.cpp>
+    $<$<PLATFORM_ID:Darwin>:WebGL/Extensions/WebGLCompressedTextureS3tc.cpp>
+    $<$<PLATFORM_ID:Darwin>:WebGL/Extensions/WebGLDrawBuffers.cpp>
+    $<$<PLATFORM_ID:Darwin>:WebGL/Extensions/WebGLVertexArrayObjectOES.cpp>
     WebGL/OpenGLContext.cpp
     WebGL/WebGL2RenderingContext.cpp
     WebGL/WebGLActiveInfo.cpp
@@ -1019,7 +1020,71 @@ target_link_libraries(LibWeb PRIVATE LibCore LibCompress LibCrypto LibJS LibHTTP
 if (APPLE)
     target_link_libraries(LibWeb PRIVATE unofficial::angle::libEGL unofficial::angle::libGLESv2)
 else()
-    target_link_libraries(LibWeb PRIVATE GL)
+    set(FETCHCONTENT_QUIET FALSE)
+    include(FetchContent)
+    FetchContent_Declare(
+        Native_SDK
+        GIT_REPOSITORY https://github.com/powervr-graphics/Native_SDK.git
+        GIT_TAG        R25.1-v5.14
+    )
+    FetchContent_MakeAvailable(Native_SDK)
+    FetchContent_GetProperties(Native_SDK SOURCE_DIR  Native_SDK_SOURCE_DIR)
+    set(NATIVE_SDK_INCLUDE_DIR "${Native_SDK_SOURCE_DIR}/include")
+    if(WIN32)
+    # FIXME: Windows on ARM
+    set(NATIVE_SDK_LIB_DIR "${Native_SDK_SOURCE_DIR}/lib/Windows_x86_64")
+    add_library(libEGL SHARED IMPORTED)
+    set_target_properties(libEGL
+            PROPERTIES
+            IMPORTED_IMPLIB "${NATIVE_SDK_LIB_DIR}/libEGL.lib"
+            IMPORTED_LOCATION "${NATIVE_SDK_LIB_DIR}/libEGL.dll"
+    )
+    add_library(libGLESv2 SHARED IMPORTED)
+    set_target_properties(libGLESv2
+            PROPERTIES
+            IMPORTED_IMPLIB "${NATIVE_SDK_LIB_DIR}/libGLESv2.lib"
+            IMPORTED_LOCATION "${NATIVE_SDK_LIB_DIR}/libGLESv2.dll"
+    )
+    add_custom_command(
+            TARGET LibWeb POST_BUILD
+            COMMAND ${CMAKE_COMMAND}
+            -E copy_if_different
+            "${NATIVE_SDK_LIB_DIR}/libEGL.dll"
+            "${NATIVE_SDK_LIB_DIR}/libGLESv2.dll"
+            $<TARGET_FILE_DIR:LibWeb>
+    )
+    else()
+        set(NATIVE_SDK_LIB_DIR "${Native_SDK_SOURCE_DIR}/lib/Linux_x86_64")
+        add_library(libEGL SHARED IMPORTED)
+        set_target_properties(libEGL
+                PROPERTIES
+                IMPORTED_LOCATION "${NATIVE_SDK_LIB_DIR}/libEGL.so"
+        )
+        add_library(libGLESv2 SHARED IMPORTED)
+        set_target_properties(libGLESv2
+                PROPERTIES
+                IMPORTED_LOCATION "${NATIVE_SDK_LIB_DIR}/libGLESv2.so"
+        )
+    endif()
+    target_include_directories(LibWeb PRIVATE "${NATIVE_SDK_INCLUDE_DIR}/EGL" "${NATIVE_SDK_INCLUDE_DIR}/GLES2")
+    target_link_libraries(LibWeb PRIVATE libEGL libGLESv2)
+endif()
+
+if(WIN32)
+    # FIXME: This is a hack to get around lld-link error undefined symbol JS::BigInt::cell_allocator
+    #        LibJS BigInt.obj and other .obj's it depends on is given directly to LibWeb linker
+    target_link_libraries(LibWeb PRIVATE
+        $<FILTER:$<TARGET_OBJECTS:LibJS>,INCLUDE,BigInt>
+        $<FILTER:$<TARGET_OBJECTS:LibJS>,INCLUDE,ErrorType>
+    )
+
+    # FIXME: This is a hack to get around lld-link error undefined symbol JS::GlobalEnvironment::cell_allocator
+    #        LibJS GlobalEnvironment.obj and other .obj's it depends on is given directly to LibWeb linker
+    target_link_libraries(LibWeb PRIVATE
+        $<FILTER:$<TARGET_OBJECTS:LibJS>,INCLUDE,GlobalEnvironment>
+        $<FILTER:$<TARGET_OBJECTS:LibJS>,INCLUDE,ObjectEnvironment>
+        $<FILTER:$<TARGET_OBJECTS:LibJS>,INCLUDE,DeclarativeEnvironment>
+    )
 endif()
 
 # FIXME: https://github.com/microsoft/vcpkg/issues/42324
