@@ -34,7 +34,7 @@ struct TransitionKey {
     }
 };
 
-class PrototypeChainValidity final : public Cell
+class JS_API PrototypeChainValidity final : public Cell
     , public Weakable<PrototypeChainValidity> {
     GC_CELL(PrototypeChainValidity, Cell);
     GC_DECLARE_ALLOCATOR(PrototypeChainValidity);

@@ -26,7 +26,7 @@ enum CompactTraceback {
     Yes,
 };
 
-class Error : public Object {
+class JS_API Error : public Object {
     JS_OBJECT(Error, Object);
     GC_DECLARE_ALLOCATOR(Error);
 

@@ -10,18 +10,19 @@
 #include <AK/String.h>
 #include <AK/Vector.h>
 #include <LibRegex/RegexParser.h>
+#include <LibJS/Forward.h>
 
 namespace JS::Bytecode {
 
 AK_TYPEDEF_DISTINCT_NUMERIC_GENERAL(u32, RegexTableIndex, Comparison);
 
-struct ParsedRegex {
+struct JS_API ParsedRegex {
     regex::Parser::Result regex;
     String pattern;
     regex::RegexOptions<ECMAScriptFlags> flags;
 };
 
-class RegexTable {
+class JS_API RegexTable {
     AK_MAKE_NONMOVABLE(RegexTable);
     AK_MAKE_NONCOPYABLE(RegexTable);
 

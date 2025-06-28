@@ -15,7 +15,7 @@
 
 namespace JS {
 
-class Lexer {
+class JS_API Lexer {
 public:
     explicit Lexer(StringView source, StringView filename = "(unknown)"sv, size_t line_number = 1, size_t line_column = 0);
 
@@ -91,8 +91,8 @@ private:
     RefPtr<ParsedIdentifiers> m_parsed_identifiers;
 };
 
-bool is_syntax_character(u32 code_point);
-bool is_whitespace(u32 code_point);
-bool is_line_terminator(u32 code_point);
+JS_API bool is_syntax_character(u32 code_point);
+JS_API bool is_whitespace(u32 code_point);
+JS_API bool is_line_terminator(u32 code_point);
 
 }
