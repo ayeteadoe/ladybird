@@ -39,4 +39,15 @@ void log_trace_impl(JS::VM& vm, char const* function)
     dbgln("{}({})", function, builder.string_view());
 }
 
+void log_trace(JS::VM& vm, char const* function)
+{
+    if (g_enable_idl_tracing)
+        log_trace_impl(vm, function);
+}
+
+void set_enable_idl_tracing(bool const enabled)
+{
+    g_enable_idl_tracing = enabled;
+}
+
 }
