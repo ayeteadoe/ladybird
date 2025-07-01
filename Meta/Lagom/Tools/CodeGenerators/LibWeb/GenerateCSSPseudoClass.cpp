@@ -47,6 +47,7 @@ ErrorOr<void> generate_header_file(JsonObject& pseudo_classes_data, Core::File& 
 
 #include <AK/Optional.h>
 #include <AK/StringView.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -63,8 +64,8 @@ enum class PseudoClass {
     __Count,
 };
 
-Optional<PseudoClass> pseudo_class_from_string(StringView);
-StringView pseudo_class_name(PseudoClass);
+WEB_API Optional<PseudoClass> pseudo_class_from_string(StringView);
+WEB_API StringView pseudo_class_name(PseudoClass);
 
 struct PseudoClassMetadata {
     enum class ParameterType {
@@ -82,7 +83,7 @@ struct PseudoClassMetadata {
     bool is_valid_as_function;
     bool is_valid_as_identifier;
 };
-PseudoClassMetadata pseudo_class_metadata(PseudoClass);
+WEB_API PseudoClassMetadata pseudo_class_metadata(PseudoClass);
 
 }
 )~~~");

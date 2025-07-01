@@ -84,6 +84,7 @@ ErrorOr<void> generate_header_file(JsonObject const& at_rules_data, Core::File& 
 #include <AK/Types.h>
 #include <LibWeb/CSS/Keyword.h>
 #include <LibWeb/CSS/PropertyID.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -97,7 +98,7 @@ enum class AtRuleID : @at_rule_id_underlying_type@ {
     generator.append(R"~~~(
 };
 
-FlyString to_string(AtRuleID);
+WEB_API FlyString to_string(AtRuleID);
 
 enum class DescriptorID : @descriptor_id_underlying_type@ {
 )~~~");
@@ -109,11 +110,11 @@ enum class DescriptorID : @descriptor_id_underlying_type@ {
     generator.append(R"~~~(
 };
 
-Optional<DescriptorID> descriptor_id_from_string(AtRuleID, StringView);
-FlyString to_string(DescriptorID);
+WEB_API Optional<DescriptorID> descriptor_id_from_string(AtRuleID, StringView);
+WEB_API FlyString to_string(DescriptorID);
 
-bool at_rule_supports_descriptor(AtRuleID, DescriptorID);
-RefPtr<CSSStyleValue const> descriptor_initial_value(AtRuleID, DescriptorID);
+WEB_API bool at_rule_supports_descriptor(AtRuleID, DescriptorID);
+WEB_API RefPtr<CSSStyleValue const> descriptor_initial_value(AtRuleID, DescriptorID);
 
 struct DescriptorMetadata {
     enum class ValueType {
@@ -131,7 +132,7 @@ struct DescriptorMetadata {
     Vector<Variant<Keyword, PropertyID, ValueType>> syntax;
 };
 
-DescriptorMetadata get_descriptor_metadata(AtRuleID, DescriptorID);
+WEB_API DescriptorMetadata get_descriptor_metadata(AtRuleID, DescriptorID);
 
 }
 )~~~");

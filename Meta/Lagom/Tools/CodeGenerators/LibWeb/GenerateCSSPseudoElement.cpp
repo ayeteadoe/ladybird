@@ -59,6 +59,7 @@ ErrorOr<void> generate_header_file(JsonObject& pseudo_elements_data, Core::File&
 #include <AK/Optional.h>
 #include <AK/StringView.h>
 #include <LibWeb/CSS/PropertyID.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -81,13 +82,13 @@ enum class PseudoElement : @pseudo_element_underlying_type@ {
     UnknownWebKit,
 };
 
-Optional<PseudoElement> pseudo_element_from_string(StringView);
-Optional<PseudoElement> aliased_pseudo_element_from_string(StringView);
-StringView pseudo_element_name(PseudoElement);
+WEB_API Optional<PseudoElement> pseudo_element_from_string(StringView);
+WEB_API Optional<PseudoElement> aliased_pseudo_element_from_string(StringView);
+WEB_API StringView pseudo_element_name(PseudoElement);
 
-bool is_has_allowed_pseudo_element(PseudoElement);
-bool is_pseudo_element_root(PseudoElement);
-bool pseudo_element_supports_property(PseudoElement, PropertyID);
+WEB_API bool is_has_allowed_pseudo_element(PseudoElement);
+WEB_API bool is_pseudo_element_root(PseudoElement);
+WEB_API bool pseudo_element_supports_property(PseudoElement, PropertyID);
 
 struct PseudoElementMetadata {
     enum class ParameterType {
@@ -97,7 +98,7 @@ struct PseudoElementMetadata {
     bool is_valid_as_function;
     bool is_valid_as_identifier;
 };
-PseudoElementMetadata pseudo_element_metadata(PseudoElement);
+WEB_API PseudoElementMetadata pseudo_element_metadata(PseudoElement);
 
 }
 )~~~");

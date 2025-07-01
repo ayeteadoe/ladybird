@@ -16,7 +16,7 @@
 
 namespace Web::Cookie {
 
-struct ParsedCookie {
+struct WEB_API ParsedCookie {
     String name;
     String value;
     SameSite same_site_attribute { SameSite::Default };

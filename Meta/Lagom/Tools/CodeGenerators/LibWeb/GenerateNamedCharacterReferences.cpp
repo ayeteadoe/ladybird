@@ -78,6 +78,7 @@ ErrorOr<void> generate_header_file(Core::File& file)
 
 #include <AK/Optional.h>
 #include <AK/Types.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -130,10 +131,10 @@ struct NamedCharacterReferenceCodepoints {
 };
 static_assert(sizeof(NamedCharacterReferenceCodepoints) == 4);
 
-u16 named_character_reference_child_index(u16 node_index);
-bool named_character_reference_is_end_of_word(u16 node_index);
-Optional<NamedCharacterReferenceCodepoints> named_character_reference_codepoints_from_unique_index(u16 unique_index);
-Optional<u16> named_character_reference_find_sibling_and_update_unique_index(u16 first_child_index, u8 character, u16& unique_index);
+WEB_API u16 named_character_reference_child_index(u16 node_index);
+WEB_API bool named_character_reference_is_end_of_word(u16 node_index);
+WEB_API Optional<NamedCharacterReferenceCodepoints> named_character_reference_codepoints_from_unique_index(u16 unique_index);
+WEB_API Optional<u16> named_character_reference_find_sibling_and_update_unique_index(u16 first_child_index, u8 character, u16& unique_index);
 
 } // namespace Web::HTML
 

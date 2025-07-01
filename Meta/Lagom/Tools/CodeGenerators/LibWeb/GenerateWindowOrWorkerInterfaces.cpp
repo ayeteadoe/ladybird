@@ -203,10 +203,11 @@ static ErrorOr<void> generate_exposed_interface_header(StringView class_name, St
 #pragma once
 
 #include <LibJS/Forward.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Bindings {
 
-void add_@global_object_snake_name@_exposed_interfaces(JS::Object&);
+WEB_API void add_@global_object_snake_name@_exposed_interfaces(JS::Object&);
 
 }
 

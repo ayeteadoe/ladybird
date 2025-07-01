@@ -50,6 +50,7 @@ ErrorOr<void> generate_header_file(JsonObject& media_feature_data, Core::File& f
 #include <AK/StringView.h>
 #include <AK/Traits.h>
 #include <LibWeb/CSS/Keyword.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -73,14 +74,14 @@ enum class MediaFeatureID : @media_feature_id_underlying_type@ {)~~~");
     generator.append(R"~~~(
 };
 
-Optional<MediaFeatureID> media_feature_id_from_string(StringView);
-StringView string_from_media_feature_id(MediaFeatureID);
+WEB_API Optional<MediaFeatureID> media_feature_id_from_string(StringView);
+WEB_API StringView string_from_media_feature_id(MediaFeatureID);
 
-bool media_feature_type_is_range(MediaFeatureID);
-bool media_feature_accepts_type(MediaFeatureID, MediaFeatureValueType);
-bool media_feature_accepts_keyword(MediaFeatureID, Keyword);
+WEB_API bool media_feature_type_is_range(MediaFeatureID);
+WEB_API bool media_feature_accepts_type(MediaFeatureID, MediaFeatureValueType);
+WEB_API bool media_feature_accepts_keyword(MediaFeatureID, Keyword);
 
-bool media_feature_keyword_is_falsey(MediaFeatureID, Keyword);
+WEB_API bool media_feature_keyword_is_falsey(MediaFeatureID, Keyword);
 
 }
 )~~~");

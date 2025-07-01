@@ -56,7 +56,7 @@ ErrorOr<void> generate_header_file(JsonObject& properties, Core::File& file)
 
 namespace Web::Bindings {
 
-class GeneratedCSSStyleProperties {
+class WEB_API GeneratedCSSStyleProperties {
 public:
 )~~~");
 

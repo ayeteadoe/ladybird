@@ -59,6 +59,7 @@ ErrorOr<void> generate_header_file(JsonObject& transforms_data, Core::File& file
 #include <AK/Optional.h>
 #include <AK/StringView.h>
 #include <AK/Vector.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -93,7 +94,7 @@ struct TransformFunctionParameter {
 struct TransformFunctionMetadata {
     Vector<TransformFunctionParameter> parameters;
 };
-TransformFunctionMetadata transform_function_metadata(TransformFunction);
+WEB_API TransformFunctionMetadata transform_function_metadata(TransformFunction);
 )~~~");
 
     generator.appendln("\n}");
