@@ -13,7 +13,7 @@
 namespace Web::SVG {
 
 // https://www.w3.org/TR/SVG11/types.html#InterfaceSVGAnimatedNumber
-class WEB_API VGAnimatedNumber final : public Bindings::PlatformObject {
+class WEB_API SVGAnimatedNumber final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(SVGAnimatedNumber, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(SVGAnimatedNumber);
 
