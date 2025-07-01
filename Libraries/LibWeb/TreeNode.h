@@ -15,6 +15,17 @@
 
 namespace Web {
 
+template<typename T>
+struct ChildrenChangedMetadata {
+    enum class Type {
+        Inserted,
+        Removal,
+        Mutation,
+    };
+    Type type {};
+    GC::Ref<T> node;
+};
+
 template<typename T, typename Callback>
 TraversalDecision traverse_preorder(T root, Callback callback)
 {

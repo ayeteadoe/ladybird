@@ -581,7 +581,7 @@ void HTMLScriptElement::prepare_script()
 }
 
 // https://html.spec.whatwg.org/multipage/scripting.html#script-processing-model:html-element-post-connection-steps-4
-void HTMLScriptElement::children_changed(ChildrenChangedMetadata const* metadata)
+void HTMLScriptElement::children_changed(ChildrenChangedMetadata<DOM::Node> const* metadata)
 {
     Base::children_changed(metadata);
 

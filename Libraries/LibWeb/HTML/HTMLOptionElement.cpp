@@ -255,7 +255,7 @@ void HTMLOptionElement::removed_from(Node* old_parent, Node& old_root)
     }
 }
 
-void HTMLOptionElement::children_changed(ChildrenChangedMetadata const* metadata)
+void HTMLOptionElement::children_changed(ChildrenChangedMetadata<DOM::Node> const* metadata)
 {
     Base::children_changed(metadata);
 

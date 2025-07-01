@@ -95,7 +95,7 @@ void HTMLDetailsElement::attribute_changed(FlyString const& local_name, Optional
     }
 }
 
-void HTMLDetailsElement::children_changed(ChildrenChangedMetadata const* metadata)
+void HTMLDetailsElement::children_changed(ChildrenChangedMetadata<DOM::Node> const* metadata)
 {
     Base::children_changed(metadata);
     update_shadow_tree_slots();

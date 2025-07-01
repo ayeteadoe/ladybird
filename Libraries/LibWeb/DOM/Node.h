@@ -312,17 +312,8 @@ public:
     virtual void removed_from(Node* old_parent, Node& old_root);
     virtual void moved_from(GC::Ptr<Node> old_parent);
 
-    struct ChildrenChangedMetadata {
-        enum class Type {
-            Inserted,
-            Removal,
-            Mutation,
-        };
-        Type type {};
-        GC::Ref<Node> node;
-    };
     // FIXME: It would be good if we could always provide this metadata for use in optimizations.
-    virtual void children_changed(ChildrenChangedMetadata const*) { }
+    virtual void children_changed(ChildrenChangedMetadata<Node> const*) { }
 
     virtual void adopted_from(Document&) { }
     virtual WebIDL::ExceptionOr<void> cloned(Node&, bool) const { return {}; }

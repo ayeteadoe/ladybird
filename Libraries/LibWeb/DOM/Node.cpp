@@ -795,7 +795,7 @@ void Node::insert_before(GC::Ref<Node> node, GC::Ptr<Node> child, bool suppress_
     }
 
     // 9. Run the children changed steps for parent.
-    ChildrenChangedMetadata metadata { ChildrenChangedMetadata::Type::Inserted, node };
+    ChildrenChangedMetadata const metadata { ChildrenChangedMetadata<Node>::Type::Inserted, node };
     children_changed(&metadata);
 
     // 10. Let staticNodeList be a list of nodes, initially « ».

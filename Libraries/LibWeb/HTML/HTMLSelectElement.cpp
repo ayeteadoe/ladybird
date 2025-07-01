@@ -315,11 +315,11 @@ bool HTMLSelectElement::can_skip_selectedness_update_for_inserted_option(HTMLOpt
     return true;
 }
 
-bool HTMLSelectElement::can_skip_children_changed_selectedness_update(ChildrenChangedMetadata const& metadata) const
+bool HTMLSelectElement::can_skip_children_changed_selectedness_update(ChildrenChangedMetadata<DOM::Node> const& metadata) const
 {
     // If the following criteria are met, there is no need to re-run the selectedness algorithm.
     // FIXME: We can tighten up these conditions and skip even more work!
-    if (metadata.type != ChildrenChangedMetadata::Type::Inserted)
+    if (metadata.type != ChildrenChangedMetadata<DOM::Node>::Type::Inserted)
         return false;
 
     if (auto* option = as_if<HTMLOptionElement>(*metadata.node))
@@ -328,7 +328,7 @@ bool HTMLSelectElement::can_skip_children_changed_selectedness_update(ChildrenCh
     return false;
 }
 
-void HTMLSelectElement::children_changed(ChildrenChangedMetadata const* metadata)
+void HTMLSelectElement::children_changed(ChildrenChangedMetadata<DOM::Node> const* metadata)
 {
     Base::children_changed(metadata);
 
