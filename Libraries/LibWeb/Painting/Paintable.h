@@ -107,6 +107,10 @@ public:
     Layout::Node const& layout_node() const { return m_layout_node; }
     Layout::Node& layout_node() { return const_cast<Layout::Node&>(*m_layout_node); }
 
+    void inserted_into(Paintable&) { }
+    void removed_from(Paintable&) { }
+    void children_changed(ChildrenChangedMetadata<Paintable> const*) { }
+
     [[nodiscard]] GC::Ptr<DOM::Node> dom_node();
     [[nodiscard]] GC::Ptr<DOM::Node const> dom_node() const;
     void set_dom_node(GC::Ptr<DOM::Node>);

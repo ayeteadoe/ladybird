@@ -161,7 +161,7 @@ public:
 
     void inserted_into(Node&) { }
     void removed_from(Node&) { }
-    void children_changed() { }
+    void children_changed(ChildrenChangedMetadata<Node> const*) { }
 
     bool children_are_inline() const { return m_children_are_inline; }
     void set_children_are_inline(bool value) { m_children_are_inline = value; }

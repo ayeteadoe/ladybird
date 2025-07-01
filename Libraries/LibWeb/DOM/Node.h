@@ -110,7 +110,7 @@ enum class SetNeedsLayoutReason {
 #undef ENUMERATE_SET_NEEDS_LAYOUT_REASON
 };
 
-WEB_API [[nodiscard]] StringView to_string(SetNeedsLayoutReason);
+[[nodiscard]] WEB_API StringView to_string(SetNeedsLayoutReason);
 
 #define ENUMERATE_SET_NEEDS_LAYOUT_TREE_UPDATE_REASONS(X) \
     X(ElementSetInnerHTML)                                \
@@ -133,7 +133,7 @@ enum class SetNeedsLayoutTreeUpdateReason {
 #undef ENUMERATE_SET_NEEDS_LAYOUT_TREE_UPDATE_REASON
 };
 
-WEB_API [[nodiscard]] StringView to_string(SetNeedsLayoutTreeUpdateReason);
+[[nodiscard]] WEB_API StringView to_string(SetNeedsLayoutTreeUpdateReason);
 
 class WEB_API Node : public EventTarget
     , public TreeNode<Node> {
@@ -312,6 +312,8 @@ public:
     virtual void removed_from(Node* old_parent, Node& old_root);
     virtual void moved_from(GC::Ptr<Node> old_parent);
 
+    void inserted_into(Node&) { }
+    void removed_from(Node&) { }
     // FIXME: It would be good if we could always provide this metadata for use in optimizations.
     virtual void children_changed(ChildrenChangedMetadata<Node> const*) { }
 

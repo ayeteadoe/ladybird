@@ -62,7 +62,7 @@ enum class InvalidateLayoutTreeReason {
 #undef ENUMERATE_INVALIDATE_LAYOUT_TREE_REASON
 };
 
-WEB_API [[nodiscard]] StringView to_string(InvalidateLayoutTreeReason);
+[[nodiscard]] WEB_API StringView to_string(InvalidateLayoutTreeReason);
 
 #define ENUMERATE_UPDATE_LAYOUT_REASONS(X) \
     X(CanvasRenderingContext2DSetFilter)   \
@@ -121,7 +121,7 @@ enum class UpdateLayoutReason {
 #undef ENUMERATE_UPDATE_LAYOUT_REASON
 };
 
-WEB_API [[nodiscard]] StringView to_string(UpdateLayoutReason);
+[[nodiscard]] WEB_API StringView to_string(UpdateLayoutReason);
 
 // https://html.spec.whatwg.org/multipage/dom.html#document-load-timing-info
 struct DocumentLoadTimingInfo {

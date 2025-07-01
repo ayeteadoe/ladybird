@@ -565,7 +565,8 @@ inline void TreeNode<T>::prepend_child(GC::Ref<T> node)
         m_last_child = m_first_child;
     node->inserted_into(static_cast<T&>(*this));
 
-    static_cast<T*>(this)->children_changed();
+    ChildrenChangedMetadata const metadata { ChildrenChangedMetadata<T>::Type::Inserted, node };
+    static_cast<T*>(this)->children_changed(&metadata);
 }
 
 template<typename T>
