@@ -15,7 +15,7 @@ namespace Web::HTML {
 
 struct UniqueTaskSource;
 
-AK_TYPEDEF_DISTINCT_NUMERIC_GENERAL(u64, TaskID, Comparison);
+AK_EXPORTED_TYPEDEF_DISTINCT_NUMERIC_GENERAL(u64, WEB, TaskID, Comparison);
 
 class WEB_API Task final : public JS::Cell {
     GC_CELL(Task, JS::Cell);

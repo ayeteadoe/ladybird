@@ -29,7 +29,7 @@ class XMLDocumentBuilder;
 enum class InvalidateDisplayList;
 enum class TraversalDecision;
 
-AK_TYPEDEF_DISTINCT_NUMERIC_GENERAL(i64, UniqueNodeID, Comparison, Increment, CastToUnderlying);
+AK_EXPORTED_TYPEDEF_DISTINCT_NUMERIC_GENERAL(i64, WEB, UniqueNodeID, Comparison, Increment, CastToUnderlying);
 
 }
 

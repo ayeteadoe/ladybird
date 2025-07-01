@@ -22,7 +22,7 @@
 namespace Web {
 
 /// DevicePixels: A position or length on the physical display.
-AK_TYPEDEF_DISTINCT_NUMERIC_GENERAL(int, DevicePixels, Arithmetic, CastToUnderlying, Comparison, Increment);
+AK_EXPORTED_TYPEDEF_DISTINCT_NUMERIC_GENERAL(int, WEB, DevicePixels, Arithmetic, CastToUnderlying, Comparison, Increment);
 
 template<Integral T>
 constexpr bool operator==(DevicePixels left, T right) { return left.value() == right; }

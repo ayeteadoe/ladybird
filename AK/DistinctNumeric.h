@@ -309,6 +309,7 @@ struct Formatter<DistinctNumeric<T, X, Opts...>> : Formatter<T> {
 
 }
 
+// FIXME: Remove Non-exported version when all libraries have enabled explicit symbol export
 #define AK_TYPEDEF_DISTINCT_NUMERIC_GENERAL(T, NAME, ...)                                       \
     struct NAME##_decl {                                                                        \
         using Arithmetic [[maybe_unused]] = AK::DistinctNumericFeature::Arithmetic;             \
@@ -319,6 +320,19 @@ struct Formatter<DistinctNumeric<T, X, Opts...>> : Formatter<T> {
         using Increment [[maybe_unused]] = AK::DistinctNumericFeature::Increment;               \
         using Shift [[maybe_unused]] = AK::DistinctNumericFeature::Shift;                       \
         using NAME [[maybe_unused]] = DistinctNumeric<T, struct __##NAME##_tag, ##__VA_ARGS__>; \
+    };                                                                                          \
+    using NAME = typename NAME##_decl::NAME;
+
+#define AK_EXPORTED_TYPEDEF_DISTINCT_NUMERIC_GENERAL(T, LIB, NAME, ...)                         \
+    struct LIB##_API NAME##_decl {                                                               \
+        using Arithmetic [[maybe_unused]] = AK::DistinctNumericFeature::Arithmetic;             \
+        using CastToBool [[maybe_unused]] = AK::DistinctNumericFeature::CastToBool;             \
+        using CastToUnderlying [[maybe_unused]] = AK::DistinctNumericFeature::CastToUnderlying; \
+        using Comparison [[maybe_unused]] = AK::DistinctNumericFeature::Comparison;             \
+        using Flags [[maybe_unused]] = AK::DistinctNumericFeature::Flags;                       \
+        using Increment [[maybe_unused]] = AK::DistinctNumericFeature::Increment;               \
+        using Shift [[maybe_unused]] = AK::DistinctNumericFeature::Shift;                       \
+        using NAME [[maybe_unused]] = DistinctNumeric<T, struct LIB##_API __##NAME##_tag, ##__VA_ARGS__>; \
     };                                                                                          \
     using NAME = typename NAME##_decl::NAME;
 

@@ -25,7 +25,7 @@ enum class Source {
     Http,
 };
 
-struct Cookie {
+struct WEB_API Cookie {
     String creation_time_to_string() const;
     String last_access_time_to_string() const;
     String expiry_time_to_string() const;
