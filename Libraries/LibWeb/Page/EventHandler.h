@@ -21,7 +21,7 @@
 
 namespace Web {
 
-class EventHandler {
+class WEB_API EventHandler {
 public:
     explicit EventHandler(Badge<HTML::Navigable>, HTML::Navigable&);
     ~EventHandler();

@@ -11,7 +11,7 @@
 
 namespace Web::Layout {
 
-class RadioButton final : public FormAssociatedLabelableNode {
+class WEB_API RadioButton final : public FormAssociatedLabelableNode {
     GC_CELL(RadioButton, FormAssociatedLabelableNode);
     GC_DECLARE_ALLOCATOR(RadioButton);
 

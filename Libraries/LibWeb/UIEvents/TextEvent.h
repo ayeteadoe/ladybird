@@ -6,11 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/UIEvents/UIEvent.h>
 
 namespace Web::UIEvents {
 
-class TextEvent final : public UIEvent {
+class WEB_API TextEvent final : public UIEvent {
     WEB_PLATFORM_OBJECT(TextEvent, UIEvent);
     GC_DECLARE_ALLOCATOR(TextEvent);
 

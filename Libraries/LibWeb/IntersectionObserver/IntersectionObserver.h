@@ -8,6 +8,7 @@
 
 #include <LibGC/Root.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IntersectionObserver/IntersectionObserverEntry.h>
 #include <LibWeb/PixelUnits.h>
 
@@ -39,7 +40,7 @@ struct IntersectionObserverRegistration {
 };
 
 // https://w3c.github.io/IntersectionObserver/#intersection-observer-interface
-class IntersectionObserver final : public Bindings::PlatformObject {
+class WEB_API IntersectionObserver final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(IntersectionObserver, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(IntersectionObserver);
 

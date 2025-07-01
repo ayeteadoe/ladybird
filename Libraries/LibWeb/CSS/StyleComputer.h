@@ -74,7 +74,7 @@ private:
     CounterType m_buckets[bucket_count];
 };
 
-struct MatchingRule {
+struct WEB_API MatchingRule {
     GC::Ptr<DOM::ShadowRoot const> shadow_root;
     GC::Ptr<CSSRule const> rule; // Either CSSStyleRule or CSSNestedDeclarations
     GC::Ptr<CSSStyleSheet const> sheet;
@@ -95,7 +95,7 @@ struct MatchingRule {
 
 struct FontFaceKey;
 
-struct OwnFontFaceKey {
+struct WEB_API OwnFontFaceKey {
     explicit OwnFontFaceKey(FontFaceKey const& other);
 
     operator FontFaceKey() const;
@@ -109,7 +109,7 @@ struct OwnFontFaceKey {
     int slope { 0 };
 };
 
-struct RuleCache {
+struct WEB_API RuleCache {
     HashMap<FlyString, Vector<MatchingRule>> rules_by_id;
     HashMap<FlyString, Vector<MatchingRule>> rules_by_class;
     HashMap<FlyString, Vector<MatchingRule>> rules_by_tag_name;
@@ -126,7 +126,7 @@ struct RuleCache {
 
 class FontLoader;
 
-class StyleComputer {
+class WEB_API StyleComputer {
 public:
     static void for_each_property_expanding_shorthands(PropertyID, CSSStyleValue const&, Function<void(PropertyID, CSSStyleValue const&)> const& set_longhand_property);
     static NonnullRefPtr<CSSStyleValue const> get_inherit_value(CSS::PropertyID, DOM::Element const*, Optional<CSS::PseudoElement> = {});
@@ -299,7 +299,7 @@ private:
     CountingBloomFilter<u8, 14> m_ancestor_filter;
 };
 
-class FontLoader : public Weakable<FontLoader> {
+class WEB_API FontLoader : public Weakable<FontLoader> {
 public:
     FontLoader(StyleComputer& style_computer, GC::Ptr<CSSStyleSheet> parent_style_sheet, FlyString family_name, Vector<Gfx::UnicodeRange> unicode_ranges, Vector<URL> urls, ESCAPING Function<void(RefPtr<Gfx::Typeface const>)> on_load = {});
 

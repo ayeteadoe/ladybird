@@ -8,10 +8,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Enums.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class FontStyleStyleValue final : public StyleValueWithDefaultOperators<FontStyleStyleValue> {
+class WEB_API FontStyleStyleValue final : public StyleValueWithDefaultOperators<FontStyleStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<FontStyleStyleValue const> create(FontStyle font_style, ValueComparingRefPtr<CSSStyleValue const> angle_value = {})
     {

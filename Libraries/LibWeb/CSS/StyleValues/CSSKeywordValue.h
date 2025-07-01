@@ -11,11 +11,12 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Keyword.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.css-houdini.org/css-typed-om-1/#csskeywordvalue
-class CSSKeywordValue : public StyleValueWithDefaultOperators<CSSKeywordValue> {
+class WEB_API CSSKeywordValue : public StyleValueWithDefaultOperators<CSSKeywordValue> {
 public:
     static ValueComparingNonnullRefPtr<CSSKeywordValue const> create(Keyword keyword)
     {

@@ -14,6 +14,7 @@
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/PropertyID.h>
 #include <LibWeb/CSS/Selector.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Animations {
 
@@ -54,7 +55,7 @@ struct BaseKeyframe {
 };
 
 // https://www.w3.org/TR/web-animations-1/#the-keyframeeffect-interface
-class KeyframeEffect : public AnimationEffect {
+class WEB_API KeyframeEffect : public AnimationEffect {
     WEB_PLATFORM_OBJECT(KeyframeEffect, AnimationEffect);
     GC_DECLARE_ALLOCATOR(KeyframeEffect);
 

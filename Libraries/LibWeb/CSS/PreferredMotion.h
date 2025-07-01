@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/StringView.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -16,7 +17,7 @@ enum class PreferredMotion {
     Reduce,
 };
 
-PreferredMotion preferred_motion_from_string(StringView);
-StringView preferred_motion_to_string(PreferredMotion);
+WEB_API PreferredMotion preferred_motion_from_string(StringView);
+WEB_API StringView preferred_motion_to_string(PreferredMotion);
 
 }

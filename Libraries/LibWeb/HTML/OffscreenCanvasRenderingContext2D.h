@@ -15,6 +15,7 @@
 #include <LibGfx/Path.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/Canvas/CanvasCompositing.h>
 #include <LibWeb/HTML/Canvas/CanvasDrawImage.h>
 #include <LibWeb/HTML/Canvas/CanvasDrawPath.h>
@@ -37,7 +38,7 @@
 
 namespace Web::HTML {
 
-class OffscreenCanvasRenderingContext2D : public Bindings::PlatformObject
+class WEB_API OffscreenCanvasRenderingContext2D : public Bindings::PlatformObject
     , public CanvasState
     , public CanvasTransform<OffscreenCanvasRenderingContext2D>
     , public CanvasFillStrokeStyles<OffscreenCanvasRenderingContext2D>

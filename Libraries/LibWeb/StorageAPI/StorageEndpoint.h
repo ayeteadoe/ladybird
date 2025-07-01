@@ -10,6 +10,7 @@
 #include <AK/Optional.h>
 #include <AK/String.h>
 #include <AK/Types.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/StorageAPI/StorageType.h>
 
 namespace Web::StorageAPI {
@@ -28,7 +29,7 @@ enum class StorageEndpointType : u8 {
 //
 // A storage endpoint is a local or session storage API that uses the infrastructure defined by this
 // standard, most notably storage bottles, to keep track of its storage needs.
-struct StorageEndpoint {
+struct WEB_API StorageEndpoint {
     static constexpr u64 LOCAL_STORAGE_QUOTA = 5 * MiB;
     static constexpr u64 SESSION_STORAGE_QUOTA = 5 * MiB;
 

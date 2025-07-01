@@ -13,6 +13,7 @@
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/CSS/Enums.h>
 #include <LibWeb/CSS/StyleValues/EasingStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Animations {
 
@@ -56,11 +57,11 @@ enum class AnimationDirection {
     Backwards,
 };
 
-Bindings::FillMode css_fill_mode_to_bindings_fill_mode(CSS::AnimationFillMode mode);
-Bindings::PlaybackDirection css_animation_direction_to_bindings_playback_direction(CSS::AnimationDirection direction);
+WEB_API Bindings::FillMode css_fill_mode_to_bindings_fill_mode(CSS::AnimationFillMode mode);
+WEB_API Bindings::PlaybackDirection css_animation_direction_to_bindings_playback_direction(CSS::AnimationDirection direction);
 
 // https://www.w3.org/TR/web-animations-1/#the-animationeffect-interface
-class AnimationEffect : public Bindings::PlatformObject {
+class WEB_API AnimationEffect : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(AnimationEffect, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(AnimationEffect);
 

@@ -11,7 +11,7 @@
 
 namespace Web::Layout {
 
-class LabelableNode : public ReplacedBox {
+class WEB_API LabelableNode : public ReplacedBox {
     GC_CELL(LabelableNode, ReplacedBox);
 
 public:

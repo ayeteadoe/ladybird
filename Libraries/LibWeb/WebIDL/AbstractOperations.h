@@ -16,30 +16,30 @@
 
 namespace Web::WebIDL {
 
-bool is_buffer_source_type(JS::Value);
-GC::Ptr<JS::ArrayBuffer> underlying_buffer_source(JS::Object& buffer_source);
-ErrorOr<ByteBuffer> get_buffer_source_copy(JS::Object const& buffer_source);
+WEB_API bool is_buffer_source_type(JS::Value);
+WEB_API GC::Ptr<JS::ArrayBuffer> underlying_buffer_source(JS::Object& buffer_source);
+WEB_API ErrorOr<ByteBuffer> get_buffer_source_copy(JS::Object const& buffer_source);
 
-JS::Completion call_user_object_operation(CallbackType& callback, String const& operation_name, Optional<JS::Value> this_argument, ReadonlySpan<JS::Value> args);
+WEB_API JS::Completion call_user_object_operation(CallbackType& callback, String const& operation_name, Optional<JS::Value> this_argument, ReadonlySpan<JS::Value> args);
 
-JS::ThrowCompletionOr<String> to_string(JS::VM&, JS::Value);
-JS::ThrowCompletionOr<String> to_usv_string(JS::VM&, JS::Value);
-JS::ThrowCompletionOr<String> to_byte_string(JS::VM&, JS::Value);
+WEB_API JS::ThrowCompletionOr<String> to_string(JS::VM&, JS::Value);
+WEB_API JS::ThrowCompletionOr<String> to_usv_string(JS::VM&, JS::Value);
+WEB_API JS::ThrowCompletionOr<String> to_byte_string(JS::VM&, JS::Value);
 
 enum class ExceptionBehavior {
     NotSpecified,
     Report,
     Rethrow,
 };
-JS::Completion invoke_callback(CallbackType& callback, Optional<JS::Value> this_argument, ExceptionBehavior exception_behavior, ReadonlySpan<JS::Value> args);
-JS::Completion invoke_callback(CallbackType& callback, Optional<JS::Value> this_argument, ReadonlySpan<JS::Value> args);
+WEB_API JS::Completion invoke_callback(CallbackType& callback, Optional<JS::Value> this_argument, ExceptionBehavior exception_behavior, ReadonlySpan<JS::Value> args);
+WEB_API JS::Completion invoke_callback(CallbackType& callback, Optional<JS::Value> this_argument, ReadonlySpan<JS::Value> args);
 
-GC::Ref<Promise> invoke_promise_callback(CallbackType& callback, Optional<JS::Value> this_argument, ReadonlySpan<JS::Value> args);
+WEB_API GC::Ref<Promise> invoke_promise_callback(CallbackType& callback, Optional<JS::Value> this_argument, ReadonlySpan<JS::Value> args);
 
-JS::Completion construct(CallbackType& callable, ReadonlySpan<JS::Value> args);
+WEB_API JS::Completion construct(CallbackType& callable, ReadonlySpan<JS::Value> args);
 
 // https://webidl.spec.whatwg.org/#abstract-opdef-integerpart
-double integer_part(double n);
+WEB_API double integer_part(double n);
 
 enum class EnforceRange {
     Yes,
@@ -55,6 +55,6 @@ enum class Clamp {
 template<Integral T>
 JS::ThrowCompletionOr<T> convert_to_int(JS::VM& vm, JS::Value, EnforceRange enforce_range = EnforceRange::No, Clamp clamp = Clamp::No);
 
-bool lists_contain_same_elements(GC::Ptr<JS::Array> array, Optional<GC::RootVector<GC::Ref<DOM::Element>>> const& elements);
+WEB_API bool lists_contain_same_elements(GC::Ptr<JS::Array> array, Optional<GC::RootVector<GC::Ref<DOM::Element>>> const& elements);
 
 }

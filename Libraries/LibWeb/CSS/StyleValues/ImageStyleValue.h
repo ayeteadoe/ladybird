@@ -17,7 +17,7 @@
 
 namespace Web::CSS {
 
-class ImageStyleValue final
+class WEB_API ImageStyleValue final
     : public AbstractImageStyleValue
     , public Weakable<ImageStyleValue> {
 

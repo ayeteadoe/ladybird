@@ -11,6 +11,7 @@
 #include <LibWeb/Bindings/ImageDataPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Bindings/Serializable.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::HTML {
@@ -19,7 +20,7 @@ struct ImageDataSettings {
     Bindings::PredefinedColorSpace color_space;
 };
 
-class ImageData final
+class WEB_API ImageData final
     : public Bindings::PlatformObject
     , public Bindings::Serializable {
     WEB_PLATFORM_OBJECT(ImageData, Bindings::PlatformObject);

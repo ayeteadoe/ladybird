@@ -14,6 +14,7 @@
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/CompressionStreamPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Streams/GenericTransformStream.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
@@ -25,7 +26,7 @@ using Compressor = Variant<
     NonnullOwnPtr<Compress::GzipCompressor>>;
 
 // https://compression.spec.whatwg.org/#compressionstream
-class CompressionStream final
+class WEB_API CompressionStream final
     : public Bindings::PlatformObject
     , public Streams::GenericTransformStreamMixin {
     WEB_PLATFORM_OBJECT(CompressionStream, Bindings::PlatformObject);

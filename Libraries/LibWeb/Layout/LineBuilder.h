@@ -6,11 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/InlineFormattingContext.h>
 
 namespace Web::Layout {
 
-class LineBuilder {
+class WEB_API LineBuilder {
     AK_MAKE_NONCOPYABLE(LineBuilder);
     AK_MAKE_NONMOVABLE(LineBuilder);
 

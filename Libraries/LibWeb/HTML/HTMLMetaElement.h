@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
@@ -21,7 +22,7 @@ namespace Web::HTML {
     __ENUMERATE_HTML_META_HTTP_EQUIV_ATTRIBUTE("x-ua-compatible", XUACompatible)    \
     __ENUMERATE_HTML_META_HTTP_EQUIV_ATTRIBUTE("content-security-policy", ContentSecurityPolicy)
 
-class HTMLMetaElement final : public HTMLElement {
+class WEB_API HTMLMetaElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLMetaElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLMetaElement);
 

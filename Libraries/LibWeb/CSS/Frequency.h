@@ -12,7 +12,7 @@
 
 namespace Web::CSS {
 
-class Frequency {
+class WEB_API Frequency {
 public:
     enum class Type : u8 {
         Hz,

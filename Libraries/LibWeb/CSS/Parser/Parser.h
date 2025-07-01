@@ -71,7 +71,7 @@ enum class ParsingMode {
     SVGPresentationAttribute, // See https://svgwg.org/svg2-draft/types.html#presentation-attribute-css-value
 };
 
-struct ParsingParams {
+struct WEB_API ParsingParams {
     explicit ParsingParams(ParsingMode = ParsingMode::Normal);
     explicit ParsingParams(JS::Realm&, ParsingMode = ParsingMode::Normal);
     explicit ParsingParams(DOM::Document const&, ParsingMode = ParsingMode::Normal);
@@ -87,7 +87,7 @@ struct ParsingParams {
 // The very large CSS Parser implementation code is broken up among several .cpp files:
 // Parser.cpp contains the core parser algorithms, defined in https://drafts.csswg.org/css-syntax
 // Everything else is in different *Parsing.cpp files
-class Parser {
+class WEB_API Parser {
     AK_MAKE_NONCOPYABLE(Parser);
     AK_MAKE_NONMOVABLE(Parser);
 
@@ -553,19 +553,19 @@ private:
 
 namespace Web {
 
-GC::Ref<CSS::CSSStyleSheet> parse_css_stylesheet(CSS::Parser::ParsingParams const&, StringView, Optional<::URL::URL> location = {}, Vector<NonnullRefPtr<CSS::MediaQuery>> = {});
-CSS::Parser::Parser::PropertiesAndCustomProperties parse_css_property_declaration_block(CSS::Parser::ParsingParams const&, StringView);
-Vector<CSS::Descriptor> parse_css_descriptor_declaration_block(CSS::Parser::ParsingParams const&, CSS::AtRuleID, StringView);
-RefPtr<CSS::CSSStyleValue const> parse_css_value(CSS::Parser::ParsingParams const&, StringView, CSS::PropertyID property_id = CSS::PropertyID::Invalid);
-RefPtr<CSS::CSSStyleValue const> parse_css_descriptor(CSS::Parser::ParsingParams const&, CSS::AtRuleID, CSS::DescriptorID, StringView);
-Optional<CSS::SelectorList> parse_selector(CSS::Parser::ParsingParams const&, StringView);
-Optional<CSS::SelectorList> parse_selector_for_nested_style_rule(CSS::Parser::ParsingParams const&, StringView);
-Optional<CSS::PageSelectorList> parse_page_selector_list(CSS::Parser::ParsingParams const&, StringView);
-Optional<CSS::Selector::PseudoElementSelector> parse_pseudo_element_selector(CSS::Parser::ParsingParams const&, StringView);
-CSS::CSSRule* parse_css_rule(CSS::Parser::ParsingParams const&, StringView);
-RefPtr<CSS::MediaQuery> parse_media_query(CSS::Parser::ParsingParams const&, StringView);
-Vector<NonnullRefPtr<CSS::MediaQuery>> parse_media_query_list(CSS::Parser::ParsingParams const&, StringView);
-RefPtr<CSS::Supports> parse_css_supports(CSS::Parser::ParsingParams const&, StringView);
-GC::Ref<JS::Realm> internal_css_realm();
+WEB_API GC::Ref<CSS::CSSStyleSheet> parse_css_stylesheet(CSS::Parser::ParsingParams const&, StringView, Optional<::URL::URL> location = {}, Vector<NonnullRefPtr<CSS::MediaQuery>> = {});
+WEB_API CSS::Parser::Parser::PropertiesAndCustomProperties parse_css_property_declaration_block(CSS::Parser::ParsingParams const&, StringView);
+WEB_API Vector<CSS::Descriptor> parse_css_descriptor_declaration_block(CSS::Parser::ParsingParams const&, CSS::AtRuleID, StringView);
+WEB_API RefPtr<CSS::CSSStyleValue const> parse_css_value(CSS::Parser::ParsingParams const&, StringView, CSS::PropertyID property_id = CSS::PropertyID::Invalid);
+WEB_API RefPtr<CSS::CSSStyleValue const> parse_css_descriptor(CSS::Parser::ParsingParams const&, CSS::AtRuleID, CSS::DescriptorID, StringView);
+WEB_API Optional<CSS::SelectorList> parse_selector(CSS::Parser::ParsingParams const&, StringView);
+WEB_API Optional<CSS::SelectorList> parse_selector_for_nested_style_rule(CSS::Parser::ParsingParams const&, StringView);
+WEB_API Optional<CSS::PageSelectorList> parse_page_selector_list(CSS::Parser::ParsingParams const&, StringView);
+WEB_API Optional<CSS::Selector::PseudoElementSelector> parse_pseudo_element_selector(CSS::Parser::ParsingParams const&, StringView);
+WEB_API CSS::CSSRule* parse_css_rule(CSS::Parser::ParsingParams const&, StringView);
+WEB_API RefPtr<CSS::MediaQuery> parse_media_query(CSS::Parser::ParsingParams const&, StringView);
+WEB_API Vector<NonnullRefPtr<CSS::MediaQuery>> parse_media_query_list(CSS::Parser::ParsingParams const&, StringView);
+WEB_API RefPtr<CSS::Supports> parse_css_supports(CSS::Parser::ParsingParams const&, StringView);
+WEB_API GC::Ref<JS::Realm> internal_css_realm();
 
 }

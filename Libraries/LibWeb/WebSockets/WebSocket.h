@@ -25,7 +25,7 @@
 
 namespace Web::WebSockets {
 
-class WebSocket final : public DOM::EventTarget {
+class WEB_API WebSocket final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(WebSocket, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(WebSocket);
 

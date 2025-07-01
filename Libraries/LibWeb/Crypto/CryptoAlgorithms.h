@@ -16,6 +16,7 @@
 #include <LibWeb/Bindings/SubtleCryptoPrototype.h>
 #include <LibWeb/Crypto/CryptoBindings.h>
 #include <LibWeb/Crypto/CryptoKey.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Buffers.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 #include <LibWeb/WebIDL/Types.h>
@@ -26,7 +27,7 @@ using AlgorithmIdentifier = Variant<GC::Root<JS::Object>, String>;
 using NamedCurve = String;
 using KeyDataType = Variant<GC::Root<WebIDL::BufferSource>, Bindings::JsonWebKey>;
 
-struct HashAlgorithmIdentifier : public AlgorithmIdentifier {
+struct WEB_API HashAlgorithmIdentifier : public AlgorithmIdentifier {
     using AlgorithmIdentifier::AlgorithmIdentifier;
 
     JS::ThrowCompletionOr<String> name(JS::VM& vm) const
@@ -43,7 +44,7 @@ struct HashAlgorithmIdentifier : public AlgorithmIdentifier {
 };
 
 // https://w3c.github.io/webcrypto/#algorithm-overview
-struct AlgorithmParams {
+struct WEB_API AlgorithmParams {
     virtual ~AlgorithmParams();
     explicit AlgorithmParams()
     {
@@ -57,7 +58,7 @@ struct AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#aes-cbc
-struct AesCbcParams : public AlgorithmParams {
+struct WEB_API AesCbcParams : public AlgorithmParams {
     virtual ~AesCbcParams() override;
     AesCbcParams(ByteBuffer iv)
         : iv(move(iv))
@@ -70,7 +71,7 @@ struct AesCbcParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-AesCtrParams
-struct AesCtrParams : public AlgorithmParams {
+struct WEB_API AesCtrParams : public AlgorithmParams {
     virtual ~AesCtrParams() override;
     AesCtrParams(ByteBuffer counter, u8 length)
         : counter(move(counter))
@@ -85,7 +86,7 @@ struct AesCtrParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-AesGcmParams
-struct AesGcmParams : public AlgorithmParams {
+struct WEB_API AesGcmParams : public AlgorithmParams {
     virtual ~AesGcmParams() override;
     AesGcmParams(ByteBuffer iv, Optional<ByteBuffer> additional_data, Optional<u8> tag_length)
         : iv(move(iv))
@@ -102,7 +103,7 @@ struct AesGcmParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#hkdf-params
-struct HKDFParams : public AlgorithmParams {
+struct WEB_API HKDFParams : public AlgorithmParams {
     virtual ~HKDFParams() override;
     HKDFParams(HashAlgorithmIdentifier hash, ByteBuffer salt, ByteBuffer info)
         : hash(move(hash))
@@ -119,7 +120,7 @@ struct HKDFParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#pbkdf2-params
-struct PBKDF2Params : public AlgorithmParams {
+struct WEB_API PBKDF2Params : public AlgorithmParams {
     virtual ~PBKDF2Params() override;
     PBKDF2Params(ByteBuffer salt, u32 iterations, HashAlgorithmIdentifier hash)
         : salt(move(salt))
@@ -136,7 +137,7 @@ struct PBKDF2Params : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-RsaKeyGenParams
-struct RsaKeyGenParams : public AlgorithmParams {
+struct WEB_API RsaKeyGenParams : public AlgorithmParams {
     virtual ~RsaKeyGenParams() override;
 
     RsaKeyGenParams(u32 modulus_length, ::Crypto::UnsignedBigInteger public_exponent)
@@ -153,7 +154,7 @@ struct RsaKeyGenParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-RsaHashedKeyGenParams
-struct RsaHashedKeyGenParams : public RsaKeyGenParams {
+struct WEB_API RsaHashedKeyGenParams : public RsaKeyGenParams {
     virtual ~RsaHashedKeyGenParams() override;
 
     RsaHashedKeyGenParams(u32 modulus_length, ::Crypto::UnsignedBigInteger public_exponent, HashAlgorithmIdentifier hash)
@@ -168,7 +169,7 @@ struct RsaHashedKeyGenParams : public RsaKeyGenParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-RsaHashedImportParams
-struct RsaHashedImportParams : public AlgorithmParams {
+struct WEB_API RsaHashedImportParams : public AlgorithmParams {
     virtual ~RsaHashedImportParams() override;
 
     RsaHashedImportParams(HashAlgorithmIdentifier hash)
@@ -182,7 +183,7 @@ struct RsaHashedImportParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-RsaOaepParams
-struct RsaOaepParams : public AlgorithmParams {
+struct WEB_API RsaOaepParams : public AlgorithmParams {
     virtual ~RsaOaepParams() override;
 
     RsaOaepParams(ByteBuffer label)
@@ -196,7 +197,7 @@ struct RsaOaepParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-RsaPssParams
-struct RsaPssParams : public AlgorithmParams {
+struct WEB_API RsaPssParams : public AlgorithmParams {
     virtual ~RsaPssParams() override;
 
     RsaPssParams(WebIDL::UnsignedLong salt_length)
@@ -210,7 +211,7 @@ struct RsaPssParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-EcdsaParams
-struct EcdsaParams : public AlgorithmParams {
+struct WEB_API EcdsaParams : public AlgorithmParams {
     virtual ~EcdsaParams() override;
 
     EcdsaParams(HashAlgorithmIdentifier hash)
@@ -224,7 +225,7 @@ struct EcdsaParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-EcKeyGenParams
-struct EcKeyGenParams : public AlgorithmParams {
+struct WEB_API EcKeyGenParams : public AlgorithmParams {
     virtual ~EcKeyGenParams() override;
 
     EcKeyGenParams(NamedCurve named_curve)
@@ -238,7 +239,7 @@ struct EcKeyGenParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-AesKeyGenParams
-struct AesKeyGenParams : public AlgorithmParams {
+struct WEB_API AesKeyGenParams : public AlgorithmParams {
     virtual ~AesKeyGenParams() override;
 
     AesKeyGenParams(u16 length)
@@ -252,7 +253,7 @@ struct AesKeyGenParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#dfn-AesDerivedKeyParams
-struct AesDerivedKeyParams : public AlgorithmParams {
+struct WEB_API AesDerivedKeyParams : public AlgorithmParams {
     virtual ~AesDerivedKeyParams() override;
 
     AesDerivedKeyParams(u16 length)
@@ -266,7 +267,7 @@ struct AesDerivedKeyParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#hmac-importparams
-struct HmacImportParams : public AlgorithmParams {
+struct WEB_API HmacImportParams : public AlgorithmParams {
     virtual ~HmacImportParams() override;
 
     HmacImportParams(HashAlgorithmIdentifier hash, Optional<WebIDL::UnsignedLong> length)
@@ -282,7 +283,7 @@ struct HmacImportParams : public AlgorithmParams {
 };
 
 // https://w3c.github.io/webcrypto/#hmac-keygen-params
-struct HmacKeyGenParams : public AlgorithmParams {
+struct WEB_API HmacKeyGenParams : public AlgorithmParams {
     virtual ~HmacKeyGenParams() override;
 
     HmacKeyGenParams(HashAlgorithmIdentifier hash, Optional<WebIDL::UnsignedLong> length)
@@ -297,7 +298,7 @@ struct HmacKeyGenParams : public AlgorithmParams {
     static JS::ThrowCompletionOr<NonnullOwnPtr<AlgorithmParams>> from_value(JS::VM&, JS::Value);
 };
 
-class AlgorithmMethods {
+class WEB_API AlgorithmMethods {
 public:
     virtual ~AlgorithmMethods();
 
@@ -372,7 +373,7 @@ protected:
     GC::Ref<JS::Realm> m_realm;
 };
 
-class RSAOAEP : public AlgorithmMethods {
+class WEB_API RSAOAEP : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> encrypt(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> decrypt(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
@@ -391,7 +392,7 @@ private:
     }
 };
 
-class RSAPSS : public AlgorithmMethods {
+class WEB_API RSAPSS : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> sign(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
     virtual WebIDL::ExceptionOr<JS::Value> verify(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&, ByteBuffer const&) override;
@@ -410,7 +411,7 @@ private:
     }
 };
 
-class RSASSAPKCS1 : public AlgorithmMethods {
+class WEB_API RSASSAPKCS1 : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> sign(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
     virtual WebIDL::ExceptionOr<JS::Value> verify(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&, ByteBuffer const&) override;
@@ -429,7 +430,7 @@ private:
     }
 };
 
-class AesCbc : public AlgorithmMethods {
+class WEB_API AesCbc : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> encrypt(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> decrypt(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
@@ -447,7 +448,7 @@ private:
     }
 };
 
-class AesCtr : public AlgorithmMethods {
+class WEB_API AesCtr : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<CryptoKey>> import_key(AlgorithmParams const&, Bindings::KeyFormat, CryptoKey::InternalKeyData, bool, Vector<Bindings::KeyUsage> const&) override;
     virtual WebIDL::ExceptionOr<GC::Ref<JS::Object>> export_key(Bindings::KeyFormat, GC::Ref<CryptoKey>) override;
@@ -465,7 +466,7 @@ private:
     }
 };
 
-class AesGcm : public AlgorithmMethods {
+class WEB_API AesGcm : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<JS::Value> get_key_length(AlgorithmParams const&) override;
     virtual WebIDL::ExceptionOr<GC::Ref<CryptoKey>> import_key(AlgorithmParams const&, Bindings::KeyFormat, CryptoKey::InternalKeyData, bool, Vector<Bindings::KeyUsage> const&) override;
@@ -483,7 +484,7 @@ private:
     }
 };
 
-class AesKw : public AlgorithmMethods {
+class WEB_API AesKw : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<CryptoKey>> import_key(AlgorithmParams const&, Bindings::KeyFormat, CryptoKey::InternalKeyData, bool, Vector<Bindings::KeyUsage> const&) override;
     virtual WebIDL::ExceptionOr<GC::Ref<JS::Object>> export_key(Bindings::KeyFormat, GC::Ref<CryptoKey>) override;
@@ -501,7 +502,7 @@ private:
     }
 };
 
-class HKDF : public AlgorithmMethods {
+class WEB_API HKDF : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<CryptoKey>> import_key(AlgorithmParams const&, Bindings::KeyFormat, CryptoKey::InternalKeyData, bool, Vector<Bindings::KeyUsage> const&) override;
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> derive_bits(AlgorithmParams const&, GC::Ref<CryptoKey>, Optional<u32>) override;
@@ -516,7 +517,7 @@ private:
     }
 };
 
-class PBKDF2 : public AlgorithmMethods {
+class WEB_API PBKDF2 : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<CryptoKey>> import_key(AlgorithmParams const&, Bindings::KeyFormat, CryptoKey::InternalKeyData, bool, Vector<Bindings::KeyUsage> const&) override;
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> derive_bits(AlgorithmParams const&, GC::Ref<CryptoKey>, Optional<u32>) override;
@@ -531,7 +532,7 @@ private:
     }
 };
 
-class SHA : public AlgorithmMethods {
+class WEB_API SHA : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> digest(AlgorithmParams const&, ByteBuffer const&) override;
 
@@ -544,7 +545,7 @@ private:
     }
 };
 
-class ECDSA : public AlgorithmMethods {
+class WEB_API ECDSA : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> sign(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
     virtual WebIDL::ExceptionOr<JS::Value> verify(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&, ByteBuffer const&) override;
@@ -562,7 +563,7 @@ private:
     }
 };
 
-class ECDH : public AlgorithmMethods {
+class WEB_API ECDH : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<Variant<GC::Ref<CryptoKey>, GC::Ref<CryptoKeyPair>>> generate_key(AlgorithmParams const&, bool, Vector<Bindings::KeyUsage> const&) override;
     virtual WebIDL::ExceptionOr<GC::Ref<CryptoKey>> import_key(AlgorithmParams const&, Bindings::KeyFormat, CryptoKey::InternalKeyData, bool, Vector<Bindings::KeyUsage> const&) override;
@@ -578,7 +579,7 @@ private:
     }
 };
 
-class ED25519 : public AlgorithmMethods {
+class WEB_API ED25519 : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> sign(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
     virtual WebIDL::ExceptionOr<JS::Value> verify(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&, ByteBuffer const&) override;
@@ -596,7 +597,7 @@ private:
     }
 };
 
-class ED448 : public AlgorithmMethods {
+class WEB_API ED448 : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> sign(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
     virtual WebIDL::ExceptionOr<JS::Value> verify(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&, ByteBuffer const&) override;
@@ -614,7 +615,7 @@ private:
     }
 };
 
-class X25519 : public AlgorithmMethods {
+class WEB_API X25519 : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> derive_bits(AlgorithmParams const&, GC::Ref<CryptoKey>, Optional<u32>) override;
     virtual WebIDL::ExceptionOr<Variant<GC::Ref<CryptoKey>, GC::Ref<CryptoKeyPair>>> generate_key(AlgorithmParams const&, bool, Vector<Bindings::KeyUsage> const&) override;
@@ -630,7 +631,7 @@ private:
     }
 };
 
-class X448 : public AlgorithmMethods {
+class WEB_API X448 : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> derive_bits(AlgorithmParams const&, GC::Ref<CryptoKey>, Optional<u32>) override;
     virtual WebIDL::ExceptionOr<Variant<GC::Ref<CryptoKey>, GC::Ref<CryptoKeyPair>>> generate_key(AlgorithmParams const&, bool, Vector<Bindings::KeyUsage> const&) override;
@@ -646,7 +647,7 @@ private:
     }
 };
 
-class HMAC : public AlgorithmMethods {
+class WEB_API HMAC : public AlgorithmMethods {
 public:
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> sign(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&) override;
     virtual WebIDL::ExceptionOr<JS::Value> verify(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&, ByteBuffer const&) override;
@@ -664,7 +665,7 @@ private:
     }
 };
 
-struct EcdhKeyDeriveParams : public AlgorithmParams {
+struct WEB_API EcdhKeyDeriveParams : public AlgorithmParams {
     virtual ~EcdhKeyDeriveParams() override;
 
     EcdhKeyDeriveParams(CryptoKey& public_key)
@@ -677,7 +678,7 @@ struct EcdhKeyDeriveParams : public AlgorithmParams {
     static JS::ThrowCompletionOr<NonnullOwnPtr<AlgorithmParams>> from_value(JS::VM&, JS::Value);
 };
 
-struct EcKeyImportParams : public AlgorithmParams {
+struct WEB_API EcKeyImportParams : public AlgorithmParams {
     virtual ~EcKeyImportParams() override;
 
     EcKeyImportParams(String named_curve)
@@ -691,7 +692,7 @@ struct EcKeyImportParams : public AlgorithmParams {
 };
 
 // https://wicg.github.io/webcrypto-secure-curves/#dfn-Ed448Params
-struct Ed448Params : public AlgorithmParams {
+struct WEB_API Ed448Params : public AlgorithmParams {
     virtual ~Ed448Params() override;
 
     Ed448Params(Optional<ByteBuffer>& context)
@@ -704,8 +705,8 @@ struct Ed448Params : public AlgorithmParams {
     static JS::ThrowCompletionOr<NonnullOwnPtr<AlgorithmParams>> from_value(JS::VM&, JS::Value);
 };
 
-ErrorOr<String> base64_url_uint_encode(::Crypto::UnsignedBigInteger);
-WebIDL::ExceptionOr<ByteBuffer> base64_url_bytes_decode(JS::Realm&, String const& base64_url_string);
-WebIDL::ExceptionOr<::Crypto::UnsignedBigInteger> base64_url_uint_decode(JS::Realm&, String const& base64_url_string);
+WEB_API ErrorOr<String> base64_url_uint_encode(::Crypto::UnsignedBigInteger);
+WEB_API WebIDL::ExceptionOr<ByteBuffer> base64_url_bytes_decode(JS::Realm&, String const& base64_url_string);
+WEB_API WebIDL::ExceptionOr<::Crypto::UnsignedBigInteger> base64_url_uint_decode(JS::Realm&, String const& base64_url_string);
 
 }

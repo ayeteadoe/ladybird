@@ -9,11 +9,12 @@
 #include <LibWeb/CSS/CSSGroupingRule.h>
 #include <LibWeb/CSS/CSSPageDescriptors.h>
 #include <LibWeb/CSS/PageSelector.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-page-3/#at-ruledef-page
-class CSSPageRule final : public CSSGroupingRule {
+class WEB_API CSSPageRule final : public CSSGroupingRule {
     WEB_PLATFORM_OBJECT(CSSPageRule, CSSGroupingRule);
     GC_DECLARE_ALLOCATOR(CSSPageRule);
 

@@ -8,12 +8,13 @@
 #pragma once
 
 #include <LibWeb/ARIA/Roles.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/FormAssociatedElement.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
 
-class HTMLOutputElement final
+class WEB_API HTMLOutputElement final
     : public HTMLElement
     , public FormAssociatedElement {
     WEB_PLATFORM_OBJECT(HTMLOutputElement, HTMLElement);

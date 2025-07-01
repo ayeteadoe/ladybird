@@ -12,7 +12,7 @@
 
 namespace Web::Layout {
 
-class ImageProvider {
+class WEB_API ImageProvider {
 public:
     virtual ~ImageProvider() { }
 

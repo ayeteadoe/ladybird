@@ -16,7 +16,7 @@
 
 namespace Web {
 
-class LoadRequest {
+class WEB_API LoadRequest {
 public:
     LoadRequest();
 

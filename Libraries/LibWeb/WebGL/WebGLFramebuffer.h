@@ -7,11 +7,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebGL/WebGLObject.h>
 
 namespace Web::WebGL {
 
-class WebGLFramebuffer final : public WebGLObject {
+class WEB_API WebGLFramebuffer final : public WebGLObject {
     WEB_PLATFORM_OBJECT(WebGLFramebuffer, WebGLObject);
     GC_DECLARE_ALLOCATOR(WebGLFramebuffer);
 

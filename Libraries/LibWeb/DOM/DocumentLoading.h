@@ -9,12 +9,13 @@
 
 #include <LibWeb/DOM/Document.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Responses.h>
+#include <LibWeb/Forward.h>
 
 namespace Web {
 
-bool build_xml_document(DOM::Document& document, ByteBuffer const& data, Optional<String> content_encoding);
-GC::Ptr<DOM::Document> load_document(HTML::NavigationParams const& navigation_params);
-bool can_load_document_with_type(MimeSniff::MimeType const&);
+WEB_API bool build_xml_document(DOM::Document& document, ByteBuffer const& data, Optional<String> content_encoding);
+WEB_API GC::Ptr<DOM::Document> load_document(HTML::NavigationParams const& navigation_params);
+WEB_API bool can_load_document_with_type(MimeSniff::MimeType const&);
 
 // https://html.spec.whatwg.org/multipage/document-lifecycle.html#read-ua-inline
 template<typename MutateDocument>

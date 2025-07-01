@@ -10,6 +10,7 @@
 #include <LibGC/Heap.h>
 #include <LibWeb/Bindings/IDBCursorPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/IDBTransaction.h>
 #include <LibWeb/IndexedDB/Internal/Index.h>
 #include <LibWeb/IndexedDB/Internal/ObjectStore.h>
@@ -23,7 +24,7 @@ struct IDBIndexParameters {
 
 // https://w3c.github.io/IndexedDB/#object-store-interface
 // https://w3c.github.io/IndexedDB/#object-store-handle-construct
-class IDBObjectStore : public Bindings::PlatformObject {
+class WEB_API IDBObjectStore : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(IDBObjectStore, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(IDBObjectStore);
 

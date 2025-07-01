@@ -14,6 +14,7 @@
 #include <LibGC/RootVector.h>
 #include <LibGfx/Rect.h>
 #include <LibWeb/DOM/DocumentLoadEventDelayer.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/CORSSettingAttribute.h>
 #include <LibWeb/HTML/EventLoop/Task.h>
 #include <LibWeb/HTML/HTMLElement.h>
@@ -31,7 +32,7 @@ enum class MediaSeekMode {
 
 class SourceElementSelector;
 
-class HTMLMediaElement : public HTMLElement {
+class WEB_API HTMLMediaElement : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLMediaElement, HTMLElement);
 
 public:

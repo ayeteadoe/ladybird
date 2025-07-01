@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -14,7 +15,7 @@ struct PopStateEventInit : public DOM::EventInit {
     JS::Value state { JS::js_null() };
 };
 
-class PopStateEvent final : public DOM::Event {
+class WEB_API PopStateEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(PopStateEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(PopStateEvent);
 

@@ -12,11 +12,12 @@
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/StyleProperty.h>
 #include <LibWeb/DOM/AbstractElement.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/cssom/#css-declaration-blocks
-class CSSStyleDeclaration
+class WEB_API CSSStyleDeclaration
     : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(CSSStyleDeclaration, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(CSSStyleDeclaration);

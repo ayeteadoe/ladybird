@@ -7,11 +7,12 @@
 #pragma once
 
 #include <AK/String.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://www.w3.org/TR/css-values-4/#ratios
-class Ratio {
+class WEB_API Ratio {
 public:
     Ratio(double first, double second = 1);
     double numerator() const { return m_first_value; }

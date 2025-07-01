@@ -13,6 +13,7 @@
 #include <LibWeb/DOM/DocumentLoadEventDelayer.h>
 #include <LibWeb/DOM/Text.h>
 #include <LibWeb/FileAPI/FileList.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/AutocompleteElement.h>
 #include <LibWeb/HTML/ColorPickerUpdateState.h>
 #include <LibWeb/HTML/FileFilter.h>
@@ -50,7 +51,7 @@ namespace Web::HTML {
     __ENUMERATE_HTML_INPUT_TYPE_ATTRIBUTE("reset", ResetButton)               \
     __ENUMERATE_HTML_INPUT_TYPE_ATTRIBUTE("button", Button)
 
-class HTMLInputElement final
+class WEB_API HTMLInputElement final
     : public HTMLElement
     , public FormAssociatedTextControlElement
     , public Layout::ImageProvider

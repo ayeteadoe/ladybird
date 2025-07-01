@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::Geolocation {

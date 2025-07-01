@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.css-houdini.org/css-typed-om-1/#cssnumericvalue
-class CSSNumericValue : public CSSStyleValue {
+class WEB_API CSSNumericValue : public CSSStyleValue {
 public:
     virtual ~CSSNumericValue() override = default;
 

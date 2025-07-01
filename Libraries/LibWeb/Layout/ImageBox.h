@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLImageElement.h>
 #include <LibWeb/Layout/ReplacedBox.h>
 
 namespace Web::Layout {
 
-class ImageBox final : public ReplacedBox {
+class WEB_API ImageBox final : public ReplacedBox {
     GC_CELL(ImageBox, ReplacedBox);
     GC_DECLARE_ALLOCATOR(ImageBox);
 

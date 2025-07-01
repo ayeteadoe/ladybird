@@ -11,7 +11,7 @@
 
 namespace Web::Painting {
 
-class CheckBoxPaintable final : public LabelablePaintable {
+class WEB_API CheckBoxPaintable final : public LabelablePaintable {
     GC_CELL(CheckBoxPaintable, LabelablePaintable);
     GC_DECLARE_ALLOCATOR(CheckBoxPaintable);
 

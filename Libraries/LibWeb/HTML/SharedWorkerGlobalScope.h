@@ -9,6 +9,7 @@
 #include <AK/HashTable.h>
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/SharedWorkerGlobalScopeGlobalMixin.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/WorkerGlobalScope.h>
 
 namespace Web::HTML {
@@ -16,7 +17,7 @@ namespace Web::HTML {
 #define ENUMERATE_SHARED_WORKER_GLOBAL_SCOPE_EVENT_HANDLERS(E) \
     E(onconnect, HTML::EventNames::connect)
 
-class SharedWorkerGlobalScope
+class WEB_API SharedWorkerGlobalScope
     : public WorkerGlobalScope
     , public Bindings::SharedWorkerGlobalScopeGlobalMixin {
     WEB_PLATFORM_OBJECT(SharedWorkerGlobalScope, WorkerGlobalScope);
@@ -53,6 +54,6 @@ private:
     Fetch::Infrastructure::Request::CredentialsMode m_credentials;
 };
 
-HashTable<GC::RawRef<SharedWorkerGlobalScope>>& all_shared_worker_global_scopes();
+WEB_API HashTable<GC::RawRef<SharedWorkerGlobalScope>>& all_shared_worker_global_scopes();
 
 }

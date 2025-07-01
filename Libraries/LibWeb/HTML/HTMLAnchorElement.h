@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/HTMLHyperlinkElementUtils.h>
 
 namespace Web::HTML {
 
-class HTMLAnchorElement final
+class WEB_API HTMLAnchorElement final
     : public HTMLElement
     , public HTMLHyperlinkElementUtils {
     WEB_PLATFORM_OBJECT(HTMLAnchorElement, HTMLElement);

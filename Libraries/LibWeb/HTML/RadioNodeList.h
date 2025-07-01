@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/LiveNodeList.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#radionodelist
-class RadioNodeList : public DOM::LiveNodeList {
+class WEB_API RadioNodeList : public DOM::LiveNodeList {
     WEB_PLATFORM_OBJECT(RadioNodeList, DOM::LiveNodeList);
     GC_DECLARE_ALLOCATOR(RadioNodeList);
 

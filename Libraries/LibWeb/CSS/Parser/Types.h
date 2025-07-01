@@ -27,7 +27,7 @@ using RuleVisitor = AK::Function<void(Rule const&)>;
 using DeclarationVisitor = AK::Function<void(Declaration const&)>;
 
 // https://drafts.csswg.org/css-syntax/#ref-for-at-rule%E2%91%A0%E2%91%A1
-struct AtRule {
+struct WEB_API AtRule {
     FlyString name;
     Vector<ComponentValue> prelude;
     Vector<RuleOrListOfDeclarations> child_rules_and_lists_of_declarations;
@@ -42,7 +42,7 @@ struct AtRule {
 };
 
 // https://drafts.csswg.org/css-syntax/#qualified-rule
-struct QualifiedRule {
+struct WEB_API QualifiedRule {
     Vector<ComponentValue> prelude;
     Vector<Declaration> declarations;
     Vector<RuleOrListOfDeclarations> child_rules;
@@ -51,7 +51,7 @@ struct QualifiedRule {
 };
 
 // https://drafts.csswg.org/css-syntax/#declaration
-struct Declaration {
+struct WEB_API Declaration {
     FlyString name;
     Vector<ComponentValue> value;
     Important important = Important::No;
@@ -62,7 +62,7 @@ struct Declaration {
 };
 
 // https://drafts.csswg.org/css-syntax/#simple-block
-struct SimpleBlock {
+struct WEB_API SimpleBlock {
     Token token;
     Vector<ComponentValue> value;
     Token end_token = {};
@@ -77,7 +77,7 @@ struct SimpleBlock {
 };
 
 // https://drafts.csswg.org/css-syntax/#function
-struct Function {
+struct WEB_API Function {
     FlyString name;
     Vector<ComponentValue> value;
     Token name_token = {};

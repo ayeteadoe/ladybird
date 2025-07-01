@@ -11,6 +11,7 @@
 
 #include <AK/String.h>
 #include <LibWeb/CSS/Parser/Parser.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/Canvas/CanvasState.h>
 #include <LibWeb/HTML/CanvasGradient.h>
 #include <LibWeb/HTML/CanvasPattern.h>
@@ -19,7 +20,7 @@ namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvasfillstrokestyles
 template<typename IncludingClass>
-class CanvasFillStrokeStyles {
+class WEB_API CanvasFillStrokeStyles {
 public:
     ~CanvasFillStrokeStyles() = default;
     using FillOrStrokeStyleVariant = Variant<String, GC::Root<CanvasGradient>, GC::Root<CanvasPattern>>;

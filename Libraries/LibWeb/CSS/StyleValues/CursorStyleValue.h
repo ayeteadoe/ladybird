@@ -16,7 +16,7 @@
 
 namespace Web::CSS {
 
-class CursorStyleValue final : public StyleValueWithDefaultOperators<CursorStyleValue> {
+class WEB_API CursorStyleValue final : public StyleValueWithDefaultOperators<CursorStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<CursorStyleValue const> create(ValueComparingNonnullRefPtr<AbstractImageStyleValue const> image, Optional<NumberOrCalculated> x, Optional<NumberOrCalculated> y)
     {

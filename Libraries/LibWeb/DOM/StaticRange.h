@@ -8,6 +8,7 @@
 #pragma once
 
 #include <LibWeb/DOM/AbstractRange.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
@@ -20,7 +21,7 @@ struct StaticRangeInit {
     u32 end_offset { 0 };
 };
 
-class StaticRange final : public AbstractRange {
+class WEB_API StaticRange final : public AbstractRange {
     WEB_PLATFORM_OBJECT(StaticRange, AbstractRange);
     GC_DECLARE_ALLOCATOR(StaticRange);
 

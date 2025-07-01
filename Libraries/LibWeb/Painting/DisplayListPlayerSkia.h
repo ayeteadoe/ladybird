@@ -8,13 +8,14 @@
 
 #include <LibGfx/PaintingSurface.h>
 #include <LibGfx/SkiaBackendContext.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/DisplayListRecorder.h>
 
 class GrDirectContext;
 
 namespace Web::Painting {
 
-class DisplayListPlayerSkia final : public DisplayListPlayer {
+class WEB_API DisplayListPlayerSkia final : public DisplayListPlayer {
 public:
     DisplayListPlayerSkia(RefPtr<Gfx::SkiaBackendContext>);
     DisplayListPlayerSkia();

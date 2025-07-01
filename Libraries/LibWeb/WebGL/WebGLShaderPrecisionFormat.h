@@ -8,11 +8,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebGL/Types.h>
 
 namespace Web::WebGL {
 
-class WebGLShaderPrecisionFormat final : public Bindings::PlatformObject {
+class WEB_API WebGLShaderPrecisionFormat final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(WebGLShaderPrecisionFormat, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(WebGLShaderPrecisionFormat);
 

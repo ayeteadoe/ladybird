@@ -9,6 +9,7 @@
 #include <LibGC/Ptr.h>
 #include <LibURL/URL.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Requests.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/CORSSettingAttribute.h>
 
 namespace Web::HTML {
@@ -18,6 +19,6 @@ enum class SameOriginFallbackFlag {
     Yes,
 };
 
-[[nodiscard]] GC::Ref<Fetch::Infrastructure::Request> create_potential_CORS_request(JS::VM&, const URL::URL&, Optional<Fetch::Infrastructure::Request::Destination>, CORSSettingAttribute, SameOriginFallbackFlag = SameOriginFallbackFlag::No);
+[[nodiscard]] WEB_API GC::Ref<Fetch::Infrastructure::Request> create_potential_CORS_request(JS::VM&, const URL::URL&, Optional<Fetch::Infrastructure::Request::Destination>, CORSSettingAttribute, SameOriginFallbackFlag = SameOriginFallbackFlag::No);
 
 }

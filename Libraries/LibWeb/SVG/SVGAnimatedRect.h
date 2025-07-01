@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMRect.h>
 
 namespace Web::SVG {
 
-class SVGAnimatedRect final : public Bindings::PlatformObject {
+class WEB_API SVGAnimatedRect final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(SVGAnimatedRect, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(SVGAnimatedRect);
 

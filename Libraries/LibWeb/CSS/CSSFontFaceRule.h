@@ -10,10 +10,11 @@
 #include <LibWeb/CSS/CSSFontFaceDescriptors.h>
 #include <LibWeb/CSS/CSSRule.h>
 #include <LibWeb/CSS/ParsedFontFace.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class CSSFontFaceRule final : public CSSRule {
+class WEB_API CSSFontFaceRule final : public CSSRule {
     WEB_PLATFORM_OBJECT(CSSFontFaceRule, CSSRule);
     GC_DECLARE_ALLOCATOR(CSSFontFaceRule);
 

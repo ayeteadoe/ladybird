@@ -8,6 +8,7 @@
 
 #include <AK/Function.h>
 #include <LibWeb/DOM/DocumentLoadEventDelayer.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/CORSSettingAttribute.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/Scripting/ImportMapParseResult.h>
@@ -16,7 +17,7 @@
 
 namespace Web::HTML {
 
-class HTMLScriptElement final : public HTMLElement {
+class WEB_API HTMLScriptElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLScriptElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLScriptElement);
 

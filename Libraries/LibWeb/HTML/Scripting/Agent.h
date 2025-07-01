@@ -13,7 +13,7 @@
 
 namespace Web::HTML {
 
-struct Agent : public JS::Agent {
+struct WEB_API Agent : public JS::Agent {
     // https://html.spec.whatwg.org/multipage/webappapis.html#window-event-loop
     // The event loop of a similar-origin window agent is known as a window event loop.
     // The event loop of a dedicated worker agent, shared worker agent, or service worker agent is known as a worker event loop.
@@ -26,6 +26,6 @@ protected:
     using JS::Agent::Agent;
 };
 
-Agent& relevant_agent(JS::Object const&);
+WEB_API Agent& relevant_agent(JS::Object const&);
 
 }

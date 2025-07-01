@@ -7,12 +7,13 @@
 #pragma once
 
 #include <AK/Optional.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/SVGGraphicsBox.h>
 #include <LibWeb/SVG/SVGGeometryElement.h>
 
 namespace Web::Layout {
 
-class SVGGeometryBox final : public SVGGraphicsBox {
+class WEB_API SVGGeometryBox final : public SVGGraphicsBox {
     GC_CELL(SVGGeometryBox, SVGGraphicsBox);
     GC_DECLARE_ALLOCATOR(SVGGeometryBox);
 

@@ -12,7 +12,7 @@
 
 namespace Web::CSS {
 
-class Angle {
+class WEB_API Angle {
 public:
     enum class Type : u8 {
         Deg,

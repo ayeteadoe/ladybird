@@ -10,6 +10,7 @@
 #include <LibWeb/Bindings/ServiceWorkerRegistrationPrototype.h>
 #include <LibWeb/Bindings/WorkerPrototype.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 #include <LibWeb/WebIDL/Promise.h>
 
@@ -26,7 +27,7 @@ struct RegistrationOptions {
     Bindings::ServiceWorkerUpdateViaCache update_via_cache = Bindings::ServiceWorkerUpdateViaCache::Imports;
 };
 
-class ServiceWorkerContainer : public DOM::EventTarget {
+class WEB_API ServiceWorkerContainer : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(ServiceWorkerContainer, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(ServiceWorkerContainer);
 

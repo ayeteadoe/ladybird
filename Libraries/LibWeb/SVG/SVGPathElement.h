@@ -7,13 +7,14 @@
 #pragma once
 
 #include <LibGfx/Bitmap.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/SVG/AttributeParser.h>
 #include <LibWeb/SVG/SVGGeometryElement.h>
 
 namespace Web::SVG {
 
-class SVGPathElement final : public SVGGeometryElement {
+class WEB_API SVGPathElement final : public SVGGeometryElement {
     WEB_PLATFORM_OBJECT(SVGPathElement, SVGGeometryElement);
     GC_DECLARE_ALLOCATOR(SVGPathElement);
 
@@ -32,6 +33,6 @@ private:
     Vector<PathInstruction> m_instructions;
 };
 
-[[nodiscard]] Gfx::Path path_from_path_instructions(ReadonlySpan<PathInstruction>);
+[[nodiscard]] WEB_API Gfx::Path path_from_path_instructions(ReadonlySpan<PathInstruction>);
 
 }

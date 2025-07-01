@@ -10,11 +10,12 @@
 #include <LibWeb/Bindings/PasswordCredentialPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/CredentialManagement/Credential.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLFormElement.h>
 
 namespace Web::CredentialManagement {
 
-class PasswordCredential final : public Credential {
+class WEB_API PasswordCredential final : public Credential {
     WEB_PLATFORM_OBJECT(PasswordCredential, Credential);
     GC_DECLARE_ALLOCATOR(PasswordCredential);
 

@@ -19,7 +19,7 @@
 namespace Web::CSS {
 
 // https://www.w3.org/TR/cssom/#the-cssrulelist-interface
-class CSSRuleList : public Bindings::PlatformObject {
+class WEB_API CSSRuleList : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(CSSRuleList, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(CSSRuleList);
 

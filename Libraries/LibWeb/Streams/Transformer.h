@@ -13,7 +13,7 @@
 namespace Web::Streams {
 
 // https://streams.spec.whatwg.org/#dictdef-transformer
-struct Transformer {
+struct WEB_API Transformer {
     // https://streams.spec.whatwg.org/#dom-transformer-start
     GC::Root<WebIDL::CallbackType> start;
     // https://streams.spec.whatwg.org/#dom-transformer-transform

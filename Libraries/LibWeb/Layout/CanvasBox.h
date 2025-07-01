@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLCanvasElement.h>
 #include <LibWeb/Layout/ReplacedBox.h>
 
 namespace Web::Layout {
 
-class CanvasBox final : public ReplacedBox {
+class WEB_API CanvasBox final : public ReplacedBox {
     GC_CELL(CanvasBox, ReplacedBox);
     GC_DECLARE_ALLOCATOR(CanvasBox);
 

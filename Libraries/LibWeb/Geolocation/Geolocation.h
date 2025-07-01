@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geolocation/GeolocationPositionError.h>
 #include <LibWeb/Platform/Timer.h>
 #include <LibWeb/WebIDL/Types.h>
@@ -24,7 +25,7 @@ struct PositionOptions {
 using EmulatedPositionData = Variant<Empty, GC::Ref<GeolocationCoordinates>, GeolocationPositionError::ErrorCode>;
 
 // https://w3c.github.io/geolocation/#geolocation_interface
-class Geolocation : public Bindings::PlatformObject {
+class WEB_API Geolocation : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Geolocation, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Geolocation);
 

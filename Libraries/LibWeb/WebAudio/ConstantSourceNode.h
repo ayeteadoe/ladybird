@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioScheduledSourceNode.h>
 
 namespace Web::WebAudio {
@@ -16,7 +17,7 @@ struct ConstantSourceOptions : AudioNodeOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#ChannelMergerNode
-class ConstantSourceNode final : public AudioScheduledSourceNode {
+class WEB_API ConstantSourceNode final : public AudioScheduledSourceNode {
     WEB_PLATFORM_OBJECT(ConstantSourceNode, AudioScheduledSourceNode);
     GC_DECLARE_ALLOCATOR(ConstantSourceNode);
 

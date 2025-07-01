@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/DOM/CharacterData.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
-class Comment final : public CharacterData {
+class WEB_API Comment final : public CharacterData {
     WEB_PLATFORM_OBJECT(Comment, CharacterData);
     GC_DECLARE_ALLOCATOR(Comment);
 

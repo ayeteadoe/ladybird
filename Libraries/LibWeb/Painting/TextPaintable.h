@@ -8,10 +8,11 @@
 
 #include <LibWeb/Layout/TextNode.h>
 #include <LibWeb/Painting/PaintableBox.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Painting {
 
-class TextPaintable final : public Paintable {
+class WEB_API TextPaintable final : public Paintable {
     GC_CELL(TextPaintable, Paintable);
     GC_DECLARE_ALLOCATOR(TextPaintable);
 

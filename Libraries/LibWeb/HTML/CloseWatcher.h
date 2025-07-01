@@ -8,6 +8,7 @@
 
 #include <AK/Forward.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -17,7 +18,7 @@ struct CloseWatcherOptions {
 };
 
 // https://html.spec.whatwg.org/multipage/interaction.html#the-closewatcher-interface
-class CloseWatcher final : public DOM::EventTarget {
+class WEB_API CloseWatcher final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(CloseWatcher, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(CloseWatcher);
 

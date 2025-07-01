@@ -12,7 +12,7 @@
 
 namespace Web::Layout {
 
-class VideoBox final
+class WEB_API VideoBox final
     : public ReplacedBox
     , public DOM::Document::ViewportClient {
     GC_CELL(VideoBox, ReplacedBox);

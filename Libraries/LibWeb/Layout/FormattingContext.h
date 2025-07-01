@@ -21,7 +21,7 @@ template<typename T>
     return ::max(min, ::min(value, max));
 }
 
-class FormattingContext {
+class WEB_API FormattingContext {
 public:
     virtual ~FormattingContext();
 
@@ -165,6 +165,6 @@ protected:
     LayoutState& m_state;
 };
 
-bool box_is_sized_as_replaced_element(Box const&);
+WEB_API bool box_is_sized_as_replaced_element(Box const&);
 
 }

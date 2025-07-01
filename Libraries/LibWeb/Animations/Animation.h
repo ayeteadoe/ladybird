@@ -9,6 +9,7 @@
 #include <LibJS/Runtime/PromiseCapability.h>
 #include <LibWeb/Bindings/AnimationPrototype.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Animations {
 
@@ -22,7 +23,7 @@ enum class AnimationClass {
 };
 
 // https://www.w3.org/TR/web-animations-1/#the-animation-interface
-class Animation : public DOM::EventTarget {
+class WEB_API Animation : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(Animation, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(Animation);
 

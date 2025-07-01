@@ -11,10 +11,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/EdgeRect.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class RectStyleValue : public StyleValueWithDefaultOperators<RectStyleValue> {
+class WEB_API RectStyleValue : public StyleValueWithDefaultOperators<RectStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<RectStyleValue const> create(EdgeRect rect);
     virtual ~RectStyleValue() override = default;

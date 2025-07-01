@@ -13,10 +13,11 @@
 #include <LibWeb/CSS/Enums.h>
 #include <LibWeb/CSS/StyleValues/AbstractImageStyleValue.h>
 #include <LibWeb/Painting/GradientPainting.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class RadialGradientStyleValue final : public AbstractImageStyleValue {
+class WEB_API RadialGradientStyleValue final : public AbstractImageStyleValue {
 public:
     enum class EndingShape {
         Circle,

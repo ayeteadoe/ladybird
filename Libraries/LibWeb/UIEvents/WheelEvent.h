@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/UIEvents/MouseEvent.h>
 #include <LibWeb/UIEvents/UIEvent.h>
 #include <LibWeb/WebIDL/Types.h>
@@ -26,7 +27,7 @@ struct WheelEventInit : public MouseEventInit {
     WebIDL::UnsignedLong delta_mode = WheelDeltaMode::DOM_DELTA_PIXEL;
 };
 
-class WheelEvent final : public MouseEvent {
+class WEB_API WheelEvent final : public MouseEvent {
     WEB_PLATFORM_OBJECT(WheelEvent, MouseEvent);
     GC_DECLARE_ALLOCATOR(WheelEvent);
 

@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibGC/Ptr.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/SVGGraphicsBox.h>
 #include <LibWeb/SVG/SVGImageElement.h>
 
 namespace Web::Layout {
 
-class SVGImageBox : public SVGGraphicsBox {
+class WEB_API SVGImageBox : public SVGGraphicsBox {
     GC_CELL(SVGImageBox, SVGGraphicsBox);
 
 public:

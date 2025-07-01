@@ -9,12 +9,13 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/EncryptedMediaExtensions/EncryptedMediaExtensions.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::MediaCapabilitiesAPI {
 
 // https://w3c.github.io/media-capabilities/#dictdef-videoconfiguration
-struct VideoConfiguration {
+struct WEB_API VideoConfiguration {
     String content_type;
     WebIDL::UnsignedLong width;
     WebIDL::UnsignedLong height;
@@ -32,7 +33,7 @@ struct VideoConfiguration {
 };
 
 // https://w3c.github.io/media-capabilities/#dictdef-audioconfiguration
-struct AudioConfiguration {
+struct WEB_API AudioConfiguration {
     String content_type;
     Optional<String> channels;
     Optional<WebIDL::UnsignedLongLong> bitrate;
@@ -44,7 +45,7 @@ struct AudioConfiguration {
 };
 
 // https://w3c.github.io/media-capabilities/#dictdef-mediaconfiguration
-struct MediaConfiguration {
+struct WEB_API MediaConfiguration {
     Optional<VideoConfiguration> video;
     Optional<AudioConfiguration> audio;
 
@@ -70,7 +71,7 @@ struct MediaCapabilitiesKeySystemConfiguration {
 };
 
 // https://w3c.github.io/media-capabilities/#dictdef-mediadecodingconfiguration
-struct MediaDecodingConfiguration : public MediaConfiguration {
+struct WEB_API MediaDecodingConfiguration : public MediaConfiguration {
     Bindings::MediaDecodingType type;
     Optional<MediaCapabilitiesKeySystemConfiguration> key_system_configuration;
 
@@ -91,7 +92,7 @@ struct MediaCapabilitiesInfo {
 };
 
 // https://w3c.github.io/media-capabilities/#dictdef-mediacapabilitiesdecodinginfo
-struct MediaCapabilitiesDecodingInfo : public MediaCapabilitiesInfo {
+struct WEB_API MediaCapabilitiesDecodingInfo : public MediaCapabilitiesInfo {
     MediaDecodingConfiguration configuration;
     Optional<MediaCapabilitiesKeySystemConfiguration> key_system_configuration;
 
@@ -103,7 +104,7 @@ struct MediaCapabilitiesEncodingInfo : public MediaCapabilitiesInfo {
 };
 
 // https://w3c.github.io/media-capabilities/#media-capabilities-interface
-class MediaCapabilities final : public Bindings::PlatformObject {
+class WEB_API MediaCapabilities final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(MediaCapabilities, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(MediaCapabilities);
 
@@ -124,16 +125,16 @@ private:
 };
 
 // https://w3c.github.io/media-capabilities/#queue-a-media-capabilities-task
-void queue_a_media_capabilities_task(JS::VM& vm, Function<void()>);
+WEB_API void queue_a_media_capabilities_task(JS::VM& vm, Function<void()>);
 
 // https://w3c.github.io/media-capabilities/#create-a-mediacapabilitiesdecodinginfo
-MediaCapabilitiesDecodingInfo create_a_media_capabilities_decoding_info(MediaDecodingConfiguration);
+WEB_API MediaCapabilitiesDecodingInfo create_a_media_capabilities_decoding_info(MediaDecodingConfiguration);
 
-bool is_able_to_decode_media(MediaDecodingConfiguration configuration);
+WEB_API bool is_able_to_decode_media(MediaDecodingConfiguration configuration);
 
 // https://w3c.github.io/media-capabilities/#valid-audio-mime-type
-bool is_valid_audio_mime_type(StringView);
+WEB_API bool is_valid_audio_mime_type(StringView);
 // https://w3c.github.io/media-capabilities/#valid-video-mime-type
-bool is_valid_video_mime_type(StringView);
+WEB_API bool is_valid_video_mime_type(StringView);
 
 }

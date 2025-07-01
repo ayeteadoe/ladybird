@@ -10,10 +10,11 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class StyleValueList final : public StyleValueWithDefaultOperators<StyleValueList> {
+class WEB_API StyleValueList final : public StyleValueWithDefaultOperators<StyleValueList> {
 public:
     enum class Separator {
         Space,

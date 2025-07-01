@@ -10,10 +10,11 @@
 #pragma once
 
 #include <LibWeb/CSS/StyleValues/CSSUnitValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class NumberStyleValue final : public CSSUnitValue {
+class WEB_API NumberStyleValue final : public CSSUnitValue {
 public:
     static ValueComparingNonnullRefPtr<NumberStyleValue const> create(double value)
     {

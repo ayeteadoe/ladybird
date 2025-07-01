@@ -9,6 +9,7 @@
 #include <AK/Variant.h>
 #include <LibURL/URL.h>
 #include <LibWeb/CSS/CalculatedOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -32,7 +33,7 @@ struct ImageSourceAndPixelDensity {
 };
 
 // https://html.spec.whatwg.org/multipage/images.html#source-set
-struct SourceSet {
+struct WEB_API SourceSet {
     static SourceSet create(DOM::Element const& element, String const& default_source, String const& srcset, String const& sizes, HTML::HTMLImageElement const* img = nullptr);
 
     [[nodiscard]] bool is_empty() const;
@@ -49,7 +50,7 @@ struct SourceSet {
     CSS::LengthOrCalculated m_source_size;
 };
 
-SourceSet parse_a_srcset_attribute(StringView);
-[[nodiscard]] CSS::LengthOrCalculated parse_a_sizes_attribute(DOM::Element const& element, StringView sizes, HTML::HTMLImageElement const* img = nullptr);
+WEB_API SourceSet parse_a_srcset_attribute(StringView);
+[[nodiscard]] WEB_API CSS::LengthOrCalculated parse_a_sizes_attribute(DOM::Element const& element, StringView sizes, HTML::HTMLImageElement const* img = nullptr);
 
 }

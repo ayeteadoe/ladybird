@@ -11,6 +11,7 @@
 #include <LibWeb/DOM/MutationRecord.h>
 #include <LibWeb/WebIDL/CallbackType.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
@@ -26,7 +27,7 @@ struct MutationObserverInit {
 };
 
 // https://dom.spec.whatwg.org/#mutationobserver
-class MutationObserver final : public Bindings::PlatformObject {
+class WEB_API MutationObserver final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(MutationObserver, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(MutationObserver);
 
@@ -73,7 +74,7 @@ public:
 };
 
 // https://dom.spec.whatwg.org/#registered-observer
-class RegisteredObserver : public JS::Cell {
+class WEB_API RegisteredObserver : public JS::Cell {
     GC_CELL(RegisteredObserver, JS::Cell);
 
 public:
@@ -96,7 +97,7 @@ private:
 };
 
 // https://dom.spec.whatwg.org/#transient-registered-observer
-class TransientRegisteredObserver final : public RegisteredObserver {
+class WEB_API TransientRegisteredObserver final : public RegisteredObserver {
     GC_CELL(TransientRegisteredObserver, RegisteredObserver);
     GC_DECLARE_ALLOCATOR(TransientRegisteredObserver);
 

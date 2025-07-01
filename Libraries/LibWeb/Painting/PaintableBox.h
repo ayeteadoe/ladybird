@@ -24,7 +24,7 @@ namespace Web::Painting {
 
 extern bool g_paint_viewport_scrollbars;
 
-class PaintableBox : public Paintable
+class WEB_API PaintableBox : public Paintable
     , public Weakable<PaintableBox>
     , public ClippableAndScrollable {
     GC_CELL(PaintableBox, Paintable);
@@ -323,7 +323,7 @@ private:
     BoxModelMetrics m_box_model;
 };
 
-class PaintableWithLines : public PaintableBox {
+class WEB_API PaintableWithLines : public PaintableBox {
     GC_CELL(PaintableWithLines, PaintableBox);
     GC_DECLARE_ALLOCATOR(PaintableWithLines);
 
@@ -381,8 +381,8 @@ private:
     size_t m_line_index { 0 };
 };
 
-void paint_text_decoration(PaintContext&, TextPaintable const&, PaintableFragment const&);
-void paint_cursor_if_needed(PaintContext&, TextPaintable const&, PaintableFragment const&);
-void paint_text_fragment(PaintContext&, TextPaintable const&, PaintableFragment const&, PaintPhase);
+WEB_API void paint_text_decoration(PaintContext&, TextPaintable const&, PaintableFragment const&);
+WEB_API void paint_cursor_if_needed(PaintContext&, TextPaintable const&, PaintableFragment const&);
+WEB_API void paint_text_fragment(PaintContext&, TextPaintable const&, PaintableFragment const&, PaintPhase);
 
 }

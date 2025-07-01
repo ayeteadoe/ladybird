@@ -12,7 +12,7 @@
 
 namespace Web::Bindings {
 
-struct HostDefined : public JS::Realm::HostDefined {
+struct WEB_API HostDefined : public JS::Realm::HostDefined {
     explicit HostDefined(GC::Ref<Intrinsics> intrinsics)
         : intrinsics(intrinsics)
     {

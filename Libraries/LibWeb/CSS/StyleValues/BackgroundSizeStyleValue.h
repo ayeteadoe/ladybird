@@ -12,11 +12,12 @@
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Length.h>
 #include <LibWeb/CSS/PercentageOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // NOTE: This is not used for identifier sizes, like `cover` and `contain`.
-class BackgroundSizeStyleValue final : public StyleValueWithDefaultOperators<BackgroundSizeStyleValue> {
+class WEB_API BackgroundSizeStyleValue final : public StyleValueWithDefaultOperators<BackgroundSizeStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<BackgroundSizeStyleValue const> create(LengthPercentage size_x, LengthPercentage size_y)
     {

@@ -9,10 +9,11 @@
 #include <AK/String.h>
 #include <LibWeb/DOM/ChildNode.h>
 #include <LibWeb/DOM/Node.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
-class DocumentType final
+class WEB_API DocumentType final
     : public Node
     , public ChildNode<DocumentType> {
     WEB_PLATFORM_OBJECT(DocumentType, Node);
@@ -44,7 +45,7 @@ private:
     String m_system_id;
 };
 
-bool is_valid_doctype_name(String const&);
+WEB_API bool is_valid_doctype_name(String const&);
 
 template<>
 inline bool Node::fast_is<DocumentType>() const { return is_document_type(); }

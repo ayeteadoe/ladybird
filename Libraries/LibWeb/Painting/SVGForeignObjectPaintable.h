@@ -7,13 +7,14 @@
 #pragma once
 
 #include <LibGfx/ImmutableBitmap.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/SVGForeignObjectBox.h>
 #include <LibWeb/Painting/PaintableBox.h>
 #include <LibWeb/Painting/SVGMaskable.h>
 
 namespace Web::Painting {
 
-class SVGForeignObjectPaintable final : public PaintableWithLines
+class WEB_API SVGForeignObjectPaintable final : public PaintableWithLines
     , public SVGMaskable {
     GC_CELL(SVGForeignObjectPaintable, PaintableWithLines);
     GC_DECLARE_ALLOCATOR(SVGForeignObjectPaintable);

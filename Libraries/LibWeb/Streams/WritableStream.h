@@ -33,7 +33,7 @@ struct PendingAbortRequest {
 };
 
 // https://streams.spec.whatwg.org/#writablestream
-class WritableStream final
+class WEB_API WritableStream final
     : public Bindings::PlatformObject
     , public Bindings::Transferable {
     WEB_PLATFORM_OBJECT(WritableStream, Bindings::PlatformObject);

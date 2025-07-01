@@ -11,10 +11,11 @@
 #include <LibWeb/CSS/CSSGroupingRule.h>
 #include <LibWeb/CSS/CSSStyleProperties.h>
 #include <LibWeb/CSS/Selector.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class CSSStyleRule final : public CSSGroupingRule {
+class WEB_API CSSStyleRule final : public CSSGroupingRule {
     WEB_PLATFORM_OBJECT(CSSStyleRule, CSSGroupingRule);
     GC_DECLARE_ALLOCATOR(CSSStyleRule);
 

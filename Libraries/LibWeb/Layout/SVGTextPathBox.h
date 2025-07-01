@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/SVGGraphicsBox.h>
 #include <LibWeb/SVG/SVGTextPathElement.h>
 
 namespace Web::Layout {
 
-class SVGTextPathBox final : public SVGGraphicsBox {
+class WEB_API SVGTextPathBox final : public SVGGraphicsBox {
     GC_CELL(SVGTextPathBox, SVGGraphicsBox);
     GC_DECLARE_ALLOCATOR(SVGTextPathBox);
 

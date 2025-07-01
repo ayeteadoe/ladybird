@@ -8,13 +8,14 @@
 
 #include <LibGC/Heap.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/IDBObjectStore.h>
 #include <LibWeb/IndexedDB/Internal/Index.h>
 
 namespace Web::IndexedDB {
 
 // https://w3c.github.io/IndexedDB/#index-interface
-class IDBIndex : public Bindings::PlatformObject {
+class WEB_API IDBIndex : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(IDBIndex, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(IDBIndex);
 

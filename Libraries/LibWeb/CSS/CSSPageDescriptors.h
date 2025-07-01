@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSDescriptors.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/cssom/#csspagedescriptors
-class CSSPageDescriptors final : public CSSDescriptors {
+class WEB_API CSSPageDescriptors final : public CSSDescriptors {
     WEB_PLATFORM_OBJECT(CSSPageDescriptors, CSSDescriptors);
     GC_DECLARE_ALLOCATOR(CSSPageDescriptors);
 

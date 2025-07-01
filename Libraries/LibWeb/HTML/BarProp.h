@@ -14,7 +14,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/nav-history-apis.html#barprop
-class BarProp : public Bindings::PlatformObject {
+class WEB_API BarProp : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(BarProp, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(BarProp);
 

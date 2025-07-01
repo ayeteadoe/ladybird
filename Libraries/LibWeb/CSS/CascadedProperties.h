@@ -13,10 +13,11 @@
 #include <LibWeb/CSS/PropertyID.h>
 #include <LibWeb/CSS/Selector.h>
 #include <LibWeb/CSS/StyleProperty.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class CascadedProperties final : public JS::Cell {
+class WEB_API CascadedProperties final : public JS::Cell {
     GC_CELL(CascadedProperties, JS::Cell);
     GC_DECLARE_ALLOCATOR(CascadedProperties);
 

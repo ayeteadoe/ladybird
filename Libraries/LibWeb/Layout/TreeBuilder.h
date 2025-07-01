@@ -14,7 +14,7 @@
 
 namespace Web::Layout {
 
-class TreeBuilder {
+class WEB_API TreeBuilder {
 public:
     TreeBuilder();
 

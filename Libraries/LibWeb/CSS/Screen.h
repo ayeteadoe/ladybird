@@ -14,7 +14,7 @@
 
 namespace Web::CSS {
 
-class Screen final : public DOM::EventTarget {
+class WEB_API Screen final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(Screen, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(Screen);
 

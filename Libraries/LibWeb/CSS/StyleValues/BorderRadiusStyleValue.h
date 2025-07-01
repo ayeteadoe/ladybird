@@ -12,10 +12,11 @@
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Length.h>
 #include <LibWeb/CSS/PercentageOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class BorderRadiusStyleValue final : public StyleValueWithDefaultOperators<BorderRadiusStyleValue> {
+class WEB_API BorderRadiusStyleValue final : public StyleValueWithDefaultOperators<BorderRadiusStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<BorderRadiusStyleValue const> create(LengthPercentage const& horizontal_radius, LengthPercentage const& vertical_radius)
     {

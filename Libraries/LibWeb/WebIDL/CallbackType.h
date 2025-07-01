@@ -19,7 +19,7 @@ enum class OperationReturnsPromise {
 };
 
 // https://webidl.spec.whatwg.org/#idl-callback-interface
-class CallbackType final : public JS::Cell {
+class WEB_API CallbackType final : public JS::Cell {
     GC_CELL(CallbackType, JS::Cell);
     GC_DECLARE_ALLOCATOR(CallbackType);
 
@@ -39,6 +39,6 @@ private:
     virtual void visit_edges(Cell::Visitor&) override;
 };
 
-JS::ThrowCompletionOr<GC::Root<WebIDL::CallbackType>> property_to_callback(JS::VM& vm, JS::Value value, JS::PropertyKey const& property_key, WebIDL::OperationReturnsPromise);
+WEB_API JS::ThrowCompletionOr<GC::Root<WebIDL::CallbackType>> property_to_callback(JS::VM& vm, JS::Value value, JS::PropertyKey const& property_key, WebIDL::OperationReturnsPromise);
 
 }

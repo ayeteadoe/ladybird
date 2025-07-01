@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/String.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/WebIDL/CallbackType.h>
 
@@ -16,7 +17,7 @@ struct AlreadyConstructedCustomElementMarker {
 };
 
 // https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-definition
-class CustomElementDefinition : public JS::Cell {
+class WEB_API CustomElementDefinition : public JS::Cell {
     GC_CELL(CustomElementDefinition, JS::Cell);
     GC_DECLARE_ALLOCATOR(CustomElementDefinition);
 

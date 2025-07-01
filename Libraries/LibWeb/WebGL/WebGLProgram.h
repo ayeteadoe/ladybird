@@ -8,12 +8,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebGL/Types.h>
 #include <LibWeb/WebGL/WebGLObject.h>
 
 namespace Web::WebGL {
 
-class WebGLProgram final : public WebGLObject {
+class WEB_API WebGLProgram final : public WebGLObject {
     WEB_PLATFORM_OBJECT(WebGLProgram, WebGLObject);
     GC_DECLARE_ALLOCATOR(WebGLProgram);
 

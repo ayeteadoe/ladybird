@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/AttributeParser.h>
 #include <LibWeb/SVG/SVGAnimatedLength.h>
 #include <LibWeb/SVG/SVGGradientElement.h>
 
 namespace Web::SVG {
 
-class SVGLinearGradientElement : public SVGGradientElement {
+class WEB_API SVGLinearGradientElement : public SVGGradientElement {
     WEB_PLATFORM_OBJECT(SVGLinearGradientElement, SVGGradientElement);
     GC_DECLARE_ALLOCATOR(SVGLinearGradientElement);
 

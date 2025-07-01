@@ -10,6 +10,7 @@
 #include <LibWeb/DOM/Element.h>
 #include <LibWeb/DOM/Event.h>
 #include <LibWeb/DOM/Utils.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -18,7 +19,7 @@ struct CommandEventInit : public DOM::EventInit {
     String command;
 };
 
-class CommandEvent : public DOM::Event {
+class WEB_API CommandEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(CommandEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(CommandEvent);
 

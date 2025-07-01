@@ -12,7 +12,7 @@
 
 namespace Web::HTML {
 
-class WorkerEnvironmentSettingsObject final
+class WEB_API WorkerEnvironmentSettingsObject final
     : public EnvironmentSettingsObject {
     GC_CELL(WorkerEnvironmentSettingsObject, EnvironmentSettingsObject);
     GC_DECLARE_ALLOCATOR(WorkerEnvironmentSettingsObject);

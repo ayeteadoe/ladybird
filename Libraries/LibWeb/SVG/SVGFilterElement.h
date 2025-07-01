@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/AttributeParser.h>
 #include <LibWeb/SVG/SVGAnimatedEnumeration.h>
 #include <LibWeb/SVG/SVGAnimatedLength.h>
@@ -15,7 +16,7 @@
 namespace Web::SVG {
 
 // https://drafts.fxtf.org/filter-effects/#elementdef-filter
-class SVGFilterElement final
+class WEB_API SVGFilterElement final
     : public SVGElement
     , public SVGURIReferenceMixin<SupportsXLinkHref::No> {
     WEB_PLATFORM_OBJECT(SVGFilterElement, SVGElement);

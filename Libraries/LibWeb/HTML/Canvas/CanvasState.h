@@ -19,13 +19,14 @@
 #include <LibGfx/Path.h>
 #include <LibGfx/WindingRule.h>
 #include <LibWeb/Bindings/CanvasRenderingContext2DPrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/CanvasGradient.h>
 #include <LibWeb/HTML/CanvasPattern.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvasstate
-class CanvasState {
+class WEB_API CanvasState {
 public:
     virtual ~CanvasState() = default;
 

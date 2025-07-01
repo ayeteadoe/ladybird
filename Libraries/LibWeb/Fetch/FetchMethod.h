@@ -10,11 +10,12 @@
 #include <LibGC/Ptr.h>
 #include <LibJS/Forward.h>
 #include <LibWeb/Fetch/Request.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Promise.h>
 
 namespace Web::Fetch {
 
-GC::Ref<WebIDL::Promise> fetch(JS::VM&, RequestInfo const& input, RequestInit const& init = {});
-void abort_fetch(JS::Realm&, WebIDL::Promise const&, GC::Ref<Infrastructure::Request>, GC::Ptr<Response>, JS::Value error);
+WEB_API GC::Ref<WebIDL::Promise> fetch(JS::VM&, RequestInfo const& input, RequestInit const& init = {});
+WEB_API void abort_fetch(JS::Realm&, WebIDL::Promise const&, GC::Ref<Infrastructure::Request>, GC::Ptr<Response>, JS::Value error);
 
 }

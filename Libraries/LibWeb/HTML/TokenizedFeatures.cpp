@@ -123,15 +123,15 @@ T parse_boolean_feature(StringView value)
     return parsed == 0 ? T::No : T::Yes;
 }
 
-template TokenizedFeature::Location parse_boolean_feature<TokenizedFeature::Location>(StringView value);
-template TokenizedFeature::Menubar parse_boolean_feature<TokenizedFeature::Menubar>(StringView value);
-template TokenizedFeature::NoOpener parse_boolean_feature<TokenizedFeature::NoOpener>(StringView value);
-template TokenizedFeature::NoReferrer parse_boolean_feature<TokenizedFeature::NoReferrer>(StringView value);
-template TokenizedFeature::Popup parse_boolean_feature<TokenizedFeature::Popup>(StringView value);
-template TokenizedFeature::Resizable parse_boolean_feature<TokenizedFeature::Resizable>(StringView value);
-template TokenizedFeature::Scrollbars parse_boolean_feature<TokenizedFeature::Scrollbars>(StringView value);
-template TokenizedFeature::Status parse_boolean_feature<TokenizedFeature::Status>(StringView value);
-template TokenizedFeature::Toolbar parse_boolean_feature<TokenizedFeature::Toolbar>(StringView value);
+template WEB_API TokenizedFeature::Location parse_boolean_feature<TokenizedFeature::Location>(StringView value);
+template WEB_API TokenizedFeature::Menubar parse_boolean_feature<TokenizedFeature::Menubar>(StringView value);
+template WEB_API TokenizedFeature::NoOpener parse_boolean_feature<TokenizedFeature::NoOpener>(StringView value);
+template WEB_API TokenizedFeature::NoReferrer parse_boolean_feature<TokenizedFeature::NoReferrer>(StringView value);
+template WEB_API TokenizedFeature::Popup parse_boolean_feature<TokenizedFeature::Popup>(StringView value);
+template WEB_API TokenizedFeature::Resizable parse_boolean_feature<TokenizedFeature::Resizable>(StringView value);
+template WEB_API TokenizedFeature::Scrollbars parse_boolean_feature<TokenizedFeature::Scrollbars>(StringView value);
+template WEB_API TokenizedFeature::Status parse_boolean_feature<TokenizedFeature::Status>(StringView value);
+template WEB_API TokenizedFeature::Toolbar parse_boolean_feature<TokenizedFeature::Toolbar>(StringView value);
 
 //  https://html.spec.whatwg.org/multipage/window-object.html#popup-window-is-requested
 TokenizedFeature::Popup check_if_a_popup_window_is_requested(TokenizedFeature::Map const& tokenized_features)

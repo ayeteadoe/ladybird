@@ -25,7 +25,7 @@ struct TextEncoderEncodeIntoResult {
 };
 
 // https://encoding.spec.whatwg.org/#textencoder
-class TextEncoder final
+class WEB_API TextEncoder final
     : public Bindings::PlatformObject
     , public TextEncoderCommonMixin {
     WEB_PLATFORM_OBJECT(TextEncoder, Bindings::PlatformObject);

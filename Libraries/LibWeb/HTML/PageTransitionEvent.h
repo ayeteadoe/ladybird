@@ -8,6 +8,7 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -15,7 +16,7 @@ struct PageTransitionEventInit : public DOM::EventInit {
     bool persisted { false };
 };
 
-class PageTransitionEvent final : public DOM::Event {
+class WEB_API PageTransitionEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(PageTransitionEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(PageTransitionEvent);
 

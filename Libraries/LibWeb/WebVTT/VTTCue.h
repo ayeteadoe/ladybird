@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/VTTCuePrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/TextTrackCue.h>
 #include <LibWeb/WebIDL/Types.h>
 #include <LibWeb/WebVTT/VTTRegion.h>
@@ -14,7 +15,7 @@
 namespace Web::WebVTT {
 
 // https://w3c.github.io/webvtt/#vttcue
-class VTTCue final : public HTML::TextTrackCue {
+class WEB_API VTTCue final : public HTML::TextTrackCue {
     WEB_PLATFORM_OBJECT(VTTCue, HTML::TextTrackCue);
     GC_DECLARE_ALLOCATOR(VTTCue);
 

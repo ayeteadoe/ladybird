@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/FlyString.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/UIEvents/UIEvent.h>
 
 namespace Web::UIEvents {
@@ -15,7 +16,7 @@ struct FocusEventInit : public UIEventInit {
     GC::Ptr<DOM::EventTarget> related_target;
 };
 
-class FocusEvent final : public UIEvent {
+class WEB_API FocusEvent final : public UIEvent {
     WEB_PLATFORM_OBJECT(FocusEvent, UIEvent);
     GC_DECLARE_ALLOCATOR(FocusEvent);
 

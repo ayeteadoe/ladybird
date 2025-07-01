@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-variables/#guaranteed-invalid-value
-class GuaranteedInvalidStyleValue final : public StyleValueWithDefaultOperators<GuaranteedInvalidStyleValue> {
+class WEB_API GuaranteedInvalidStyleValue final : public StyleValueWithDefaultOperators<GuaranteedInvalidStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<GuaranteedInvalidStyleValue> create()
     {

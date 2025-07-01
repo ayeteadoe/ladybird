@@ -13,7 +13,7 @@
 
 namespace Web::Layout {
 
-class FormAssociatedLabelableNode : public LabelableNode {
+class WEB_API FormAssociatedLabelableNode : public LabelableNode {
     GC_CELL(FormAssociatedLabelableNode, LabelableNode);
 
 public:

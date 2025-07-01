@@ -8,11 +8,12 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Encoding/TextEncoderCommon.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Streams/GenericTransformStream.h>
 
 namespace Web::Encoding {
 
-class TextEncoderStream final
+class WEB_API TextEncoderStream final
     : public Bindings::PlatformObject
     , public Streams::GenericTransformStreamMixin
     , public TextEncoderCommonMixin {

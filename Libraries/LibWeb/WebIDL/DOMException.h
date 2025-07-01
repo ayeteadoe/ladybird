@@ -91,7 +91,7 @@ static u16 get_legacy_code_for_name(FlyString const& name)
 }
 
 // https://webidl.spec.whatwg.org/#idl-DOMException
-class DOMException final
+class WEB_API DOMException final
     : public Bindings::PlatformObject
     , public Bindings::Serializable {
     WEB_PLATFORM_OBJECT(DOMException, Bindings::PlatformObject);
@@ -128,7 +128,7 @@ private:
 };
 
 #define __ENUMERATE(ErrorName)                                                       \
-    class ErrorName final {                                                          \
+    class WEB_API ErrorName final {                                                          \
     public:                                                                          \
         static GC::Ref<DOMException> create(JS::Realm& realm, String const& message) \
         {                                                                            \

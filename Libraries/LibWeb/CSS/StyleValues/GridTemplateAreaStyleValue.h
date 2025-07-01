@@ -10,10 +10,11 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class GridTemplateAreaStyleValue final : public StyleValueWithDefaultOperators<GridTemplateAreaStyleValue> {
+class WEB_API GridTemplateAreaStyleValue final : public StyleValueWithDefaultOperators<GridTemplateAreaStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<GridTemplateAreaStyleValue const> create(Vector<Vector<String>> grid_template_area);
     virtual ~GridTemplateAreaStyleValue() override = default;

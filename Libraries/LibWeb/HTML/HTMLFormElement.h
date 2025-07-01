@@ -10,6 +10,7 @@
 
 #include <AK/Time.h>
 #include <LibWeb/ARIA/Roles.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/Navigable.h>
 
@@ -27,7 +28,7 @@ namespace Web::HTML {
     __ENUMERATE_FORM_METHOD_ENCODING_TYPE("multipart/form-data", FormData)                     \
     __ENUMERATE_FORM_METHOD_ENCODING_TYPE("text/plain", PlainText)
 
-class HTMLFormElement final : public HTMLElement {
+class WEB_API HTMLFormElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLFormElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLFormElement);
 

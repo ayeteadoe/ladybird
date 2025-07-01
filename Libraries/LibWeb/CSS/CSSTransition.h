@@ -14,10 +14,11 @@
 #include <LibWeb/CSS/PseudoElement.h>
 #include <LibWeb/CSS/StyleValues/EasingStyleValue.h>
 #include <LibWeb/CSS/Time.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class CSSTransition : public Animations::Animation {
+class WEB_API CSSTransition : public Animations::Animation {
     WEB_PLATFORM_OBJECT(CSSTransition, Animations::Animation);
     GC_DECLARE_ALLOCATOR(CSSTransition);
 

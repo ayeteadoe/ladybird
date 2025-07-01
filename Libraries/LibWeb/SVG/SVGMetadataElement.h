@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGElement.h>
 
 namespace Web::SVG {
 
 // https://svgwg.org/svg2-draft/struct.html#InterfaceSVGMetadataElement
-class SVGMetadataElement final : public SVGElement {
+class WEB_API SVGMetadataElement final : public SVGElement {
     WEB_PLATFORM_OBJECT(SVGMetadataElement, SVGElement);
     GC_DECLARE_ALLOCATOR(SVGMetadataElement);
 

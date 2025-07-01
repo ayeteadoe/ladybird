@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Geolocation {
 
@@ -21,7 +22,7 @@ struct CoordinatesData {
 };
 
 // https://w3c.github.io/geolocation/#coordinates_interface
-class GeolocationCoordinates : public Bindings::PlatformObject {
+class WEB_API GeolocationCoordinates : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(GeolocationCoordinates, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(GeolocationCoordinates);
 

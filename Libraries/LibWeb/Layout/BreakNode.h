@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLBRElement.h>
 #include <LibWeb/Layout/Node.h>
 
 namespace Web::Layout {
 
-class BreakNode final : public NodeWithStyleAndBoxModelMetrics {
+class WEB_API BreakNode final : public NodeWithStyleAndBoxModelMetrics {
     GC_CELL(BreakNode, NodeWithStyleAndBoxModelMetrics);
     GC_DECLARE_ALLOCATOR(BreakNode);
 

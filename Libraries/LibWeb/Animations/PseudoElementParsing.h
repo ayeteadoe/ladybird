@@ -10,10 +10,11 @@
 #include <AK/String.h>
 #include <LibWeb/CSS/Selector.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Animations {
 
 // https://drafts.csswg.org/web-animations-1/#dom-keyframeeffect-pseudo-element-parsing
-WebIDL::ExceptionOr<Optional<CSS::Selector::PseudoElementSelector>> pseudo_element_parsing(JS::Realm&, Optional<String> const&);
+WEB_API WebIDL::ExceptionOr<Optional<CSS::Selector::PseudoElementSelector>> pseudo_element_parsing(JS::Realm&, Optional<String> const&);
 
 }

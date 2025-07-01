@@ -8,12 +8,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebGL/Types.h>
 #include <LibWeb/WebGL/WebGLObject.h>
 
 namespace Web::WebGL {
 
-class WebGLShader final : public WebGLObject {
+class WEB_API WebGLShader final : public WebGLObject {
     WEB_PLATFORM_OBJECT(WebGLShader, WebGLObject);
     GC_DECLARE_ALLOCATOR(WebGLShader);
 

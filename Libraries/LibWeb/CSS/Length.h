@@ -16,7 +16,7 @@
 
 namespace Web::CSS {
 
-class Length {
+class WEB_API Length {
 public:
     enum class Type : u8 {
         // Font-relative

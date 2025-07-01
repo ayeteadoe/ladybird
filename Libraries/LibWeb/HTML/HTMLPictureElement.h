@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {

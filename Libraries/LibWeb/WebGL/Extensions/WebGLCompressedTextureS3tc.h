@@ -12,7 +12,7 @@
 
 namespace Web::WebGL::Extensions {
 
-class WebGLCompressedTextureS3tc : public Bindings::PlatformObject {
+class WEB_API WebGLCompressedTextureS3tc : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(WebGLCompressedTextureS3tc, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(WebGLCompressedTextureS3tc);
 

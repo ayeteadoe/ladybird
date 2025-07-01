@@ -21,7 +21,7 @@ namespace Web::DOM {
 // The filter is a simple Function object that answers the question
 // "is this Element part of the collection?"
 
-class HTMLCollection : public Bindings::PlatformObject {
+class WEB_API HTMLCollection : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(HTMLCollection, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(HTMLCollection);
 

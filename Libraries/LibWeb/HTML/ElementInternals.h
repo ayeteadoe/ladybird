@@ -36,7 +36,7 @@ struct ValidityStateFlags {
 };
 
 // https://html.spec.whatwg.org/multipage/custom-elements.html#elementinternals
-class ElementInternals final : public Bindings::PlatformObject {
+class WEB_API ElementInternals final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ElementInternals, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ElementInternals);
 

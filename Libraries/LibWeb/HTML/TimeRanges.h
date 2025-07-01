@@ -8,12 +8,13 @@
 
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/media.html#time-ranges
-class TimeRanges final : public Bindings::PlatformObject {
+class WEB_API TimeRanges final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(TimeRanges, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(TimeRanges);
 

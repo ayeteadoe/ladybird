@@ -145,7 +145,7 @@ enum class AriaSort {
     Other
 };
 
-class AriaData {
+class WEB_API AriaData {
 public:
     AriaData() { }
 

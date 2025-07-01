@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -16,7 +17,7 @@ struct TransitionEventInit : public DOM::EventInit {
     String pseudo_element {};
 };
 
-class TransitionEvent final : public DOM::Event {
+class WEB_API TransitionEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(TransitionEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(TransitionEvent);
 

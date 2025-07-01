@@ -11,10 +11,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/GridTrackPlacement.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class GridTrackPlacementStyleValue final : public StyleValueWithDefaultOperators<GridTrackPlacementStyleValue> {
+class WEB_API GridTrackPlacementStyleValue final : public StyleValueWithDefaultOperators<GridTrackPlacementStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<GridTrackPlacementStyleValue const> create(GridTrackPlacement grid_track_placement);
     virtual ~GridTrackPlacementStyleValue() override = default;

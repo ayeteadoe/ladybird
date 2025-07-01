@@ -9,6 +9,7 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::WebGL {
 
@@ -16,7 +17,7 @@ struct WebGLContextEventInit final : public DOM::EventInit {
     String status_message;
 };
 
-class WebGLContextEvent final : public DOM::Event {
+class WEB_API WebGLContextEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(WebGLContextEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(WebGLContextEvent);
 

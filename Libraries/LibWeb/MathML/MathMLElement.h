@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/DOM/Element.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/GlobalEventHandlers.h>
 #include <LibWeb/HTML/HTMLOrSVGElement.h>
 
 namespace Web::MathML {
 
-class MathMLElement : public DOM::Element
+class WEB_API MathMLElement : public DOM::Element
     , public HTML::GlobalEventHandlers
     , public HTML::HTMLOrSVGElement<MathMLElement> {
     WEB_PLATFORM_OBJECT(MathMLElement, DOM::Element);

@@ -13,7 +13,7 @@
 
 namespace Web::HTML {
 
-class BrowsingContextGroup final : public JS::Cell {
+class WEB_API BrowsingContextGroup final : public JS::Cell {
     GC_CELL(BrowsingContextGroup, JS::Cell);
     GC_DECLARE_ALLOCATOR(BrowsingContextGroup);
 

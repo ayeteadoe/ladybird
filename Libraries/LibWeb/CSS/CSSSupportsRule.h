@@ -15,7 +15,7 @@
 namespace Web::CSS {
 
 // https://www.w3.org/TR/css-conditional-3/#the-csssupportsrule-interface
-class CSSSupportsRule final : public CSSConditionRule {
+class WEB_API CSSSupportsRule final : public CSSConditionRule {
     WEB_PLATFORM_OBJECT(CSSSupportsRule, CSSConditionRule);
     GC_DECLARE_ALLOCATOR(CSSSupportsRule);
 

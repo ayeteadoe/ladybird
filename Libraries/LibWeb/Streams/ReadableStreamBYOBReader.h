@@ -23,7 +23,7 @@ struct ReadableStreamBYOBReaderReadOptions {
 };
 
 // https://streams.spec.whatwg.org/#read-into-request
-class ReadIntoRequest : public JS::Cell {
+class WEB_API ReadIntoRequest : public JS::Cell {
     GC_CELL(ReadIntoRequest, JS::Cell);
 
 public:
@@ -40,7 +40,7 @@ public:
 };
 
 // https://streams.spec.whatwg.org/#readablestreambyobreader
-class ReadableStreamBYOBReader final
+class WEB_API ReadableStreamBYOBReader final
     : public Bindings::PlatformObject
     , public ReadableStreamGenericReaderMixin {
     WEB_PLATFORM_OBJECT(ReadableStreamBYOBReader, Bindings::PlatformObject);

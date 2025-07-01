@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/StyleElementUtils.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGElement.h>
 
 namespace Web::SVG {
 
-class SVGStyleElement final : public SVGElement {
+class WEB_API SVGStyleElement final : public SVGElement {
     WEB_PLATFORM_OBJECT(SVGStyleElement, SVGElement);
     GC_DECLARE_ALLOCATOR(SVGStyleElement);
 

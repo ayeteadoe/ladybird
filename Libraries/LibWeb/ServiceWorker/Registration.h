@@ -11,6 +11,7 @@
 #include <AK/Traits.h>
 #include <LibURL/URL.h>
 #include <LibWeb/Bindings/ServiceWorkerRegistrationPrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/ServiceWorker/ServiceWorkerRecord.h>
 #include <LibWeb/StorageAPI/StorageKey.h>
 
@@ -20,7 +21,7 @@ namespace Web::ServiceWorker {
 // This class corresponds to "service worker registration", not "ServiceWorkerRegistration"
 // FIXME: This object needs to live at the user-agent level, in LibWebView, not in LibWeb
 //        .. And it will need some way to synchronize updates to each 'client' (aka process aka ESO)
-class Registration {
+class WEB_API Registration {
     AK_MAKE_NONCOPYABLE(Registration);
     AK_MAKE_DEFAULT_MOVABLE(Registration);
 

@@ -9,10 +9,11 @@
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Enums.h>
 #include <LibWeb/CSS/PercentageOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class EdgeStyleValue final : public StyleValueWithDefaultOperators<EdgeStyleValue> {
+class WEB_API EdgeStyleValue final : public StyleValueWithDefaultOperators<EdgeStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<EdgeStyleValue const> create(Optional<PositionEdge> edge, Optional<LengthPercentage> const& offset)
     {

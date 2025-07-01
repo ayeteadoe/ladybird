@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/NavigationType.h>
 
 namespace Web::HTML {
@@ -16,7 +17,7 @@ struct NavigationCurrentEntryChangeEventInit : public DOM::EventInit {
     GC::Ptr<NavigationHistoryEntry> from;
 };
 
-class NavigationCurrentEntryChangeEvent final : public DOM::Event {
+class WEB_API NavigationCurrentEntryChangeEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(NavigationCurrentEntryChangeEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(NavigationCurrentEntryChangeEvent);
 

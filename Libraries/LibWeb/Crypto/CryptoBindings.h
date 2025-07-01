@@ -11,6 +11,7 @@
 #include <AK/String.h>
 #include <AK/Vector.h>
 #include <LibCrypto/BigInt/UnsignedBigInteger.h>
+#include <LibWeb/Forward.h>
 
 // FIXME: Generate these from IDL
 namespace Web::Bindings {
@@ -23,7 +24,7 @@ struct RsaOtherPrimesInfo {
 };
 
 // https://w3c.github.io/webcrypto/#JsonWebKey-dictionary
-struct JsonWebKey {
+struct WEB_API JsonWebKey {
     Optional<String> kty;
     Optional<String> use;
     Optional<Vector<String>> key_ops;

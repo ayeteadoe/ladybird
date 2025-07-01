@@ -14,10 +14,11 @@
 #include <LibWeb/CredentialManagement/FederatedCredential.h>
 #include <LibWeb/CredentialManagement/PasswordCredential.h>
 #include <LibWeb/DOM/AbortSignal.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CredentialManagement {
 
-class CredentialsContainer final : public Bindings::PlatformObject {
+class WEB_API CredentialsContainer final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(CredentialsContainer, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(CredentialsContainer);
 

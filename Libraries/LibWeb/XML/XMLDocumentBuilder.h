@@ -11,6 +11,7 @@
 #include <LibWeb/DOM/ElementFactory.h>
 #include <LibWeb/DOM/Node.h>
 #include <LibWeb/DOM/Text.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Namespace.h>
 #include <LibXML/Parser/Parser.h>
 
@@ -23,7 +24,7 @@ enum class XMLScriptingSupport {
 
 ErrorOr<Variant<ByteString, Vector<XML::MarkupDeclaration>>> resolve_xml_resource(XML::SystemID const&, Optional<XML::PublicID> const&);
 
-class XMLDocumentBuilder final : public XML::Listener {
+class WEB_API XMLDocumentBuilder final : public XML::Listener {
 public:
     XMLDocumentBuilder(DOM::Document& document, XMLScriptingSupport = XMLScriptingSupport::Enabled);
 

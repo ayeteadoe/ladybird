@@ -9,6 +9,7 @@
 #include <LibGC/Ptr.h>
 #include <LibWeb/Bindings/IDBDatabasePrototype.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/DOMStringList.h>
 #include <LibWeb/IndexedDB/IDBRequest.h>
 #include <LibWeb/IndexedDB/IDBTransaction.h>
@@ -33,7 +34,7 @@ struct IDBTransactionOptions {
 
 // https://w3c.github.io/IndexedDB/#IDBDatabase-interface
 // https://www.w3.org/TR/IndexedDB/#database-connection
-class IDBDatabase : public DOM::EventTarget {
+class WEB_API IDBDatabase : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(IDBDatabase, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(IDBDatabase);
 

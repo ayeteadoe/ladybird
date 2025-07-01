@@ -8,12 +8,13 @@
 
 #include <LibURL/URL.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/StructuredSerialize.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/nav-history-apis.html#navigationdestination
-class NavigationDestination : public Bindings::PlatformObject {
+class WEB_API NavigationDestination : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(NavigationDestination, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(NavigationDestination);
 

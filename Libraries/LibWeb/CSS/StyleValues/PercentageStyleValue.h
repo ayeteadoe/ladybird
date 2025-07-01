@@ -11,10 +11,11 @@
 
 #include <LibWeb/CSS/Percentage.h>
 #include <LibWeb/CSS/StyleValues/CSSUnitValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class PercentageStyleValue final : public CSSUnitValue {
+class WEB_API PercentageStyleValue final : public CSSUnitValue {
 public:
     static ValueComparingNonnullRefPtr<PercentageStyleValue const> create(Percentage percentage)
     {

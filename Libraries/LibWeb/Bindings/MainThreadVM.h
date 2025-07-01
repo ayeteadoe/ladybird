@@ -13,6 +13,7 @@
 #include <LibWeb/Bindings/AgentType.h>
 #include <LibWeb/DOM/Element.h>
 #include <LibWeb/DOM/MutationObserver.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/HTML/EventLoop/EventLoop.h>
 #include <LibWeb/HTML/Scripting/Agent.h>
 
@@ -31,13 +32,13 @@ struct WebEngineCustomJobCallbackData final : public JS::JobCallback::CustomData
     OwnPtr<JS::ExecutionContext> active_script_context;
 };
 
-HTML::Script* active_script();
+WEB_API HTML::Script* active_script();
 
-void initialize_main_thread_vm(AgentType);
-JS::VM& main_thread_vm();
+WEB_API void initialize_main_thread_vm(AgentType);
+WEB_API JS::VM& main_thread_vm();
 
-void queue_mutation_observer_microtask(DOM::Document const&);
-NonnullOwnPtr<JS::ExecutionContext> create_a_new_javascript_realm(JS::VM&, Function<JS::Object*(JS::Realm&)> create_global_object, Function<JS::Object*(JS::Realm&)> create_global_this_value);
-void invoke_custom_element_reactions(Vector<GC::Root<DOM::Element>>& element_queue);
+WEB_API void queue_mutation_observer_microtask(DOM::Document const&);
+WEB_API NonnullOwnPtr<JS::ExecutionContext> create_a_new_javascript_realm(JS::VM&, Function<JS::Object*(JS::Realm&)> create_global_object, Function<JS::Object*(JS::Realm&)> create_global_this_value);
+WEB_API void invoke_custom_element_reactions(Vector<GC::Root<DOM::Element>>& element_queue);
 
 }

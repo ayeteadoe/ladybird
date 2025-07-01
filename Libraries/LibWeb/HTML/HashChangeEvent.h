@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -15,7 +16,7 @@ struct HashChangeEventInit : public DOM::EventInit {
     String new_url;
 };
 
-class HashChangeEvent final : public DOM::Event {
+class WEB_API HashChangeEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(HashChangeEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(HashChangeEvent);
 

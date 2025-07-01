@@ -18,9 +18,9 @@ enum class OriginOnly {
     No,
 };
 
-ReferrerPolicy parse_a_referrer_policy_from_a_referrer_policy_header(Fetch::Infrastructure::Response const&);
-void set_request_referrer_policy_on_redirect(Fetch::Infrastructure::Request&, Fetch::Infrastructure::Response const&);
-Optional<URL::URL> determine_requests_referrer(Fetch::Infrastructure::Request const&);
-Optional<URL::URL> strip_url_for_use_as_referrer(Optional<URL::URL>, OriginOnly origin_only = OriginOnly::No);
+WEB_API ReferrerPolicy parse_a_referrer_policy_from_a_referrer_policy_header(Fetch::Infrastructure::Response const&);
+WEB_API void set_request_referrer_policy_on_redirect(Fetch::Infrastructure::Request&, Fetch::Infrastructure::Response const&);
+WEB_API Optional<URL::URL> determine_requests_referrer(Fetch::Infrastructure::Request const&);
+WEB_API Optional<URL::URL> strip_url_for_use_as_referrer(Optional<URL::URL>, OriginOnly origin_only = OriginOnly::No);
 
 }

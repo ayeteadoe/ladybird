@@ -7,10 +7,11 @@
 #pragma once
 
 #include <AK/String.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class NavigatorIDMixin {
+class WEB_API NavigatorIDMixin {
 public:
     // WARNING: Any information in this API that varies from user to user can be used to profile the user. In fact, if
     // enough such information is available, a user can actually be uniquely identified. For this reason, user agent

@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/GenericShorthands.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/HTMLOListElement.h>
 #include <LibWeb/HTML/HTMLUListElement.h>

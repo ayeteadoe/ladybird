@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/HTMLTableCaptionElement.h>
 #include <LibWeb/HTML/HTMLTableRowElement.h>
@@ -15,7 +16,7 @@
 
 namespace Web::HTML {
 
-class HTMLTableElement final : public HTMLElement {
+class WEB_API HTMLTableElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLTableElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLTableElement);
 

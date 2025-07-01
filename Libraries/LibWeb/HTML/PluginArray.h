@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/system-state.html#pluginarray
-class PluginArray : public Bindings::PlatformObject {
+class WEB_API PluginArray : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(PluginArray, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(PluginArray);
 

@@ -14,7 +14,7 @@
 
 namespace Web::Layout {
 
-class LineBoxFragment {
+class WEB_API LineBoxFragment {
     friend class LineBox;
 
 public:

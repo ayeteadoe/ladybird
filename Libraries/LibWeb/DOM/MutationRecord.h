@@ -8,11 +8,12 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
 // https://dom.spec.whatwg.org/#mutationrecord
-class MutationRecord : public Bindings::PlatformObject {
+class WEB_API MutationRecord : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(MutationRecord, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(MutationRecord);
 

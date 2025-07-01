@@ -18,7 +18,7 @@ namespace Web::DOM {
 using Slottable = Variant<GC::Ref<Element>, GC::Ref<Text>>;
 
 // https://dom.spec.whatwg.org/#mixin-slotable
-class SlottableMixin {
+class WEB_API SlottableMixin {
 public:
     virtual ~SlottableMixin();
 
@@ -52,15 +52,15 @@ enum class OpenFlag {
     Unset,
 };
 
-GC::Ptr<HTML::HTMLSlotElement> assigned_slot_for_node(GC::Ref<Node>);
-bool is_an_assigned_slottable(GC::Ref<Node>);
+WEB_API GC::Ptr<HTML::HTMLSlotElement> assigned_slot_for_node(GC::Ref<Node>);
+WEB_API bool is_an_assigned_slottable(GC::Ref<Node>);
 
-GC::Ptr<HTML::HTMLSlotElement> find_a_slot(Slottable const&, OpenFlag = OpenFlag::Unset);
-Vector<Slottable> find_slottables(GC::Ref<HTML::HTMLSlotElement>);
-Vector<Slottable> find_flattened_slottables(GC::Ref<HTML::HTMLSlotElement>);
-void assign_slottables(GC::Ref<HTML::HTMLSlotElement>);
-void assign_slottables_for_a_tree(GC::Ref<Node>);
-void assign_a_slot(Slottable const&);
-void signal_a_slot_change(GC::Ref<HTML::HTMLSlotElement>);
+WEB_API GC::Ptr<HTML::HTMLSlotElement> find_a_slot(Slottable const&, OpenFlag = OpenFlag::Unset);
+WEB_API Vector<Slottable> find_slottables(GC::Ref<HTML::HTMLSlotElement>);
+WEB_API Vector<Slottable> find_flattened_slottables(GC::Ref<HTML::HTMLSlotElement>);
+WEB_API void assign_slottables(GC::Ref<HTML::HTMLSlotElement>);
+WEB_API void assign_slottables_for_a_tree(GC::Ref<Node>);
+WEB_API void assign_a_slot(Slottable const&);
+WEB_API void signal_a_slot_change(GC::Ref<HTML::HTMLSlotElement>);
 
 }

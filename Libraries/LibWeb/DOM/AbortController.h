@@ -8,11 +8,12 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOM/AbortSignal.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
 // https://dom.spec.whatwg.org/#abortcontroller
-class AbortController final : public Bindings::PlatformObject {
+class WEB_API AbortController final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(AbortController, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(AbortController);
 

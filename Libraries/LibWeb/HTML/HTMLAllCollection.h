@@ -15,7 +15,7 @@
 
 namespace Web::HTML {
 
-class HTMLAllCollection : public Bindings::PlatformObject {
+class WEB_API HTMLAllCollection : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(HTMLAllCollection, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(HTMLAllCollection);
 

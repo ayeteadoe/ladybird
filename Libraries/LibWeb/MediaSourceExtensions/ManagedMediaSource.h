@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/MediaSourceExtensions/MediaSource.h>
 
 namespace Web::MediaSourceExtensions {
 
 // https://w3c.github.io/media-source/#managedmediasource-interface
-class ManagedMediaSource : public MediaSource {
+class WEB_API ManagedMediaSource : public MediaSource {
     WEB_PLATFORM_OBJECT(ManagedMediaSource, MediaSource);
     GC_DECLARE_ALLOCATOR(ManagedMediaSource);
 

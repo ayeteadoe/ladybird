@@ -10,15 +10,16 @@
 #pragma once
 
 #include <AK/Forward.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Infra {
 
-String normalize_newlines(String const&);
-ErrorOr<String> strip_and_collapse_whitespace(StringView string);
-bool is_code_unit_prefix(StringView potential_prefix, StringView input);
-ErrorOr<String> convert_to_scalar_value_string(StringView string);
-ByteBuffer isomorphic_encode(StringView input);
-String isomorphic_decode(ReadonlyBytes input);
-bool code_unit_less_than(StringView a, StringView b);
+WEB_API String normalize_newlines(String const&);
+WEB_API ErrorOr<String> strip_and_collapse_whitespace(StringView string);
+WEB_API bool is_code_unit_prefix(StringView potential_prefix, StringView input);
+WEB_API ErrorOr<String> convert_to_scalar_value_string(StringView string);
+WEB_API ByteBuffer isomorphic_encode(StringView input);
+WEB_API String isomorphic_decode(ReadonlyBytes input);
+WEB_API bool code_unit_less_than(StringView a, StringView b);
 
 }

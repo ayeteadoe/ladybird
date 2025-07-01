@@ -28,7 +28,7 @@ enum class UserNavigationInvolvement {
 };
 
 // https://html.spec.whatwg.org/multipage/browsing-the-web.html#navigation-params
-struct NavigationParams : GC::Cell {
+struct WEB_API NavigationParams : GC::Cell {
     GC_CELL(NavigationParams, GC::Cell);
     GC_DECLARE_ALLOCATOR(NavigationParams);
 
@@ -113,7 +113,7 @@ protected:
 };
 
 // https://html.spec.whatwg.org/multipage/browsing-the-web.html#non-fetch-scheme-navigation-params
-struct NonFetchSchemeNavigationParams : JS::Cell {
+struct WEB_API NonFetchSchemeNavigationParams : JS::Cell {
     GC_CELL(NonFetchSchemeNavigationParams, JS::Cell);
     GC_DECLARE_ALLOCATOR(NonFetchSchemeNavigationParams);
 
@@ -162,6 +162,6 @@ protected:
     void visit_edges(Visitor& visitor) override;
 };
 
-bool check_a_navigation_responses_adherence_to_x_frame_options(GC::Ptr<Fetch::Infrastructure::Response> response, Navigable* navigable, GC::Ref<ContentSecurityPolicy::PolicyList const> csp_list, URL::Origin destination_origin);
+WEB_API bool check_a_navigation_responses_adherence_to_x_frame_options(GC::Ptr<Fetch::Infrastructure::Response> response, Navigable* navigable, GC::Ref<ContentSecurityPolicy::PolicyList const> csp_list, URL::Origin destination_origin);
 
 }

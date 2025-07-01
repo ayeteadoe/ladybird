@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/XHR/FormData.h>
 
 namespace Web::HTML {
@@ -15,7 +16,7 @@ struct FormDataEventInit : public DOM::EventInit {
     GC::Ptr<XHR::FormData> form_data {};
 };
 
-class FormDataEvent final : public DOM::Event {
+class WEB_API FormDataEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(FormDataEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(FormDataEvent);
 

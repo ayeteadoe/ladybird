@@ -19,7 +19,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/browsing-the-web.html#document-state-2
-class DocumentState final : public JS::Cell {
+class WEB_API DocumentState final : public JS::Cell {
     GC_CELL(DocumentState, JS::Cell);
     GC_DECLARE_ALLOCATOR(DocumentState);
 

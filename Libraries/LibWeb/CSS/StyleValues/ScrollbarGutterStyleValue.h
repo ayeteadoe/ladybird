@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class ScrollbarGutterStyleValue final : public StyleValueWithDefaultOperators<ScrollbarGutterStyleValue> {
+class WEB_API ScrollbarGutterStyleValue final : public StyleValueWithDefaultOperators<ScrollbarGutterStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<ScrollbarGutterStyleValue const> create(ScrollbarGutter value)
     {

@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/DOM/Document.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
-class XMLDocument final : public Document {
+class WEB_API XMLDocument final : public Document {
     WEB_PLATFORM_OBJECT(XMLDocument, Document);
     GC_DECLARE_ALLOCATOR(XMLDocument);
 

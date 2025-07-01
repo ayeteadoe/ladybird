@@ -15,7 +15,7 @@
 
 namespace Web {
 
-class DragAndDropEventHandler {
+class WEB_API DragAndDropEventHandler {
 public:
     void visit_edges(JS::Cell::Visitor& visitor) const;
 

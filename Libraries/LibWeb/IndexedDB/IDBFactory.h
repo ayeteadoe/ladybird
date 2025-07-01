@@ -9,12 +9,13 @@
 
 #include <LibJS/Runtime/PromiseCapability.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/IDBOpenDBRequest.h>
 
 namespace Web::IndexedDB {
 
 // https://w3c.github.io/IndexedDB/#idbfactory
-class IDBFactory : public Bindings::PlatformObject {
+class WEB_API IDBFactory : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(IDBFactory, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(IDBFactory);
 

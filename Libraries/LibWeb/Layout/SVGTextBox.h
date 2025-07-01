@@ -7,12 +7,13 @@
 #pragma once
 
 #include <AK/Optional.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/SVGGraphicsBox.h>
 #include <LibWeb/SVG/SVGTextPositioningElement.h>
 
 namespace Web::Layout {
 
-class SVGTextBox final : public SVGGraphicsBox {
+class WEB_API SVGTextBox final : public SVGGraphicsBox {
     GC_CELL(SVGTextBox, SVGGraphicsBox);
     GC_DECLARE_ALLOCATOR(SVGTextBox);
 

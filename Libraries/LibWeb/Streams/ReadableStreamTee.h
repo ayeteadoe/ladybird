@@ -17,7 +17,7 @@
 
 namespace Web::Streams::Detail {
 
-struct ReadableStreamTeeParams final : public JS::Cell {
+struct WEB_API ReadableStreamTeeParams final : public JS::Cell {
     GC_CELL(ReadableStreamTeeParams, JS::Cell);
     GC_DECLARE_ALLOCATOR(ReadableStreamTeeParams);
 
@@ -60,7 +60,7 @@ private:
     bool m_clone_for_branch2 { false };
 };
 
-struct ReadableByteStreamTeeParams final : public JS::Cell {
+struct WEB_API ReadableByteStreamTeeParams final : public JS::Cell {
     GC_CELL(ReadableByteStreamTeeParams, JS::Cell);
     GC_DECLARE_ALLOCATOR(ReadableByteStreamTeeParams);
 
@@ -83,7 +83,7 @@ struct ReadableByteStreamTeeParams final : public JS::Cell {
 };
 
 // https://streams.spec.whatwg.org/#ref-for-read-request④
-class ReadableByteStreamTeeDefaultReadRequest final : public ReadRequest {
+class WEB_API ReadableByteStreamTeeDefaultReadRequest final : public ReadRequest {
     GC_CELL(ReadableByteStreamTeeDefaultReadRequest, ReadRequest);
     GC_DECLARE_ALLOCATOR(ReadableByteStreamTeeDefaultReadRequest);
 
@@ -107,7 +107,7 @@ private:
 };
 
 // https://streams.spec.whatwg.org/#ref-for-read-into-request②
-class ReadableByteStreamTeeBYOBReadRequest final : public ReadIntoRequest {
+class WEB_API ReadableByteStreamTeeBYOBReadRequest final : public ReadIntoRequest {
     GC_CELL(ReadableByteStreamTeeBYOBReadRequest, ReadIntoRequest);
     GC_DECLARE_ALLOCATOR(ReadableByteStreamTeeBYOBReadRequest);
 

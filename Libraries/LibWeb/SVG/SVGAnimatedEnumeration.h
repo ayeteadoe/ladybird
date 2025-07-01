@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::SVG {
 
 // https://svgwg.org/svg2-draft/types.html#InterfaceSVGAnimatedEnumeration
-class SVGAnimatedEnumeration final : public Bindings::PlatformObject {
+class WEB_API SVGAnimatedEnumeration final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(SVGAnimatedEnumeration, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(SVGAnimatedEnumeration);
 

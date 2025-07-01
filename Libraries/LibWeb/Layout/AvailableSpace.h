@@ -13,7 +13,7 @@
 
 namespace Web::Layout {
 
-class AvailableSize {
+class WEB_API AvailableSize {
 public:
     enum class Type {
         Definite,
@@ -79,7 +79,7 @@ inline bool operator<(AvailableSize const& left, CSSPixels right)
     return left.to_px_or_zero() < right;
 }
 
-class AvailableSpace {
+class WEB_API AvailableSpace {
 public:
     AvailableSpace(AvailableSize w, AvailableSize h)
         : width(move(w))

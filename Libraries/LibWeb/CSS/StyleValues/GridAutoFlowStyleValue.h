@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class GridAutoFlowStyleValue final : public StyleValueWithDefaultOperators<GridAutoFlowStyleValue> {
+class WEB_API GridAutoFlowStyleValue final : public StyleValueWithDefaultOperators<GridAutoFlowStyleValue> {
 public:
     enum Axis {
         Row,

@@ -33,7 +33,7 @@ namespace Web::HTML {
 // https://html.spec.whatwg.org/multipage/workers.html#the-workerglobalscope-common-interface
 // WorkerGlobalScope is the base class of each real WorkerGlobalScope that will be created when the
 // user agent runs the run a worker algorithm.
-class WorkerGlobalScope
+class WEB_API WorkerGlobalScope
     : public DOM::EventTarget
     , public WindowOrWorkerGlobalScopeMixin
     , public UniversalGlobalScopeMixin {

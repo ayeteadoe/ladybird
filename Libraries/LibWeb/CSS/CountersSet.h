@@ -29,7 +29,7 @@ struct Counter {
 };
 
 // https://drafts.csswg.org/css-lists-3/#css-counters-set
-class CountersSet {
+class WEB_API CountersSet {
 public:
     CountersSet() = default;
     ~CountersSet() = default;
@@ -53,7 +53,7 @@ private:
     Vector<Counter> m_counters;
 };
 
-void resolve_counters(DOM::AbstractElement&);
-void inherit_counters(DOM::AbstractElement&);
+WEB_API void resolve_counters(DOM::AbstractElement&);
+WEB_API void inherit_counters(DOM::AbstractElement&);
 
 }

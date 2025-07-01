@@ -14,7 +14,7 @@
 namespace Web::CSS {
 
 // https://www.w3.org/TR/css-conditional-3/#the-cssmediarule-interface
-class CSSMediaRule final : public CSSConditionRule {
+class WEB_API CSSMediaRule final : public CSSConditionRule {
     WEB_PLATFORM_OBJECT(CSSMediaRule, CSSConditionRule);
     GC_DECLARE_ALLOCATOR(CSSMediaRule);
 

@@ -9,10 +9,11 @@
 
 #include <LibWeb/CSS/Length.h>
 #include <LibWeb/CSS/PercentageOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class Size {
+class WEB_API Size {
 public:
     enum class Type {
         Auto,

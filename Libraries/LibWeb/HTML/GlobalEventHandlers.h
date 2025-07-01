@@ -103,7 +103,7 @@
 
 namespace Web::HTML {
 
-class GlobalEventHandlers {
+class WEB_API GlobalEventHandlers {
 public:
     virtual ~GlobalEventHandlers();
 

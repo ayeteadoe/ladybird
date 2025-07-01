@@ -18,6 +18,6 @@ struct ViewBox {
     double height { 0 };
 };
 
-Optional<ViewBox> try_parse_view_box(StringView);
+WEB_API Optional<ViewBox> try_parse_view_box(StringView);
 
 }

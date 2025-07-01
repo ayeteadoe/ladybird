@@ -7,10 +7,11 @@
 #pragma once
 
 #include <AK/FlyString.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Encoding {
 
-class TextEncoderCommonMixin {
+class WEB_API TextEncoderCommonMixin {
 public:
     virtual ~TextEncoderCommonMixin();
 

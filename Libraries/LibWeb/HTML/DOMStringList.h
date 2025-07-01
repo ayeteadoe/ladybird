@@ -8,10 +8,11 @@
 
 #include <AK/Vector.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class DOMStringList final : public Bindings::PlatformObject {
+class WEB_API DOMStringList final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DOMStringList, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DOMStringList);
 

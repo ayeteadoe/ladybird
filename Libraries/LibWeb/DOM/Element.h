@@ -25,6 +25,7 @@
 #include <LibWeb/DOM/PseudoElement.h>
 #include <LibWeb/DOM/QualifiedName.h>
 #include <LibWeb/DOM/Slottable.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/AttributeNames.h>
 #include <LibWeb/HTML/EventLoop/Task.h>
 #include <LibWeb/HTML/LazyLoadingElement.h>
@@ -99,7 +100,7 @@ enum class ProximityToTheViewport {
     NotDetermined,
 };
 
-class Element
+class WEB_API Element
     : public ParentNode
     , public ChildNode<Element>
     , public NonDocumentTypeChildNode<Element>
@@ -652,14 +653,14 @@ inline bool Element::has_pseudo_element(CSS::PseudoElement type) const
     return pseudo_element.value()->layout_node();
 }
 
-bool is_valid_namespace_prefix(FlyString const&);
-bool is_valid_attribute_local_name(FlyString const&);
-bool is_valid_element_local_name(FlyString const&);
+WEB_API bool is_valid_namespace_prefix(FlyString const&);
+WEB_API bool is_valid_attribute_local_name(FlyString const&);
+WEB_API bool is_valid_element_local_name(FlyString const&);
 
 enum class ValidationContext {
     Attribute,
     Element,
 };
-WebIDL::ExceptionOr<QualifiedName> validate_and_extract(JS::Realm&, Optional<FlyString> namespace_, FlyString const& qualified_name, ValidationContext context);
+WEB_API WebIDL::ExceptionOr<QualifiedName> validate_and_extract(JS::Realm&, Optional<FlyString> namespace_, FlyString const& qualified_name, ValidationContext context);
 
 }

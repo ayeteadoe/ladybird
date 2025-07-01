@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/cssom-view/#visualviewport
-class VisualViewport final : public DOM::EventTarget {
+class WEB_API VisualViewport final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(VisualViewport, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(VisualViewport);
 

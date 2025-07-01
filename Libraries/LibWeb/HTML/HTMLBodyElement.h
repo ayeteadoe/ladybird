@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/ARIA/Roles.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/WindowEventHandlers.h>
 
 namespace Web::HTML {
 
-class HTMLBodyElement final
+class WEB_API HTMLBodyElement final
     : public HTMLElement
     , public WindowEventHandlers {
     WEB_PLATFORM_OBJECT(HTMLBodyElement, HTMLElement);

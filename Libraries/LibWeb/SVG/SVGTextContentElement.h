@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMPoint.h>
 #include <LibWeb/SVG/AttributeParser.h>
 #include <LibWeb/SVG/SVGGraphicsElement.h>
@@ -15,7 +16,7 @@
 namespace Web::SVG {
 
 // https://svgwg.org/svg2-draft/text.html#InterfaceSVGTextContentElement
-class SVGTextContentElement : public SVGGraphicsElement {
+class WEB_API SVGTextContentElement : public SVGGraphicsElement {
     WEB_PLATFORM_OBJECT(SVGTextContentElement, SVGGraphicsElement);
 
 public:

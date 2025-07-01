@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HighResolutionTime/DOMHighResTimeStamp.h>
 
 namespace Web::PerformanceTimeline {
@@ -22,7 +23,7 @@ enum class ShouldAddEntry {
 };
 
 // https://www.w3.org/TR/performance-timeline/#dom-performanceentry
-class PerformanceEntry : public Bindings::PlatformObject {
+class WEB_API PerformanceEntry : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(PerformanceEntry, Bindings::PlatformObject);
 
 public:

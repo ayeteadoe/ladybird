@@ -11,10 +11,11 @@
 
 #include <LibWeb/CSS/Angle.h>
 #include <LibWeb/CSS/StyleValues/CSSUnitValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class AngleStyleValue : public CSSUnitValue {
+class WEB_API AngleStyleValue : public CSSUnitValue {
 public:
     static ValueComparingNonnullRefPtr<AngleStyleValue const> create(Angle angle)
     {

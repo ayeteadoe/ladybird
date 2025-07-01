@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
@@ -15,7 +16,7 @@ struct SubmitEventInit : public DOM::EventInit {
     GC::Ptr<HTMLElement> submitter;
 };
 
-class SubmitEvent final : public DOM::Event {
+class WEB_API SubmitEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(SubmitEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(SubmitEvent);
 

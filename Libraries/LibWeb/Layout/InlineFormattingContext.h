@@ -13,7 +13,7 @@
 
 namespace Web::Layout {
 
-class InlineFormattingContext final : public FormattingContext {
+class WEB_API InlineFormattingContext final : public FormattingContext {
 public:
     InlineFormattingContext(LayoutState&, LayoutMode, BlockContainer const& containing_block, LayoutState::UsedValues& containing_block_used_values, BlockFormattingContext& parent);
     ~InlineFormattingContext();

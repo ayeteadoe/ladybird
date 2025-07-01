@@ -17,7 +17,7 @@
 
 namespace Web::DOM {
 
-class EventTarget : public Bindings::PlatformObject {
+class WEB_API EventTarget : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(EventTarget, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(EventTarget);
 
@@ -87,6 +87,6 @@ private:
     JS::ThrowCompletionOr<void> process_event_handler_for_event(FlyString const& name, Event& event);
 };
 
-bool is_window_reflecting_body_element_event_handler(FlyString const& name);
+WEB_API bool is_window_reflecting_body_element_event_handler(FlyString const& name);
 
 }

@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/SVGBox.h>
 #include <LibWeb/SVG/SVGClipPathElement.h>
 #include <LibWeb/SVG/SVGElement.h>
 
 namespace Web::Layout {
 
-class SVGClipBox : public SVGBox {
+class WEB_API SVGClipBox : public SVGBox {
     GC_CELL(SVGClipBox, SVGBox);
     GC_DECLARE_ALLOCATOR(SVGClipBox);
 

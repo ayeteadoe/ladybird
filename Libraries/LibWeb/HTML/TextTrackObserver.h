@@ -10,11 +10,12 @@
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Bindings/TextTrackPrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/TextTrack.h>
 
 namespace Web::HTML {
 
-class TextTrackObserver final : public Bindings::PlatformObject {
+class WEB_API TextTrackObserver final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(TextTrackObserver, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(TextTrackObserver);
 

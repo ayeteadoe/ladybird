@@ -20,6 +20,7 @@
 #include <LibWeb/CSS/Percentage.h>
 #include <LibWeb/CSS/Resolution.h>
 #include <LibWeb/CSS/Time.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -37,7 +38,7 @@ struct CalculationResolutionContext {
     Optional<Length::ResolutionContext> length_resolution_context;
 };
 
-class CalculatedStyleValue : public CSSStyleValue {
+class WEB_API CalculatedStyleValue : public CSSStyleValue {
 public:
     class CalculationResult {
     public:
@@ -127,7 +128,7 @@ private:
 };
 
 // https://www.w3.org/TR/css-values-4/#calculation-tree
-class CalculationNode : public RefCounted<CalculationNode> {
+class WEB_API CalculationNode : public RefCounted<CalculationNode> {
 public:
     enum class Type {
         Numeric,
@@ -251,7 +252,7 @@ enum class NonFiniteValue {
     NaN,
 };
 
-class NumericCalculationNode final : public CalculationNode {
+class WEB_API NumericCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<NumericCalculationNode const> create(NumericValue, CalculationContext const&);
     static RefPtr<NumericCalculationNode const> from_keyword(Keyword, CalculationContext const&);
@@ -280,7 +281,7 @@ private:
     NumericValue m_value;
 };
 
-class SumCalculationNode final : public CalculationNode {
+class WEB_API SumCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<SumCalculationNode const> create(Vector<NonnullRefPtr<CalculationNode const>>);
     ~SumCalculationNode();
@@ -299,7 +300,7 @@ private:
     Vector<NonnullRefPtr<CalculationNode const>> m_values;
 };
 
-class ProductCalculationNode final : public CalculationNode {
+class WEB_API ProductCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<ProductCalculationNode const> create(Vector<NonnullRefPtr<CalculationNode const>>);
     ~ProductCalculationNode();
@@ -318,7 +319,7 @@ private:
     Vector<NonnullRefPtr<CalculationNode const>> m_values;
 };
 
-class NegateCalculationNode final : public CalculationNode {
+class WEB_API NegateCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<NegateCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~NegateCalculationNode();
@@ -338,7 +339,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class InvertCalculationNode final : public CalculationNode {
+class WEB_API InvertCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<InvertCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~InvertCalculationNode();
@@ -358,7 +359,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class MinCalculationNode final : public CalculationNode {
+class WEB_API MinCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<MinCalculationNode const> create(Vector<NonnullRefPtr<CalculationNode const>>);
     ~MinCalculationNode();
@@ -378,7 +379,7 @@ private:
     Vector<NonnullRefPtr<CalculationNode const>> m_values;
 };
 
-class MaxCalculationNode final : public CalculationNode {
+class WEB_API MaxCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<MaxCalculationNode const> create(Vector<NonnullRefPtr<CalculationNode const>>);
     ~MaxCalculationNode();
@@ -398,7 +399,7 @@ private:
     Vector<NonnullRefPtr<CalculationNode const>> m_values;
 };
 
-class ClampCalculationNode final : public CalculationNode {
+class WEB_API ClampCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<ClampCalculationNode const> create(NonnullRefPtr<CalculationNode const>, NonnullRefPtr<CalculationNode const>, NonnullRefPtr<CalculationNode const>);
     ~ClampCalculationNode();
@@ -420,7 +421,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_max_value;
 };
 
-class AbsCalculationNode final : public CalculationNode {
+class WEB_API AbsCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<AbsCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~AbsCalculationNode();
@@ -440,7 +441,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class SignCalculationNode final : public CalculationNode {
+class WEB_API SignCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<SignCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~SignCalculationNode();
@@ -460,7 +461,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class SinCalculationNode final : public CalculationNode {
+class WEB_API SinCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<SinCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~SinCalculationNode();
@@ -480,7 +481,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class CosCalculationNode final : public CalculationNode {
+class WEB_API CosCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<CosCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~CosCalculationNode();
@@ -500,7 +501,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class TanCalculationNode final : public CalculationNode {
+class WEB_API TanCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<TanCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~TanCalculationNode();
@@ -520,7 +521,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class AsinCalculationNode final : public CalculationNode {
+class WEB_API AsinCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<AsinCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~AsinCalculationNode();
@@ -540,7 +541,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class AcosCalculationNode final : public CalculationNode {
+class WEB_API AcosCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<AcosCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~AcosCalculationNode();
@@ -560,7 +561,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class AtanCalculationNode final : public CalculationNode {
+class WEB_API AtanCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<AtanCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~AtanCalculationNode();
@@ -580,7 +581,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class Atan2CalculationNode final : public CalculationNode {
+class WEB_API Atan2CalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<Atan2CalculationNode const> create(NonnullRefPtr<CalculationNode const>, NonnullRefPtr<CalculationNode const>);
     ~Atan2CalculationNode();
@@ -601,7 +602,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_x;
 };
 
-class PowCalculationNode final : public CalculationNode {
+class WEB_API PowCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<PowCalculationNode const> create(NonnullRefPtr<CalculationNode const>, NonnullRefPtr<CalculationNode const>);
     ~PowCalculationNode();
@@ -622,7 +623,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_y;
 };
 
-class SqrtCalculationNode final : public CalculationNode {
+class WEB_API SqrtCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<SqrtCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~SqrtCalculationNode();
@@ -642,7 +643,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class HypotCalculationNode final : public CalculationNode {
+class WEB_API HypotCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<HypotCalculationNode const> create(Vector<NonnullRefPtr<CalculationNode const>>);
     ~HypotCalculationNode();
@@ -662,7 +663,7 @@ private:
     Vector<NonnullRefPtr<CalculationNode const>> m_values;
 };
 
-class LogCalculationNode final : public CalculationNode {
+class WEB_API LogCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<LogCalculationNode const> create(NonnullRefPtr<CalculationNode const>, NonnullRefPtr<CalculationNode const>);
     ~LogCalculationNode();
@@ -683,7 +684,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_y;
 };
 
-class ExpCalculationNode final : public CalculationNode {
+class WEB_API ExpCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<ExpCalculationNode const> create(NonnullRefPtr<CalculationNode const>);
     ~ExpCalculationNode();
@@ -703,7 +704,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_value;
 };
 
-class RoundCalculationNode final : public CalculationNode {
+class WEB_API RoundCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<RoundCalculationNode const> create(RoundingStrategy, NonnullRefPtr<CalculationNode const>, NonnullRefPtr<CalculationNode const>);
     ~RoundCalculationNode();
@@ -727,7 +728,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_y;
 };
 
-class ModCalculationNode final : public CalculationNode {
+class WEB_API ModCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<ModCalculationNode const> create(NonnullRefPtr<CalculationNode const>, NonnullRefPtr<CalculationNode const>);
     ~ModCalculationNode();
@@ -748,7 +749,7 @@ private:
     NonnullRefPtr<CalculationNode const> m_y;
 };
 
-class RemCalculationNode final : public CalculationNode {
+class WEB_API RemCalculationNode final : public CalculationNode {
 public:
     static NonnullRefPtr<RemCalculationNode const> create(NonnullRefPtr<CalculationNode const>, NonnullRefPtr<CalculationNode const>);
     ~RemCalculationNode();
@@ -770,6 +771,6 @@ private:
 };
 
 // https://drafts.csswg.org/css-values-4/#calc-simplification
-NonnullRefPtr<CalculationNode const> simplify_a_calculation_tree(CalculationNode const& root, CalculationContext const& context, CalculationResolutionContext const& resolution_context);
+WEB_API NonnullRefPtr<CalculationNode const> simplify_a_calculation_tree(CalculationNode const& root, CalculationContext const& context, CalculationResolutionContext const& resolution_context);
 
 }

@@ -12,7 +12,7 @@
 
 namespace Web::Fetch::Infrastructure {
 
-[[nodiscard]] RequestOrResponseBlocking block_bad_port(Request const&);
-[[nodiscard]] bool is_bad_port(u16);
+[[nodiscard]] WEB_API RequestOrResponseBlocking block_bad_port(Request const&);
+[[nodiscard]] WEB_API bool is_bad_port(u16);
 
 }

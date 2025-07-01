@@ -16,7 +16,7 @@
 
 namespace Web::HTML {
 
-class SharedResourceRequest final : public JS::Cell {
+class WEB_API SharedResourceRequest final : public JS::Cell {
     GC_CELL(SharedResourceRequest, JS::Cell);
     GC_DECLARE_ALLOCATOR(SharedResourceRequest);
 

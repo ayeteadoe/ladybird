@@ -9,13 +9,14 @@
 
 #include <AK/Optional.h>
 #include <LibWeb/ARIA/Roles.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/ToggleTaskTracker.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::HTML {
 
-class HTMLDetailsElement final : public HTMLElement {
+class WEB_API HTMLDetailsElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLDetailsElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLDetailsElement);
 

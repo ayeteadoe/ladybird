@@ -12,7 +12,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/parsing.html#stack-of-open-elements
-class StackOfOpenElements {
+class WEB_API StackOfOpenElements {
 public:
     // Initially, the stack of open elements is empty.
     // The stack grows downwards; the topmost node on the stack is the first one added to the stack,

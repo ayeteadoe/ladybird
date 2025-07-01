@@ -18,7 +18,7 @@ namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/origin.html#policy-container
 // A policy container is a struct containing policies that apply to a Document, a WorkerGlobalScope, or a WorkletGlobalScope. It has the following items:
-struct PolicyContainer : public GC::Cell {
+struct WEB_API PolicyContainer : public GC::Cell {
     GC_CELL(PolicyContainer, GC::Cell)
     GC_DECLARE_ALLOCATOR(PolicyContainer);
 
@@ -48,11 +48,11 @@ private:
 };
 
 // https://html.spec.whatwg.org/multipage/browsers.html#requires-storing-the-policy-container-in-history
-[[nodiscard]] bool url_requires_storing_the_policy_container_in_history(URL::URL const& url);
+[[nodiscard]] WEB_API bool url_requires_storing_the_policy_container_in_history(URL::URL const& url);
 
 // https://html.spec.whatwg.org/multipage/browsers.html#creating-a-policy-container-from-a-fetch-response
-[[nodiscard]] GC::Ref<PolicyContainer> create_a_policy_container_from_a_fetch_response(GC::Heap&, GC::Ref<Fetch::Infrastructure::Response const> response, GC::Ptr<Environment> environment);
+[[nodiscard]] WEB_API GC::Ref<PolicyContainer> create_a_policy_container_from_a_fetch_response(GC::Heap&, GC::Ref<Fetch::Infrastructure::Response const> response, GC::Ptr<Environment> environment);
 
-[[nodiscard]] GC::Ref<PolicyContainer> create_a_policy_container_from_serialized_policy_container(GC::Heap&, SerializedPolicyContainer const&);
+[[nodiscard]] WEB_API GC::Ref<PolicyContainer> create_a_policy_container_from_serialized_policy_container(GC::Heap&, SerializedPolicyContainer const&);
 
 }

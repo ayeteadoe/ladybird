@@ -10,11 +10,12 @@
 #include <AK/String.h>
 #include <LibGC/RootVector.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/VideoTrack.h>
 
 namespace Web::HTML {
 
-class VideoTrackList final : public DOM::EventTarget {
+class WEB_API VideoTrackList final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(VideoTrackList, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(VideoTrackList);
 

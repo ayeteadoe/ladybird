@@ -16,7 +16,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/images.html#image-request
-class ImageRequest final : public JS::Cell {
+class WEB_API ImageRequest final : public JS::Cell {
     GC_CELL(ImageRequest, JS::Cell);
     GC_DECLARE_ALLOCATOR(ImageRequest);
 
@@ -90,6 +90,6 @@ private:
 };
 
 // https://html.spec.whatwg.org/multipage/images.html#abort-the-image-request
-void abort_the_image_request(JS::Realm&, ImageRequest*);
+WEB_API void abort_the_image_request(JS::Realm&, ImageRequest*);
 
 }

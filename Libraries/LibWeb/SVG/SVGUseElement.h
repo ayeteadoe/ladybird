@@ -8,13 +8,14 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/DOM/DocumentObserver.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGAnimatedLength.h>
 #include <LibWeb/SVG/SVGGraphicsElement.h>
 #include <LibWeb/SVG/SVGURIReference.h>
 
 namespace Web::SVG {
 
-class SVGUseElement final
+class WEB_API SVGUseElement final
     : public SVGGraphicsElement
     , public SVGURIReferenceMixin<SupportsXLinkHref::Yes> {
     WEB_PLATFORM_OBJECT(SVGUseElement, SVGGraphicsElement);

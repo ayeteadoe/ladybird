@@ -11,10 +11,11 @@
 #include <AK/Vector.h>
 #include <LibWeb/CSS/PercentageOr.h>
 #include <LibWeb/Layout/AvailableSpace.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class GridSize {
+class WEB_API GridSize {
 public:
     enum class Type {
         LengthPercentage,
@@ -63,7 +64,7 @@ private:
     Variant<Empty, LengthPercentage, Flex> m_value;
 };
 
-class GridMinMax {
+class WEB_API GridMinMax {
 public:
     GridMinMax(CSS::GridSize min_grid_size, CSS::GridSize max_grid_size);
 
@@ -85,7 +86,7 @@ struct GridLineName {
     bool operator==(GridLineName const& other) const = default;
 };
 
-class GridLineNames {
+class WEB_API GridLineNames {
 public:
     void append(FlyString const& name) { m_names.append({ name }); }
     bool is_empty() const { return m_names.is_empty(); }
@@ -99,7 +100,7 @@ private:
     Vector<GridLineName> m_names;
 };
 
-class GridTrackSizeList {
+class WEB_API GridTrackSizeList {
 public:
     static GridTrackSizeList make_none();
 
@@ -129,7 +130,7 @@ struct GridRepeatParams {
     size_t count { 0 };
 };
 
-class GridRepeat {
+class WEB_API GridRepeat {
 public:
     GridRepeat(GridTrackSizeList&&, GridRepeatParams const&);
 
@@ -153,7 +154,7 @@ private:
     size_t m_repeat_count { 0 };
 };
 
-class ExplicitGridTrack {
+class WEB_API ExplicitGridTrack {
 public:
     ExplicitGridTrack(Variant<GridRepeat, GridMinMax, GridSize>&& value);
 

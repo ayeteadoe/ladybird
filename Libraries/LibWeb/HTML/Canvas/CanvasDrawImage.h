@@ -20,7 +20,7 @@ namespace Web::HTML {
 using CanvasImageSource = Variant<GC::Root<HTMLImageElement>, GC::Root<SVG::SVGImageElement>, GC::Root<HTMLCanvasElement>, GC::Root<ImageBitmap>, GC::Root<OffscreenCanvas>, GC::Root<HTMLVideoElement>>;
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvasdrawimage
-class CanvasDrawImage {
+class WEB_API CanvasDrawImage {
 public:
     virtual ~CanvasDrawImage() = default;
 

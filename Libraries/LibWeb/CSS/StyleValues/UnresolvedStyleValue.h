@@ -12,10 +12,11 @@
 #include <AK/Vector.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Parser/ComponentValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class UnresolvedStyleValue final : public CSSStyleValue {
+class WEB_API UnresolvedStyleValue final : public CSSStyleValue {
 public:
     static ValueComparingNonnullRefPtr<UnresolvedStyleValue const> create(Vector<Parser::ComponentValue>&& values, bool contains_var_or_attr, Optional<String> original_source_text)
     {

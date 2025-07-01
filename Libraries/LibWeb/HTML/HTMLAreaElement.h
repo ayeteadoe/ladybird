@@ -7,12 +7,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/HTMLHyperlinkElementUtils.h>
 
 namespace Web::HTML {
 
-class HTMLAreaElement final
+class WEB_API HTMLAreaElement final
     : public HTMLElement
     , public HTMLHyperlinkElementUtils {
     WEB_PLATFORM_OBJECT(HTMLAreaElement, HTMLElement);

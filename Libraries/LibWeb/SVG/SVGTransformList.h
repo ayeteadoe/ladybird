@@ -8,13 +8,14 @@
 
 #include <AK/Vector.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGTransform.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::SVG {
 
 // https://svgwg.org/svg2-draft/single-page.html#coords-InterfaceSVGTransformList
-class SVGTransformList final : public Bindings::PlatformObject {
+class WEB_API SVGTransformList final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(SVGTransformList, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(SVGTransformList);
 

@@ -8,10 +8,11 @@
 
 #include <AK/String.h>
 #include <LibWeb/CSS/SerializationMode.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class Resolution {
+class WEB_API Resolution {
 public:
     enum class Type : u8 {
         Dpi,

@@ -16,11 +16,12 @@
 #include <LibWeb/CSS/MediaFeatureID.h>
 #include <LibWeb/CSS/Parser/ComponentValue.h>
 #include <LibWeb/CSS/Ratio.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://www.w3.org/TR/mediaqueries-4/#typedef-mf-value
-class MediaFeatureValue {
+class WEB_API MediaFeatureValue {
 public:
     explicit MediaFeatureValue(Keyword ident)
         : m_value(move(ident))
@@ -102,7 +103,7 @@ private:
 };
 
 // https://www.w3.org/TR/mediaqueries-4/#mq-features
-class MediaFeature final : public BooleanExpression {
+class WEB_API MediaFeature final : public BooleanExpression {
 public:
     enum class Comparison : u8 {
         Equal,
@@ -197,7 +198,7 @@ private:
     Variant<Empty, MediaFeatureValue, Range> m_value {};
 };
 
-class MediaQuery : public RefCounted<MediaQuery> {
+class WEB_API MediaQuery : public RefCounted<MediaQuery> {
     friend class Parser::Parser;
 
 public:
@@ -233,10 +234,10 @@ private:
     bool m_matches { false };
 };
 
-String serialize_a_media_query_list(Vector<NonnullRefPtr<MediaQuery>> const&);
+WEB_API String serialize_a_media_query_list(Vector<NonnullRefPtr<MediaQuery>> const&);
 
-Optional<MediaQuery::KnownMediaType> media_type_from_string(StringView);
-StringView to_string(MediaQuery::KnownMediaType);
+WEB_API Optional<MediaQuery::KnownMediaType> media_type_from_string(StringView);
+WEB_API StringView to_string(MediaQuery::KnownMediaType);
 
 }
 

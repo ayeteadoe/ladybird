@@ -18,7 +18,7 @@ struct IDBVersionChangeEventInit : public DOM::EventInit {
 };
 
 // https://w3c.github.io/IndexedDB/#events
-class IDBVersionChangeEvent : public DOM::Event {
+class WEB_API IDBVersionChangeEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(IDBVersionChangeEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(IDBVersionChangeEvent);
 

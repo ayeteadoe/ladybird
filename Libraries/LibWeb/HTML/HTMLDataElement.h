@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/ARIA/Roles.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
 
-class HTMLDataElement final : public HTMLElement {
+class WEB_API HTMLDataElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLDataElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLDataElement);
 

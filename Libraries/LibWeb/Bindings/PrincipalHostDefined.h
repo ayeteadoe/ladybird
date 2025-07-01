@@ -14,7 +14,7 @@
 
 namespace Web::Bindings {
 
-struct PrincipalHostDefined final : public HostDefined {
+struct WEB_API PrincipalHostDefined final : public HostDefined {
     PrincipalHostDefined(GC::Ref<HTML::EnvironmentSettingsObject> eso, GC::Ref<Intrinsics> intrinsics, GC::Ref<Page> page)
         : HostDefined(intrinsics)
         , environment_settings_object(eso)

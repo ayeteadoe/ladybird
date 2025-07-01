@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/DOM/Document.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -14,7 +15,7 @@ namespace Web::HTML {
 //       There is discussion about bringing it back:
 //       https://github.com/whatwg/html/issues/4792
 //       https://github.com/whatwg/dom/issues/221
-class HTMLDocument final : public DOM::Document {
+class WEB_API HTMLDocument final : public DOM::Document {
     WEB_PLATFORM_OBJECT(HTMLDocument, DOM::Document);
     GC_DECLARE_ALLOCATOR(HTMLDocument);
 

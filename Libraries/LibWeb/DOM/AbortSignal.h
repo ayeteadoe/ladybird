@@ -18,7 +18,7 @@
 namespace Web::DOM {
 
 // https://dom.spec.whatwg.org/#abortsignal
-class AbortSignal final : public EventTarget {
+class WEB_API AbortSignal final : public EventTarget {
     WEB_PLATFORM_OBJECT(AbortSignal, EventTarget);
     GC_DECLARE_ALLOCATOR(AbortSignal);
 

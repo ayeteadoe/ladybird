@@ -12,7 +12,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/web-messaging.html#message-channels
-class MessageChannel final : public Bindings::PlatformObject {
+class WEB_API MessageChannel final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(MessageChannel, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(MessageChannel);
 

@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/Fetch/Infrastructure/HTTP/Bodies.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Streams/ReadableStreamDefaultReader.h>
 
 namespace Web::Fetch::Infrastructure {
 
 // https://fetch.spec.whatwg.org/#incrementally-read-loop
-class IncrementalReadLoopReadRequest : public Streams::ReadRequest {
+class WEB_API IncrementalReadLoopReadRequest : public Streams::ReadRequest {
     GC_CELL(IncrementalReadLoopReadRequest, Streams::ReadRequest);
     GC_DECLARE_ALLOCATOR(IncrementalReadLoopReadRequest);
 

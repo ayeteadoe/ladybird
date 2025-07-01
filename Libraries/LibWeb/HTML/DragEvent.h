@@ -8,6 +8,7 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/DataTransfer.h>
 #include <LibWeb/UIEvents/MouseEvent.h>
 
@@ -18,7 +19,7 @@ struct DragEventInit : public UIEvents::MouseEventInit {
 };
 
 // https://html.spec.whatwg.org/multipage/dnd.html#the-dragevent-interface
-class DragEvent : public UIEvents::MouseEvent {
+class WEB_API DragEvent : public UIEvents::MouseEvent {
     WEB_PLATFORM_OBJECT(DragEvent, UIEvents::MouseEvent);
     GC_DECLARE_ALLOCATOR(DragEvent);
 

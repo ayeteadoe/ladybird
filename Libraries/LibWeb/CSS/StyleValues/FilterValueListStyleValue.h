@@ -15,12 +15,13 @@
 #include <LibWeb/CSS/Length.h>
 #include <LibWeb/CSS/Number.h>
 #include <LibWeb/CSS/PercentageOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 namespace FilterOperation {
 
-struct Blur {
+struct WEB_API Blur {
     LengthOrCalculated radius { Length::make_px(0) };
     float resolved_radius(Layout::Node const&) const;
     bool operator==(Blur const&) const = default;
@@ -34,7 +35,7 @@ struct DropShadow {
     bool operator==(DropShadow const&) const = default;
 };
 
-struct HueRotate {
+struct WEB_API HueRotate {
     struct Zero {
         bool operator==(Zero const&) const = default;
     };
@@ -44,7 +45,7 @@ struct HueRotate {
     bool operator==(HueRotate const&) const = default;
 };
 
-struct Color {
+struct WEB_API Color {
     Gfx::ColorFilterType operation;
     NumberPercentage amount { Number { Number::Type::Integer, 1.0 } };
     float resolved_amount() const;
@@ -55,7 +56,7 @@ struct Color {
 
 using FilterFunction = Variant<FilterOperation::Blur, FilterOperation::DropShadow, FilterOperation::HueRotate, FilterOperation::Color>;
 
-class FilterValueListStyleValue final : public StyleValueWithDefaultOperators<FilterValueListStyleValue> {
+class WEB_API FilterValueListStyleValue final : public StyleValueWithDefaultOperators<FilterValueListStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<FilterValueListStyleValue const> create(
         Vector<FilterFunction> filter_value_list)

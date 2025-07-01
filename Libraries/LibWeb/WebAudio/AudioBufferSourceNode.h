@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/AudioBufferSourceNodePrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioBuffer.h>
 #include <LibWeb/WebAudio/AudioParam.h>
 #include <LibWeb/WebAudio/AudioScheduledSourceNode.h>
@@ -24,7 +25,7 @@ struct AudioBufferSourceOptions : AudioNodeOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#AudioBufferSourceNode
-class AudioBufferSourceNode : public AudioScheduledSourceNode {
+class WEB_API AudioBufferSourceNode : public AudioScheduledSourceNode {
     WEB_PLATFORM_OBJECT(AudioBufferSourceNode, AudioScheduledSourceNode);
     GC_DECLARE_ALLOCATOR(AudioBufferSourceNode);
 

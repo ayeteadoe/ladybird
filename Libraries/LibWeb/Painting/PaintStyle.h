@@ -8,6 +8,7 @@
 
 #include <AK/AtomicRefCounted.h>
 #include <LibGfx/PaintStyle.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Painting {
 
@@ -17,7 +18,7 @@ struct ColorStop {
     Optional<float> transition_hint = {};
 };
 
-class SVGGradientPaintStyle : public AtomicRefCounted<SVGGradientPaintStyle> {
+class WEB_API SVGGradientPaintStyle : public AtomicRefCounted<SVGGradientPaintStyle> {
 public:
     enum class SpreadMethod {
         Pad,
@@ -56,7 +57,7 @@ protected:
     SpreadMethod m_spread_method { SpreadMethod::Pad };
 };
 
-class SVGLinearGradientPaintStyle final : public SVGGradientPaintStyle {
+class WEB_API SVGLinearGradientPaintStyle final : public SVGGradientPaintStyle {
 public:
     static NonnullRefPtr<SVGLinearGradientPaintStyle> create(Gfx::FloatPoint start_point, Gfx::FloatPoint end_point)
     {
@@ -80,7 +81,7 @@ private:
     Gfx::FloatPoint m_end_point;
 };
 
-class SVGRadialGradientPaintStyle final : public SVGGradientPaintStyle {
+class WEB_API SVGRadialGradientPaintStyle final : public SVGGradientPaintStyle {
 public:
     static NonnullRefPtr<SVGRadialGradientPaintStyle> create(Gfx::FloatPoint start_center, float start_radius, Gfx::FloatPoint end_center, float end_radius)
     {

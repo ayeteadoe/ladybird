@@ -9,13 +9,14 @@
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/AudioListenerPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioParam.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::WebAudio {
 
 // https://webaudio.github.io/web-audio-api/#AudioListener
-class AudioListener final : public Bindings::PlatformObject {
+class WEB_API AudioListener final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(AudioListener, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(AudioListener);
 

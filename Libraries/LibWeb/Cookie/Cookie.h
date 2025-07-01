@@ -9,6 +9,7 @@
 #include <AK/String.h>
 #include <AK/Time.h>
 #include <LibIPC/Forward.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Cookie {
 
@@ -43,8 +44,8 @@ struct Cookie {
     bool persistent { false };
 };
 
-StringView same_site_to_string(SameSite same_site_mode);
-SameSite same_site_from_string(StringView same_site_mode);
+WEB_API StringView same_site_to_string(SameSite same_site_mode);
+WEB_API SameSite same_site_from_string(StringView same_site_mode);
 
 }
 

@@ -15,7 +15,7 @@
 
 namespace Web::Layout {
 
-class SVGFormattingContext : public FormattingContext {
+class WEB_API SVGFormattingContext : public FormattingContext {
 public:
     explicit SVGFormattingContext(LayoutState&, LayoutMode, Box const&, FormattingContext* parent, Gfx::AffineTransform parent_viewbox_transform = {});
     ~SVGFormattingContext();

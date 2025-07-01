@@ -6,11 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLMediaElement.h>
 
 namespace Web::HTML {
 
-class HTMLAudioElement final : public HTMLMediaElement {
+class WEB_API HTMLAudioElement final : public HTMLMediaElement {
     WEB_PLATFORM_OBJECT(HTMLAudioElement, HTMLMediaElement);
     GC_DECLARE_ALLOCATOR(HTMLAudioElement);
 

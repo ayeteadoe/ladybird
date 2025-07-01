@@ -7,14 +7,15 @@
 #pragma once
 
 #include <AK/JsonObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebDriver/Error.h>
 
 namespace Web::WebDriver {
 
-bool has_proxy_configuration();
-void set_has_proxy_configuration(bool);
-void reset_has_proxy_configuration();
+WEB_API bool has_proxy_configuration();
+WEB_API void set_has_proxy_configuration(bool);
+WEB_API void reset_has_proxy_configuration();
 
-ErrorOr<JsonObject, Error> deserialize_as_a_proxy(JsonValue const&);
+WEB_API ErrorOr<JsonObject, Error> deserialize_as_a_proxy(JsonValue const&);
 
 }

@@ -26,7 +26,7 @@ struct ImageEncodeOptions {
 };
 
 // https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas
-class OffscreenCanvas : public DOM::EventTarget
+class WEB_API OffscreenCanvas : public DOM::EventTarget
     , public Web::Bindings::Transferable {
     WEB_PLATFORM_OBJECT(OffscreenCanvas, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(OffscreenCanvas);

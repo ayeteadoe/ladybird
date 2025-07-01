@@ -7,11 +7,12 @@
 #pragma once
 
 #include <AK/HashMap.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/Box.h>
 
 namespace Web::Layout {
 
-class TableGrid {
+class WEB_API TableGrid {
 public:
     struct GridPosition {
         size_t x;

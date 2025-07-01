@@ -11,7 +11,7 @@
 
 namespace Web::Painting {
 
-class AudioPaintable final : public MediaPaintable {
+class WEB_API AudioPaintable final : public MediaPaintable {
     GC_CELL(AudioPaintable, MediaPaintable);
     GC_DECLARE_ALLOCATOR(AudioPaintable);
 

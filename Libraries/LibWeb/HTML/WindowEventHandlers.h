@@ -31,7 +31,7 @@
 
 namespace Web::HTML {
 
-class WindowEventHandlers {
+class WEB_API WindowEventHandlers {
 public:
     virtual ~WindowEventHandlers();
 

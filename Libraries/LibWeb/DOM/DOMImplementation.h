@@ -10,10 +10,11 @@
 #include <LibGC/Ptr.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOM/Document.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
-class DOMImplementation final : public Bindings::PlatformObject {
+class WEB_API DOMImplementation final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DOMImplementation, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DOMImplementation);
 

@@ -9,10 +9,11 @@
 #include <LibGC/CellAllocator.h>
 #include <LibJS/Heap/Cell.h>
 #include <LibWeb/ContentSecurityPolicy/Policy.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::ContentSecurityPolicy {
 
-class PolicyList final : public GC::Cell {
+class WEB_API PolicyList final : public GC::Cell {
     GC_CELL(PolicyList, GC::Cell);
     GC_DECLARE_ALLOCATOR(PolicyList);
 

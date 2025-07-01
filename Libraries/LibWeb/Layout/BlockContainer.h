@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/Box.h>
 #include <LibWeb/Layout/LineBox.h>
 
 namespace Web::Layout {
 
 // https://www.w3.org/TR/css-display/#block-container
-class BlockContainer : public Box {
+class WEB_API BlockContainer : public Box {
     GC_CELL(BlockContainer, Box);
 
 public:

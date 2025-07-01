@@ -14,7 +14,7 @@
 namespace Web::FileAPI {
 
 // https://w3c.github.io/FileAPI/#FileReaderSync
-class FileReaderSync : public Bindings::PlatformObject {
+class WEB_API FileReaderSync : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(FileReaderSync, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(FileReaderSync);
 

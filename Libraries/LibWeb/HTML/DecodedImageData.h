@@ -9,12 +9,13 @@
 #include <AK/RefCounted.h>
 #include <LibGfx/Size.h>
 #include <LibJS/Heap/Cell.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/PixelUnits.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/images.html#img-req-data
-class DecodedImageData : public JS::Cell {
+class WEB_API DecodedImageData : public JS::Cell {
     GC_CELL(DecodedImageData, JS::Cell);
 
 public:

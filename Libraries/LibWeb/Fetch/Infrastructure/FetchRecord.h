@@ -8,11 +8,12 @@
 
 #include <LibWeb/Fetch/Infrastructure/FetchController.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Requests.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Fetch::Infrastructure {
 
 // https://fetch.spec.whatwg.org/#concept-fetch-record
-class FetchRecord : public JS::Cell {
+class WEB_API FetchRecord : public JS::Cell {
     GC_CELL(FetchRecord, JS::Cell);
     GC_DECLARE_ALLOCATOR(FetchRecord);
 

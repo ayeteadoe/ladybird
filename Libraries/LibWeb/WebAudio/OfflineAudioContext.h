@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/OfflineAudioContextPrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HighResolutionTime/DOMHighResTimeStamp.h>
 #include <LibWeb/WebAudio/BaseAudioContext.h>
 #include <LibWeb/WebIDL/Types.h>
@@ -21,7 +22,7 @@ struct OfflineAudioContextOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#OfflineAudioContext
-class OfflineAudioContext final : public BaseAudioContext {
+class WEB_API OfflineAudioContext final : public BaseAudioContext {
     WEB_PLATFORM_OBJECT(OfflineAudioContext, BaseAudioContext);
     GC_DECLARE_ALLOCATOR(OfflineAudioContext);
 

@@ -8,6 +8,7 @@
 
 #include <LibGC/Ptr.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/IDBDatabase.h>
 #include <LibWeb/IndexedDB/IDBRequest.h>
 #include <LibWeb/IndexedDB/Internal/ObjectStore.h>
@@ -16,7 +17,7 @@
 namespace Web::IndexedDB {
 
 // https://www.w3.org/TR/IndexedDB/#database-construct
-class Database : public Bindings::PlatformObject {
+class WEB_API Database : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Database, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Database);
 

@@ -8,11 +8,12 @@
 
 #include <AK/Forward.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/interaction.html#close-watcher-manager
-class CloseWatcherManager final : public Bindings::PlatformObject {
+class WEB_API CloseWatcherManager final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(CloseWatcherManager, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(CloseWatcherManager);
 

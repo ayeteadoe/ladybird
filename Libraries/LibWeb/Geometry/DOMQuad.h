@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMPoint.h>
 #include <LibWeb/Geometry/DOMRect.h>
 #include <LibWeb/Geometry/DOMRectReadOnly.h>
@@ -22,7 +23,7 @@ struct DOMQuadInit {
 };
 
 // https://drafts.fxtf.org/geometry/#domquad
-class DOMQuad
+class WEB_API DOMQuad
     : public Bindings::PlatformObject
     , public Bindings::Serializable {
     WEB_PLATFORM_OBJECT(DOMQuad, Bindings::PlatformObject);

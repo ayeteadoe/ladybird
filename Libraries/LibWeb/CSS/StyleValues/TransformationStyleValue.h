@@ -11,10 +11,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/TransformFunctions.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class TransformationStyleValue final : public StyleValueWithDefaultOperators<TransformationStyleValue> {
+class WEB_API TransformationStyleValue final : public StyleValueWithDefaultOperators<TransformationStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<TransformationStyleValue const> create(PropertyID property, TransformFunction transform_function, StyleValueVector&& values)
     {

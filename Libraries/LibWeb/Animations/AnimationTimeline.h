@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Animations {
 
 // https://www.w3.org/TR/web-animations-1/#animationtimeline
-class AnimationTimeline : public Bindings::PlatformObject {
+class WEB_API AnimationTimeline : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(AnimationTimeline, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(AnimationTimeline);
 

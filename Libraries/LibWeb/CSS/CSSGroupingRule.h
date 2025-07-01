@@ -14,7 +14,7 @@
 
 namespace Web::CSS {
 
-class CSSGroupingRule : public CSSRule {
+class WEB_API CSSGroupingRule : public CSSRule {
     WEB_PLATFORM_OBJECT(CSSGroupingRule, CSSRule);
 
 public:

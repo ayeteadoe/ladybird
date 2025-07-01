@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-values-5/#pending-substitution-value
-class PendingSubstitutionStyleValue final : public StyleValueWithDefaultOperators<PendingSubstitutionStyleValue> {
+class WEB_API PendingSubstitutionStyleValue final : public StyleValueWithDefaultOperators<PendingSubstitutionStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<PendingSubstitutionStyleValue> create()
     {

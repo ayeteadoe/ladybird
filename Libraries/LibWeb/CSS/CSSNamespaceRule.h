@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSRule.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class CSSNamespaceRule final : public CSSRule {
+class WEB_API CSSNamespaceRule final : public CSSRule {
     WEB_PLATFORM_OBJECT(CSSNamespaceRule, CSSRule);
     GC_DECLARE_ALLOCATOR(CSSNamespaceRule);
 

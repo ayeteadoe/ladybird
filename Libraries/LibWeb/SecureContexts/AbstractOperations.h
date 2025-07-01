@@ -17,7 +17,7 @@ enum class Trustworthiness {
     NotTrustworthy,
 };
 
-[[nodiscard]] Trustworthiness is_origin_potentially_trustworthy(URL::Origin const&);
-[[nodiscard]] Trustworthiness is_url_potentially_trustworthy(URL::URL const&);
+[[nodiscard]] WEB_API Trustworthiness is_origin_potentially_trustworthy(URL::Origin const&);
+[[nodiscard]] WEB_API Trustworthiness is_url_potentially_trustworthy(URL::URL const&);
 
 }

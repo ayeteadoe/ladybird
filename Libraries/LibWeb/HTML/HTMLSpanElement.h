@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/ARIA/Roles.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
 
-class HTMLSpanElement final : public HTMLElement {
+class WEB_API HTMLSpanElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLSpanElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLSpanElement);
 

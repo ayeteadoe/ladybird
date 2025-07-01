@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibCore/Forward.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Platform/Timer.h>
 
 namespace Web::Platform {
 
-class TimerSerenity final : public Timer {
+class WEB_API TimerSerenity final : public Timer {
     GC_CELL(TimerSerenity, Timer);
 
 public:

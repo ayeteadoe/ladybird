@@ -13,7 +13,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/dom.html#domstringmap
-class DOMStringMap final : public Bindings::PlatformObject {
+class WEB_API DOMStringMap final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DOMStringMap, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DOMStringMap);
 

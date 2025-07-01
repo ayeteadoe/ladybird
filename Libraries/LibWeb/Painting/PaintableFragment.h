@@ -7,13 +7,14 @@
 #pragma once
 
 #include <LibGfx/TextLayout.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/Node.h>
 #include <LibWeb/Painting/ShadowData.h>
 #include <LibWeb/PixelUnits.h>
 
 namespace Web::Painting {
 
-class PaintableFragment {
+class WEB_API PaintableFragment {
     friend class PaintableWithLines;
 
 public:

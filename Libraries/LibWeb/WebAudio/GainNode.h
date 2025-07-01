@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/GainNodePrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioNode.h>
 
 namespace Web::WebAudio {
@@ -17,7 +18,7 @@ struct GainOptions : AudioNodeOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#GainNode
-class GainNode : public AudioNode {
+class WEB_API GainNode : public AudioNode {
     WEB_PLATFORM_OBJECT(GainNode, AudioNode);
     GC_DECLARE_ALLOCATOR(GainNode);
 

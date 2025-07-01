@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/CSS/EdgeRect.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class Clip {
+class WEB_API Clip {
 public:
     enum class Type {
         Auto,

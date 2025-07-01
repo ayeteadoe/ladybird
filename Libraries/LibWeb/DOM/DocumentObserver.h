@@ -15,7 +15,7 @@
 
 namespace Web::DOM {
 
-class DocumentObserver final : public Bindings::PlatformObject {
+class WEB_API DocumentObserver final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DocumentObserver, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DocumentObserver);
 

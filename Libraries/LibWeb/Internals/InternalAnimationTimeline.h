@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/Animations/AnimationTimeline.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Internals {
 
-class InternalAnimationTimeline : public Web::Animations::AnimationTimeline {
+class WEB_API InternalAnimationTimeline : public Web::Animations::AnimationTimeline {
 public:
     WEB_PLATFORM_OBJECT(InternalAnimationTimeline, Web::Animations::AnimationTimeline);
     GC_DECLARE_ALLOCATOR(InternalAnimationTimeline);

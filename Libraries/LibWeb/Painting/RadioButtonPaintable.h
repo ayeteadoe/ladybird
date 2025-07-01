@@ -11,7 +11,7 @@
 
 namespace Web::Painting {
 
-class RadioButtonPaintable final : public LabelablePaintable {
+class WEB_API RadioButtonPaintable final : public LabelablePaintable {
     GC_CELL(RadioButtonPaintable, LabelablePaintable);
     GC_DECLARE_ALLOCATOR(RadioButtonPaintable);
 

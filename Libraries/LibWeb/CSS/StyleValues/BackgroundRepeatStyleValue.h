@@ -11,10 +11,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Enums.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class BackgroundRepeatStyleValue final : public StyleValueWithDefaultOperators<BackgroundRepeatStyleValue> {
+class WEB_API BackgroundRepeatStyleValue final : public StyleValueWithDefaultOperators<BackgroundRepeatStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<BackgroundRepeatStyleValue const> create(Repeat repeat_x, Repeat repeat_y)
     {

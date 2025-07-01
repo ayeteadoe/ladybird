@@ -15,7 +15,7 @@
 
 namespace Web::DOM {
 
-class AccessibilityTreeNode final : public JS::Cell {
+class WEB_API AccessibilityTreeNode final : public JS::Cell {
     GC_CELL(AccessibilityTreeNode, JS::Cell);
     GC_DECLARE_ALLOCATOR(AccessibilityTreeNode);
 

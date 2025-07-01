@@ -9,6 +9,7 @@
 #include <AK/HashMap.h>
 #include <AK/String.h>
 #include <LibGC/Ptr.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/StorageAPI/StorageBottle.h>
 #include <LibWeb/StorageAPI/StorageType.h>
 
@@ -18,7 +19,7 @@ namespace Web::StorageAPI {
 // A storage shelf exists for each storage key within a storage shed. It holds a bucket map, which is a map of strings to storage buckets.
 using BucketMap = OrderedHashMap<String, GC::Ref<StorageBucket>>;
 
-class StorageShelf : public GC::Cell {
+class WEB_API StorageShelf : public GC::Cell {
     GC_CELL(StorageShelf, GC::Cell);
     GC_DECLARE_ALLOCATOR(StorageShelf);
 

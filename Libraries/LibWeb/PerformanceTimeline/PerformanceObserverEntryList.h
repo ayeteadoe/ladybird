@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::PerformanceTimeline {
 
 // https://w3c.github.io/performance-timeline/#performanceobserverentrylist-interface
-class PerformanceObserverEntryList final : public Bindings::PlatformObject {
+class WEB_API PerformanceObserverEntryList final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(PerformanceObserverEntryList, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(PerformanceObserverEntryList);
 
@@ -34,6 +35,6 @@ private:
     Vector<GC::Ref<PerformanceTimeline::PerformanceEntry>> m_entry_list;
 };
 
-ErrorOr<Vector<GC::Root<PerformanceTimeline::PerformanceEntry>>> filter_buffer_by_name_and_type(Vector<GC::Ref<PerformanceTimeline::PerformanceEntry>> const& buffer, Optional<String> name, Optional<String> type);
+WEB_API ErrorOr<Vector<GC::Root<PerformanceTimeline::PerformanceEntry>>> filter_buffer_by_name_and_type(Vector<GC::Ref<PerformanceTimeline::PerformanceEntry>> const& buffer, Optional<String> name, Optional<String> type);
 
 }

@@ -6,11 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/BlockContainer.h>
 
 namespace Web::Layout {
 
-class LegendBox final : public BlockContainer {
+class WEB_API LegendBox final : public BlockContainer {
     GC_CELL(LegendBox, BlockContainer);
     GC_DECLARE_ALLOCATOR(LegendBox);
 

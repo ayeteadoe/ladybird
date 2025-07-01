@@ -12,12 +12,13 @@
 #include <LibJS/Runtime/VM.h>
 #include <LibJS/Runtime/Value.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/Internal/Key.h>
 
 namespace Web::IndexedDB {
 
 // https://w3c.github.io/IndexedDB/#keyrange
-class IDBKeyRange : public Bindings::PlatformObject {
+class WEB_API IDBKeyRange : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(IDBKeyRange, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(IDBKeyRange);
 

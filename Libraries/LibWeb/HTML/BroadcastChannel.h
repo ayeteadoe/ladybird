@@ -8,10 +8,11 @@
 #pragma once
 
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class BroadcastChannel final : public DOM::EventTarget {
+class WEB_API BroadcastChannel final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(BroadcastChannel, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(BroadcastChannel);
 

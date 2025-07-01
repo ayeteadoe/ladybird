@@ -39,7 +39,7 @@ struct TargetSnapshotParams {
 };
 
 // https://html.spec.whatwg.org/multipage/document-sequences.html#navigable
-class Navigable : public JS::Cell
+class WEB_API Navigable : public JS::Cell
     , public Weakable<Navigable> {
     GC_CELL(Navigable, JS::Cell);
     GC_DECLARE_ALLOCATOR(Navigable);
@@ -255,11 +255,11 @@ private:
     Vector<NavigateParams> m_pending_navigations;
 };
 
-HashTable<GC::RawRef<Navigable>>& all_navigables();
+WEB_API HashTable<GC::RawRef<Navigable>>& all_navigables();
 
-bool navigation_must_be_a_replace(URL::URL const& url, DOM::Document const& document);
-void finalize_a_cross_document_navigation(GC::Ref<Navigable>, HistoryHandlingBehavior, UserNavigationInvolvement, GC::Ref<SessionHistoryEntry>);
-void perform_url_and_history_update_steps(DOM::Document& document, URL::URL new_url, Optional<SerializationRecord> = {}, HistoryHandlingBehavior history_handling = HistoryHandlingBehavior::Replace);
-UserNavigationInvolvement user_navigation_involvement(DOM::Event const&);
+WEB_API bool navigation_must_be_a_replace(URL::URL const& url, DOM::Document const& document);
+WEB_API void finalize_a_cross_document_navigation(GC::Ref<Navigable>, HistoryHandlingBehavior, UserNavigationInvolvement, GC::Ref<SessionHistoryEntry>);
+WEB_API void perform_url_and_history_update_steps(DOM::Document& document, URL::URL new_url, Optional<SerializationRecord> = {}, HistoryHandlingBehavior history_handling = HistoryHandlingBehavior::Replace);
+WEB_API UserNavigationInvolvement user_navigation_involvement(DOM::Event const&);
 
 }

@@ -8,6 +8,7 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/CSS/PropertyID.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -16,7 +17,7 @@ enum class Important : u8 {
     Yes,
 };
 
-struct StyleProperty {
+struct WEB_API StyleProperty {
     ~StyleProperty();
 
     Important important { Important::No };

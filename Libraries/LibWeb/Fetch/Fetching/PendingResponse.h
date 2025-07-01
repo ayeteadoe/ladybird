@@ -10,6 +10,7 @@
 #include <LibJS/Forward.h>
 #include <LibJS/Heap/Cell.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Responses.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Fetch::Fetching {
 
@@ -17,7 +18,7 @@ namespace Web::Fetch::Fetching {
 // This is needed to fit the asynchronous nature of ResourceLoader into the synchronous expectations
 // of the Fetch spec - we run 'in parallel' as a deferred_invoke(), which is still on the main thread;
 // therefore we use callbacks to run portions of the spec that require waiting for an HTTP load.
-class PendingResponse : public JS::Cell {
+class WEB_API PendingResponse : public JS::Cell {
     GC_CELL(PendingResponse, JS::Cell);
     GC_DECLARE_ALLOCATOR(PendingResponse);
 

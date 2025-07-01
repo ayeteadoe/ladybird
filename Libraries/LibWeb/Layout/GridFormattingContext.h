@@ -8,6 +8,7 @@
 #pragma once
 
 #include <LibWeb/CSS/Length.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/FormattingContext.h>
 
 namespace Web::Layout {
@@ -39,7 +40,7 @@ struct GridPosition {
     inline bool operator==(GridPosition const&) const = default;
 };
 
-struct GridItem {
+struct WEB_API GridItem {
     GC::Ref<Box const> box;
     LayoutState::UsedValues& used_values;
 
@@ -137,7 +138,7 @@ enum class FoundUnoccupiedPlace {
     Yes
 };
 
-class OccupationGrid {
+class WEB_API OccupationGrid {
 public:
     OccupationGrid(size_t columns_count, size_t rows_count)
     {
@@ -178,7 +179,7 @@ private:
     int m_max_row_index { 0 };
 };
 
-class GridFormattingContext final : public FormattingContext {
+class WEB_API GridFormattingContext final : public FormattingContext {
 public:
     explicit GridFormattingContext(LayoutState&, LayoutMode, Box const& grid_container, FormattingContext* parent);
     ~GridFormattingContext();

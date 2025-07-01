@@ -8,13 +8,14 @@
 #pragma once
 
 #include <LibWeb/Bindings/Serializable.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMMatrixReadOnly.h>
 #include <LibWeb/WebIDL/Buffers.h>
 
 namespace Web::Geometry {
 
 // https://drafts.fxtf.org/geometry/#dommatrix
-class DOMMatrix : public DOMMatrixReadOnly {
+class WEB_API DOMMatrix : public DOMMatrixReadOnly {
     WEB_PLATFORM_OBJECT(DOMMatrix, DOMMatrixReadOnly);
     GC_DECLARE_ALLOCATOR(DOMMatrix);
 

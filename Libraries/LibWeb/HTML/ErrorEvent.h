@@ -8,6 +8,7 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -21,7 +22,7 @@ struct ErrorEventInit : public DOM::EventInit {
 };
 
 // https://html.spec.whatwg.org/multipage/webappapis.html#errorevent
-class ErrorEvent final : public DOM::Event {
+class WEB_API ErrorEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(ErrorEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(ErrorEvent);
 

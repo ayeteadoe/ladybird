@@ -9,10 +9,11 @@
 
 #include <LibGfx/PaintStyle.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class CanvasGradient final : public Bindings::PlatformObject {
+class WEB_API CanvasGradient final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(CanvasGradient, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(CanvasGradient);
 

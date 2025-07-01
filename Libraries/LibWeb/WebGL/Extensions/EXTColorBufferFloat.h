@@ -11,7 +11,7 @@
 
 namespace Web::WebGL::Extensions {
 
-class EXTColorBufferFloat : public Bindings::PlatformObject {
+class WEB_API EXTColorBufferFloat : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(EXTColorBufferFloat, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(EXTColorBufferFloat);
 

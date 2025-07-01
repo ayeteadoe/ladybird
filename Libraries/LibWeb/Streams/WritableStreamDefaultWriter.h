@@ -16,7 +16,7 @@
 namespace Web::Streams {
 
 // https://streams.spec.whatwg.org/#writablestreamdefaultwriter
-class WritableStreamDefaultWriter final : public Bindings::PlatformObject {
+class WEB_API WritableStreamDefaultWriter final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(WritableStreamDefaultWriter, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(WritableStreamDefaultWriter);
 

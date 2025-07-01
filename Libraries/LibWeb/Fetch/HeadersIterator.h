@@ -9,10 +9,11 @@
 #include <LibGC/Ptr.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Fetch/Headers.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Fetch {
 
-class HeadersIterator final : public Bindings::PlatformObject {
+class WEB_API HeadersIterator final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(HeadersIterator, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(HeadersIterator);
 

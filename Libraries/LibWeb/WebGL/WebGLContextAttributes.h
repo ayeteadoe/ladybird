@@ -8,6 +8,7 @@
 
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/WebGLRenderingContextPrototype.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::WebGL {
 
@@ -24,6 +25,6 @@ struct WebGLContextAttributes {
     bool desynchronized { false };
 };
 
-JS::ThrowCompletionOr<WebGLContextAttributes> convert_value_to_context_attributes_dictionary(JS::VM&, JS::Value value);
+WEB_API JS::ThrowCompletionOr<WebGLContextAttributes> convert_value_to_context_attributes_dictionary(JS::VM&, JS::Value value);
 
 }

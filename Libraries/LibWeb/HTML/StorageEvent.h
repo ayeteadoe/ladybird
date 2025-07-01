@@ -10,6 +10,7 @@
 #include <AK/Optional.h>
 #include <LibGC/Ptr.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -23,7 +24,7 @@ struct StorageEventInit : public DOM::EventInit {
 };
 
 // https://html.spec.whatwg.org/multipage/webstorage.html#storageevent
-class StorageEvent : public DOM::Event {
+class WEB_API StorageEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(StorageEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(StorageEvent);
 

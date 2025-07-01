@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/SVGGraphicsBox.h>
 #include <LibWeb/SVG/SVGElement.h>
 #include <LibWeb/SVG/SVGMaskElement.h>
 
 namespace Web::Layout {
 
-class SVGMaskBox : public SVGGraphicsBox {
+class WEB_API SVGMaskBox : public SVGGraphicsBox {
     GC_CELL(SVGMaskBox, SVGGraphicsBox);
     GC_DECLARE_ALLOCATOR(SVGMaskBox);
 

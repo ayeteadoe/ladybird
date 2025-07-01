@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/nav-history-apis.html#navigationhistoryentry
-class NavigationHistoryEntry : public DOM::EventTarget {
+class WEB_API NavigationHistoryEntry : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(NavigationHistoryEntry, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(NavigationHistoryEntry);
 

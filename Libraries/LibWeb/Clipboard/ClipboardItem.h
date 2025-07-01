@@ -28,7 +28,7 @@ struct ClipboardItemOptions {
 };
 
 // https://w3c.github.io/clipboard-apis/#clipboard-item-interface
-class ClipboardItem : public Bindings::PlatformObject {
+class WEB_API ClipboardItem : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ClipboardItem, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ClipboardItem);
 

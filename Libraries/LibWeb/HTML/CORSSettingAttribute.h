@@ -9,6 +9,7 @@
 #include <AK/Optional.h>
 #include <AK/String.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Requests.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -19,7 +20,7 @@ enum class CORSSettingAttribute {
     UseCredentials
 };
 
-[[nodiscard]] CORSSettingAttribute cors_setting_attribute_from_keyword(Optional<String> const& keyword);
-[[nodiscard]] Fetch::Infrastructure::Request::CredentialsMode cors_settings_attribute_credentials_mode(CORSSettingAttribute);
+[[nodiscard]] WEB_API CORSSettingAttribute cors_setting_attribute_from_keyword(Optional<String> const& keyword);
+[[nodiscard]] WEB_API Fetch::Infrastructure::Request::CredentialsMode cors_settings_attribute_credentials_mode(CORSSettingAttribute);
 
 }

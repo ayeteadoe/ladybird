@@ -45,7 +45,7 @@ namespace Web {
 
 class PageClient;
 
-class Page final : public JS::Cell {
+class WEB_API Page final : public JS::Cell {
     GC_CELL(Page, JS::Cell);
     GC_DECLARE_ALLOCATOR(Page);
 
@@ -317,7 +317,7 @@ enum class DisplayListPlayerType {
     SkiaCPU,
 };
 
-class PageClient : public JS::Cell {
+class WEB_API PageClient : public JS::Cell {
     GC_CELL(PageClient, JS::Cell);
 
 public:

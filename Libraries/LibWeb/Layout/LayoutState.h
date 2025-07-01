@@ -9,6 +9,7 @@
 #include <AK/HashMap.h>
 #include <LibGfx/Path.h>
 #include <LibGfx/Point.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/Box.h>
 #include <LibWeb/Layout/LineBox.h>
 #include <LibWeb/Painting/PaintableBox.h>
@@ -54,7 +55,7 @@ struct StaticPositionRect {
     }
 };
 
-struct LayoutState {
+struct WEB_API LayoutState {
     struct UsedValues {
         NodeWithStyle const& node() const { return *m_node; }
         NodeWithStyle& node() { return const_cast<NodeWithStyle&>(*m_node); }

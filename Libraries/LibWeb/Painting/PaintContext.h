@@ -15,7 +15,7 @@
 
 namespace Web {
 
-class PaintContext {
+class WEB_API PaintContext {
 public:
     PaintContext(Painting::DisplayListRecorder& painter, Palette const& palette, double device_pixels_per_css_pixel);
 

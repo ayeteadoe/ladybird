@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/ARIA/Roles.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/FormAssociatedElement.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/PopoverInvokerElement.h>
@@ -19,7 +20,7 @@ namespace Web::HTML {
     __ENUMERATE_HTML_BUTTON_TYPE_ATTRIBUTE(button, Button) \
     __ENUMERATE_HTML_BUTTON_TYPE_ATTRIBUTE(auto, Auto)
 
-class HTMLButtonElement final
+class WEB_API HTMLButtonElement final
     : public HTMLElement
     , public FormAssociatedElement
     , public PopoverInvokerElement {

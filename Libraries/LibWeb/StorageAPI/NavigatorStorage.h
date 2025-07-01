@@ -14,7 +14,7 @@
 
 namespace Web::StorageAPI {
 
-class NavigatorStorage {
+class WEB_API NavigatorStorage {
 public:
     virtual ~NavigatorStorage() = default;
 

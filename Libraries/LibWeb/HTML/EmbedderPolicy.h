@@ -11,6 +11,7 @@
 #include <AK/String.h>
 #include <AK/StringView.h>
 #include <LibIPC/Forward.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -21,8 +22,8 @@ enum class EmbedderPolicyValue : u8 {
     Credentialless,
 };
 
-StringView embedder_policy_value_to_string(EmbedderPolicyValue);
-Optional<EmbedderPolicyValue> embedder_policy_value_from_string(StringView);
+WEB_API StringView embedder_policy_value_to_string(EmbedderPolicyValue);
+WEB_API Optional<EmbedderPolicyValue> embedder_policy_value_from_string(StringView);
 
 // https://html.spec.whatwg.org/multipage/browsers.html#embedder-policy
 struct EmbedderPolicy {

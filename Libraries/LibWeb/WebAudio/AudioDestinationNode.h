@@ -8,6 +8,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/AudioDestinationNodePrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioNode.h>
 #include <LibWeb/WebAudio/BaseAudioContext.h>
 #include <LibWeb/WebIDL/Types.h>
@@ -15,7 +16,7 @@
 namespace Web::WebAudio {
 
 // https://webaudio.github.io/web-audio-api/#AudioDestinationNode
-class AudioDestinationNode : public AudioNode {
+class WEB_API AudioDestinationNode : public AudioNode {
     WEB_PLATFORM_OBJECT(AudioDestinationNode, AudioNode);
     GC_DECLARE_ALLOCATOR(AudioDestinationNode);
 

@@ -10,6 +10,7 @@
 #include <LibGC/Ptr.h>
 #include <LibJS/Heap/Cell.h>
 #include <LibJS/Runtime/Realm.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/Internal/ObjectStore.h>
 
 namespace Web::IndexedDB {
@@ -23,7 +24,7 @@ struct IndexRecord {
 };
 
 // https://w3c.github.io/IndexedDB/#index-construct
-class Index : public JS::Cell {
+class WEB_API Index : public JS::Cell {
     GC_CELL(Index, JS::Cell);
     GC_DECLARE_ALLOCATOR(Index);
 

@@ -13,7 +13,7 @@
 
 namespace Web::Fetch::Fetching {
 
-class FetchedDataReceiver final : public JS::Cell {
+class WEB_API FetchedDataReceiver final : public JS::Cell {
     GC_CELL(FetchedDataReceiver, JS::Cell);
     GC_DECLARE_ALLOCATOR(FetchedDataReceiver);
 

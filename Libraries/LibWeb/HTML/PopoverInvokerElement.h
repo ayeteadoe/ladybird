@@ -12,7 +12,7 @@
 
 namespace Web::HTML {
 
-class PopoverInvokerElement {
+class WEB_API PopoverInvokerElement {
 
 public:
     PopoverInvokerElement() { }

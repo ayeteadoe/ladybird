@@ -7,12 +7,13 @@
 #pragma once
 
 #include <AK/RefCounted.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Fetch::Fetching {
 
 /// A ref-counted boolean flag.
 /// This is used to share flags between multiple callback closures.
-class RefCountedFlag : public RefCounted<RefCountedFlag> {
+class WEB_API RefCountedFlag : public RefCounted<RefCountedFlag> {
 public:
     static NonnullRefPtr<RefCountedFlag> create(bool);
 

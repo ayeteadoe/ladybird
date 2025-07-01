@@ -13,7 +13,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/webappapis.html#classic-script
-class ClassicScript final : public Script {
+class WEB_API ClassicScript final : public Script {
     GC_CELL(ClassicScript, Script);
     GC_DECLARE_ALLOCATOR(ClassicScript);
 

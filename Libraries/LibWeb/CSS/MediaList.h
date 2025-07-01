@@ -12,11 +12,12 @@
 #include <LibJS/Runtime/Object.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/CSS/MediaQuery.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://www.w3.org/TR/cssom-1/#the-medialist-interface
-class MediaList final : public Bindings::PlatformObject {
+class WEB_API MediaList final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(MediaList, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(MediaList);
 

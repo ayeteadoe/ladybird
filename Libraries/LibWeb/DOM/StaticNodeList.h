@@ -8,10 +8,11 @@
 
 #include <LibWeb/DOM/Node.h>
 #include <LibWeb/DOM/NodeList.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
-class StaticNodeList final : public NodeList {
+class WEB_API StaticNodeList final : public NodeList {
     WEB_PLATFORM_OBJECT(StaticNodeList, NodeList);
     GC_DECLARE_ALLOCATOR(StaticNodeList);
 

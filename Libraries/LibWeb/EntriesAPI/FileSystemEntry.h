@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::EntriesAPI {
 
@@ -15,7 +16,7 @@ enum class EntryType {
     Directory,
 };
 
-class FileSystemEntry final : public Bindings::PlatformObject {
+class WEB_API FileSystemEntry final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(FileSystemEntry, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(FileSystemEntry);
 

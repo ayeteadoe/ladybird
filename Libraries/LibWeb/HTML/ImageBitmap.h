@@ -23,7 +23,7 @@ struct ImageBitmapOptions {
     // FIXME: Implement these fields
 };
 
-class ImageBitmap final : public Bindings::PlatformObject
+class WEB_API ImageBitmap final : public Bindings::PlatformObject
     , public Web::Bindings::Serializable
     , public Web::Bindings::Transferable {
     WEB_PLATFORM_OBJECT(ImageBitmap, Bindings::PlatformObject);

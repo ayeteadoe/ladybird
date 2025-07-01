@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/ReplacedBox.h>
 #include <LibWeb/SVG/SVGSVGElement.h>
 
 namespace Web::Layout {
 
-class SVGSVGBox final : public ReplacedBox {
+class WEB_API SVGSVGBox final : public ReplacedBox {
     GC_CELL(SVGSVGBox, ReplacedBox);
     GC_DECLARE_ALLOCATOR(SVGSVGBox);
 

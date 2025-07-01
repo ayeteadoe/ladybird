@@ -9,11 +9,12 @@
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/CredentialPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Promise.h>
 
 namespace Web::CredentialManagement {
 
-class Credential : public Bindings::PlatformObject {
+class WEB_API Credential : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Credential, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Credential);
 

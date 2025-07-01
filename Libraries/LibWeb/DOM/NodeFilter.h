@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/CallbackType.h>
 
 namespace Web::DOM {
 
-class NodeFilter final : public Bindings::PlatformObject {
+class WEB_API NodeFilter final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(NodeFilter, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(NodeFilter);
 

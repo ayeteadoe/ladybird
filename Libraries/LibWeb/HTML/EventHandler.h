@@ -10,11 +10,12 @@
 #include <AK/Variant.h>
 #include <LibGC/CellAllocator.h>
 #include <LibJS/Heap/Cell.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/CallbackType.h>
 
 namespace Web::HTML {
 
-class EventHandler final : public JS::Cell {
+class WEB_API EventHandler final : public JS::Cell {
     GC_CELL(EventHandler, JS::Cell);
     GC_DECLARE_ALLOCATOR(EventHandler);
 

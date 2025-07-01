@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/NavigableContainer.h>
 #include <LibWeb/Layout/ReplacedBox.h>
 
 namespace Web::Layout {
 
-class NavigableContainerViewport final : public ReplacedBox {
+class WEB_API NavigableContainerViewport final : public ReplacedBox {
     GC_CELL(NavigableContainerViewport, ReplacedBox);
     GC_DECLARE_ALLOCATOR(NavigableContainerViewport);
 

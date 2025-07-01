@@ -10,6 +10,7 @@
 #include <LibURL/URL.h>
 #include <LibWeb/Bindings/ServiceWorkerRegistrationPrototype.h>
 #include <LibWeb/Bindings/WorkerPrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/StorageAPI/StorageKey.h>
 
 namespace Web::ServiceWorker {
@@ -19,7 +20,7 @@ using JobQueue = GC::RootVector<GC::Ref<Job>>;
 
 // https://w3c.github.io/ServiceWorker/#dfn-job
 // FIXME: Consider not making this GC allocated, and give a special JobQueue class responsibility for its referenced GC objects
-struct Job : public JS::Cell {
+struct WEB_API Job : public JS::Cell {
     GC_CELL(Job, JS::Cell)
     GC_DECLARE_ALLOCATOR(Job);
 
@@ -74,6 +75,6 @@ private:
 };
 
 // https://w3c.github.io/ServiceWorker/#schedule-job-algorithm
-void schedule_job(JS::VM&, GC::Ref<Job>);
+WEB_API void schedule_job(JS::VM&, GC::Ref<Job>);
 
 }

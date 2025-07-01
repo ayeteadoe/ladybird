@@ -17,7 +17,7 @@
 
 namespace Web::WebGL {
 
-class WebGL2RenderingContext : public Bindings::PlatformObject
+class WEB_API WebGL2RenderingContext : public Bindings::PlatformObject
     , public WebGL2RenderingContextImpl {
     WEB_PLATFORM_OBJECT(WebGL2RenderingContext, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(WebGL2RenderingContext);

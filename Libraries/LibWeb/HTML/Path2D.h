@@ -8,13 +8,14 @@
 
 #include <AK/RefCounted.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMMatrixReadOnly.h>
 #include <LibWeb/HTML/Canvas/CanvasPath.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#path2d
-class Path2D final
+class WEB_API Path2D final
     : public Bindings::PlatformObject
     , public CanvasPath {
 

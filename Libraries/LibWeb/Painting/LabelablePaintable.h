@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/FormAssociatedElement.h>
 #include <LibWeb/Layout/FormAssociatedLabelableNode.h>
 #include <LibWeb/Painting/PaintableBox.h>
@@ -15,7 +16,7 @@ namespace Web::Painting {
 
 // FIXME: Splinter this into FormAssociatedLabelablePaintable once
 //        ProgressPaintable switches over to this.
-class LabelablePaintable : public PaintableBox {
+class WEB_API LabelablePaintable : public PaintableBox {
     GC_CELL(LabelablePaintable, PaintableBox);
 
 public:

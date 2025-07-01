@@ -12,7 +12,7 @@
 
 namespace Web::CSS {
 
-class Time {
+class WEB_API Time {
 public:
     enum class Type : u8 {
         S,

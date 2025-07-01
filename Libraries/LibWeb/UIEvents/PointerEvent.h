@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/UIEvents/MouseEvent.h>
 #include <LibWeb/WebIDL/Types.h>
 
@@ -30,7 +31,7 @@ struct PointerEventInit : public MouseEventInit {
 };
 
 // https://w3c.github.io/pointerevents/#pointerevent-interface
-class PointerEvent : public MouseEvent {
+class WEB_API PointerEvent : public MouseEvent {
     WEB_PLATFORM_OBJECT(PointerEvent, MouseEvent);
     GC_DECLARE_ALLOCATOR(PointerEvent);
 

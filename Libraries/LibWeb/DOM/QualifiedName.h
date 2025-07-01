@@ -10,10 +10,11 @@
 
 #include <AK/FlyString.h>
 #include <AK/Optional.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
-class QualifiedName {
+class WEB_API QualifiedName {
 public:
     QualifiedName(FlyString const& local_name, Optional<FlyString> const& prefix, Optional<FlyString> const& namespace_);
 

@@ -8,10 +8,11 @@
 
 #include <LibWeb/CSS/CSSRule.h>
 #include <LibWeb/CSS/CSSStyleProperties.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class CSSNestedDeclarations final : public CSSRule {
+class WEB_API CSSNestedDeclarations final : public CSSRule {
     WEB_PLATFORM_OBJECT(CSSNestedDeclarations, CSSRule);
     GC_DECLARE_ALLOCATOR(CSSNestedDeclarations);
 

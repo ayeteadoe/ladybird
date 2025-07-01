@@ -8,6 +8,7 @@
 
 #include <AK/Variant.h>
 #include <LibWeb/DOM/HTMLCollection.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 #include <LibWeb/WebIDL/Types.h>
 
@@ -16,7 +17,7 @@ namespace Web::HTML {
 using HTMLOptionOrOptGroupElement = Variant<GC::Root<HTMLOptionElement>, GC::Root<HTMLOptGroupElement>>;
 using HTMLElementOrElementIndex = Variant<GC::Root<HTMLElement>, i32>;
 
-class HTMLOptionsCollection final : public DOM::HTMLCollection {
+class WEB_API HTMLOptionsCollection final : public DOM::HTMLCollection {
     WEB_PLATFORM_OBJECT(HTMLOptionsCollection, DOM::HTMLCollection);
     GC_DECLARE_ALLOCATOR(HTMLOptionsCollection);
 

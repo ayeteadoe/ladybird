@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/StereoPannerNodePrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioNode.h>
 
 namespace Web::WebAudio {
@@ -17,7 +18,7 @@ struct StereoPannerOptions : AudioNodeOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#stereopannernode
-class StereoPannerNode : public AudioNode {
+class WEB_API StereoPannerNode : public AudioNode {
     WEB_PLATFORM_OBJECT(StereoPannerNode, AudioNode);
     GC_DECLARE_ALLOCATOR(StereoPannerNode);
 

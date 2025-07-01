@@ -16,7 +16,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/webappapis.html#import-map-parse-result
-class ImportMapParseResult
+class WEB_API ImportMapParseResult
     : public JS::Cell
     , public JS::Script::HostDefined {
     GC_CELL(ImportMapParseResult, JS::Cell);

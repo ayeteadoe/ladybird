@@ -17,7 +17,7 @@
 
 namespace Web::HTML {
 
-class Location final : public Bindings::PlatformObject {
+class WEB_API Location final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Location, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Location);
 

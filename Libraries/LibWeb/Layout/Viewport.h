@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/Document.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/BlockContainer.h>
 
 namespace Web::Layout {
 
-class Viewport final : public BlockContainer {
+class WEB_API Viewport final : public BlockContainer {
     GC_CELL(Viewport, BlockContainer);
     GC_DECLARE_ALLOCATOR(Viewport);
 

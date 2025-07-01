@@ -10,10 +10,11 @@
 #include <LibWeb/Bindings/ScreenOrientationPrototype.h>
 #include <LibWeb/DOM/EventTarget.h>
 #include <LibWeb/WebIDL/Types.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class ScreenOrientation final : public DOM::EventTarget {
+class WEB_API ScreenOrientation final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(ScreenOrientation, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(ScreenOrientation);
 

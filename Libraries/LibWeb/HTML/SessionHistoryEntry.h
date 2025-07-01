@@ -28,7 +28,7 @@ enum class ScrollRestorationMode {
 };
 
 // https://html.spec.whatwg.org/multipage/history.html#session-history-entry
-class SessionHistoryEntry final : public JS::Cell {
+class WEB_API SessionHistoryEntry final : public JS::Cell {
     GC_CELL(SessionHistoryEntry, JS::Cell);
     GC_DECLARE_ALLOCATOR(SessionHistoryEntry);
 

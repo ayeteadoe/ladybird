@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/HashMap.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/Internal/RequestList.h>
 #include <LibWeb/StorageAPI/StorageKey.h>
 
@@ -15,7 +16,7 @@ namespace Web::IndexedDB {
 using ConnectionMap = HashMap<StorageAPI::StorageKey, HashMap<String, RequestList>>;
 
 // https://w3c.github.io/IndexedDB/#connection-queues
-class ConnectionQueueHandler {
+class WEB_API ConnectionQueueHandler {
 public:
     static RequestList& for_key_and_name(StorageAPI::StorageKey& key, String& name);
     static ConnectionQueueHandler& the()

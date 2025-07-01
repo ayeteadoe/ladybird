@@ -8,6 +8,7 @@
 
 #include <AK/String.h>
 #include <AK/StringView.h>
+#include <LibWeb/Forward.h>
 #include <optional>
 
 namespace Web::HTML {
@@ -21,12 +22,12 @@ struct EntityMatch {
 
 // Swift-friendly wrapper for TextCodec::Decoder::to_utf8
 using OptionalString = std::optional<String>;
-OptionalString decode_to_utf8(StringView text, StringView encoding);
+WEB_API OptionalString decode_to_utf8(StringView text, StringView encoding);
 
 // Swift-friendly wrapper for HTML::code_points_from_entity
 // FIXME: This is a temporary stop-gap solution, and it should be removed once the C++
 //        NamedCharacterReference state implementation is implemented in Swift.
 using OptionalEntityMatch = std::optional<EntityMatch>;
-OptionalEntityMatch match_entity_for_named_character_reference(StringView entity);
+WEB_API OptionalEntityMatch match_entity_for_named_character_reference(StringView entity);
 
 }

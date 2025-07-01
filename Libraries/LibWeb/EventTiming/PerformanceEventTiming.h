@@ -8,12 +8,13 @@
 
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/DOM/Node.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/PerformanceTimeline/PerformanceEntry.h>
 
 namespace Web::EventTiming {
 
 // https://www.w3.org/TR/event-timing/#sec-performance-event-timing
-class PerformanceEventTiming final : public PerformanceTimeline::PerformanceEntry {
+class WEB_API PerformanceEventTiming final : public PerformanceTimeline::PerformanceEntry {
     WEB_PLATFORM_OBJECT(PerformanceEventTiming, PerformanceTimeline::PerformanceEntry);
     GC_DECLARE_ALLOCATOR(PerformanceEventTiming);
 

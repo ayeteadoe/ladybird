@@ -12,7 +12,7 @@
 
 namespace Web::CSS {
 
-struct StyleInvalidationData {
+struct WEB_API StyleInvalidationData {
     HashMap<InvalidationSet::Property, InvalidationSet> descendant_invalidation_sets;
     HashTable<FlyString> ids_used_in_has_selectors;
     HashTable<FlyString> class_names_used_in_has_selectors;

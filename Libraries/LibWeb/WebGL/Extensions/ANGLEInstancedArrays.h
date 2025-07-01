@@ -12,7 +12,7 @@
 
 namespace Web::WebGL::Extensions {
 
-class ANGLEInstancedArrays : public Bindings::PlatformObject {
+class WEB_API ANGLEInstancedArrays : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ANGLEInstancedArrays, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ANGLEInstancedArrays);
 

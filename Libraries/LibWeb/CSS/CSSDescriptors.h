@@ -9,11 +9,12 @@
 #include <LibWeb/CSS/CSSStyleDeclaration.h>
 #include <LibWeb/CSS/Descriptor.h>
 #include <LibWeb/CSS/DescriptorID.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // A non-spec base class for descriptor-list classes
-class CSSDescriptors : public CSSStyleDeclaration {
+class WEB_API CSSDescriptors : public CSSStyleDeclaration {
     WEB_PLATFORM_OBJECT(CSSDescriptors, CSSStyleDeclaration);
 
 public:
@@ -45,7 +46,7 @@ private:
     Vector<Descriptor> m_descriptors;
 };
 
-bool is_shorthand(AtRuleID, DescriptorID);
-void for_each_expanded_longhand(AtRuleID, DescriptorID, RefPtr<CSSStyleValue const>, Function<void(DescriptorID, RefPtr<CSSStyleValue const>)>);
+WEB_API bool is_shorthand(AtRuleID, DescriptorID);
+WEB_API void for_each_expanded_longhand(AtRuleID, DescriptorID, RefPtr<CSSStyleValue const>, Function<void(DescriptorID, RefPtr<CSSStyleValue const>)>);
 
 }

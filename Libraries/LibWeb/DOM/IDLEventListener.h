@@ -10,6 +10,7 @@
 #include <AK/RefCounted.h>
 #include <LibGC/Root.h>
 #include <LibWeb/DOM/AbortSignal.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/CallbackType.h>
 
 namespace Web::DOM {
@@ -25,7 +26,7 @@ struct AddEventListenerOptions : public EventListenerOptions {
     GC::Ptr<AbortSignal> signal;
 };
 
-class IDLEventListener final : public JS::Object {
+class WEB_API IDLEventListener final : public JS::Object {
     JS_OBJECT(IDLEventListener, JS::Object);
     GC_DECLARE_ALLOCATOR(IDLEventListener);
 

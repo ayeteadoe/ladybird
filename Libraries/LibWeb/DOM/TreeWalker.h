@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/NodeFilter.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
 // https://dom.spec.whatwg.org/#treewalker
-class TreeWalker final : public Bindings::PlatformObject {
+class WEB_API TreeWalker final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(TreeWalker, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(TreeWalker);
 

@@ -9,6 +9,7 @@
 #include <LibJS/Runtime/Promise.h>
 #include <LibWeb/Bindings/NavigationPrototype.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HistoryHandlingBehavior.h>
 #include <LibWeb/HTML/Navigable.h>
 #include <LibWeb/HTML/NavigationType.h>
@@ -44,7 +45,7 @@ struct NavigationResult {
 };
 
 // https://html.spec.whatwg.org/multipage/nav-history-apis.html#navigation-api-method-tracker
-struct NavigationAPIMethodTracker final : public JS::Cell {
+struct WEB_API NavigationAPIMethodTracker final : public JS::Cell {
     GC_CELL(NavigationAPIMethodTracker, JS::Cell);
     GC_DECLARE_ALLOCATOR(NavigationAPIMethodTracker);
 
@@ -68,7 +69,7 @@ struct NavigationAPIMethodTracker final : public JS::Cell {
 };
 
 // https://html.spec.whatwg.org/multipage/nav-history-apis.html#navigation-interface
-class Navigation : public DOM::EventTarget {
+class WEB_API Navigation : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(Navigation, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(Navigation);
 
@@ -191,7 +192,7 @@ private:
     HashMap<String, GC::Ref<NavigationAPIMethodTracker>> m_upcoming_traverse_api_method_trackers;
 };
 
-HistoryHandlingBehavior to_history_handling_behavior(Bindings::NavigationHistoryBehavior);
-Bindings::NavigationHistoryBehavior to_navigation_history_behavior(HistoryHandlingBehavior);
+WEB_API HistoryHandlingBehavior to_history_handling_behavior(Bindings::NavigationHistoryBehavior);
+WEB_API Bindings::NavigationHistoryBehavior to_navigation_history_behavior(HistoryHandlingBehavior);
 
 }

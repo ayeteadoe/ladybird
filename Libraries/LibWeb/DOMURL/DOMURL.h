@@ -12,11 +12,12 @@
 #include <LibURL/URL.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOMURL/URLSearchParams.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::DOMURL {
 
-class DOMURL : public Bindings::PlatformObject {
+class WEB_API DOMURL : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DOMURL, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DOMURL);
 
@@ -92,6 +93,6 @@ private:
 };
 
 // https://url.spec.whatwg.org/#concept-url-parser
-Optional<URL::URL> parse(StringView input, Optional<URL::URL const&> base_url = {}, Optional<StringView> encoding = {});
+WEB_API Optional<URL::URL> parse(StringView input, Optional<URL::URL const&> base_url = {}, Optional<StringView> encoding = {});
 
 }

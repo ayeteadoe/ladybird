@@ -9,12 +9,13 @@
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/Bindings/ShadowRealmGlobalScopeGlobalMixin.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/UniversalGlobalScope.h>
 
 namespace Web::HTML {
 
 // https://whatpr.org/html/9893/webappapis.html#shadowrealmglobalscope
-class ShadowRealmGlobalScope
+class WEB_API ShadowRealmGlobalScope
     : public DOM::EventTarget
     , public UniversalGlobalScopeMixin
     , public Bindings::ShadowRealmGlobalScopeGlobalMixin {

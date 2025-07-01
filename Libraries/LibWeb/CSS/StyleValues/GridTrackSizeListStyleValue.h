@@ -11,10 +11,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/GridTrackSize.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class GridTrackSizeListStyleValue final : public StyleValueWithDefaultOperators<GridTrackSizeListStyleValue> {
+class WEB_API GridTrackSizeListStyleValue final : public StyleValueWithDefaultOperators<GridTrackSizeListStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<GridTrackSizeListStyleValue const> create(CSS::GridTrackSizeList grid_track_size_list);
     virtual ~GridTrackSizeListStyleValue() override = default;

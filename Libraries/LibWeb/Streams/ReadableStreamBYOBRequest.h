@@ -15,7 +15,7 @@
 namespace Web::Streams {
 
 // https://streams.spec.whatwg.org/#readablestreambyobrequest
-class ReadableStreamBYOBRequest : public Bindings::PlatformObject {
+class WEB_API ReadableStreamBYOBRequest : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ReadableStreamBYOBRequest, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ReadableStreamBYOBRequest);
 

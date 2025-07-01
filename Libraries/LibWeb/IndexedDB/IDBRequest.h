@@ -10,6 +10,7 @@
 
 #include <LibWeb/Bindings/IDBRequestPrototype.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/Internal/RequestList.h>
 
 namespace Web::IndexedDB {
@@ -17,7 +18,7 @@ namespace Web::IndexedDB {
 using IDBRequestSource = Variant<Empty, GC::Ref<IDBObjectStore>, GC::Ref<IDBIndex>, GC::Ref<IDBCursor>>;
 
 // https://w3c.github.io/IndexedDB/#request-api
-class IDBRequest : public DOM::EventTarget {
+class WEB_API IDBRequest : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(IDBRequest, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(IDBRequest);
 

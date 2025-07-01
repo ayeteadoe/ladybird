@@ -14,10 +14,11 @@
 #include <LibWeb/CSS/PercentageOr.h>
 #include <LibWeb/CSS/Serialize.h>
 #include <LibWeb/CSS/StyleValues/CSSColorValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class AbstractImageStyleValue : public CSSStyleValue {
+class WEB_API AbstractImageStyleValue : public CSSStyleValue {
 public:
     using CSSStyleValue::CSSStyleValue;
 

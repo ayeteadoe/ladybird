@@ -40,7 +40,7 @@ template<typename T>
 using MultipartParsingErrorOr = ErrorOr<T, MultipartParsingError>;
 
 // https://fetch.spec.whatwg.org/#body-mixin
-class BodyMixin {
+class WEB_API BodyMixin {
 public:
     virtual ~BodyMixin();
 
@@ -63,7 +63,7 @@ public:
     [[nodiscard]] WebIDL::ExceptionOr<GC::Ref<WebIDL::Promise>> text() const;
 };
 
-[[nodiscard]] WebIDL::ExceptionOr<GC::Ref<WebIDL::Promise>> consume_body(JS::Realm&, BodyMixin const&, ConvertBytesToJSValueCallback);
-[[nodiscard]] MultipartParsingErrorOr<Vector<XHR::FormDataEntry>> parse_multipart_form_data(JS::Realm&, StringView input, MimeSniff::MimeType const& mime_type);
+[[nodiscard]] WEB_API WebIDL::ExceptionOr<GC::Ref<WebIDL::Promise>> consume_body(JS::Realm&, BodyMixin const&, ConvertBytesToJSValueCallback);
+[[nodiscard]] WEB_API MultipartParsingErrorOr<Vector<XHR::FormDataEntry>> parse_multipart_form_data(JS::Realm&, StringView input, MimeSniff::MimeType const& mime_type);
 
 }

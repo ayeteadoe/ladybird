@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class TextMetrics : public Bindings::PlatformObject {
+class WEB_API TextMetrics : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(TextMetrics, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(TextMetrics);
 

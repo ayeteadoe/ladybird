@@ -7,13 +7,14 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 typedef unsigned int GLenum;
 typedef int GLsizei;
 
 namespace Web::WebGL {
 
-class WebGLActiveInfo : public Bindings::PlatformObject {
+class WEB_API WebGLActiveInfo : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(WebGLActiveInfo, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(WebGLActiveInfo);
 

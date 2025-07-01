@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/NavigateEventPrototype.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/NavigationType.h>
 
 namespace Web::HTML {
@@ -38,7 +39,7 @@ struct NavigationInterceptOptions {
 };
 
 // https://html.spec.whatwg.org/multipage/nav-history-apis.html#navigateevent
-class NavigateEvent : public DOM::Event {
+class WEB_API NavigateEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(NavigateEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(NavigateEvent);
 

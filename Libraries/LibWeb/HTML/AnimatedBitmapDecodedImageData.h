@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibGfx/ImmutableBitmap.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/DecodedImageData.h>
 
 namespace Web::HTML {
 
-class AnimatedBitmapDecodedImageData final : public DecodedImageData {
+class WEB_API AnimatedBitmapDecodedImageData final : public DecodedImageData {
     GC_CELL(AnimatedBitmapDecodedImageData, DecodedImageData);
     GC_DECLARE_ALLOCATOR(AnimatedBitmapDecodedImageData);
 

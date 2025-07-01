@@ -8,12 +8,13 @@
 #pragma once
 
 #include <LibWeb/ARIA/Roles.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::HTML {
 
-class HTMLTableSectionElement final : public HTMLElement {
+class WEB_API HTMLTableSectionElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLTableSectionElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLTableSectionElement);
 

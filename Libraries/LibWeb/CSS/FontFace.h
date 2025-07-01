@@ -11,6 +11,7 @@
 #include <LibWeb/Bindings/FontFacePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/CSS/ParsedFontFace.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -27,7 +28,7 @@ struct FontFaceDescriptors {
     String line_gap_override = "normal"_string;
 };
 
-class FontFace final : public Bindings::PlatformObject {
+class WEB_API FontFace final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(FontFace, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(FontFace);
 
@@ -114,9 +115,9 @@ private:
     bool m_is_css_connected { false };
 };
 
-bool font_format_is_supported(FlyString const& name);
+WEB_API bool font_format_is_supported(FlyString const& name);
 
-bool font_tech_is_supported(FontTech);
-bool font_tech_is_supported(FlyString const& name);
+WEB_API bool font_tech_is_supported(FontTech);
+WEB_API bool font_tech_is_supported(FlyString const& name);
 
 }

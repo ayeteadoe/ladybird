@@ -26,7 +26,7 @@ class ReadableStreamPipeTo;
 
 }
 
-class ReadRequest : public JS::Cell {
+class WEB_API ReadRequest : public JS::Cell {
     GC_CELL(ReadRequest, JS::Cell);
 
 public:
@@ -69,7 +69,7 @@ private:
 };
 
 // https://streams.spec.whatwg.org/#readablestreamdefaultreader
-class ReadableStreamDefaultReader final
+class WEB_API ReadableStreamDefaultReader final
     : public Bindings::PlatformObject
     , public ReadableStreamGenericReaderMixin {
     WEB_PLATFORM_OBJECT(ReadableStreamDefaultReader, Bindings::PlatformObject);

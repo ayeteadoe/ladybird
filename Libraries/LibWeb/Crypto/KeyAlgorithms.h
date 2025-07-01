@@ -12,12 +12,13 @@
 #include <LibCrypto/BigInt/UnsignedBigInteger.h>
 #include <LibJS/Runtime/Object.h>
 #include <LibWeb/Crypto/CryptoAlgorithms.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::Crypto {
 
 // https://w3c.github.io/webcrypto/#key-algorithm-dictionary
-class KeyAlgorithm : public JS::Object {
+class WEB_API KeyAlgorithm : public JS::Object {
     JS_OBJECT(KeyAlgorithm, JS::Object);
     GC_DECLARE_ALLOCATOR(KeyAlgorithm);
 
@@ -44,7 +45,7 @@ private:
 };
 
 // https://w3c.github.io/webcrypto/#RsaKeyAlgorithm-dictionary
-class RsaKeyAlgorithm : public KeyAlgorithm {
+class WEB_API RsaKeyAlgorithm : public KeyAlgorithm {
     JS_OBJECT(RsaKeyAlgorithm, KeyAlgorithm);
     GC_DECLARE_ALLOCATOR(RsaKeyAlgorithm);
 
@@ -75,7 +76,7 @@ private:
 };
 
 // https://w3c.github.io/webcrypto/#RsaHashedKeyAlgorithm-dictionary
-class RsaHashedKeyAlgorithm : public RsaKeyAlgorithm {
+class WEB_API RsaHashedKeyAlgorithm : public RsaKeyAlgorithm {
     JS_OBJECT(RsaHashedKeyAlgorithm, RsaKeyAlgorithm);
     GC_DECLARE_ALLOCATOR(RsaHashedKeyAlgorithm);
 
@@ -99,7 +100,7 @@ private:
 };
 
 // https://w3c.github.io/webcrypto/#EcKeyAlgorithm-dictionary
-class EcKeyAlgorithm : public KeyAlgorithm {
+class WEB_API EcKeyAlgorithm : public KeyAlgorithm {
     JS_OBJECT(EcKeyAlgorithm, KeyAlgorithm);
     GC_DECLARE_ALLOCATOR(EcKeyAlgorithm);
 
@@ -123,7 +124,7 @@ private:
 };
 
 // https://w3c.github.io/webcrypto/#AesKeyAlgorithm-dictionary
-struct AesKeyAlgorithm : public KeyAlgorithm {
+struct WEB_API AesKeyAlgorithm : public KeyAlgorithm {
     JS_OBJECT(AesKeyAlgorithm, KeyAlgorithm);
     GC_DECLARE_ALLOCATOR(AesKeyAlgorithm);
 
@@ -147,7 +148,7 @@ private:
 };
 
 // https://w3c.github.io/webcrypto/#HmacKeyAlgorithm-dictionary
-struct HmacKeyAlgorithm : public KeyAlgorithm {
+struct WEB_API HmacKeyAlgorithm : public KeyAlgorithm {
     JS_OBJECT(HmacKeyAlgorithm, KeyAlgorithm);
     GC_DECLARE_ALLOCATOR(HmacKeyAlgorithm);
 

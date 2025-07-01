@@ -15,7 +15,7 @@
 namespace Web::Streams {
 
 // https://streams.spec.whatwg.org/#countqueuingstrategy
-class CountQueuingStrategy final : public Bindings::PlatformObject {
+class WEB_API CountQueuingStrategy final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(CountQueuingStrategy, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(CountQueuingStrategy);
 

@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/ServiceWorkerPrototype.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 #define ENUMERATE_SERVICE_WORKER_EVENT_HANDLERS(E)  \
     E(onstatechange, HTML::EventNames::statechange) \
@@ -16,7 +17,7 @@
 namespace Web::ServiceWorker {
 
 // https://w3c.github.io/ServiceWorker/#serviceworker-interface
-class ServiceWorker : public DOM::EventTarget {
+class WEB_API ServiceWorker : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(ServiceWorker, DOM::EventTarget);
 
 public:

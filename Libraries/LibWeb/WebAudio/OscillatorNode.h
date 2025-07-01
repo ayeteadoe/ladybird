@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/OscillatorNodePrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioScheduledSourceNode.h>
 
 namespace Web::WebAudio {
@@ -20,7 +21,7 @@ struct OscillatorOptions : AudioNodeOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#OscillatorNode
-class OscillatorNode : public AudioScheduledSourceNode {
+class WEB_API OscillatorNode : public AudioScheduledSourceNode {
     WEB_PLATFORM_OBJECT(OscillatorNode, AudioScheduledSourceNode);
     GC_DECLARE_ALLOCATOR(OscillatorNode);
 

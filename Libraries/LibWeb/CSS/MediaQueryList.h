@@ -9,11 +9,12 @@
 #include <AK/Forward.h>
 #include <LibWeb/CSS/MediaQuery.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // 4.2. The MediaQueryList Interface, https://drafts.csswg.org/cssom-view/#the-mediaquerylist-interface
-class MediaQueryList final : public DOM::EventTarget {
+class WEB_API MediaQueryList final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(MediaQueryList, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(MediaQueryList);
 

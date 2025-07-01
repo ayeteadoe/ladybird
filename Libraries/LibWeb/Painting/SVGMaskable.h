@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/PaintContext.h>
 #include <LibWeb/PixelUnits.h>
 
@@ -11,7 +12,7 @@
 
 namespace Web::Painting {
 
-class SVGMaskable {
+class WEB_API SVGMaskable {
 public:
     virtual ~SVGMaskable() = default;
 

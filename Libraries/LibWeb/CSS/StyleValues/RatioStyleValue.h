@@ -8,10 +8,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Ratio.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class RatioStyleValue final : public StyleValueWithDefaultOperators<RatioStyleValue> {
+class WEB_API RatioStyleValue final : public StyleValueWithDefaultOperators<RatioStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<RatioStyleValue const> create(Ratio ratio)
     {

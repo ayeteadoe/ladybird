@@ -8,10 +8,11 @@
 
 #include <AK/RefCounted.h>
 #include <LibJS/Heap/Cell.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Platform {
 
-class Timer : public JS::Cell {
+class WEB_API Timer : public JS::Cell {
     GC_CELL(Timer, JS::Cell);
 
 public:

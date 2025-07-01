@@ -24,7 +24,7 @@ struct EventSourceInit {
     bool with_credentials { false };
 };
 
-class EventSource : public DOM::EventTarget {
+class WEB_API EventSource : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(EventSource, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(EventSource);
 

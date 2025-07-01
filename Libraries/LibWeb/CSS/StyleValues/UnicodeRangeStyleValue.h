@@ -8,10 +8,11 @@
 
 #include <LibGfx/Font/UnicodeRange.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class UnicodeRangeStyleValue final : public StyleValueWithDefaultOperators<UnicodeRangeStyleValue> {
+class WEB_API UnicodeRangeStyleValue final : public StyleValueWithDefaultOperators<UnicodeRangeStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<UnicodeRangeStyleValue const> create(Gfx::UnicodeRange unicode_range)
     {

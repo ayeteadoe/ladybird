@@ -8,12 +8,13 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Bindings/VTTRegionPrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::WebVTT {
 
 // https://w3c.github.io/webvtt/#vttregion
-class VTTRegion final : public Bindings::PlatformObject {
+class WEB_API VTTRegion final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(VTTRegion, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(VTTRegion);
 

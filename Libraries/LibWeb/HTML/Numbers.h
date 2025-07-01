@@ -8,21 +8,22 @@
 
 #include <AK/Forward.h>
 #include <AK/String.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::HTML {
 
-Optional<i32> parse_integer(StringView string);
-Optional<StringView> parse_integer_digits(StringView string);
+WEB_API Optional<i32> parse_integer(StringView string);
+WEB_API Optional<StringView> parse_integer_digits(StringView string);
 
-Optional<u32> parse_non_negative_integer(StringView string);
-Optional<StringView> parse_non_negative_integer_digits(StringView string);
+WEB_API Optional<u32> parse_non_negative_integer(StringView string);
+WEB_API Optional<StringView> parse_non_negative_integer_digits(StringView string);
 
-Optional<double> parse_floating_point_number(StringView string);
+WEB_API Optional<double> parse_floating_point_number(StringView string);
 
-bool is_valid_floating_point_number(StringView string);
+WEB_API bool is_valid_floating_point_number(StringView string);
 
-WebIDL::ExceptionOr<String> convert_non_negative_integer_to_string(JS::Realm&, WebIDL::Long);
+WEB_API WebIDL::ExceptionOr<String> convert_non_negative_integer_to_string(JS::Realm&, WebIDL::Long);
 
 }

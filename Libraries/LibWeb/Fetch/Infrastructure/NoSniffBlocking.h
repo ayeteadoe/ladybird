@@ -12,7 +12,7 @@
 
 namespace Web::Fetch::Infrastructure {
 
-[[nodiscard]] bool determine_nosniff(HeaderList const&);
-[[nodiscard]] RequestOrResponseBlocking should_response_to_request_be_blocked_due_to_nosniff(Response const&, Request const&);
+[[nodiscard]] WEB_API bool determine_nosniff(HeaderList const&);
+[[nodiscard]] WEB_API RequestOrResponseBlocking should_response_to_request_be_blocked_due_to_nosniff(Response const&, Request const&);
 
 }

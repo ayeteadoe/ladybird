@@ -8,6 +8,7 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -16,7 +17,7 @@ struct MediaQueryListEventInit : public DOM::EventInit {
     bool matches { false };
 };
 
-class MediaQueryListEvent final : public DOM::Event {
+class WEB_API MediaQueryListEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(MediaQueryListEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(MediaQueryListEvent);
 

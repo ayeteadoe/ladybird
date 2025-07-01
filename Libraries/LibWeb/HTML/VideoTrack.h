@@ -11,10 +11,11 @@
 #include <LibGfx/Forward.h>
 #include <LibMedia/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class VideoTrack final : public Bindings::PlatformObject {
+class WEB_API VideoTrack final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(VideoTrack, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(VideoTrack);
 

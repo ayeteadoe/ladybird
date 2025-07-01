@@ -10,6 +10,7 @@
 
 #include <LibWeb/Bindings/BaseAudioContextPrototype.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AnalyserNode.h>
 #include <LibWeb/WebAudio/AudioListener.h>
 #include <LibWeb/WebAudio/BiquadFilterNode.h>
@@ -26,7 +27,7 @@ namespace Web::WebAudio {
 class AudioDestinationNode;
 
 // https://webaudio.github.io/web-audio-api/#BaseAudioContext
-class BaseAudioContext : public DOM::EventTarget {
+class WEB_API BaseAudioContext : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(BaseAudioContext, DOM::EventTarget);
 
 public:

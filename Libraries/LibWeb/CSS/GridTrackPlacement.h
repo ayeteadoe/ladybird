@@ -8,10 +8,11 @@
 #pragma once
 
 #include <AK/String.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class GridTrackPlacement {
+class WEB_API GridTrackPlacement {
 public:
     static GridTrackPlacement make_auto()
     {

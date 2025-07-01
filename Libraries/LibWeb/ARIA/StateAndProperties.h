@@ -9,6 +9,7 @@
 #include <AK/String.h>
 #include <LibWeb/ARIA/ARIAMixin.h>
 #include <LibWeb/ARIA/RoleType.h>
+#include <LibWeb/Export.h>
 
 namespace Web::ARIA {
 
@@ -69,12 +70,12 @@ enum class StateAndProperties {
 };
 
 using DefaultValueType = Variant<Empty, f64, AriaOrientation, AriaLive, bool, AriaHasPopup>;
-ErrorOr<String> state_or_property_to_string_value(StateAndProperties, AriaData const&, DefaultValueType = {});
-ErrorOr<String> tristate_to_string(Tristate);
-ErrorOr<String> optional_integer_to_string(Optional<i32>);
-ErrorOr<String> optional_bool_to_string(Optional<bool>);
-ErrorOr<String> optional_number_to_string(Optional<f64>);
-ErrorOr<String> id_reference_list_to_string(Vector<String> const&);
-StringView state_or_property_to_string(StateAndProperties);
+WEB_API ErrorOr<String> state_or_property_to_string_value(StateAndProperties, AriaData const&, DefaultValueType = {});
+WEB_API ErrorOr<String> tristate_to_string(Tristate);
+WEB_API ErrorOr<String> optional_integer_to_string(Optional<i32>);
+WEB_API ErrorOr<String> optional_bool_to_string(Optional<bool>);
+WEB_API ErrorOr<String> optional_number_to_string(Optional<f64>);
+WEB_API ErrorOr<String> id_reference_list_to_string(Vector<String> const&);
+WEB_API StringView state_or_property_to_string(StateAndProperties);
 
 }

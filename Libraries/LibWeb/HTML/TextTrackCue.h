@@ -8,12 +8,13 @@
 
 #include <LibGC/RootVector.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/TextTrack.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/media.html#texttrackcue
-class TextTrackCue : public DOM::EventTarget {
+class WEB_API TextTrackCue : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(TextTrackCue, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(TextTrackCue);
 

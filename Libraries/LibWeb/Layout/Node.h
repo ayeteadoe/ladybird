@@ -30,7 +30,7 @@ enum class LayoutMode {
     IntrinsicSizing,
 };
 
-class Node
+class WEB_API Node
     : public JS::Cell
     , public TreeNode<Node> {
     GC_CELL(Node, JS::Cell);
@@ -230,7 +230,7 @@ private:
     u32 m_initial_quote_nesting_level { 0 };
 };
 
-class NodeWithStyle : public Node {
+class WEB_API NodeWithStyle : public Node {
     GC_CELL(NodeWithStyle, Node);
 
 public:
@@ -273,7 +273,7 @@ private:
 template<>
 inline bool Node::fast_is<NodeWithStyle>() const { return is_node_with_style(); }
 
-class NodeWithStyleAndBoxModelMetrics : public NodeWithStyle {
+class WEB_API NodeWithStyleAndBoxModelMetrics : public NodeWithStyle {
     GC_CELL(NodeWithStyleAndBoxModelMetrics, NodeWithStyle);
 
 public:

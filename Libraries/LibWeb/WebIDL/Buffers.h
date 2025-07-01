@@ -11,17 +11,18 @@
 #include <LibGC/CellAllocator.h>
 #include <LibJS/Forward.h>
 #include <LibJS/Heap/Cell.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::WebIDL {
 
-bool is_buffer_source_detached(JS::Value const&);
+WEB_API bool is_buffer_source_detached(JS::Value const&);
 
 using BufferableObject = Variant<
     GC::Ref<JS::TypedArrayBase>,
     GC::Ref<JS::DataView>,
     GC::Ref<JS::ArrayBuffer>>;
 
-class BufferableObjectBase : public JS::Cell {
+class WEB_API BufferableObjectBase : public JS::Cell {
     GC_CELL(BufferableObjectBase, JS::Cell);
     GC_DECLARE_ALLOCATOR(BufferableObjectBase);
 
@@ -60,7 +61,7 @@ protected:
 //          Uint8Array or Uint16Array or Uint32Array or Uint8ClampedArray or
 //          BigInt64Array or BigUint64Array or
 //          Float32Array or Float64Array or DataView) ArrayBufferView;
-class ArrayBufferView : public BufferableObjectBase {
+class WEB_API ArrayBufferView : public BufferableObjectBase {
     GC_CELL(ArrayBufferView, BufferableObjectBase);
     GC_DECLARE_ALLOCATOR(ArrayBufferView);
 
@@ -78,7 +79,7 @@ public:
 // https://webidl.spec.whatwg.org/#BufferSource
 //
 // typedef (ArrayBufferView or ArrayBuffer) BufferSource;
-class BufferSource : public BufferableObjectBase {
+class WEB_API BufferSource : public BufferableObjectBase {
     GC_CELL(BufferSource, BufferableObjectBase);
     GC_DECLARE_ALLOCATOR(BufferSource);
 

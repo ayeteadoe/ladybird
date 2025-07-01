@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/DOM/StaticRange.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/UIEvents/UIEvent.h>
 
 namespace Web::UIEvents {
@@ -17,7 +18,7 @@ struct InputEventInit : public UIEventInit {
     FlyString input_type {};
 };
 
-class InputEvent final : public UIEvent {
+class WEB_API InputEvent final : public UIEvent {
     WEB_PLATFORM_OBJECT(InputEvent, UIEvent);
     GC_DECLARE_ALLOCATOR(InputEvent);
 

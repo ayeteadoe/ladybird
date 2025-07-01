@@ -8,6 +8,7 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -21,7 +22,7 @@ struct CounterDefinition {
  * Holds a list of CounterDefinitions.
  * Shared between counter-increment, counter-reset, and counter-set properties that have (almost) identical grammar.
  */
-class CounterDefinitionsStyleValue : public StyleValueWithDefaultOperators<CounterDefinitionsStyleValue> {
+class WEB_API CounterDefinitionsStyleValue : public StyleValueWithDefaultOperators<CounterDefinitionsStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<CounterDefinitionsStyleValue const> create(Vector<CounterDefinition> counter_definitions)
     {

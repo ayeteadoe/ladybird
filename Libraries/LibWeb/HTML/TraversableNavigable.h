@@ -8,6 +8,7 @@
 #pragma once
 
 #include <AK/Vector.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geolocation/Geolocation.h>
 #include <LibWeb/HTML/Navigable.h>
 #include <LibWeb/HTML/NavigationType.h>
@@ -29,7 +30,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/document-sequences.html#traversable-navigable
-class TraversableNavigable final : public Navigable {
+class WEB_API TraversableNavigable final : public Navigable {
     GC_CELL(TraversableNavigable, Navigable);
     GC_DECLARE_ALLOCATOR(TraversableNavigable);
 
@@ -189,8 +190,8 @@ struct BrowsingContextAndDocument {
     GC::Ref<DOM::Document> document;
 };
 
-WebIDL::ExceptionOr<BrowsingContextAndDocument> create_a_new_top_level_browsing_context_and_document(GC::Ref<Page> page);
-void finalize_a_same_document_navigation(GC::Ref<TraversableNavigable> traversable, GC::Ref<Navigable> target_navigable, GC::Ref<SessionHistoryEntry> target_entry, GC::Ptr<SessionHistoryEntry> entry_to_replace, HistoryHandlingBehavior, UserNavigationInvolvement);
+WEB_API WebIDL::ExceptionOr<BrowsingContextAndDocument> create_a_new_top_level_browsing_context_and_document(GC::Ref<Page> page);
+WEB_API void finalize_a_same_document_navigation(GC::Ref<TraversableNavigable> traversable, GC::Ref<Navigable> target_navigable, GC::Ref<SessionHistoryEntry> target_entry, GC::Ptr<SessionHistoryEntry> entry_to_replace, HistoryHandlingBehavior, UserNavigationInvolvement);
 
 template<>
 inline bool Navigable::fast_is<TraversableNavigable>() const { return is_traversable(); }

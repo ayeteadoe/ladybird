@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/DOM/CharacterData.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
-class ProcessingInstruction final : public CharacterData {
+class WEB_API ProcessingInstruction final : public CharacterData {
     WEB_PLATFORM_OBJECT(ProcessingInstruction, CharacterData);
     GC_DECLARE_ALLOCATOR(ProcessingInstruction);
 

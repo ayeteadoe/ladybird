@@ -8,10 +8,11 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class BeforeUnloadEvent final : public DOM::Event {
+class WEB_API BeforeUnloadEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(BeforeUnloadEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(BeforeUnloadEvent);
 

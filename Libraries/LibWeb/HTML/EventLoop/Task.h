@@ -17,7 +17,7 @@ struct UniqueTaskSource;
 
 AK_TYPEDEF_DISTINCT_NUMERIC_GENERAL(u64, TaskID, Comparison);
 
-class Task final : public JS::Cell {
+class WEB_API Task final : public JS::Cell {
     GC_CELL(Task, JS::Cell);
     GC_DECLARE_ALLOCATOR(Task);
 
@@ -109,7 +109,7 @@ private:
     GC::Ptr<DOM::Document const> m_document;
 };
 
-struct UniqueTaskSource {
+struct WEB_API UniqueTaskSource {
     UniqueTaskSource();
     ~UniqueTaskSource();
 

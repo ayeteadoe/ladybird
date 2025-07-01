@@ -9,10 +9,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/URL.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class URLStyleValue final : public StyleValueWithDefaultOperators<URLStyleValue> {
+class WEB_API URLStyleValue final : public StyleValueWithDefaultOperators<URLStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<URLStyleValue const> create(URL const& url)
     {

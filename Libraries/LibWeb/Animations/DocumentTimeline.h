@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Animations/AnimationTimeline.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HighResolutionTime/DOMHighResTimeStamp.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
@@ -18,7 +19,7 @@ struct DocumentTimelineOptions {
 };
 
 // https://www.w3.org/TR/web-animations-1/#the-documenttimeline-interface
-class DocumentTimeline : public AnimationTimeline {
+class WEB_API DocumentTimeline : public AnimationTimeline {
     WEB_PLATFORM_OBJECT(DocumentTimeline, AnimationTimeline);
     GC_DECLARE_ALLOCATOR(DocumentTimeline);
 

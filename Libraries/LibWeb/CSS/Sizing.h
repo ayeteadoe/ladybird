@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/PixelUnits.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-images/#default-sizing
-CSSPixelSize run_default_sizing_algorithm(
+WEB_API CSSPixelSize run_default_sizing_algorithm(
     Optional<CSSPixels> specified_width, Optional<CSSPixels> specified_height,
     Optional<CSSPixels> natural_width, Optional<CSSPixels> natural_height,
     Optional<CSSPixelFraction> natural_aspect_ratio,

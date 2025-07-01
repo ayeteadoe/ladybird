@@ -11,7 +11,7 @@
 
 namespace Web::HTML {
 
-class ListOfActiveFormattingElements {
+class WEB_API ListOfActiveFormattingElements {
 public:
     ListOfActiveFormattingElements() = default;
     ~ListOfActiveFormattingElements();

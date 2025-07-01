@@ -14,7 +14,7 @@
 
 namespace Web::HTML {
 
-class HTMLHyperlinkElementUtils {
+class WEB_API HTMLHyperlinkElementUtils {
 public:
     virtual ~HTMLHyperlinkElementUtils();
 

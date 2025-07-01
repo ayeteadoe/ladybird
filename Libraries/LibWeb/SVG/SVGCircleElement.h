@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGAnimatedLength.h>
 #include <LibWeb/SVG/SVGGeometryElement.h>
 
 namespace Web::SVG {
 
-class SVGCircleElement final : public SVGGeometryElement {
+class WEB_API SVGCircleElement final : public SVGGeometryElement {
     WEB_PLATFORM_OBJECT(SVGCircleElement, SVGGeometryElement);
     GC_DECLARE_ALLOCATOR(SVGCircleElement);
 

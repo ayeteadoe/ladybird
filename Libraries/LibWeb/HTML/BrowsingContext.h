@@ -9,6 +9,7 @@
 #include <AK/Noncopyable.h>
 #include <LibJS/Heap/Cell.h>
 #include <LibURL/Origin.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/NavigableContainer.h>
 #include <LibWeb/HTML/SandboxingFlagSet.h>
 #include <LibWeb/HTML/SessionHistoryEntry.h>
@@ -16,7 +17,7 @@
 
 namespace Web::HTML {
 
-class BrowsingContext final : public JS::Cell
+class WEB_API BrowsingContext final : public JS::Cell
     , public Weakable<BrowsingContext> {
     GC_CELL(BrowsingContext, JS::Cell);
     GC_DECLARE_ALLOCATOR(BrowsingContext);
@@ -123,12 +124,12 @@ private:
     GC::Ptr<BrowsingContext> m_previous_sibling;
 };
 
-URL::Origin determine_the_origin(Optional<URL::URL const&>, SandboxingFlagSet, Optional<URL::Origin> source_origin);
+WEB_API URL::Origin determine_the_origin(Optional<URL::URL const&>, SandboxingFlagSet, Optional<URL::Origin> source_origin);
 
-SandboxingFlagSet determine_the_creation_sandboxing_flags(BrowsingContext const&, GC::Ptr<DOM::Element> embedder);
+WEB_API SandboxingFlagSet determine_the_creation_sandboxing_flags(BrowsingContext const&, GC::Ptr<DOM::Element> embedder);
 
 // FIXME: Find a better home for these
-bool url_matches_about_blank(URL::URL const& url);
-bool url_matches_about_srcdoc(URL::URL const& url);
+WEB_API bool url_matches_about_blank(URL::URL const& url);
+WEB_API bool url_matches_about_srcdoc(URL::URL const& url);
 
 }

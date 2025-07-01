@@ -15,6 +15,7 @@
 #include <LibGfx/ImmutableBitmap.h>
 #include <LibGfx/PaintStyle.h>
 #include <LibWeb/CSS/Enums.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/Command.h>
 #include <LibWeb/Painting/ScrollState.h>
 
@@ -22,7 +23,7 @@ namespace Web::Painting {
 
 class DisplayList;
 
-class DisplayListPlayer {
+class WEB_API DisplayListPlayer {
 public:
     virtual ~DisplayListPlayer() = default;
 
@@ -77,7 +78,7 @@ private:
     Vector<NonnullRefPtr<Gfx::PaintingSurface>, 1> m_surfaces;
 };
 
-class DisplayList : public AtomicRefCounted<DisplayList> {
+class WEB_API DisplayList : public AtomicRefCounted<DisplayList> {
 public:
     static NonnullRefPtr<DisplayList> create()
     {

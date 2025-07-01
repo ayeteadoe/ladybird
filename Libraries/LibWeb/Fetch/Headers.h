@@ -14,6 +14,7 @@
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Headers.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::Fetch {
@@ -21,7 +22,7 @@ namespace Web::Fetch {
 using HeadersInit = Variant<Vector<Vector<String>>, OrderedHashMap<String, String>>;
 
 // https://fetch.spec.whatwg.org/#headers-class
-class Headers final : public Bindings::PlatformObject {
+class WEB_API Headers final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Headers, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Headers);
 

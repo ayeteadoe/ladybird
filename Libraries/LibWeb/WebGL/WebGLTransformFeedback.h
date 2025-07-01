@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebGL/Types.h>
 #include <LibWeb/WebGL/WebGLObject.h>
 
 namespace Web::WebGL {
 
-class WebGLTransformFeedback : public WebGLObject {
+class WEB_API WebGLTransformFeedback : public WebGLObject {
     WEB_PLATFORM_OBJECT(WebGLTransformFeedback, WebGLObject);
     GC_DECLARE_ALLOCATOR(WebGLTransformFeedback);
 

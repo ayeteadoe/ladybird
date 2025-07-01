@@ -6,11 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGGraphicsElement.h>
 
 namespace Web::SVG {
 
-class SVGDefsElement final : public SVGGraphicsElement {
+class WEB_API SVGDefsElement final : public SVGGraphicsElement {
     WEB_PLATFORM_OBJECT(SVGDefsElement, SVGGraphicsElement);
     GC_DECLARE_ALLOCATOR(SVGDefsElement);
 

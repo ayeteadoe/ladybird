@@ -8,10 +8,11 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOMURL/URLSearchParams.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOMURL {
 
-class URLSearchParamsIterator : public Bindings::PlatformObject {
+class WEB_API URLSearchParamsIterator : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(URLSearchParamsIterator, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(URLSearchParamsIterator);
 

@@ -12,6 +12,7 @@
 #include <LibWeb/Bindings/IDBTransactionPrototype.h>
 #include <LibWeb/DOM/Event.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/EventLoop/EventLoop.h>
 #include <LibWeb/IndexedDB/IDBDatabase.h>
 #include <LibWeb/IndexedDB/IDBRequest.h>
@@ -21,7 +22,7 @@
 namespace Web::IndexedDB {
 
 // https://w3c.github.io/IndexedDB/#transaction
-class IDBTransaction : public DOM::EventTarget {
+class WEB_API IDBTransaction : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(IDBTransaction, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(IDBTransaction);
 

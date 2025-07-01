@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/StringView.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -16,7 +17,7 @@ enum class PreferredColorScheme {
     Light,
 };
 
-PreferredColorScheme preferred_color_scheme_from_string(StringView);
-StringView preferred_color_scheme_to_string(PreferredColorScheme);
+WEB_API PreferredColorScheme preferred_color_scheme_from_string(StringView);
+WEB_API StringView preferred_color_scheme_to_string(PreferredColorScheme);
 
 }

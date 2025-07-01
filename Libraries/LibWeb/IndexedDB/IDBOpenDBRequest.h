@@ -8,12 +8,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/IDBRequest.h>
 
 namespace Web::IndexedDB {
 
 // https://w3c.github.io/IndexedDB/#idbopendbrequest
-class IDBOpenDBRequest : public IDBRequest {
+class WEB_API IDBOpenDBRequest : public IDBRequest {
     WEB_PLATFORM_OBJECT(IDBOpenDBRequest, IDBRequest);
     GC_DECLARE_ALLOCATOR(IDBOpenDBRequest);
 

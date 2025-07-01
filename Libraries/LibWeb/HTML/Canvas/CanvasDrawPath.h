@@ -7,12 +7,13 @@
 #pragma once
 
 #include <AK/ByteString.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/Path2D.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvasdrawpath
-class CanvasDrawPath {
+class WEB_API CanvasDrawPath {
 public:
     virtual ~CanvasDrawPath() = default;
 

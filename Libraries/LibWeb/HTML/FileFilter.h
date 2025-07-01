@@ -10,10 +10,11 @@
 #include <AK/Variant.h>
 #include <AK/Vector.h>
 #include <LibIPC/Forward.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-struct FileFilter {
+struct WEB_API FileFilter {
     enum class FileType {
         Audio,
         Image,

@@ -8,11 +8,12 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://www.w3.org/TR/css-values-4/#custom-idents
-class CustomIdentStyleValue final : public StyleValueWithDefaultOperators<CustomIdentStyleValue> {
+class WEB_API CustomIdentStyleValue final : public StyleValueWithDefaultOperators<CustomIdentStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<CustomIdentStyleValue const> create(FlyString custom_ident)
     {

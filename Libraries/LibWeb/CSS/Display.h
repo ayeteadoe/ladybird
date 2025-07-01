@@ -10,10 +10,11 @@
 #include <AK/Assertions.h>
 #include <AK/String.h>
 #include <LibWeb/CSS/Enums.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class Display {
+class WEB_API Display {
 public:
     Display() = default;
     ~Display() = default;

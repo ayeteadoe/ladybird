@@ -11,6 +11,7 @@
 #include <AK/Variant.h>
 #include <LibIPC/File.h>
 #include <LibIPC/Forward.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -19,7 +20,7 @@ enum class AllowMultipleFiles {
     Yes,
 };
 
-class SelectedFile {
+class WEB_API SelectedFile {
 public:
     static ErrorOr<SelectedFile> from_file_path(ByteString const& file_path);
 

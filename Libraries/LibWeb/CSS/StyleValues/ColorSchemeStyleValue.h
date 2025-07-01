@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class ColorSchemeStyleValue final : public StyleValueWithDefaultOperators<ColorSchemeStyleValue> {
+class WEB_API ColorSchemeStyleValue final : public StyleValueWithDefaultOperators<ColorSchemeStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<ColorSchemeStyleValue const> create(Vector<String> schemes, bool only)
     {

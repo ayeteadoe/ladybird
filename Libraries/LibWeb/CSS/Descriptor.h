@@ -12,7 +12,7 @@
 
 namespace Web::CSS {
 
-struct Descriptor {
+struct WEB_API Descriptor {
     ~Descriptor();
 
     DescriptorID descriptor_id;

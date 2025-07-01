@@ -17,7 +17,7 @@ namespace Web::StorageAPI {
 
 // https://storage.spec.whatwg.org/#storage-shed
 // A storage shed is a map of storage keys to storage shelves. It is initially empty.
-class StorageShed : public GC::Cell {
+class WEB_API StorageShed : public GC::Cell {
     GC_CELL(StorageShed, GC::Cell);
     GC_DECLARE_ALLOCATOR(StorageShed);
 

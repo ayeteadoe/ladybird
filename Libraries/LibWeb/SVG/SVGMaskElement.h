@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/AttributeParser.h>
 #include <LibWeb/SVG/SVGGraphicsElement.h>
 #include <LibWeb/SVG/SVGViewport.h>
 
 namespace Web::SVG {
 
-class SVGMaskElement final : public SVGGraphicsElement
+class WEB_API SVGMaskElement final : public SVGGraphicsElement
     , public SVGViewport {
 
     WEB_PLATFORM_OBJECT(SVGMaskElement, SVGGraphicsElement);

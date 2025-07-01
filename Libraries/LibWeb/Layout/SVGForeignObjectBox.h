@@ -7,13 +7,14 @@
 #pragma once
 
 #include <AK/Optional.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/BlockContainer.h>
 #include <LibWeb/Layout/SVGGraphicsBox.h>
 #include <LibWeb/SVG/SVGForeignObjectElement.h>
 
 namespace Web::Layout {
 
-class SVGForeignObjectBox final : public BlockContainer {
+class WEB_API SVGForeignObjectBox final : public BlockContainer {
     GC_CELL(SVGForeignObjectBox, BlockContainer);
     GC_DECLARE_ALLOCATOR(SVGForeignObjectBox);
 

@@ -62,7 +62,7 @@ struct RequestInit {
 };
 
 // https://fetch.spec.whatwg.org/#request
-class Request final
+class WEB_API Request final
     : public Bindings::PlatformObject
     , public BodyMixin {
     WEB_PLATFORM_OBJECT(Request, Bindings::PlatformObject);

@@ -6,10 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
+
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvasrect
-class CanvasRect {
+class WEB_API CanvasRect {
 public:
     virtual ~CanvasRect() = default;
 

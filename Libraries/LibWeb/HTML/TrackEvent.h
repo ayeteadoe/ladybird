@@ -11,6 +11,7 @@
 #include <AK/Variant.h>
 #include <LibGC/Root.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -19,7 +20,7 @@ struct TrackEventInit : public DOM::EventInit {
     TrackType track;
 };
 
-class TrackEvent : public DOM::Event {
+class WEB_API TrackEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(TrackEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(TrackEvent);
 

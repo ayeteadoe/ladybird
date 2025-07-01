@@ -11,13 +11,14 @@
 #include <AK/StringView.h>
 #include <LibJS/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
+#include <LibWeb/Forward.h>
 
 // https://www.w3.org/TR/cssom-1/#namespacedef-css
 namespace Web::CSS {
 
-WebIDL::ExceptionOr<String> escape(JS::VM&, StringView identifier);
+WEB_API WebIDL::ExceptionOr<String> escape(JS::VM&, StringView identifier);
 
-bool supports(JS::VM&, StringView property, StringView value);
-WebIDL::ExceptionOr<bool> supports(JS::VM&, StringView condition_text);
+WEB_API bool supports(JS::VM&, StringView property, StringView value);
+WEB_API WebIDL::ExceptionOr<bool> supports(JS::VM&, StringView condition_text);
 
 }

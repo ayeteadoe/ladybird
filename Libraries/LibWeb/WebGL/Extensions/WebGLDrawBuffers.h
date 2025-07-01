@@ -12,7 +12,7 @@
 
 namespace Web::WebGL::Extensions {
 
-class WebGLDrawBuffers : public Bindings::PlatformObject {
+class WEB_API WebGLDrawBuffers : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(WebGLDrawBuffers, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(WebGLDrawBuffers);
 

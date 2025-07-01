@@ -11,7 +11,7 @@
 
 namespace Web::DOM {
 
-class ElementByIdMap {
+class WEB_API ElementByIdMap {
 public:
     void add(FlyString const& element_id, Element&);
     void remove(FlyString const& element_id, Element&);

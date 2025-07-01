@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::MediaSourceExtensions {
 
 // https://w3c.github.io/media-source/#dom-sourcebuffer
-class SourceBuffer : public DOM::EventTarget {
+class WEB_API SourceBuffer : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(SourceBuffer, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(SourceBuffer);
 

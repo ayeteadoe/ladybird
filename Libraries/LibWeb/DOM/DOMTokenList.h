@@ -20,7 +20,7 @@
 namespace Web::DOM {
 
 // https://dom.spec.whatwg.org/#domtokenlist
-class DOMTokenList final : public Bindings::PlatformObject {
+class WEB_API DOMTokenList final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DOMTokenList, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DOMTokenList);
 

@@ -16,6 +16,7 @@
 #include <LibGfx/Forward.h>
 #include <LibGfx/Rect.h>
 #include <LibIPC/Forward.h>
+#include <LibWeb/Forward.h>
 #include <math.h>
 
 namespace Web {
@@ -56,7 +57,7 @@ class CSSPixelFraction;
 
 /// CSSPixels: A position or length in CSS "reference pixels", independent of zoom or screen DPI.
 /// See https://www.w3.org/TR/css-values-3/#reference-pixel
-class CSSPixels {
+class WEB_API CSSPixels {
 public:
     static constexpr i32 fractional_bits = 6;
     static constexpr i32 fixed_point_denominator = 1 << fractional_bits;

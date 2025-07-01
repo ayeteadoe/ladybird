@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
 
 // NOTE: This element is marked as obsolete, but is still listed as required by the specification.
-class HTMLDirectoryElement final : public HTMLElement {
+class WEB_API HTMLDirectoryElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLDirectoryElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLDirectoryElement);
 

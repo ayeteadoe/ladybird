@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/AttributeParser.h>
 #include <LibWeb/SVG/SVGElement.h>
 #include <LibWeb/SVG/SVGGraphicsElement.h>
@@ -13,7 +14,7 @@
 
 namespace Web::SVG {
 
-class SVGClipPathElement final : public SVGGraphicsElement
+class WEB_API SVGClipPathElement final : public SVGGraphicsElement
     , public SVGViewport {
     WEB_PLATFORM_OBJECT(SVGClipPathElement, SVGGraphicsElement);
     GC_DECLARE_ALLOCATOR(SVGClipPathElement);

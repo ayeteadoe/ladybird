@@ -20,7 +20,7 @@
 namespace Web::StorageAPI {
 
 // https://storage.spec.whatwg.org/#storage-bottle
-class StorageBottle : public GC::Cell {
+class WEB_API StorageBottle : public GC::Cell {
     GC_CELL(StorageBottle, GC::Cell);
 
 public:
@@ -49,7 +49,7 @@ protected:
     Optional<u64> m_quota;
 };
 
-class LocalStorageBottle final : public StorageBottle {
+class WEB_API LocalStorageBottle final : public StorageBottle {
     GC_CELL(LocalStorageBottle, StorageBottle);
     GC_DECLARE_ALLOCATOR(LocalStorageBottle);
 
@@ -80,7 +80,7 @@ private:
     StorageKey m_storage_key;
 };
 
-class SessionStorageBottle final : public StorageBottle {
+class WEB_API SessionStorageBottle final : public StorageBottle {
     GC_CELL(SessionStorageBottle, StorageBottle);
     GC_DECLARE_ALLOCATOR(SessionStorageBottle);
 
@@ -111,7 +111,7 @@ using BottleMap = Array<GC::Ptr<StorageBottle>, to_underlying(StorageEndpointTyp
 
 // https://storage.spec.whatwg.org/#storage-bucket
 // A storage bucket is a place for storage endpoints to store data.
-class StorageBucket : public GC::Cell {
+class WEB_API StorageBucket : public GC::Cell {
     GC_CELL(StorageBucket, GC::Cell);
     GC_DECLARE_ALLOCATOR(StorageBucket);
 
@@ -130,7 +130,7 @@ private:
     BottleMap m_bottle_map;
 };
 
-GC::Ptr<StorageBottle> obtain_a_session_storage_bottle_map(HTML::EnvironmentSettingsObject&, StorageEndpointType endpoint_type);
-GC::Ptr<StorageBottle> obtain_a_storage_bottle_map(StorageType, HTML::EnvironmentSettingsObject&, StorageEndpointType endpoint_type);
+WEB_API GC::Ptr<StorageBottle> obtain_a_session_storage_bottle_map(HTML::EnvironmentSettingsObject&, StorageEndpointType endpoint_type);
+WEB_API GC::Ptr<StorageBottle> obtain_a_storage_bottle_map(StorageType, HTML::EnvironmentSettingsObject&, StorageEndpointType endpoint_type);
 
 }

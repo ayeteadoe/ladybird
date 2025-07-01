@@ -8,11 +8,12 @@
 
 #include <AK/String.h>
 #include <LibWeb/DOM/Slottable.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
 // https://dom.spec.whatwg.org/#concept-slot
-class Slot {
+class WEB_API Slot {
 public:
     virtual ~Slot();
 

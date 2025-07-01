@@ -8,11 +8,12 @@
 
 #include <LibWeb/CSS/CSSStyleSheet.h>
 #include <LibWeb/DOM/Element.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ObservableArray.h>
 
 namespace Web::DOM {
 
-class StyleElementUtils {
+class WEB_API StyleElementUtils {
 public:
     void update_a_style_block(DOM::Element& style_element);
 

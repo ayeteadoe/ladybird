@@ -10,6 +10,7 @@
 #include <AK/Optional.h>
 #include <AK/SinglyLinkedList.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Streams/Algorithms.h>
 
 namespace Web::Streams {
@@ -21,7 +22,7 @@ enum class ReaderType {
 };
 
 // https://streams.spec.whatwg.org/#pull-into-descriptor
-struct PullIntoDescriptor : public GC::Cell {
+struct WEB_API PullIntoDescriptor : public GC::Cell {
     GC_CELL(PullIntoDescriptor, GC::Cell);
     GC_DECLARE_ALLOCATOR(PullIntoDescriptor);
 
@@ -96,7 +97,7 @@ struct ReadableByteStreamQueueEntry {
 };
 
 // https://streams.spec.whatwg.org/#readablebytestreamcontroller
-class ReadableByteStreamController : public Bindings::PlatformObject {
+class WEB_API ReadableByteStreamController : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ReadableByteStreamController, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ReadableByteStreamController);
 

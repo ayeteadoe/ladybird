@@ -11,6 +11,7 @@
 #include <AK/Vector.h>
 #include <LibGfx/Point.h>
 #include <LibIPC/Forward.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/SelectedFile.h>
 #include <LibWeb/PixelUnits.h>
 #include <LibWeb/UIEvents/KeyCode.h>
@@ -18,11 +19,11 @@
 
 namespace Web {
 
-struct BrowserInputData {
+struct WEB_API BrowserInputData {
     virtual ~BrowserInputData() = default;
 };
 
-struct KeyEvent {
+struct WEB_API KeyEvent {
     enum class Type {
         KeyDown,
         KeyUp,
@@ -39,7 +40,7 @@ struct KeyEvent {
     OwnPtr<BrowserInputData> browser_data;
 };
 
-struct MouseEvent {
+struct WEB_API MouseEvent {
     enum class Type {
         MouseDown,
         MouseUp,
@@ -62,7 +63,7 @@ struct MouseEvent {
     OwnPtr<BrowserInputData> browser_data;
 };
 
-struct DragEvent {
+struct WEB_API DragEvent {
     enum class Type {
         DragStart,
         DragMove,

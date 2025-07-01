@@ -8,10 +8,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/PercentageOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class FitContentStyleValue final : public CSSStyleValue {
+class WEB_API FitContentStyleValue final : public CSSStyleValue {
 public:
     static ValueComparingNonnullRefPtr<FitContentStyleValue const> create()
     {

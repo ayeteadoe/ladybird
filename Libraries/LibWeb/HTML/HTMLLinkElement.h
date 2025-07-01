@@ -12,13 +12,14 @@
 #include <LibWeb/DOM/DocumentLoadEventDelayer.h>
 #include <LibWeb/Fetch/Infrastructure/FetchAlgorithms.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Requests.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/CORSSettingAttribute.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/Loader/Resource.h>
 
 namespace Web::HTML {
 
-class HTMLLinkElement final
+class WEB_API HTMLLinkElement final
     : public HTMLElement
     , public ResourceClient {
     WEB_PLATFORM_OBJECT(HTMLLinkElement, HTMLElement);

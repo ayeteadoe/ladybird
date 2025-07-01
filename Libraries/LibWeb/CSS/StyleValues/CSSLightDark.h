@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/CSS/StyleValues/CSSColorValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-color-5/#funcdef-light-dark
-class CSSLightDark final : public CSSColorValue {
+class WEB_API CSSLightDark final : public CSSColorValue {
 public:
     virtual ~CSSLightDark() override = default;
 

@@ -15,6 +15,7 @@
 #include <LibWeb/CSS/Resolution.h>
 #include <LibWeb/CSS/StyleValues/CalculatedStyleValue.h>
 #include <LibWeb/CSS/Time.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -99,7 +100,7 @@ private:
     Variant<T, NonnullRefPtr<CalculatedStyleValue const>> m_value;
 };
 
-class AngleOrCalculated : public CalculatedOr<AngleOrCalculated, Angle> {
+class WEB_API AngleOrCalculated : public CalculatedOr<AngleOrCalculated, Angle> {
 public:
     using CalculatedOr::CalculatedOr;
 
@@ -107,7 +108,7 @@ public:
     NonnullRefPtr<CSSStyleValue const> create_style_value() const;
 };
 
-class FlexOrCalculated : public CalculatedOr<FlexOrCalculated, Flex> {
+class WEB_API FlexOrCalculated : public CalculatedOr<FlexOrCalculated, Flex> {
 public:
     using CalculatedOr::CalculatedOr;
 
@@ -115,7 +116,7 @@ public:
     NonnullRefPtr<CSSStyleValue const> create_style_value() const;
 };
 
-class FrequencyOrCalculated : public CalculatedOr<FrequencyOrCalculated, Frequency> {
+class WEB_API FrequencyOrCalculated : public CalculatedOr<FrequencyOrCalculated, Frequency> {
 public:
     using CalculatedOr::CalculatedOr;
 
@@ -123,7 +124,7 @@ public:
     NonnullRefPtr<CSSStyleValue const> create_style_value() const;
 };
 
-class IntegerOrCalculated : public CalculatedOr<IntegerOrCalculated, i64> {
+class WEB_API IntegerOrCalculated : public CalculatedOr<IntegerOrCalculated, i64> {
 public:
     using CalculatedOr::CalculatedOr;
 
@@ -131,7 +132,7 @@ public:
     NonnullRefPtr<CSSStyleValue const> create_style_value() const;
 };
 
-class LengthOrCalculated : public CalculatedOr<LengthOrCalculated, Length> {
+class WEB_API LengthOrCalculated : public CalculatedOr<LengthOrCalculated, Length> {
 public:
     using CalculatedOr::CalculatedOr;
 
@@ -139,7 +140,7 @@ public:
     NonnullRefPtr<CSSStyleValue const> create_style_value() const;
 };
 
-class NumberOrCalculated : public CalculatedOr<NumberOrCalculated, double> {
+class WEB_API NumberOrCalculated : public CalculatedOr<NumberOrCalculated, double> {
 public:
     using CalculatedOr::CalculatedOr;
 
@@ -147,7 +148,7 @@ public:
     NonnullRefPtr<CSSStyleValue const> create_style_value() const;
 };
 
-class PercentageOrCalculated : public CalculatedOr<PercentageOrCalculated, Percentage> {
+class WEB_API PercentageOrCalculated : public CalculatedOr<PercentageOrCalculated, Percentage> {
 public:
     using CalculatedOr::CalculatedOr;
 
@@ -155,7 +156,7 @@ public:
     NonnullRefPtr<CSSStyleValue const> create_style_value() const;
 };
 
-class ResolutionOrCalculated : public CalculatedOr<ResolutionOrCalculated, Resolution> {
+class WEB_API ResolutionOrCalculated : public CalculatedOr<ResolutionOrCalculated, Resolution> {
 public:
     using CalculatedOr::CalculatedOr;
 
@@ -163,7 +164,7 @@ public:
     NonnullRefPtr<CSSStyleValue const> create_style_value() const;
 };
 
-class TimeOrCalculated : public CalculatedOr<TimeOrCalculated, Time> {
+class WEB_API TimeOrCalculated : public CalculatedOr<TimeOrCalculated, Time> {
 public:
     using CalculatedOr::CalculatedOr;
 

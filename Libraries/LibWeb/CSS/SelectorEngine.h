@@ -8,6 +8,7 @@
 
 #include <LibWeb/CSS/Selector.h>
 #include <LibWeb/DOM/Element.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::SelectorEngine {
 
@@ -23,6 +24,6 @@ struct MatchContext {
     CSS::PseudoClassBitmap attempted_pseudo_class_matches {};
 };
 
-bool matches(CSS::Selector const&, DOM::Element const&, GC::Ptr<DOM::Element const> shadow_host, MatchContext& context, Optional<CSS::PseudoElement> = {}, GC::Ptr<DOM::ParentNode const> scope = {}, SelectorKind selector_kind = SelectorKind::Normal, GC::Ptr<DOM::Element const> anchor = nullptr);
+WEB_API bool matches(CSS::Selector const&, DOM::Element const&, GC::Ptr<DOM::Element const> shadow_host, MatchContext& context, Optional<CSS::PseudoElement> = {}, GC::Ptr<DOM::ParentNode const> scope = {}, SelectorKind selector_kind = SelectorKind::Normal, GC::Ptr<DOM::Element const> anchor = nullptr);
 
 }

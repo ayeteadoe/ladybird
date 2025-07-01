@@ -13,10 +13,11 @@
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/CSS/FontFace.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class FontFaceSet final : public DOM::EventTarget {
+class WEB_API FontFaceSet final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(FontFaceSet, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(FontFaceSet);
 

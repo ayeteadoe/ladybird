@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/CSS/PropertyID.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -29,6 +30,6 @@ struct RequiredInvalidationAfterStyleChange {
     static RequiredInvalidationAfterStyleChange full() { return { true, true, true, true }; }
 };
 
-RequiredInvalidationAfterStyleChange compute_property_invalidation(CSS::PropertyID property_id, RefPtr<CSSStyleValue const> const& old_value, RefPtr<CSSStyleValue const> const& new_value);
+WEB_API RequiredInvalidationAfterStyleChange compute_property_invalidation(CSS::PropertyID property_id, RefPtr<CSSStyleValue const> const& old_value, RefPtr<CSSStyleValue const> const& new_value);
 
 }

@@ -10,6 +10,7 @@
 #include <AK/String.h>
 #include <LibGC/RootVector.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/AudioTrack.h>
 
 namespace Web::HTML {

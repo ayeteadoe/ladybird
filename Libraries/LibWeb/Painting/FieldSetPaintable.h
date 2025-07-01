@@ -13,7 +13,7 @@
 
 namespace Web::Painting {
 
-class FieldSetPaintable final : public PaintableBox {
+class WEB_API FieldSetPaintable final : public PaintableBox {
     GC_CELL(FieldSetPaintable, PaintableBox);
     GC_DECLARE_ALLOCATOR(FieldSetPaintable);
 

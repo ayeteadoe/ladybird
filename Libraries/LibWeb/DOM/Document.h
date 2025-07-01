@@ -26,6 +26,7 @@
 #include <LibWeb/Cookie/Cookie.h>
 #include <LibWeb/DOM/ParentNode.h>
 #include <LibWeb/DOM/ShadowRoot.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/BrowsingContext.h>
 #include <LibWeb/HTML/CrossOrigin/OpenerPolicy.h>
 #include <LibWeb/HTML/DocumentReadyState.h>
@@ -61,7 +62,7 @@ enum class InvalidateLayoutTreeReason {
 #undef ENUMERATE_INVALIDATE_LAYOUT_TREE_REASON
 };
 
-[[nodiscard]] StringView to_string(InvalidateLayoutTreeReason);
+WEB_API [[nodiscard]] StringView to_string(InvalidateLayoutTreeReason);
 
 #define ENUMERATE_UPDATE_LAYOUT_REASONS(X) \
     X(CanvasRenderingContext2DSetFilter)   \
@@ -120,7 +121,7 @@ enum class UpdateLayoutReason {
 #undef ENUMERATE_UPDATE_LAYOUT_REASON
 };
 
-[[nodiscard]] StringView to_string(UpdateLayoutReason);
+WEB_API [[nodiscard]] StringView to_string(UpdateLayoutReason);
 
 // https://html.spec.whatwg.org/multipage/dom.html#document-load-timing-info
 struct DocumentLoadTimingInfo {
@@ -157,7 +158,7 @@ enum class PolicyControlledFeature : u8 {
     FocusWithoutUserActivation,
 };
 
-class Document
+class WEB_API Document
     : public ParentNode
     , public HTML::GlobalEventHandlers {
     WEB_PLATFORM_OBJECT(Document, ParentNode);

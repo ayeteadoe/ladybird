@@ -64,7 +64,7 @@ struct SpecifierResolution {
     bool specifier_is_null_or_url_like_that_is_special { false };
 };
 
-class Window final
+class WEB_API Window final
     : public DOM::EventTarget
     , public GlobalEventHandlers
     , public WindowEventHandlers
@@ -355,7 +355,7 @@ private:
     GC::Ptr<BarProp const> m_toolbar;
 };
 
-void run_animation_frame_callbacks(DOM::Document&, double now);
+WEB_API void run_animation_frame_callbacks(DOM::Document&, double now);
 
 }
 

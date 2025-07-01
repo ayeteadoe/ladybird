@@ -16,7 +16,7 @@
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-animations/#interface-csskeyframerule
-class CSSKeyframeRule final : public CSSRule {
+class WEB_API CSSKeyframeRule final : public CSSRule {
     WEB_PLATFORM_OBJECT(CSSKeyframeRule, CSSRule);
     GC_DECLARE_ALLOCATOR(CSSKeyframeRule);
 

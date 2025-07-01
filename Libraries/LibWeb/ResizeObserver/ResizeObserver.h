@@ -8,6 +8,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/ResizeObserver/ResizeObservation.h>
 #include <LibWeb/ResizeObserver/ResizeObserverEntry.h>
 
@@ -18,7 +19,7 @@ struct ResizeObserverOptions {
 };
 
 // https://drafts.csswg.org/resize-observer-1/#resize-observer-interface
-class ResizeObserver : public Bindings::PlatformObject {
+class WEB_API ResizeObserver : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ResizeObserver, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ResizeObserver);
 

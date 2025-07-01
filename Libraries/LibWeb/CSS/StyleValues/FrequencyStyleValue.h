@@ -11,10 +11,11 @@
 
 #include <LibWeb/CSS/Frequency.h>
 #include <LibWeb/CSS/StyleValues/CSSUnitValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class FrequencyStyleValue final : public CSSUnitValue {
+class WEB_API FrequencyStyleValue final : public CSSUnitValue {
 public:
     static ValueComparingNonnullRefPtr<FrequencyStyleValue const> create(Frequency frequency)
     {

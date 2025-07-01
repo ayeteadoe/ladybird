@@ -6,10 +6,11 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/PaintContext.h>
 
 namespace Web::Painting {
 
-void paint_table_borders(PaintContext&, PaintableBox const& table_paintable);
+WEB_API void paint_table_borders(PaintContext&, PaintableBox const& table_paintable);
 
 }

@@ -10,10 +10,11 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class ContentStyleValue final : public StyleValueWithDefaultOperators<ContentStyleValue> {
+class WEB_API ContentStyleValue final : public StyleValueWithDefaultOperators<ContentStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<ContentStyleValue const> create(ValueComparingNonnullRefPtr<StyleValueList const> content, ValueComparingRefPtr<StyleValueList const> alt_text)
     {

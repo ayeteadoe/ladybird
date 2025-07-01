@@ -18,7 +18,7 @@
 namespace Web::Streams {
 
 // https://streams.spec.whatwg.org/#readablestreamdefaultcontroller
-class ReadableStreamDefaultController : public Bindings::PlatformObject {
+class WEB_API ReadableStreamDefaultController : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ReadableStreamDefaultController, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ReadableStreamDefaultController);
 

@@ -8,9 +8,10 @@
 #pragma once
 
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
-EventTarget* retarget(EventTarget* a, EventTarget* b);
+WEB_API EventTarget* retarget(EventTarget* a, EventTarget* b);
 
 }

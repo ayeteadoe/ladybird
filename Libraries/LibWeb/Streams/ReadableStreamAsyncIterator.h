@@ -17,7 +17,7 @@ struct ReadableStreamIteratorOptions {
     bool prevent_cancel { false };
 };
 
-class ReadableStreamAsyncIterator final : public WebIDL::AsyncIterator {
+class WEB_API ReadableStreamAsyncIterator final : public WebIDL::AsyncIterator {
     WEB_PLATFORM_OBJECT(ReadableStreamAsyncIterator, WebIDL::AsyncIterator);
     GC_DECLARE_ALLOCATOR(ReadableStreamAsyncIterator);
 

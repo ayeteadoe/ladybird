@@ -7,13 +7,14 @@
 #pragma once
 
 #include <LibGfx/ImmutableBitmap.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/SVGGraphicsBox.h>
 #include <LibWeb/Painting/SVGMaskable.h>
 #include <LibWeb/Painting/SVGPaintable.h>
 
 namespace Web::Painting {
 
-class SVGGraphicsPaintable : public SVGPaintable
+class WEB_API SVGGraphicsPaintable : public SVGPaintable
     , public SVGMaskable {
     GC_CELL(SVGGraphicsPaintable, SVGPaintable);
 

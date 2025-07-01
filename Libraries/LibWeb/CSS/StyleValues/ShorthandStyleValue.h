@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class ShorthandStyleValue final : public StyleValueWithDefaultOperators<ShorthandStyleValue> {
+class WEB_API ShorthandStyleValue final : public StyleValueWithDefaultOperators<ShorthandStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<ShorthandStyleValue const> create(PropertyID shorthand, Vector<PropertyID> sub_properties, Vector<ValueComparingNonnullRefPtr<CSSStyleValue const>> values)
     {

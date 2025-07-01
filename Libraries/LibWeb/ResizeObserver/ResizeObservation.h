@@ -8,12 +8,13 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Bindings/ResizeObserverPrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/ResizeObserver/ResizeObserverSize.h>
 
 namespace Web::ResizeObserver {
 
 // https://drafts.csswg.org/resize-observer-1/#resize-observation-interface
-class ResizeObservation : public JS::Cell {
+class WEB_API ResizeObservation : public JS::Cell {
     GC_CELL(ResizeObservation, JS::Cell);
     GC_DECLARE_ALLOCATOR(ResizeObservation);
 

@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/SecurityPolicyViolationEventPrototype.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::ContentSecurityPolicy {
 
@@ -26,7 +27,7 @@ struct SecurityPolicyViolationEventInit final : public DOM::EventInit {
     u32 column_number { 0 };
 };
 
-class SecurityPolicyViolationEvent final : public DOM::Event {
+class WEB_API SecurityPolicyViolationEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(SecurityPolicyViolationEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(SecurityPolicyViolationEvent);
 

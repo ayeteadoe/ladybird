@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGTextPositioningElement.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::SVG {
 
 // https://svgwg.org/svg2-draft/text.html#InterfaceSVGTSpanElement
-class SVGTSpanElement : public SVGTextPositioningElement {
+class WEB_API SVGTSpanElement : public SVGTextPositioningElement {
     WEB_PLATFORM_OBJECT(SVGTSpanElement, SVGTextPositioningElement);
     GC_DECLARE_ALLOCATOR(SVGTSpanElement);
 

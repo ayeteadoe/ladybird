@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibGfx/Bitmap.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMMatrix.h>
 #include <LibWeb/Geometry/DOMPoint.h>
 #include <LibWeb/SVG/AttributeParser.h>
@@ -20,7 +21,7 @@
 
 namespace Web::SVG {
 
-class SVGSVGElement final : public SVGGraphicsElement
+class WEB_API SVGSVGElement final : public SVGGraphicsElement
     , public SVGViewport {
     WEB_PLATFORM_OBJECT(SVGSVGElement, SVGGraphicsElement);
     GC_DECLARE_ALLOCATOR(SVGSVGElement);

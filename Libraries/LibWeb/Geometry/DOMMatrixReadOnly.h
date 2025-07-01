@@ -48,7 +48,7 @@ struct DOMMatrixInit : public DOMMatrix2DInit {
 };
 
 // https://drafts.fxtf.org/geometry/#dommatrixreadonly
-class DOMMatrixReadOnly
+class WEB_API DOMMatrixReadOnly
     : public Bindings::PlatformObject
     , public Bindings::Serializable {
     WEB_PLATFORM_OBJECT(DOMMatrixReadOnly, Bindings::PlatformObject);
@@ -137,14 +137,14 @@ private:
     void initialize_from_create_3d_matrix(double m11, double m12, double m13, double m14, double m21, double m22, double m23, double m24, double m31, double m32, double m33, double m34, double m41, double m42, double m43, double m44);
 };
 
-WebIDL::ExceptionOr<void> validate_and_fixup_dom_matrix_2d_init(DOMMatrix2DInit& init);
-WebIDL::ExceptionOr<void> validate_and_fixup_dom_matrix_init(DOMMatrixInit& init);
+WEB_API WebIDL::ExceptionOr<void> validate_and_fixup_dom_matrix_2d_init(DOMMatrix2DInit& init);
+WEB_API WebIDL::ExceptionOr<void> validate_and_fixup_dom_matrix_init(DOMMatrixInit& init);
 
 struct ParsedMatrix {
     Gfx::DoubleMatrix4x4 matrix;
     bool is_2d_transform;
 };
 
-WebIDL::ExceptionOr<ParsedMatrix> parse_dom_matrix_init_string(JS::Realm& realm, StringView transform_list);
+WEB_API WebIDL::ExceptionOr<ParsedMatrix> parse_dom_matrix_init_string(JS::Realm& realm, StringView transform_list);
 
 }

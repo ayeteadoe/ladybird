@@ -7,9 +7,10 @@
 #pragma once
 
 #include <AK/StringView.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-bool is_valid_custom_element_name(StringView name);
+WEB_API bool is_valid_custom_element_name(StringView name);
 
 }

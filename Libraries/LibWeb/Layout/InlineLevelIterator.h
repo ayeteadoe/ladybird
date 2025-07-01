@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/Noncopyable.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/BlockContainer.h>
 #include <LibWeb/Layout/LayoutState.h>
 #include <LibWeb/Layout/TextNode.h>
@@ -16,7 +17,7 @@ namespace Web::Layout {
 // This class iterates over all the inline-level objects within an inline formatting context.
 // By repeatedly calling next() with the remaining available width on the current line,
 // it returns an "Item" representing the next piece of inline-level content to be placed on the line.
-class InlineLevelIterator {
+class WEB_API InlineLevelIterator {
     AK_MAKE_NONCOPYABLE(InlineLevelIterator);
     AK_MAKE_NONMOVABLE(InlineLevelIterator);
 

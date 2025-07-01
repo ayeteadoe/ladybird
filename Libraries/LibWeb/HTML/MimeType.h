@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/system-state.html#mimetype
-class MimeType : public Bindings::PlatformObject {
+class WEB_API MimeType : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(MimeType, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(MimeType);
 

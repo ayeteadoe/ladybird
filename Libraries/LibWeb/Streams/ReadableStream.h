@@ -59,7 +59,7 @@ struct ReadableStreamPair {
 };
 
 // https://streams.spec.whatwg.org/#readablestream
-class ReadableStream final
+class WEB_API ReadableStream final
     : public Bindings::PlatformObject
     , public Bindings::Transferable {
     WEB_PLATFORM_OBJECT(ReadableStream, Bindings::PlatformObject);

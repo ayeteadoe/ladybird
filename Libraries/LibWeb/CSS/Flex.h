@@ -14,7 +14,7 @@
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-grid-2/#typedef-flex
-class Flex {
+class WEB_API Flex {
 public:
     enum class Type : u8 {
         Fr,

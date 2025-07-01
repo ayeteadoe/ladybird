@@ -7,11 +7,12 @@
 #pragma once
 
 #include <AK/Vector.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/LineBoxFragment.h>
 
 namespace Web::Layout {
 
-class LineBox {
+class WEB_API LineBox {
 public:
     LineBox(CSS::Direction direction, CSS::WritingMode writing_mode)
         : m_direction(direction)

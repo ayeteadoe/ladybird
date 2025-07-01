@@ -8,11 +8,12 @@
 
 #include <AK/Optional.h>
 #include <AK/Types.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/Parser/NamedCharacterReferences.h>
 
 namespace Web::HTML {
 
-class NamedCharacterReferenceMatcher {
+class WEB_API NamedCharacterReferenceMatcher {
 public:
     NamedCharacterReferenceMatcher() = default;
 

@@ -7,12 +7,13 @@
 #pragma once
 
 #include <AK/Forward.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Fetch::Infrastructure {
 
-[[nodiscard]] bool is_method(ReadonlyBytes);
-[[nodiscard]] bool is_cors_safelisted_method(ReadonlyBytes);
-[[nodiscard]] bool is_forbidden_method(ReadonlyBytes);
-[[nodiscard]] ByteBuffer normalize_method(ReadonlyBytes);
+[[nodiscard]] WEB_API bool is_method(ReadonlyBytes);
+[[nodiscard]] WEB_API bool is_cors_safelisted_method(ReadonlyBytes);
+[[nodiscard]] WEB_API bool is_forbidden_method(ReadonlyBytes);
+[[nodiscard]] WEB_API ByteBuffer normalize_method(ReadonlyBytes);
 
 }

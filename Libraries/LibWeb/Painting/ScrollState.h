@@ -7,11 +7,12 @@
 #pragma once
 
 #include <AK/NonnullOwnPtr.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/ScrollFrame.h>
 
 namespace Web::Painting {
 
-class ScrollStateSnapshot {
+class WEB_API ScrollStateSnapshot {
 public:
     static ScrollStateSnapshot create(Vector<NonnullRefPtr<ScrollFrame>> const& scroll_frames);
 
@@ -37,7 +38,7 @@ private:
     Vector<Entry> entries;
 };
 
-class ScrollState {
+class WEB_API ScrollState {
 public:
     NonnullRefPtr<ScrollFrame> create_scroll_frame_for(PaintableBox const& paintable_box, RefPtr<ScrollFrame const> parent)
     {

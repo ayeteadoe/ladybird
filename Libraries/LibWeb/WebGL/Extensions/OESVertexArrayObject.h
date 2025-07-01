@@ -12,7 +12,7 @@
 
 namespace Web::WebGL::Extensions {
 
-class OESVertexArrayObject : public Bindings::PlatformObject {
+class WEB_API OESVertexArrayObject : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(OESVertexArrayObject, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(OESVertexArrayObject);
 

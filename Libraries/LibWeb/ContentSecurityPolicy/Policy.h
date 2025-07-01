@@ -20,7 +20,7 @@ namespace Web::ContentSecurityPolicy {
 // https://w3c.github.io/webappsec-csp/#content-security-policy-object
 // A policy defines allowed and restricted behaviors, and may be applied to a Document, WorkerGlobalScope,
 // or WorkletGlobalScope.
-class Policy final : public GC::Cell {
+class WEB_API Policy final : public GC::Cell {
     GC_CELL(Policy, GC::Cell);
     GC_DECLARE_ALLOCATOR(Policy);
 

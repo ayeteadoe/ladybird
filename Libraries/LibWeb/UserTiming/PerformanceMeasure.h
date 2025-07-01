@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/PerformanceTimeline/PerformanceEntry.h>
 
 namespace Web::UserTiming {
@@ -19,7 +20,7 @@ struct PerformanceMeasureOptions {
 };
 
 // https://w3c.github.io/user-timing/#dom-performancemeasure
-class PerformanceMeasure final : public PerformanceTimeline::PerformanceEntry {
+class WEB_API PerformanceMeasure final : public PerformanceTimeline::PerformanceEntry {
     WEB_PLATFORM_OBJECT(PerformanceMeasure, PerformanceTimeline::PerformanceEntry);
     GC_DECLARE_ALLOCATOR(PerformanceMeasure);
 

@@ -9,10 +9,11 @@
 #include <AK/String.h>
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class MediaError final : public Bindings::PlatformObject {
+class WEB_API MediaError final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(MediaError, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(MediaError);
 

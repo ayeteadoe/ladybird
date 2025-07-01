@@ -10,13 +10,14 @@
 #include <LibGfx/TextLayout.h>
 #include <LibUnicode/Segmenter.h>
 #include <LibWeb/DOM/Text.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/Node.h>
 
 namespace Web::Layout {
 
 class LineBoxFragment;
 
-class TextNode final : public Node {
+class WEB_API TextNode final : public Node {
     GC_CELL(TextNode, Node);
     GC_DECLARE_ALLOCATOR(TextNode);
 

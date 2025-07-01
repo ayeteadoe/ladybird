@@ -8,10 +8,11 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::RequestIdleCallback {
 
-class IdleDeadline final : public Bindings::PlatformObject {
+class WEB_API IdleDeadline final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(IdleDeadline, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(IdleDeadline);
 

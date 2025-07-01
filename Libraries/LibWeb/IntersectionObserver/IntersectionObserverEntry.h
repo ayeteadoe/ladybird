@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMRect.h>
 #include <LibWeb/HighResolutionTime/DOMHighResTimeStamp.h>
 
@@ -35,7 +36,7 @@ struct IntersectionObserverEntryInit {
     GC::Root<DOM::Element> target;
 };
 
-class IntersectionObserverEntry final : public Bindings::PlatformObject {
+class WEB_API IntersectionObserverEntry final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(IntersectionObserverEntry, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(IntersectionObserverEntry);
 

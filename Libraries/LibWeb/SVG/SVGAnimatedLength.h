@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGLength.h>
 
 namespace Web::SVG {
 
 // https://www.w3.org/TR/SVG11/types.html#InterfaceSVGAnimatedLength
-class SVGAnimatedLength final : public Bindings::PlatformObject {
+class WEB_API SVGAnimatedLength final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(SVGAnimatedLength, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(SVGAnimatedLength);
 

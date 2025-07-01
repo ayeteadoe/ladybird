@@ -10,6 +10,7 @@
 #include <LibURL/Pattern/Init.h>
 #include <LibURL/Pattern/Pattern.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::URLPattern {
 
@@ -23,7 +24,7 @@ struct URLPatternOptions {
 };
 
 // https://urlpattern.spec.whatwg.org/#urlpattern
-class URLPattern : public Bindings::PlatformObject {
+class WEB_API URLPattern : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(URLPattern, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(URLPattern);
 

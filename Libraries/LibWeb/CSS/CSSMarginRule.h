@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSRule.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/cssom/#cssmarginrule
-class CSSMarginRule final : public CSSRule {
+class WEB_API CSSMarginRule final : public CSSRule {
     WEB_PLATFORM_OBJECT(CSSMarginRule, CSSRule);
     GC_DECLARE_ALLOCATOR(CSSMarginRule);
 
@@ -35,6 +36,6 @@ private:
     GC::Ref<CSSStyleProperties> m_style;
 };
 
-bool is_margin_rule_name(StringView);
+WEB_API bool is_margin_rule_name(StringView);
 
 }

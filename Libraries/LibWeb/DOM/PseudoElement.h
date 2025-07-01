@@ -14,7 +14,7 @@
 
 namespace Web::DOM {
 
-class PseudoElement : public JS::Cell {
+class WEB_API PseudoElement : public JS::Cell {
     GC_CELL(PseudoElement, JS::Cell);
     GC_DECLARE_ALLOCATOR(PseudoElement);
 

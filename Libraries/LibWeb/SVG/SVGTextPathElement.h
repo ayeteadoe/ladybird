@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGGeometryElement.h>
 #include <LibWeb/SVG/SVGTextContentElement.h>
 #include <LibWeb/SVG/SVGURIReference.h>
@@ -13,7 +14,7 @@
 namespace Web::SVG {
 
 // https://svgwg.org/svg2-draft/text.html#TextPathElement
-class SVGTextPathElement
+class WEB_API SVGTextPathElement
     : public SVGTextContentElement
     , public SVGURIReferenceMixin<SupportsXLinkHref::Yes> {
     WEB_PLATFORM_OBJECT(SVGTextPathElement, SVGTextContentElement);

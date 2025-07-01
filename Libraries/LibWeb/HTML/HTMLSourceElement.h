@@ -6,11 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
 
-class HTMLSourceElement final : public HTMLElement {
+class WEB_API HTMLSourceElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLSourceElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLSourceElement);
 

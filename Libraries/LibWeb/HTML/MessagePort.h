@@ -20,7 +20,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/web-messaging.html#message-ports
-class MessagePort final
+class WEB_API MessagePort final
     : public DOM::EventTarget
     , public Bindings::Transferable {
     WEB_PLATFORM_OBJECT(MessagePort, DOM::EventTarget);

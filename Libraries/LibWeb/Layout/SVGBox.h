@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/BlockContainer.h>
 #include <LibWeb/SVG/SVGElement.h>
 #include <LibWeb/SVG/SVGGraphicsElement.h>
 
 namespace Web::Layout {
 
-class SVGBox : public Box {
+class WEB_API SVGBox : public Box {
     GC_CELL(SVGBox, Box);
 
 public:

@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/NavigationType.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/nav-history-apis.html#navigationtransition
-class NavigationTransition : public Bindings::PlatformObject {
+class WEB_API NavigationTransition : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(NavigationTransition, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(NavigationTransition);
 

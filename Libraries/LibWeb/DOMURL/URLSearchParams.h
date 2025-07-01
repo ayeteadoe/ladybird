@@ -8,6 +8,7 @@
 
 #include <AK/Vector.h>
 #include <LibURL/URL.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::DOMURL {
@@ -16,10 +17,10 @@ struct QueryParam {
     String name;
     String value;
 };
-String url_encode(Vector<QueryParam> const&, StringView encoding = "UTF-8"sv);
-Vector<QueryParam> url_decode(StringView);
+WEB_API String url_encode(Vector<QueryParam> const&, StringView encoding = "UTF-8"sv);
+WEB_API Vector<QueryParam> url_decode(StringView);
 
-class URLSearchParams : public Bindings::PlatformObject {
+class WEB_API URLSearchParams : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(URLSearchParams, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(URLSearchParams);
 

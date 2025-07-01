@@ -10,10 +10,11 @@
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Enums.h>
 #include <LibWeb/CSS/URL.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class FontSourceStyleValue final : public StyleValueWithDefaultOperators<FontSourceStyleValue> {
+class WEB_API FontSourceStyleValue final : public StyleValueWithDefaultOperators<FontSourceStyleValue> {
 public:
     struct Local {
         NonnullRefPtr<CSSStyleValue const> name;

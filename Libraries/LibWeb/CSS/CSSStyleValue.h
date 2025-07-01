@@ -82,7 +82,7 @@ private:
 using StyleValueVector = Vector<ValueComparingNonnullRefPtr<CSSStyleValue const>>;
 
 // https://drafts.css-houdini.org/css-typed-om-1/#cssstylevalue
-class CSSStyleValue : public RefCounted<CSSStyleValue> {
+class WEB_API CSSStyleValue : public RefCounted<CSSStyleValue> {
 public:
     virtual ~CSSStyleValue() = default;
 

@@ -8,10 +8,11 @@
 
 #include <LibWeb/CSS/Resolution.h>
 #include <LibWeb/CSS/StyleValues/CSSUnitValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class ResolutionStyleValue : public CSSUnitValue {
+class WEB_API ResolutionStyleValue : public CSSUnitValue {
 public:
     static ValueComparingNonnullRefPtr<ResolutionStyleValue const> create(Resolution resolution)
     {

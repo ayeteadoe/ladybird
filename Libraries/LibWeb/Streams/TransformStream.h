@@ -16,7 +16,7 @@
 
 namespace Web::Streams {
 
-class TransformStream final
+class WEB_API TransformStream final
     : public Bindings::PlatformObject
     , public Bindings::Transferable {
     WEB_PLATFORM_OBJECT(TransformStream, Bindings::PlatformObject);

@@ -12,7 +12,7 @@
 
 namespace Web::Layout {
 
-class AudioBox final : public ReplacedBox {
+class WEB_API AudioBox final : public ReplacedBox {
     GC_CELL(AudioBox, ReplacedBox);
     GC_DECLARE_ALLOCATOR(AudioBox);
 

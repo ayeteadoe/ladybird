@@ -8,6 +8,7 @@
 
 #include <AK/FlyString.h>
 #include <AK/TypeCasts.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/UIEvents/EventModifier.h>
 #include <LibWeb/UIEvents/KeyCode.h>
 #include <LibWeb/UIEvents/UIEvent.h>
@@ -32,7 +33,7 @@ enum class DOMKeyLocation {
 };
 
 // https://www.w3.org/TR/uievents/#interface-keyboardevent
-class KeyboardEvent final : public UIEvent {
+class WEB_API KeyboardEvent final : public UIEvent {
     WEB_PLATFORM_OBJECT(KeyboardEvent, UIEvent);
     GC_DECLARE_ALLOCATOR(KeyboardEvent);
 

@@ -16,7 +16,7 @@
 namespace Web::Streams::Detail {
 
 // https://streams.spec.whatwg.org/#ref-for-in-parallel
-class ReadableStreamPipeTo final : public JS::Cell {
+class WEB_API ReadableStreamPipeTo final : public JS::Cell {
     GC_CELL(ReadableStreamPipeTo, JS::Cell);
     GC_DECLARE_ALLOCATOR(ReadableStreamPipeTo);
 

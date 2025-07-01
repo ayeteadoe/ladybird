@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/WindowEventHandlers.h>
 
 namespace Web::HTML {
 
 // NOTE: This element is marked as obsolete, but is still listed as required by the specification.
-class HTMLFrameSetElement final
+class WEB_API HTMLFrameSetElement final
     : public HTMLElement
     , public WindowEventHandlers {
     WEB_PLATFORM_OBJECT(HTMLFrameSetElement, HTMLElement);

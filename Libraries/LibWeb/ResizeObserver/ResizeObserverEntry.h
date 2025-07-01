@@ -10,13 +10,14 @@
 #include <LibWeb/Bindings/ExceptionOrUtils.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Bindings/ResizeObserverPrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMRectReadOnly.h>
 #include <LibWeb/ResizeObserver/ResizeObserverSize.h>
 
 namespace Web::ResizeObserver {
 
 // https://drafts.csswg.org/resize-observer-1/#resize-observer-entry-interface
-class ResizeObserverEntry : public Bindings::PlatformObject {
+class WEB_API ResizeObserverEntry : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ResizeObserverEntry, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ResizeObserverEntry);
 

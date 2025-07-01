@@ -11,7 +11,7 @@
 
 namespace Web::Layout {
 
-class CheckBox final : public FormAssociatedLabelableNode {
+class WEB_API CheckBox final : public FormAssociatedLabelableNode {
     GC_CELL(CheckBox, FormAssociatedLabelableNode);
     GC_DECLARE_ALLOCATOR(CheckBox);
 

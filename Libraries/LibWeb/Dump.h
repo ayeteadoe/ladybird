@@ -12,34 +12,34 @@
 
 namespace Web {
 
-void dump_tree(HTML::TraversableNavigable&);
-void dump_tree(StringBuilder&, DOM::Node const&);
-void dump_tree(DOM::Node const&);
-void dump_tree(StringBuilder&, Layout::Node const&, bool show_box_model = false, bool show_cascaded_properties = false, bool colorize = false);
-void dump_tree(Layout::Node const&, bool show_box_model = true, bool show_cascaded_properties = false);
-void dump_tree(StringBuilder&, Painting::Paintable const&, bool colorize = false, int indent = 0);
-void dump_tree(Painting::Paintable const&);
-void dump_sheet(StringBuilder&, CSS::StyleSheet const&);
-void dump_sheet(CSS::StyleSheet const&);
-void dump_rule(StringBuilder&, CSS::CSSRule const&, int indent_levels = 0);
-void dump_rule(CSS::CSSRule const&);
-void dump_style_properties(StringBuilder&, CSS::CSSStyleProperties const&, int indent_levels = 0);
-void dump_descriptors(StringBuilder&, CSS::CSSDescriptors const&, int indent_levels = 0);
-void dump_font_face_rule(StringBuilder&, CSS::CSSFontFaceRule const&, int indent_levels = 0);
-void dump_import_rule(StringBuilder&, CSS::CSSImportRule const&, int indent_levels = 0);
-void dump_keyframe_rule(StringBuilder&, CSS::CSSKeyframeRule const&, int indent_levels = 0);
-void dump_keyframes_rule(StringBuilder&, CSS::CSSKeyframesRule const&, int indent_levels = 0);
-void dump_media_rule(StringBuilder&, CSS::CSSMediaRule const&, int indent_levels = 0);
-void dump_page_rule(StringBuilder&, CSS::CSSPageRule const&, int indent_levels = 0);
-void dump_margin_rule(StringBuilder&, CSS::CSSMarginRule const&, int indent_levels = 0);
-void dump_style_rule(StringBuilder&, CSS::CSSStyleRule const&, int indent_levels = 0);
-void dump_supports_rule(StringBuilder&, CSS::CSSSupportsRule const&, int indent_levels = 0);
-void dump_property_rule(StringBuilder&, CSS::CSSPropertyRule const&, int indent_levels = 0);
-void dump_namespace_rule(StringBuilder&, CSS::CSSNamespaceRule const&, int indent_levels = 0);
-void dump_nested_declarations(StringBuilder&, CSS::CSSNestedDeclarations const&, int indent_levels = 0);
-void dump_layer_block_rule(StringBuilder&, CSS::CSSLayerBlockRule const&, int indent_levels = 0);
-void dump_layer_statement_rule(StringBuilder&, CSS::CSSLayerStatementRule const&, int indent_levels = 0);
-void dump_selector(StringBuilder&, CSS::Selector const&, int indent_levels = 0);
-void dump_selector(CSS::Selector const&);
+WEB_API void dump_tree(HTML::TraversableNavigable&);
+WEB_API void dump_tree(StringBuilder&, DOM::Node const&);
+WEB_API void dump_tree(DOM::Node const&);
+WEB_API void dump_tree(StringBuilder&, Layout::Node const&, bool show_box_model = false, bool show_cascaded_properties = false, bool colorize = false);
+WEB_API void dump_tree(Layout::Node const&, bool show_box_model = true, bool show_cascaded_properties = false);
+WEB_API void dump_tree(StringBuilder&, Painting::Paintable const&, bool colorize = false, int indent = 0);
+WEB_API void dump_tree(Painting::Paintable const&);
+WEB_API void dump_sheet(StringBuilder&, CSS::StyleSheet const&);
+WEB_API void dump_sheet(CSS::StyleSheet const&);
+WEB_API void dump_rule(StringBuilder&, CSS::CSSRule const&, int indent_levels = 0);
+WEB_API void dump_rule(CSS::CSSRule const&);
+WEB_API void dump_style_properties(StringBuilder&, CSS::CSSStyleProperties const&, int indent_levels = 0);
+WEB_API void dump_descriptors(StringBuilder&, CSS::CSSDescriptors const&, int indent_levels = 0);
+WEB_API void dump_font_face_rule(StringBuilder&, CSS::CSSFontFaceRule const&, int indent_levels = 0);
+WEB_API void dump_import_rule(StringBuilder&, CSS::CSSImportRule const&, int indent_levels = 0);
+WEB_API void dump_keyframe_rule(StringBuilder&, CSS::CSSKeyframeRule const&, int indent_levels = 0);
+WEB_API void dump_keyframes_rule(StringBuilder&, CSS::CSSKeyframesRule const&, int indent_levels = 0);
+WEB_API void dump_media_rule(StringBuilder&, CSS::CSSMediaRule const&, int indent_levels = 0);
+WEB_API void dump_page_rule(StringBuilder&, CSS::CSSPageRule const&, int indent_levels = 0);
+WEB_API void dump_margin_rule(StringBuilder&, CSS::CSSMarginRule const&, int indent_levels = 0);
+WEB_API void dump_style_rule(StringBuilder&, CSS::CSSStyleRule const&, int indent_levels = 0);
+WEB_API void dump_supports_rule(StringBuilder&, CSS::CSSSupportsRule const&, int indent_levels = 0);
+WEB_API void dump_property_rule(StringBuilder&, CSS::CSSPropertyRule const&, int indent_levels = 0);
+WEB_API void dump_namespace_rule(StringBuilder&, CSS::CSSNamespaceRule const&, int indent_levels = 0);
+WEB_API void dump_nested_declarations(StringBuilder&, CSS::CSSNestedDeclarations const&, int indent_levels = 0);
+WEB_API void dump_layer_block_rule(StringBuilder&, CSS::CSSLayerBlockRule const&, int indent_levels = 0);
+WEB_API void dump_layer_statement_rule(StringBuilder&, CSS::CSSLayerStatementRule const&, int indent_levels = 0);
+WEB_API void dump_selector(StringBuilder&, CSS::Selector const&, int indent_levels = 0);
+WEB_API void dump_selector(CSS::Selector const&);
 
 }

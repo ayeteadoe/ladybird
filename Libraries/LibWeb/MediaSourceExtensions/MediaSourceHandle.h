@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::MediaSourceExtensions {
 
 // https://w3c.github.io/media-source/#dom-mediasourcehandle
-class MediaSourceHandle : public Bindings::PlatformObject {
+class WEB_API MediaSourceHandle : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(MediaSourceHandle, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(MediaSourceHandle);
 

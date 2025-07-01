@@ -14,6 +14,7 @@
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Compression/CompressionStream.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Streams/GenericTransformStream.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
@@ -25,7 +26,7 @@ using Decompressor = Variant<
     NonnullOwnPtr<Compress::GzipDecompressor>>;
 
 // https://compression.spec.whatwg.org/#decompressionstream
-class DecompressionStream final
+class WEB_API DecompressionStream final
     : public Bindings::PlatformObject
     , public Streams::GenericTransformStreamMixin {
     WEB_PLATFORM_OBJECT(DecompressionStream, Bindings::PlatformObject);

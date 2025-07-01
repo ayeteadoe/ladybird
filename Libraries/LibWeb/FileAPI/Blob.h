@@ -23,11 +23,11 @@ struct BlobPropertyBag {
     Bindings::EndingType endings;
 };
 
-[[nodiscard]] ErrorOr<String> convert_line_endings_to_native(StringView string);
-[[nodiscard]] ErrorOr<ByteBuffer> process_blob_parts(Vector<BlobPart> const& blob_parts, Optional<BlobPropertyBag> const& options = {});
-[[nodiscard]] bool is_basic_latin(StringView view);
+[[nodiscard]] WEB_API ErrorOr<String> convert_line_endings_to_native(StringView string);
+[[nodiscard]] WEB_API ErrorOr<ByteBuffer> process_blob_parts(Vector<BlobPart> const& blob_parts, Optional<BlobPropertyBag> const& options = {});
+[[nodiscard]] WEB_API bool is_basic_latin(StringView view);
 
-class Blob
+class WEB_API Blob
     : public Bindings::PlatformObject
     , public Bindings::Serializable {
     WEB_PLATFORM_OBJECT(Blob, Bindings::PlatformObject);

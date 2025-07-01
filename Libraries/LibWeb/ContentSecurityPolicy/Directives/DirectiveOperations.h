@@ -24,13 +24,13 @@ enum class MatchResult {
     Matches,
 };
 
-[[nodiscard]] Optional<FlyString> get_the_effective_directive_for_request(GC::Ref<Fetch::Infrastructure::Request const> request);
-[[nodiscard]] Vector<StringView> get_fetch_directive_fallback_list(Optional<FlyString> directive_name);
-[[nodiscard]] ShouldExecute should_fetch_directive_execute(Optional<FlyString> effective_directive_name, FlyString const& directive_name, GC::Ref<Policy const> policy);
+[[nodiscard]] WEB_API Optional<FlyString> get_the_effective_directive_for_request(GC::Ref<Fetch::Infrastructure::Request const> request);
+[[nodiscard]] WEB_API Vector<StringView> get_fetch_directive_fallback_list(Optional<FlyString> directive_name);
+[[nodiscard]] WEB_API ShouldExecute should_fetch_directive_execute(Optional<FlyString> effective_directive_name, FlyString const& directive_name, GC::Ref<Policy const> policy);
 
-[[nodiscard]] FlyString get_the_effective_directive_for_inline_checks(Directive::InlineType type);
+[[nodiscard]] WEB_API FlyString get_the_effective_directive_for_inline_checks(Directive::InlineType type);
 
-[[nodiscard]] MatchResult does_url_match_expression_in_origin_with_redirect_count(URL::URL const& url, String const& expression, URL::Origin const& origin, u8 redirect_count);
-[[nodiscard]] MatchResult does_url_match_source_list_in_origin_with_redirect_count(URL::URL const& url, Vector<String> const& source_list, URL::Origin const& origin, u8 redirect_count);
+[[nodiscard]] WEB_API MatchResult does_url_match_expression_in_origin_with_redirect_count(URL::URL const& url, String const& expression, URL::Origin const& origin, u8 redirect_count);
+[[nodiscard]] WEB_API MatchResult does_url_match_source_list_in_origin_with_redirect_count(URL::URL const& url, Vector<String> const& source_list, URL::Origin const& origin, u8 redirect_count);
 
 }

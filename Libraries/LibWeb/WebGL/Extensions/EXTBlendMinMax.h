@@ -11,7 +11,7 @@
 
 namespace Web::WebGL::Extensions {
 
-class EXTBlendMinMax : public Bindings::PlatformObject {
+class WEB_API EXTBlendMinMax : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(EXTBlendMinMax, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(EXTBlendMinMax);
 

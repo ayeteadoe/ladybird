@@ -14,6 +14,6 @@
 
 namespace Web::ContentSecurityPolicy::Directives {
 
-[[nodiscard]] GC::Ref<Directive> create_directive(GC::Heap&, String name, Vector<String> value);
+[[nodiscard]] WEB_API GC::Ref<Directive> create_directive(GC::Heap&, String name, Vector<String> value);
 
 }

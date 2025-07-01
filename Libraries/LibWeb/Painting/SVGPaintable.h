@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/SVGBox.h>
 #include <LibWeb/Painting/PaintableBox.h>
 
 namespace Web::Painting {
 
-class SVGPaintable : public PaintableBox {
+class WEB_API SVGPaintable : public PaintableBox {
     GC_CELL(SVGPaintable, PaintableBox);
 
 public:

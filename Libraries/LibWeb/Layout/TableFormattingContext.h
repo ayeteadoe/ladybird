@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/Forward.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/FormattingContext.h>
 #include <LibWeb/Layout/TableGrid.h>
 #include <LibWeb/Layout/TableWrapper.h>
@@ -18,7 +19,7 @@ enum class TableDimension {
     Column
 };
 
-class TableFormattingContext final : public FormattingContext {
+class WEB_API TableFormattingContext final : public FormattingContext {
 public:
     explicit TableFormattingContext(LayoutState&, LayoutMode, Box const&, FormattingContext* parent);
     ~TableFormattingContext();

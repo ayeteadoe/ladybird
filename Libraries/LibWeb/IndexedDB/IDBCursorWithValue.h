@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/IDBCursor.h>
 
 namespace Web::IndexedDB {
 
 // https://w3c.github.io/IndexedDB/#idbcursorwithvalue
-class IDBCursorWithValue : public IDBCursor {
+class WEB_API IDBCursorWithValue : public IDBCursor {
     WEB_PLATFORM_OBJECT(IDBCursorWithValue, IDBCursor);
     GC_DECLARE_ALLOCATOR(IDBCursorWithValue);
 

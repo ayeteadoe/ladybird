@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/workers.html#abstractworker
-class AbstractWorker {
+class WEB_API AbstractWorker {
 public:
     virtual ~AbstractWorker() = default;
 

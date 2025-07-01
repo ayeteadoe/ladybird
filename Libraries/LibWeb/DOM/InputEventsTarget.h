@@ -12,7 +12,7 @@
 
 namespace Web {
 
-class InputEventsTarget {
+class WEB_API InputEventsTarget {
 public:
     virtual ~InputEventsTarget() = default;
 

@@ -8,13 +8,14 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // An `<opentype-tag>` followed by an optional value.
 // For example, <feature-tag-value> ( https://drafts.csswg.org/css-fonts/#feature-tag-value )
 // and the `<opentype-tag> <number>` construct for `font-variation-settings`.
-class OpenTypeTaggedStyleValue : public StyleValueWithDefaultOperators<OpenTypeTaggedStyleValue> {
+class WEB_API OpenTypeTaggedStyleValue : public StyleValueWithDefaultOperators<OpenTypeTaggedStyleValue> {
 public:
     enum class Mode {
         FontFeatureSettings,

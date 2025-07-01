@@ -19,7 +19,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/workers.html#dedicated-workers-and-the-worker-interface
-class Worker
+class WEB_API Worker
     : public DOM::EventTarget
     , public HTML::AbstractWorker {
     WEB_PLATFORM_OBJECT(Worker, DOM::EventTarget);
@@ -70,6 +70,6 @@ private:
     GC::Ptr<WorkerAgentParent> m_agent;
 };
 
-void run_a_worker(Variant<GC::Ref<Worker>, GC::Ref<SharedWorker>> worker, URL::URL& url, EnvironmentSettingsObject& outside_settings, GC::Ptr<MessagePort> outside_port, WorkerOptions const& options);
+WEB_API void run_a_worker(Variant<GC::Ref<Worker>, GC::Ref<SharedWorker>> worker, URL::URL& url, EnvironmentSettingsObject& outside_settings, GC::Ptr<MessagePort> outside_port, WorkerOptions const& options);
 
 }

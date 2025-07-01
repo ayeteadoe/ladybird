@@ -6,11 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/BlockContainer.h>
 
 namespace Web::Layout {
 
-class TableWrapper : public BlockContainer {
+class WEB_API TableWrapper : public BlockContainer {
     GC_CELL(TableWrapper, BlockContainer);
     GC_DECLARE_ALLOCATOR(TableWrapper);
 

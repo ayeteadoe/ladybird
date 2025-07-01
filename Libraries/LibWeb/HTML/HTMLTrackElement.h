@@ -12,7 +12,7 @@
 
 namespace Web::HTML {
 
-class HTMLTrackElement final : public HTMLElement {
+class WEB_API HTMLTrackElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLTrackElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLTrackElement);
 

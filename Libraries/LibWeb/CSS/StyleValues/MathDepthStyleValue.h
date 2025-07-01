@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class MathDepthStyleValue : public StyleValueWithDefaultOperators<MathDepthStyleValue> {
+class WEB_API MathDepthStyleValue : public StyleValueWithDefaultOperators<MathDepthStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<MathDepthStyleValue const> create_auto_add();
     static ValueComparingNonnullRefPtr<MathDepthStyleValue const> create_add(ValueComparingNonnullRefPtr<CSSStyleValue const> integer_value);

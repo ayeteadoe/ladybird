@@ -15,7 +15,7 @@
 namespace Web::Streams {
 
 // https://streams.spec.whatwg.org/#readablestreamgenericreader
-class ReadableStreamGenericReaderMixin {
+class WEB_API ReadableStreamGenericReaderMixin {
 public:
     virtual ~ReadableStreamGenericReaderMixin() = default;
 

@@ -12,6 +12,7 @@
 #include <LibJS/Runtime/Promise.h>
 #include <LibJS/Runtime/Value.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -20,7 +21,7 @@ struct PromiseRejectionEventInit : public DOM::EventInit {
     JS::Value reason { JS::js_undefined() };
 };
 
-class PromiseRejectionEvent final : public DOM::Event {
+class WEB_API PromiseRejectionEvent final : public DOM::Event {
     WEB_PLATFORM_OBJECT(PromiseRejectionEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(PromiseRejectionEvent);
 

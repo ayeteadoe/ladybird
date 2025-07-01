@@ -15,6 +15,7 @@
 #include <AK/Vector.h>
 #include <LibGfx/Bitmap.h>
 #include <LibGfx/Point.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -35,7 +36,7 @@ struct DragDataStoreItem {
 };
 
 // https://html.spec.whatwg.org/multipage/dnd.html#drag-data-store
-class DragDataStore : public RefCounted<DragDataStore> {
+class WEB_API DragDataStore : public RefCounted<DragDataStore> {
 public:
     enum class Mode {
         ReadWrite,

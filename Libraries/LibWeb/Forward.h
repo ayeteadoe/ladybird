@@ -11,6 +11,7 @@
 #include <AK/Variant.h>
 #include <LibIPC/Forward.h>
 #include <LibJS/Forward.h>
+#include <LibWeb/Export.h>
 
 namespace Web {
 

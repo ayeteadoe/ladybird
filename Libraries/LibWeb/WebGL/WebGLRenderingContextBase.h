@@ -16,7 +16,7 @@ using TexImageSource = Variant<GC::Root<HTML::ImageBitmap>, GC::Root<HTML::Image
 
 // FIXME: This object should inherit from Bindings::PlatformObject and implement the WebGLRenderingContextBase IDL interface.
 //        We should make WebGL code generator to produce implementation for this interface.
-class WebGLRenderingContextBase {
+class WEB_API WebGLRenderingContextBase {
 public:
     virtual GC::Cell const* gc_cell() const = 0;
     virtual void visit_edges(JS::Cell::Visitor&) = 0;

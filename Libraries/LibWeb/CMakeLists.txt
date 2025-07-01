@@ -1016,7 +1016,7 @@ set(GENERATED_SOURCES
     HTML/Parser/NamedCharacterReferences.cpp
 )
 
-serenity_lib(LibWeb web)
+serenity_lib(LibWeb web EXPLICIT_SYMBOL_EXPORT)
 
 target_link_libraries(LibWeb PRIVATE LibCore LibCompress LibCrypto LibJS LibHTTP LibGfx LibIPC LibRegex LibSyntax LibTextCodec LibUnicode LibMedia LibWasm LibXML LibIDL LibURL LibTLS LibRequests LibGC LibThreading skia unofficial::angle::libEGL unofficial::angle::libGLESv2)
 

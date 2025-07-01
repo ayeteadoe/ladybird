@@ -9,6 +9,7 @@
 
 #include <AK/HashMap.h>
 #include <LibURL/URL.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::HTML {
@@ -39,11 +40,11 @@ private:
     ModuleIntegrityMap m_integrity;
 };
 
-WebIDL::ExceptionOr<ImportMap> parse_import_map_string(JS::Realm& realm, ByteString const& input, URL::URL base_url);
-Optional<FlyString> normalize_specifier_key(JS::Realm& realm, FlyString specifier_key, URL::URL base_url);
-WebIDL::ExceptionOr<ModuleSpecifierMap> sort_and_normalise_module_specifier_map(JS::Realm& realm, JS::Object& original_map, URL::URL base_url);
-WebIDL::ExceptionOr<HashMap<URL::URL, ModuleSpecifierMap>> sort_and_normalise_scopes(JS::Realm& realm, JS::Object& original_map, URL::URL base_url);
-WebIDL::ExceptionOr<ModuleIntegrityMap> normalize_module_integrity_map(JS::Realm& realm, JS::Object& original_map, URL::URL base_url);
-void merge_existing_and_new_import_maps(Window&, ImportMap&);
+WEB_API WebIDL::ExceptionOr<ImportMap> parse_import_map_string(JS::Realm& realm, ByteString const& input, URL::URL base_url);
+WEB_API Optional<FlyString> normalize_specifier_key(JS::Realm& realm, FlyString specifier_key, URL::URL base_url);
+WEB_API WebIDL::ExceptionOr<ModuleSpecifierMap> sort_and_normalise_module_specifier_map(JS::Realm& realm, JS::Object& original_map, URL::URL base_url);
+WEB_API WebIDL::ExceptionOr<HashMap<URL::URL, ModuleSpecifierMap>> sort_and_normalise_scopes(JS::Realm& realm, JS::Object& original_map, URL::URL base_url);
+WEB_API WebIDL::ExceptionOr<ModuleIntegrityMap> normalize_module_integrity_map(JS::Realm& realm, JS::Object& original_map, URL::URL base_url);
+WEB_API void merge_existing_and_new_import_maps(Window&, ImportMap&);
 
 }

@@ -14,6 +14,7 @@
 #include <LibGfx/Path.h>
 #include <LibGfx/TextLayout.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/Canvas/CanvasCompositing.h>
 #include <LibWeb/HTML/Canvas/CanvasDrawImage.h>
 #include <LibWeb/HTML/Canvas/CanvasDrawPath.h>
@@ -34,7 +35,7 @@
 
 namespace Web::HTML {
 
-class CanvasRenderingContext2D
+class WEB_API CanvasRenderingContext2D
     : public Bindings::PlatformObject
     , public CanvasPath
     , public CanvasState
@@ -176,7 +177,7 @@ enum class CanvasImageSourceUsability {
     Good,
 };
 
-WebIDL::ExceptionOr<CanvasImageSourceUsability> check_usability_of_image(CanvasImageSource const&);
-bool image_is_not_origin_clean(CanvasImageSource const&);
+WEB_API WebIDL::ExceptionOr<CanvasImageSourceUsability> check_usability_of_image(CanvasImageSource const&);
+WEB_API bool image_is_not_origin_clean(CanvasImageSource const&);
 
 }

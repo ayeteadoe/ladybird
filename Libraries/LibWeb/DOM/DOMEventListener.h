@@ -16,7 +16,7 @@ namespace Web::DOM {
 
 // https://dom.spec.whatwg.org/#concept-event-listener
 // NOTE: The spec calls this "event listener", and it's *importantly* not the same as "EventListener"
-class DOMEventListener : public JS::Cell {
+class WEB_API DOMEventListener : public JS::Cell {
     GC_CELL(DOMEventListener, JS::Cell);
     GC_DECLARE_ALLOCATOR(DOMEventListener);
 

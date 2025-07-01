@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/Element.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/Box.h>
 
 namespace Web::Layout {
 
-class ReplacedBox : public Box {
+class WEB_API ReplacedBox : public Box {
     GC_CELL(ReplacedBox, Box);
 
 public:

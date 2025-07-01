@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebGL/Types.h>
 #include <LibWeb/WebGL/WebGLObject.h>
 
 namespace Web::WebGL {
 
-class WebGLQuery : public WebGLObject {
+class WEB_API WebGLQuery : public WebGLObject {
     WEB_PLATFORM_OBJECT(WebGLQuery, WebGLObject);
     GC_DECLARE_ALLOCATOR(WebGLQuery);
 

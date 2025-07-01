@@ -9,11 +9,12 @@
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/AudioParamPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::WebAudio {
 
 // https://webaudio.github.io/web-audio-api/#AudioParam
-class AudioParam final : public Bindings::PlatformObject {
+class WEB_API AudioParam final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(AudioParam, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(AudioParam);
 

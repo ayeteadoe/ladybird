@@ -11,10 +11,11 @@
 
 #include <LibWeb/CSS/StyleValues/CSSUnitValue.h>
 #include <LibWeb/CSS/Time.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class TimeStyleValue : public CSSUnitValue {
+class WEB_API TimeStyleValue : public CSSUnitValue {
 public:
     static ValueComparingNonnullRefPtr<TimeStyleValue const> create(Time time)
     {

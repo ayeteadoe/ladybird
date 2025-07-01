@@ -11,7 +11,7 @@
 
 namespace Web::Painting {
 
-class VideoPaintable final : public MediaPaintable {
+class WEB_API VideoPaintable final : public MediaPaintable {
     GC_CELL(VideoPaintable, MediaPaintable);
     GC_DECLARE_ALLOCATOR(VideoPaintable);
 

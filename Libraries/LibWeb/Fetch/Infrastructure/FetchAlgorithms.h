@@ -15,7 +15,7 @@
 namespace Web::Fetch::Infrastructure {
 
 // https://fetch.spec.whatwg.org/#fetch-elsewhere-fetch
-class FetchAlgorithms : public JS::Cell {
+class WEB_API FetchAlgorithms : public JS::Cell {
     GC_CELL(FetchAlgorithms, JS::Cell);
     GC_DECLARE_ALLOCATOR(FetchAlgorithms);
 

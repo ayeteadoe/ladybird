@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/DOM/HTMLCollection.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class HTMLFormControlsCollection : public DOM::HTMLCollection {
+class WEB_API HTMLFormControlsCollection : public DOM::HTMLCollection {
     WEB_PLATFORM_OBJECT(HTMLFormControlsCollection, DOM::HTMLCollection);
     GC_DECLARE_ALLOCATOR(HTMLFormControlsCollection);
 

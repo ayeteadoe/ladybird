@@ -12,7 +12,7 @@
 
 namespace Web::Streams {
 
-class GenericTransformStreamMixin {
+class WEB_API GenericTransformStreamMixin {
 public:
     virtual ~GenericTransformStreamMixin();
 

@@ -15,7 +15,7 @@
 namespace Web::Streams {
 
 // https://streams.spec.whatwg.org/#bytelengthqueuingstrategy
-class ByteLengthQueuingStrategy final : public Bindings::PlatformObject {
+class WEB_API ByteLengthQueuingStrategy final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ByteLengthQueuingStrategy, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ByteLengthQueuingStrategy);
 

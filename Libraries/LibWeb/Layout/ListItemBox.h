@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/Element.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/BlockContainer.h>
 
 namespace Web::Layout {
 
-class ListItemBox final : public BlockContainer {
+class WEB_API ListItemBox final : public BlockContainer {
     GC_CELL(ListItemBox, BlockContainer);
     GC_DECLARE_ALLOCATOR(ListItemBox);
 

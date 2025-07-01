@@ -8,6 +8,7 @@
 
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/DragDataStore.h>
 
 namespace Web::HTML {
@@ -32,7 +33,7 @@ ENUMERATE_DATA_TRANSFER_EFFECTS
 }
 
 // https://html.spec.whatwg.org/multipage/dnd.html#the-datatransfer-interface
-class DataTransfer : public Bindings::PlatformObject {
+class WEB_API DataTransfer : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DataTransfer, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DataTransfer);
 

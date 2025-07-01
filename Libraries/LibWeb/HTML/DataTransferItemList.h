@@ -8,13 +8,14 @@
 
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/dnd.html#the-datatransferitemlist-interface
-class DataTransferItemList : public Bindings::PlatformObject {
+class WEB_API DataTransferItemList : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DataTransferItemList, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DataTransferItemList);
 

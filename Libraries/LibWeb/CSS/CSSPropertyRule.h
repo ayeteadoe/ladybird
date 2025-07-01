@@ -16,7 +16,7 @@
 namespace Web::CSS {
 
 // https://drafts.css-houdini.org/css-properties-values-api/#the-css-property-rule-interface
-class CSSPropertyRule final : public CSSRule {
+class WEB_API CSSPropertyRule final : public CSSRule {
     WEB_PLATFORM_OBJECT(CSSPropertyRule, CSSRule);
     GC_DECLARE_ALLOCATOR(CSSPropertyRule);
 

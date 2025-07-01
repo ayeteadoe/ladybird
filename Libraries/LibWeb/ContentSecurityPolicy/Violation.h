@@ -24,7 +24,7 @@ namespace Web::ContentSecurityPolicy {
 // https://w3c.github.io/webappsec-csp/#violation
 // A violation represents an action or resource which goes against the set of policy objects associated with a global
 // object.
-class Violation final : public JS::Cell {
+class WEB_API Violation final : public JS::Cell {
     GC_CELL(Violation, JS::Cell);
     GC_DECLARE_ALLOCATOR(Violation);
 

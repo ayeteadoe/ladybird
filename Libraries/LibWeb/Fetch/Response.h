@@ -27,7 +27,7 @@ struct ResponseInit {
 };
 
 // https://fetch.spec.whatwg.org/#response
-class Response final
+class WEB_API Response final
     : public Bindings::PlatformObject
     , public BodyMixin {
     WEB_PLATFORM_OBJECT(Response, Bindings::PlatformObject);

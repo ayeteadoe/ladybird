@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::ServiceWorker {
 
 // https://w3c.github.io/ServiceWorker/#serviceworkerregistration-interface
-class ServiceWorkerRegistration : public DOM::EventTarget {
+class WEB_API ServiceWorkerRegistration : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(ServiceWorkerRegistration, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(ServiceWorkerRegistration);
 

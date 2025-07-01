@@ -12,7 +12,7 @@
 
 namespace Web::WebGL::Extensions {
 
-class WebGLVertexArrayObjectOES : public WebGLObject {
+class WEB_API WebGLVertexArrayObjectOES : public WebGLObject {
     WEB_PLATFORM_OBJECT(WebGLVertexArrayObjectOES, WebGLObject);
     GC_DECLARE_ALLOCATOR(WebGLVertexArrayObjectOES);
 

@@ -15,11 +15,12 @@
 #include <LibWeb/Fetch/Infrastructure/FetchTimingInfo.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Requests.h>
 #include <LibWeb/Fetch/Infrastructure/Task.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Fetch::Infrastructure {
 
 // https://fetch.spec.whatwg.org/#fetch-params
-class FetchParams : public JS::Cell {
+class WEB_API FetchParams : public JS::Cell {
     GC_CELL(FetchParams, JS::Cell);
     GC_DECLARE_ALLOCATOR(FetchParams);
 

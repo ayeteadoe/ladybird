@@ -8,10 +8,11 @@
 
 #include <LibWeb/CSS/StyleValues/CSSColorValue.h>
 #include <LibWeb/CSS/StyleValues/NumberStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class CSSLabLike : public CSSColorValue {
+class WEB_API CSSLabLike : public CSSColorValue {
 public:
     template<typename T>
     static ValueComparingNonnullRefPtr<T const> create(ValueComparingNonnullRefPtr<CSSStyleValue const> l, ValueComparingNonnullRefPtr<CSSStyleValue const> a, ValueComparingNonnullRefPtr<CSSStyleValue const> b, ValueComparingRefPtr<CSSStyleValue const> alpha = {})
@@ -49,7 +50,7 @@ protected:
 };
 
 // https://drafts.css-houdini.org/css-typed-om-1/#cssoklab
-class CSSOKLab final : public CSSLabLike {
+class WEB_API CSSOKLab final : public CSSLabLike {
 public:
     virtual Color to_color(Optional<Layout::NodeWithStyle const&>) const override;
     virtual String to_string(SerializationMode) const override;
@@ -61,7 +62,7 @@ public:
 };
 
 // https://drafts.css-houdini.org/css-typed-om-1/#csslab
-class CSSLab final : public CSSLabLike {
+class WEB_API CSSLab final : public CSSLabLike {
 public:
     virtual Color to_color(Optional<Layout::NodeWithStyle const&>) const override;
     virtual String to_string(SerializationMode) const override;

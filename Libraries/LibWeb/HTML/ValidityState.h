@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/FormAssociatedElement.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#validitystate
-class ValidityState final : public Bindings::PlatformObject {
+class WEB_API ValidityState final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(ValidityState, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(ValidityState);
 

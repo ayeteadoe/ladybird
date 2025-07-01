@@ -12,10 +12,11 @@
 #include <LibWeb/CSS/LengthBox.h>
 #include <LibWeb/CSS/PercentageOr.h>
 #include <LibWeb/CSS/StyleValues/PositionStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-struct Inset {
+struct WEB_API Inset {
     Gfx::Path to_path(CSSPixelRect reference_box, Layout::Node const&) const;
     String to_string(SerializationMode) const;
 
@@ -24,7 +25,7 @@ struct Inset {
     LengthBox inset_box;
 };
 
-struct Xywh {
+struct WEB_API Xywh {
     Gfx::Path to_path(CSSPixelRect reference_box, Layout::Node const&) const;
     String to_string(SerializationMode) const;
 
@@ -36,7 +37,7 @@ struct Xywh {
     LengthPercentage height;
 };
 
-struct Rect {
+struct WEB_API Rect {
     Gfx::Path to_path(CSSPixelRect reference_box, Layout::Node const&) const;
     String to_string(SerializationMode) const;
 
@@ -52,7 +53,7 @@ enum class FitSide {
 
 using ShapeRadius = Variant<LengthPercentage, FitSide>;
 
-struct Circle {
+struct WEB_API Circle {
     Gfx::Path to_path(CSSPixelRect reference_box, Layout::Node const&) const;
     String to_string(SerializationMode) const;
 
@@ -62,7 +63,7 @@ struct Circle {
     ValueComparingNonnullRefPtr<PositionStyleValue const> position;
 };
 
-struct Ellipse {
+struct WEB_API Ellipse {
     Gfx::Path to_path(CSSPixelRect reference_box, Layout::Node const&) const;
     String to_string(SerializationMode) const;
 
@@ -73,7 +74,7 @@ struct Ellipse {
     ValueComparingNonnullRefPtr<PositionStyleValue const> position;
 };
 
-struct Polygon {
+struct WEB_API Polygon {
     struct Point {
         bool operator==(Point const&) const = default;
         LengthPercentage x;
@@ -92,7 +93,7 @@ struct Polygon {
 // FIXME: Implement path(). See: https://www.w3.org/TR/css-shapes-1/#basic-shape-functions
 using BasicShape = Variant<Inset, Xywh, Rect, Circle, Ellipse, Polygon>;
 
-class BasicShapeStyleValue : public StyleValueWithDefaultOperators<BasicShapeStyleValue> {
+class WEB_API BasicShapeStyleValue : public StyleValueWithDefaultOperators<BasicShapeStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<BasicShapeStyleValue const> create(BasicShape basic_shape)
     {

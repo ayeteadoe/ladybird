@@ -9,6 +9,7 @@
 #include <AK/ByteBuffer.h>
 #include <LibGfx/Bitmap.h>
 #include <LibWeb/DOM/Document.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -18,6 +19,6 @@ struct SerializeBitmapResult {
 };
 
 // https://html.spec.whatwg.org/multipage/canvas.html#a-serialisation-of-the-bitmap-as-a-file
-ErrorOr<SerializeBitmapResult> serialize_bitmap(Gfx::Bitmap const& bitmap, StringView type, Optional<double> quality);
+WEB_API ErrorOr<SerializeBitmapResult> serialize_bitmap(Gfx::Bitmap const& bitmap, StringView type, Optional<double> quality);
 
 }

@@ -8,12 +8,13 @@
 
 #include <AK/ByteString.h>
 #include <AK/Optional.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/TextMetrics.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvastext
-class CanvasText {
+class WEB_API CanvasText {
 public:
     virtual ~CanvasText() = default;
 

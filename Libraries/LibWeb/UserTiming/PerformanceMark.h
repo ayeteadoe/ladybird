@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/PerformanceTimeline/PerformanceEntry.h>
 
 namespace Web::UserTiming {
@@ -17,7 +18,7 @@ struct PerformanceMarkOptions {
 };
 
 // https://w3c.github.io/user-timing/#dom-performancemark
-class PerformanceMark final : public PerformanceTimeline::PerformanceEntry {
+class WEB_API PerformanceMark final : public PerformanceTimeline::PerformanceEntry {
     WEB_PLATFORM_OBJECT(PerformanceMark, PerformanceTimeline::PerformanceEntry);
     GC_DECLARE_ALLOCATOR(PerformanceMark);
 

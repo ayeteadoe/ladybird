@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSRule.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-cascade-5/#the-csslayerstatementrule-interface
-class CSSLayerStatementRule final : public CSSRule {
+class WEB_API CSSLayerStatementRule final : public CSSRule {
     WEB_PLATFORM_OBJECT(CSSLayerStatementRule, CSSRule);
     GC_DECLARE_ALLOCATOR(CSSLayerStatementRule);
 

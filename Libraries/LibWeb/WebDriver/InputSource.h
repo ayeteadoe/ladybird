@@ -40,7 +40,7 @@ struct KeyInputSource {
 };
 
 // https://w3c.github.io/webdriver/#dfn-pointer-input-source
-struct PointerInputSource {
+struct WEB_API PointerInputSource {
     enum class Subtype {
         Mouse,
         Pen,
@@ -63,7 +63,7 @@ struct WheelInputSource {
 using InputSource = Variant<NullInputSource, KeyInputSource, PointerInputSource, WheelInputSource>;
 
 // https://w3c.github.io/webdriver/#dfn-global-key-state
-struct GlobalKeyState {
+struct WEB_API GlobalKeyState {
     UIEvents::KeyModifier modifiers() const;
 
     HashTable<String> pressed;
@@ -73,15 +73,15 @@ struct GlobalKeyState {
     bool shift_key { false };
 };
 
-Optional<InputSourceType> input_source_type_from_string(StringView);
-Optional<PointerInputSource::Subtype> pointer_input_source_subtype_from_string(StringView);
+WEB_API Optional<InputSourceType> input_source_type_from_string(StringView);
+WEB_API Optional<PointerInputSource::Subtype> pointer_input_source_subtype_from_string(StringView);
 
-InputSource create_input_source(InputState const&, InputSourceType, Optional<PointerInputSource::Subtype>);
-void add_input_source(InputState&, String id, InputSource);
-void remove_input_source(InputState&, StringView id);
-Optional<InputSource&> get_input_source(InputState&, StringView id);
-ErrorOr<InputSource*, WebDriver::Error> get_or_create_input_source(InputState&, InputSourceType, StringView id, Optional<PointerInputSource::Subtype>);
+WEB_API InputSource create_input_source(InputState const&, InputSourceType, Optional<PointerInputSource::Subtype>);
+WEB_API void add_input_source(InputState&, String id, InputSource);
+WEB_API void remove_input_source(InputState&, StringView id);
+WEB_API Optional<InputSource&> get_input_source(InputState&, StringView id);
+WEB_API ErrorOr<InputSource*, WebDriver::Error> get_or_create_input_source(InputState&, InputSourceType, StringView id, Optional<PointerInputSource::Subtype>);
 
-GlobalKeyState get_global_key_state(InputState const&);
+WEB_API GlobalKeyState get_global_key_state(InputState const&);
 
 }

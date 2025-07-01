@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/CSS/PercentageOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class LengthBox {
+class WEB_API LengthBox {
 public:
     LengthBox();
     LengthBox(LengthPercentage top, LengthPercentage right, LengthPercentage bottom, LengthPercentage left);

@@ -11,7 +11,7 @@
 #include <LibWeb/Painting/FieldSetPaintable.h>
 namespace Web::Layout {
 
-class FieldSetBox final : public BlockContainer {
+class WEB_API FieldSetBox final : public BlockContainer {
     GC_CELL(FieldSetBox, BlockContainer);
     GC_DECLARE_ALLOCATOR(FieldSetBox);
 

@@ -8,10 +8,11 @@
 
 #include <LibWeb/CSS/Flex.h>
 #include <LibWeb/CSS/StyleValues/CSSUnitValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class FlexStyleValue final : public CSSUnitValue {
+class WEB_API FlexStyleValue final : public CSSUnitValue {
 public:
     static ValueComparingNonnullRefPtr<FlexStyleValue const> create(Flex flex)
     {

@@ -21,7 +21,7 @@ struct WorkerOptions {
 };
 
 // FIXME: Figure out a better naming convention for this type of parent/child process pattern.
-class WorkerAgentParent : public JS::Cell {
+class WEB_API WorkerAgentParent : public JS::Cell {
     GC_CELL(WorkerAgentParent, JS::Cell);
     GC_DECLARE_ALLOCATOR(WorkerAgentParent);
 

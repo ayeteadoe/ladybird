@@ -22,7 +22,7 @@ namespace Web {
 
 class ResourceClient;
 
-class Resource : public RefCounted<Resource> {
+class WEB_API Resource : public RefCounted<Resource> {
     AK_MAKE_NONCOPYABLE(Resource);
     AK_MAKE_NONMOVABLE(Resource);
 
@@ -89,7 +89,7 @@ private:
     HashTable<ResourceClient*> m_clients;
 };
 
-class ResourceClient : public Weakable<ResourceClient> {
+class WEB_API ResourceClient : public Weakable<ResourceClient> {
 public:
     virtual ~ResourceClient();
 

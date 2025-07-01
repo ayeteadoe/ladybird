@@ -8,12 +8,13 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::SVG {
 
 // FIXME: This class is just a stub.
 // https://svgwg.org/svg2-draft/single-page.html#coords-InterfaceSVGTransform
-class SVGTransform final : public Bindings::PlatformObject {
+class WEB_API SVGTransform final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(SVGTransform, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(SVGTransform);
 

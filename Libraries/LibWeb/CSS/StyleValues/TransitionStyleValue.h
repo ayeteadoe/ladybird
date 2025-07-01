@@ -11,10 +11,11 @@
 #include <LibWeb/CSS/StyleValues/CustomIdentStyleValue.h>
 #include <LibWeb/CSS/StyleValues/EasingStyleValue.h>
 #include <LibWeb/CSS/Time.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class TransitionStyleValue final : public StyleValueWithDefaultOperators<TransitionStyleValue> {
+class WEB_API TransitionStyleValue final : public StyleValueWithDefaultOperators<TransitionStyleValue> {
 public:
     struct Transition {
         ValueComparingRefPtr<CSSStyleValue const> property_name;

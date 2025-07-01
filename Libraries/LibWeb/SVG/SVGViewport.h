@@ -7,12 +7,13 @@
 #pragma once
 
 #include <AK/Math.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/AttributeParser.h>
 #include <LibWeb/SVG/ViewBox.h>
 
 namespace Web::SVG {
 
-class SVGViewport {
+class WEB_API SVGViewport {
 public:
     virtual Optional<ViewBox> view_box() const = 0;
     virtual Optional<PreserveAspectRatio> preserve_aspect_ratio() const = 0;

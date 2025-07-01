@@ -8,11 +8,12 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-lists-3/#counter-functions
-class CounterStyleValue : public StyleValueWithDefaultOperators<CounterStyleValue> {
+class WEB_API CounterStyleValue : public StyleValueWithDefaultOperators<CounterStyleValue> {
 public:
     enum class CounterFunction {
         Counter,

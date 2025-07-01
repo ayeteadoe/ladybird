@@ -8,11 +8,12 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Crypto/SubtleCrypto.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::Crypto {
 
-class Crypto : public Bindings::PlatformObject {
+class WEB_API Crypto : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Crypto, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Crypto);
 
@@ -36,6 +37,6 @@ private:
     GC::Ptr<SubtleCrypto> m_subtle;
 };
 
-ErrorOr<String> generate_random_uuid();
+WEB_API ErrorOr<String> generate_random_uuid();
 
 }

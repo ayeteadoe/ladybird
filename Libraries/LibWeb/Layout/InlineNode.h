@@ -6,11 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/Box.h>
 
 namespace Web::Layout {
 
-class InlineNode final : public NodeWithStyleAndBoxModelMetrics {
+class WEB_API InlineNode final : public NodeWithStyleAndBoxModelMetrics {
     GC_CELL(InlineNode, NodeWithStyleAndBoxModelMetrics);
     GC_DECLARE_ALLOCATOR(InlineNode);
 

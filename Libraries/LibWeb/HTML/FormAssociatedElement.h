@@ -66,7 +66,7 @@ enum class SelectionDirection {
     None,
 };
 
-class FormAssociatedElement {
+class WEB_API FormAssociatedElement {
 public:
     HTMLFormElement* form() { return m_form; }
     HTMLFormElement const* form() const { return m_form; }
@@ -172,7 +172,7 @@ enum class SelectionSource {
     DOM,
 };
 
-class FormAssociatedTextControlElement
+class WEB_API FormAssociatedTextControlElement
     : public FormAssociatedElement
     , public InputEventsTarget {
 public:

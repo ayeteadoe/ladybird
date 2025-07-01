@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGElement.h>
 #include <LibWeb/SVG/SVGURIReference.h>
 
 namespace Web::SVG {
 
 // https://www.w3.org/TR/SVG/interact.html#InterfaceSVGScriptElement
-class SVGScriptElement
+class WEB_API SVGScriptElement
     : public SVGElement
     , public SVGURIReferenceMixin<SupportsXLinkHref::Yes> {
     WEB_PLATFORM_OBJECT(SVGScriptElement, SVGElement);

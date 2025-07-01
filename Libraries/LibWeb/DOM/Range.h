@@ -11,6 +11,7 @@
 
 #include <LibWeb/DOM/AbstractRange.h>
 #include <LibWeb/DOM/Node.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Selection/Selection.h>
 #include <LibWeb/WebIDL/Types.h>
 
@@ -23,9 +24,9 @@ enum class RelativeBoundaryPointPosition {
 };
 
 // https://dom.spec.whatwg.org/#concept-range-bp-position
-RelativeBoundaryPointPosition position_of_boundary_point_relative_to_other_boundary_point(BoundaryPoint a, BoundaryPoint b);
+WEB_API RelativeBoundaryPointPosition position_of_boundary_point_relative_to_other_boundary_point(BoundaryPoint a, BoundaryPoint b);
 
-class Range final : public AbstractRange {
+class WEB_API Range final : public AbstractRange {
     WEB_PLATFORM_OBJECT(Range, AbstractRange);
     GC_DECLARE_ALLOCATOR(Range);
 

@@ -12,10 +12,11 @@
 
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/CalculatedOr.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class EasingStyleValue final : public StyleValueWithDefaultOperators<EasingStyleValue> {
+class WEB_API EasingStyleValue final : public StyleValueWithDefaultOperators<EasingStyleValue> {
 public:
     struct Linear {
         static Linear identity();

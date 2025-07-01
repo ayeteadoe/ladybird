@@ -9,12 +9,13 @@
 
 #include <AK/Vector.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMRect.h>
 
 namespace Web::Geometry {
 
 // https://drafts.fxtf.org/geometry-1/#DOMRectList
-class DOMRectList final : public Bindings::PlatformObject {
+class WEB_API DOMRectList final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DOMRectList, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DOMRectList);
 

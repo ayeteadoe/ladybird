@@ -12,7 +12,7 @@
 
 namespace Web::Painting {
 
-class ScrollFrame : public RefCounted<ScrollFrame> {
+class WEB_API ScrollFrame : public RefCounted<ScrollFrame> {
 public:
     ScrollFrame(PaintableBox const& paintable_box, size_t id, bool sticky, RefPtr<ScrollFrame const> parent);
 

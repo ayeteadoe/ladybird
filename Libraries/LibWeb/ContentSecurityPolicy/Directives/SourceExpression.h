@@ -9,6 +9,7 @@
 #include <AK/Optional.h>
 #include <AK/StringView.h>
 #include <AK/Vector.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::ContentSecurityPolicy::Directives {
 
@@ -30,6 +31,6 @@ enum class Production {
     HashSource,
 };
 
-Optional<SourceExpressionParseResult> parse_source_expression(Production, StringView);
+WEB_API Optional<SourceExpressionParseResult> parse_source_expression(Production, StringView);
 
 }

@@ -8,11 +8,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/Box.h>
 
 namespace Web::Layout {
 
-class ListItemMarkerBox final : public Box {
+class WEB_API ListItemMarkerBox final : public Box {
     GC_CELL(ListItemMarkerBox, Box);
     GC_DECLARE_ALLOCATOR(ListItemMarkerBox);
 

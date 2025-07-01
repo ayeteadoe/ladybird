@@ -13,7 +13,7 @@
 
 namespace Web::Painting {
 
-class MediaPaintable : public PaintableBox {
+class WEB_API MediaPaintable : public PaintableBox {
     GC_CELL(MediaPaintable, PaintableBox);
 
 protected:

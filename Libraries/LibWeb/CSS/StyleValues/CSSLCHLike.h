@@ -8,10 +8,11 @@
 
 #include <LibWeb/CSS/StyleValues/CSSColorValue.h>
 #include <LibWeb/CSS/StyleValues/NumberStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class CSSLCHLike : public CSSColorValue {
+class WEB_API CSSLCHLike : public CSSColorValue {
 public:
     template<DerivedFrom<CSSLCHLike> T>
     static ValueComparingNonnullRefPtr<T const> create(ValueComparingNonnullRefPtr<CSSStyleValue const> l, ValueComparingNonnullRefPtr<CSSStyleValue const> c, ValueComparingNonnullRefPtr<CSSStyleValue const> h, ValueComparingRefPtr<CSSStyleValue const> alpha = {})
@@ -48,7 +49,7 @@ protected:
 };
 
 // https://drafts.css-houdini.org/css-typed-om-1/#csslch
-class CSSLCH final : public CSSLCHLike {
+class WEB_API CSSLCH final : public CSSLCHLike {
 public:
     CSSLCH(Badge<CSSLCHLike>, ValueComparingNonnullRefPtr<CSSStyleValue const> l, ValueComparingNonnullRefPtr<CSSStyleValue const> c, ValueComparingNonnullRefPtr<CSSStyleValue const> h, ValueComparingNonnullRefPtr<CSSStyleValue const> alpha)
         : CSSLCHLike(ColorType::LCH, move(l), move(c), move(h), move(alpha))
@@ -62,7 +63,7 @@ public:
 };
 
 // https://drafts.css-houdini.org/css-typed-om-1/#cssoklch
-class CSSOKLCH final : public CSSLCHLike {
+class WEB_API CSSOKLCH final : public CSSLCHLike {
 public:
     CSSOKLCH(Badge<CSSLCHLike>, ValueComparingNonnullRefPtr<CSSStyleValue const> l, ValueComparingNonnullRefPtr<CSSStyleValue const> c, ValueComparingNonnullRefPtr<CSSStyleValue const> h, ValueComparingNonnullRefPtr<CSSStyleValue const> alpha)
         : CSSLCHLike(ColorType::OKLCH, move(l), move(c), move(h), move(alpha))

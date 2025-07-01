@@ -11,11 +11,12 @@
 #include <AK/Vector.h>
 #include <LibGC/Ptr.h>
 #include <LibWeb/CSS/Enums.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-values-5/#request-url-modifiers
-class RequestURLModifier {
+class WEB_API RequestURLModifier {
 public:
     enum class Type : u8 {
         CrossOrigin,
@@ -42,7 +43,7 @@ private:
 };
 
 // https://drafts.csswg.org/css-values-4/#urls
-class URL {
+class WEB_API URL {
 public:
     enum class Type : u8 {
         Url,

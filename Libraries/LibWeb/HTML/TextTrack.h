@@ -16,7 +16,7 @@
 
 namespace Web::HTML {
 
-class TextTrack final : public DOM::EventTarget {
+class WEB_API TextTrack final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(TextTrack, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(TextTrack);
 
@@ -75,6 +75,6 @@ private:
     HashTable<GC::Ref<TextTrackObserver>> m_observers;
 };
 
-Bindings::TextTrackKind text_track_kind_from_string(String);
+WEB_API Bindings::TextTrackKind text_track_kind_from_string(String);
 
 }

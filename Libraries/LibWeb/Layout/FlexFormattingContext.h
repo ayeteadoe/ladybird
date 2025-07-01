@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/Box.h>
 #include <LibWeb/Layout/FormattingContext.h>
 
 namespace Web::Layout {
 
-class FlexFormattingContext final : public FormattingContext {
+class WEB_API FlexFormattingContext final : public FormattingContext {
 public:
     FlexFormattingContext(LayoutState&, LayoutMode, Box const& flex_container, FormattingContext* parent);
     ~FlexFormattingContext();
@@ -108,7 +109,7 @@ private:
         }
     };
 
-    struct FlexLine {
+    struct WEB_API FlexLine {
         Vector<FlexItem&> items;
         CSSPixels cross_size { 0 };
         Optional<CSSPixels> remaining_free_space;

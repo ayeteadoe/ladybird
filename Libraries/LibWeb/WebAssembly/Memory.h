@@ -14,6 +14,7 @@
 #include <LibWasm/AbstractMachine/AbstractMachine.h>
 #include <LibWeb/Bindings/ExceptionOrUtils.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::WebAssembly {
 
@@ -23,7 +24,7 @@ struct MemoryDescriptor {
     Optional<bool> shared;
 };
 
-class Memory : public Bindings::PlatformObject {
+class WEB_API Memory : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Memory, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Memory);
 

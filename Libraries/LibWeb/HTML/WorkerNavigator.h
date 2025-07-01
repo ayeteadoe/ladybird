@@ -8,6 +8,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/NavigatorConcurrentHardware.h>
 #include <LibWeb/HTML/NavigatorDeviceMemory.h>
 #include <LibWeb/HTML/NavigatorID.h>
@@ -19,7 +20,7 @@
 
 namespace Web::HTML {
 
-class WorkerNavigator : public Bindings::PlatformObject
+class WEB_API WorkerNavigator : public Bindings::PlatformObject
     , public NavigatorConcurrentHardwareMixin
     , public NavigatorDeviceMemoryMixin
     , public NavigatorIDMixin

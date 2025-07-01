@@ -12,6 +12,7 @@
 #include <AK/FlyString.h>
 #include <LibGfx/Color.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -21,7 +22,7 @@ enum class ColorSyntax : u8 {
 };
 
 // https://drafts.css-houdini.org/css-typed-om-1/#csscolorvalue
-class CSSColorValue : public CSSStyleValue {
+class WEB_API CSSColorValue : public CSSStyleValue {
 public:
     static ValueComparingNonnullRefPtr<CSSColorValue const> create_from_color(Color color, ColorSyntax color_syntax, Optional<FlyString> name = {});
     virtual ~CSSColorValue() override = default;

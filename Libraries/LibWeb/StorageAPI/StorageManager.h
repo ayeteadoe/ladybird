@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::StorageAPI {
 
-class StorageManager final : public Bindings::PlatformObject {
+class WEB_API StorageManager final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(StorageManager, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(StorageManager);
 

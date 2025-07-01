@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#xmlserializer
-class XMLSerializer final : public Bindings::PlatformObject {
+class WEB_API XMLSerializer final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(XMLSerializer, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(XMLSerializer);
 
@@ -33,6 +34,6 @@ enum class RequireWellFormed {
     Yes,
 };
 
-WebIDL::ExceptionOr<String> serialize_node_to_xml_string(GC::Ref<DOM::Node const> root, RequireWellFormed require_well_formed);
+WEB_API WebIDL::ExceptionOr<String> serialize_node_to_xml_string(GC::Ref<DOM::Node const> root, RequireWellFormed require_well_formed);
 
 }

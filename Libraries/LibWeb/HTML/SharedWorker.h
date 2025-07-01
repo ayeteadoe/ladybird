@@ -15,7 +15,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/workers.html#dedicated-workers-and-the-worker-interface
-class SharedWorker final
+class WEB_API SharedWorker final
     : public DOM::EventTarget
     , public HTML::AbstractWorker {
     WEB_PLATFORM_OBJECT(SharedWorker, DOM::EventTarget);

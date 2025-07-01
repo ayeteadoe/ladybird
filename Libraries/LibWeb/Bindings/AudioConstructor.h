@@ -8,10 +8,11 @@
 
 #include <AK/StringView.h>
 #include <LibJS/Runtime/NativeFunction.h>
+#include <LibWeb/Export.h>
 
 namespace Web::Bindings {
 
-class AudioConstructor final : public JS::NativeFunction {
+class WEB_API AudioConstructor final : public JS::NativeFunction {
     JS_OBJECT(AudioConstructor, JS::NativeFunction);
     GC_DECLARE_ALLOCATOR(AudioConstructor);
 

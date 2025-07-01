@@ -15,7 +15,7 @@
 
 namespace Web::HTML {
 
-struct WebViewHints {
+struct WEB_API WebViewHints {
     bool popup = false;
     Optional<DevicePixels> width;
     Optional<DevicePixels> height;

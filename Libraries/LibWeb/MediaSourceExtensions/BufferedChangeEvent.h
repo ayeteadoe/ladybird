@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/TimeRanges.h>
 
 namespace Web::MediaSourceExtensions {
@@ -17,7 +18,7 @@ struct BufferedChangeEventInit : public DOM::EventInit {
 };
 
 // https://w3c.github.io/media-source/#bufferedchangeevent-interface
-class BufferedChangeEvent : public DOM::Event {
+class WEB_API BufferedChangeEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(BufferedChangeEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(BufferedChangeEvent);
 

@@ -9,6 +9,7 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -18,7 +19,7 @@ struct CloseEventInit : public DOM::EventInit {
     String reason;
 };
 
-class CloseEvent : public DOM::Event {
+class WEB_API CloseEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(CloseEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(CloseEvent);
 

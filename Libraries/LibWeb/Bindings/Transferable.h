@@ -8,13 +8,14 @@
 
 #include <AK/Vector.h>
 #include <LibIPC/Forward.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/StructuredSerialize.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 
 namespace Web::Bindings {
 
 // https://html.spec.whatwg.org/multipage/structured-data.html#transferable-objects
-class Transferable {
+class WEB_API Transferable {
 public:
     virtual ~Transferable() = default;
 

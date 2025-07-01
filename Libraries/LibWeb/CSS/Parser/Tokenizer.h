@@ -57,7 +57,7 @@ public:
     u32 third {};
 };
 
-class Tokenizer {
+class WEB_API Tokenizer {
 public:
     static Vector<Token> tokenize(StringView input, StringView encoding);
 

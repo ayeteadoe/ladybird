@@ -23,7 +23,7 @@ struct DOMRectInit {
 };
 
 // https://drafts.fxtf.org/geometry/#domrectreadonly
-class DOMRectReadOnly
+class WEB_API DOMRectReadOnly
     : public Bindings::PlatformObject
     , public Bindings::Serializable {
     WEB_PLATFORM_OBJECT(DOMRectReadOnly, Bindings::PlatformObject);

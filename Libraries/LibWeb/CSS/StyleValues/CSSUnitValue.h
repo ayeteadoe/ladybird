@@ -8,11 +8,12 @@
 
 #include <AK/FlyString.h>
 #include <LibWeb/CSS/StyleValues/CSSNumericValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.css-houdini.org/css-typed-om-1/#cssunitvalue
-class CSSUnitValue : public CSSNumericValue {
+class WEB_API CSSUnitValue : public CSSNumericValue {
 public:
     virtual ~CSSUnitValue() override = default;
 

@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/UIEvents/UIEvent.h>
 
 namespace Web::UIEvents {
@@ -14,7 +15,7 @@ struct CompositionEventInit : public UIEventInit {
     String data;
 };
 
-class CompositionEvent final : public UIEvent {
+class WEB_API CompositionEvent final : public UIEvent {
     WEB_PLATFORM_OBJECT(CompositionEvent, UIEvent);
     GC_DECLARE_ALLOCATOR(CompositionEvent);
 

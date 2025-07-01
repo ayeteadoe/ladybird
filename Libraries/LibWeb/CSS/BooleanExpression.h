@@ -77,7 +77,7 @@ constexpr StringView to_string(MatchResult result)
 
 // The contents of this file implement the `<boolean-expr>` concept.
 // https://drafts.csswg.org/css-values-5/#typedef-boolean-expr
-class BooleanExpression {
+class WEB_API BooleanExpression {
 public:
     virtual ~BooleanExpression() = default;
 
@@ -90,7 +90,7 @@ public:
 };
 
 // https://www.w3.org/TR/mediaqueries-4/#typedef-general-enclosed
-class GeneralEnclosed final : public BooleanExpression {
+class WEB_API GeneralEnclosed final : public BooleanExpression {
 public:
     static NonnullOwnPtr<GeneralEnclosed> create(String serialized_contents, MatchResult matches = MatchResult::Unknown)
     {
@@ -113,7 +113,7 @@ private:
     MatchResult m_matches;
 };
 
-class BooleanNotExpression final : public BooleanExpression {
+class WEB_API BooleanNotExpression final : public BooleanExpression {
 public:
     static NonnullOwnPtr<BooleanNotExpression> create(NonnullOwnPtr<BooleanExpression>&& child)
     {
@@ -134,7 +134,7 @@ private:
     NonnullOwnPtr<BooleanExpression> m_child;
 };
 
-class BooleanExpressionInParens final : public BooleanExpression {
+class WEB_API BooleanExpressionInParens final : public BooleanExpression {
 public:
     static NonnullOwnPtr<BooleanExpressionInParens> create(NonnullOwnPtr<BooleanExpression>&& child)
     {
@@ -155,7 +155,7 @@ private:
     NonnullOwnPtr<BooleanExpression> m_child;
 };
 
-class BooleanAndExpression final : public BooleanExpression {
+class WEB_API BooleanAndExpression final : public BooleanExpression {
 public:
     static NonnullOwnPtr<BooleanAndExpression> create(Vector<NonnullOwnPtr<BooleanExpression>>&& children)
     {
@@ -176,7 +176,7 @@ private:
     Vector<NonnullOwnPtr<BooleanExpression>> m_children;
 };
 
-class BooleanOrExpression final : public BooleanExpression {
+class WEB_API BooleanOrExpression final : public BooleanExpression {
 public:
     static NonnullOwnPtr<BooleanOrExpression> create(Vector<NonnullOwnPtr<BooleanExpression>>&& children)
     {

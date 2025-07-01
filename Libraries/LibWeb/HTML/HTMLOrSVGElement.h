@@ -8,12 +8,13 @@
 
 #include <LibGC/Ptr.h>
 #include <LibJS/Heap/Cell.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/DOMStringMap.h>
 
 namespace Web::HTML {
 
 template<typename ElementBase>
-class HTMLOrSVGElement {
+class WEB_API HTMLOrSVGElement {
 public:
     [[nodiscard]] GC::Ref<DOMStringMap> dataset();
 

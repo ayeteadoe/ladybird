@@ -12,6 +12,7 @@
 #include <LibGC/Root.h>
 #include <LibWeb/DOM/Slot.h>
 #include <LibWeb/DOM/Slottable.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
@@ -20,7 +21,7 @@ struct AssignedNodesOptions {
     bool flatten { false };
 };
 
-class HTMLSlotElement final
+class WEB_API HTMLSlotElement final
     : public HTMLElement
     , public DOM::Slot {
     WEB_PLATFORM_OBJECT(HTMLSlotElement, HTMLElement);

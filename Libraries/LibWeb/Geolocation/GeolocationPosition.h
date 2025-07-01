@@ -7,13 +7,14 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geolocation/GeolocationCoordinates.h>
 #include <LibWeb/HighResolutionTime/EpochTimeStamp.h>
 
 namespace Web::Geolocation {
 
 // https://w3c.github.io/geolocation/#dom-geolocationposition
-class GeolocationPosition : public Bindings::PlatformObject {
+class WEB_API GeolocationPosition : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(GeolocationPosition, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(GeolocationPosition);
 

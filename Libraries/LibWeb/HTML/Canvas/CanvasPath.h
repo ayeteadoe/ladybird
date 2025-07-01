@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibGfx/Path.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMPointReadOnly.h>
 #include <LibWeb/HTML/Canvas/CanvasState.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
@@ -14,7 +15,7 @@
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvaspath
-class CanvasPath {
+class WEB_API CanvasPath {
 public:
     ~CanvasPath() = default;
 

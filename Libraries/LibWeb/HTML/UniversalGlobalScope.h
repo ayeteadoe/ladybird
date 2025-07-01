@@ -18,7 +18,7 @@
 namespace Web::HTML {
 
 // https://whatpr.org/html/9893/webappapis.html#universalglobalscope-mixin
-class UniversalGlobalScopeMixin {
+class WEB_API UniversalGlobalScopeMixin {
 public:
     virtual ~UniversalGlobalScopeMixin();
 

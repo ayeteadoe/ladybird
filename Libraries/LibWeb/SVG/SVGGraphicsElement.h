@@ -10,6 +10,7 @@
 #include <LibGfx/PaintStyle.h>
 #include <LibWeb/CSS/URL.h>
 #include <LibWeb/DOM/Node.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/AttributeParser.h>
 #include <LibWeb/SVG/SVGAnimatedTransformList.h>
 #include <LibWeb/SVG/SVGElement.h>
@@ -26,7 +27,7 @@ struct SVGBoundingBoxOptions {
     bool clipped { false };
 };
 
-class SVGGraphicsElement : public SVGElement {
+class WEB_API SVGGraphicsElement : public SVGElement {
     WEB_PLATFORM_OBJECT(SVGGraphicsElement, SVGElement);
 
 public:
@@ -100,7 +101,7 @@ private:
     float resolve_relative_to_viewport_size(CSS::LengthPercentage const& length_percentage) const;
 };
 
-Gfx::AffineTransform transform_from_transform_list(ReadonlySpan<Transform> transform_list);
+WEB_API Gfx::AffineTransform transform_from_transform_list(ReadonlySpan<Transform> transform_list);
 
 }
 

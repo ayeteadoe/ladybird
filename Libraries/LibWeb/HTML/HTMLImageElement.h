@@ -14,6 +14,7 @@
 #include <LibGfx/ImmutableBitmap.h>
 #include <LibWeb/DOM/Document.h>
 #include <LibWeb/DOM/DocumentLoadEventDelayer.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/BrowsingContext.h>
 #include <LibWeb/HTML/CORSSettingAttribute.h>
 #include <LibWeb/HTML/FormAssociatedElement.h>
@@ -24,7 +25,7 @@
 
 namespace Web::HTML {
 
-class HTMLImageElement final
+class WEB_API HTMLImageElement final
     : public HTMLElement
     , public FormAssociatedElement
     , public LazyLoadingElement<HTMLImageElement>

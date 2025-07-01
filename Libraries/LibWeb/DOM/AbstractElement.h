@@ -13,7 +13,7 @@
 namespace Web::DOM {
 
 // Either an Element or a PseudoElement
-class AbstractElement {
+class WEB_API AbstractElement {
 public:
     AbstractElement(GC::Ref<Element>, Optional<CSS::PseudoElement> = {});
 

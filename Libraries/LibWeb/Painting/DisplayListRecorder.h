@@ -23,6 +23,7 @@
 #include <LibGfx/TextAlignment.h>
 #include <LibGfx/TextLayout.h>
 #include <LibWeb/CSS/Enums.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/BorderRadiiData.h>
 #include <LibWeb/Painting/BorderRadiusCornerClipper.h>
 #include <LibWeb/Painting/Command.h>
@@ -33,7 +34,7 @@
 
 namespace Web::Painting {
 
-class DisplayListRecorder {
+class WEB_API DisplayListRecorder {
     AK_MAKE_NONCOPYABLE(DisplayListRecorder);
     AK_MAKE_NONMOVABLE(DisplayListRecorder);
 

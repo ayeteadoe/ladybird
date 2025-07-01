@@ -15,6 +15,7 @@
 #include <LibWeb/CSS/StyleValues/AbstractImageStyleValue.h>
 #include <LibWeb/CSS/StyleValues/CSSColorValue.h>
 #include <LibWeb/Painting/GradientPainting.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -30,7 +31,7 @@ enum class SideOrCorner {
     BottomRight
 };
 
-class LinearGradientStyleValue final : public AbstractImageStyleValue {
+class WEB_API LinearGradientStyleValue final : public AbstractImageStyleValue {
 public:
     using GradientDirection = Variant<Angle, SideOrCorner>;
 

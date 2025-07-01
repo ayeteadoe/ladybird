@@ -12,10 +12,11 @@
 #include <AK/HashTable.h>
 #include <AK/Traits.h>
 #include <LibWeb/CSS/PseudoClass.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class InvalidationSet {
+class WEB_API InvalidationSet {
 public:
     struct Property {
         enum class Type : u8 {

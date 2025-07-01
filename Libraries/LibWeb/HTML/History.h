@@ -9,13 +9,14 @@
 
 #include <LibWeb/Bindings/HistoryPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HistoryHandlingBehavior.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::HTML {
 
-class History final : public Bindings::PlatformObject {
+class WEB_API History final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(History, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(History);
 
@@ -52,6 +53,6 @@ private:
     JS::Value m_state { JS::js_null() };
 };
 
-bool can_have_its_url_rewritten(DOM::Document const& document, URL::URL const& target_url);
+WEB_API bool can_have_its_url_rewritten(DOM::Document const& document, URL::URL const& target_url);
 
 }

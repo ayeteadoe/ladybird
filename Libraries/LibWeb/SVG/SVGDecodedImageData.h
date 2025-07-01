@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/DOM/Document.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/DecodedImageData.h>
 #include <LibWeb/Page/Page.h>
 
 namespace Web::SVG {
 
-class SVGDecodedImageData final : public HTML::DecodedImageData {
+class WEB_API SVGDecodedImageData final : public HTML::DecodedImageData {
     GC_CELL(SVGDecodedImageData, HTML::DecodedImageData);
     GC_DECLARE_ALLOCATOR(SVGDecodedImageData);
 

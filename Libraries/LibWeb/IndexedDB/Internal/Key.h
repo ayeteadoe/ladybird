@@ -14,11 +14,12 @@
 #include <LibJS/Heap/Cell.h>
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::IndexedDB {
 
 // https://w3c.github.io/IndexedDB/#key-construct
-class Key : public JS::Cell {
+class WEB_API Key : public JS::Cell {
     GC_CELL(Key, JS::Cell);
     GC_DECLARE_ALLOCATOR(Key);
 

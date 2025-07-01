@@ -15,7 +15,7 @@
 namespace Web::WebDriver {
 
 // https://w3c.github.io/webdriver/#dfn-input-state
-struct InputState {
+struct WEB_API InputState {
     InputState();
     ~InputState();
 
@@ -29,7 +29,7 @@ struct InputState {
     Vector<String> actions_queue;
 };
 
-InputState& get_input_state(HTML::BrowsingContext&);
-void reset_input_state(HTML::BrowsingContext&);
+WEB_API InputState& get_input_state(HTML::BrowsingContext&);
+WEB_API void reset_input_state(HTML::BrowsingContext&);
 
 }

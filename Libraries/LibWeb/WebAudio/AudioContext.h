@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/AudioContextPrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HighResolutionTime/DOMHighResTimeStamp.h>
 #include <LibWeb/WebAudio/BaseAudioContext.h>
 #include <LibWeb/WebAudio/MediaElementAudioSourceNode.h>
@@ -24,7 +25,7 @@ struct AudioTimestamp {
 };
 
 // https://webaudio.github.io/web-audio-api/#AudioContext
-class AudioContext final : public BaseAudioContext {
+class WEB_API AudioContext final : public BaseAudioContext {
     WEB_PLATFORM_OBJECT(AudioContext, BaseAudioContext);
     GC_DECLARE_ALLOCATOR(AudioContext);
 

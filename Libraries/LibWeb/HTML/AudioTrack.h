@@ -10,10 +10,11 @@
 #include <AK/Time.h>
 #include <LibMedia/Audio/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
-class AudioTrack final : public Bindings::PlatformObject {
+class WEB_API AudioTrack final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(AudioTrack, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(AudioTrack);
 

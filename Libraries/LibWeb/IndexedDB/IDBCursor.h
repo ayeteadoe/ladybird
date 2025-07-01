@@ -10,6 +10,7 @@
 #include <LibWeb/Bindings/IDBCursorPrototype.h>
 #include <LibWeb/Bindings/IDBCursorWithValuePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/IDBIndex.h>
 #include <LibWeb/IndexedDB/IDBKeyRange.h>
 #include <LibWeb/IndexedDB/IDBObjectStore.h>
@@ -22,7 +23,7 @@ using CursorSourceHandle = Variant<GC::Ref<IDBObjectStore>, GC::Ref<IDBIndex>>;
 using CursorSource = Variant<GC::Ref<ObjectStore>, GC::Ref<Index>>;
 
 // https://w3c.github.io/IndexedDB/#cursor-interface
-class IDBCursor : public Bindings::PlatformObject {
+class WEB_API IDBCursor : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(IDBCursor, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(IDBCursor);
 

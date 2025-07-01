@@ -7,12 +7,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/LazyLoadingElement.h>
 #include <LibWeb/HTML/NavigableContainer.h>
 
 namespace Web::HTML {
 
-class HTMLIFrameElement final
+class WEB_API HTMLIFrameElement final
     : public NavigableContainer
     , public LazyLoadingElement<HTMLIFrameElement> {
 
@@ -66,7 +67,7 @@ private:
     GC::Ptr<DOM::DOMTokenList> m_sandbox;
 };
 
-void run_iframe_load_event_steps(HTML::HTMLIFrameElement&);
+WEB_API void run_iframe_load_event_steps(HTML::HTMLIFrameElement&);
 
 }
 

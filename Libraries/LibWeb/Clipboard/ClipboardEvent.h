@@ -18,7 +18,7 @@ struct ClipboardEventInit : public DOM::EventInit {
 };
 
 // https://w3c.github.io/clipboard-apis/#clipboardevent
-class ClipboardEvent : public DOM::Event {
+class WEB_API ClipboardEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(ClipboardEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(ClipboardEvent);
 

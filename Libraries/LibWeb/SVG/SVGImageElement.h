@@ -7,13 +7,14 @@
 #pragma once
 
 #include <LibGC/Ptr.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/ImageProvider.h>
 #include <LibWeb/SVG/SVGAnimatedLength.h>
 #include <LibWeb/SVG/SVGGraphicsElement.h>
 
 namespace Web::SVG {
 
-class SVGImageElement
+class WEB_API SVGImageElement
     : public SVGGraphicsElement
     , public SVGURIReferenceMixin<SupportsXLinkHref::Yes>
     , public Layout::ImageProvider {

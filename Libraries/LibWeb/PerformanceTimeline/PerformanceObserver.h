@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/WindowOrWorkerGlobalScope.h>
 
 namespace Web::PerformanceTimeline {
@@ -19,7 +20,7 @@ struct PerformanceObserverInit {
 };
 
 // https://w3c.github.io/performance-timeline/#dom-performanceobserver
-class PerformanceObserver final : public Bindings::PlatformObject {
+class WEB_API PerformanceObserver final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(PerformanceObserver, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(PerformanceObserver);
 

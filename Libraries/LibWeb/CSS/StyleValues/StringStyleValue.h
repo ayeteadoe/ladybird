@@ -9,10 +9,11 @@
 #include <AK/FlyString.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Serialize.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class StringStyleValue : public StyleValueWithDefaultOperators<StringStyleValue> {
+class WEB_API StringStyleValue : public StyleValueWithDefaultOperators<StringStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<StringStyleValue const> create(FlyString const& string)
     {

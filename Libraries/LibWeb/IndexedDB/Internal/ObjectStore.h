@@ -14,6 +14,7 @@
 #include <LibGC/Ptr.h>
 #include <LibJS/Heap/Cell.h>
 #include <LibJS/Runtime/Realm.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/IndexedDB/Internal/Algorithms.h>
 #include <LibWeb/IndexedDB/Internal/Database.h>
 #include <LibWeb/IndexedDB/Internal/Index.h>
@@ -30,7 +31,7 @@ struct Record {
 };
 
 // https://w3c.github.io/IndexedDB/#object-store-construct
-class ObjectStore : public JS::Cell {
+class WEB_API ObjectStore : public JS::Cell {
     GC_CELL(ObjectStore, JS::Cell);
     GC_DECLARE_ALLOCATOR(ObjectStore);
 

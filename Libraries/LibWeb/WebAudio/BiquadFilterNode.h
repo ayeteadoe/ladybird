@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/BiquadFilterNodePrototype.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioNode.h>
 #include <LibWeb/WebAudio/AudioParam.h>
 
@@ -22,7 +23,7 @@ struct BiquadFilterOptions : AudioNodeOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#BiquadFilterNode
-class BiquadFilterNode : public AudioNode {
+class WEB_API BiquadFilterNode : public AudioNode {
     WEB_PLATFORM_OBJECT(BiquadFilterNode, AudioNode);
     GC_DECLARE_ALLOCATOR(BiquadFilterNode);
 

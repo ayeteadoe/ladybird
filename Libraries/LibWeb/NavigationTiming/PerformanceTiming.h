@@ -7,11 +7,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/Window.h>
 
 namespace Web::NavigationTiming {
 
-class PerformanceTiming final : public Bindings::PlatformObject {
+class WEB_API PerformanceTiming final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(PerformanceTiming, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(PerformanceTiming);
 

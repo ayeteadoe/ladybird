@@ -11,6 +11,7 @@
 // FIXME: this needs to be shared inside the idl, this is not that easily fixable, so until that we are just using the definition of ImageDataPrototype and CanvasRenderingContext2DPrototype, and assert that it's the same in all duplicate declarations
 #include <LibWeb/Bindings/CanvasRenderingContext2DPrototype.h>
 #include <LibWeb/Bindings/ImageDataPrototype.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -25,7 +26,7 @@ struct CanvasRenderingContext2DSettings {
 };
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvassettings
-class CanvasSettings {
+class WEB_API CanvasSettings {
 public:
     virtual ~CanvasSettings() = default;
 

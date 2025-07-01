@@ -23,11 +23,11 @@ enum class BorderEdge {
 };
 
 // Returns OptionalNone if there is no outline to paint.
-Optional<BordersData> borders_data_for_outline(Layout::Node const&, Color outline_color, CSS::OutlineStyle outline_style, CSSPixels outline_width);
+WEB_API Optional<BordersData> borders_data_for_outline(Layout::Node const&, Color outline_color, CSS::OutlineStyle outline_style, CSSPixels outline_width);
 
-void paint_border(DisplayListRecorder& painter, BorderEdge edge, DevicePixelRect const& rect, CornerRadius const& radius, CornerRadius const& opposite_radius, BordersDataDevicePixels const& borders_data, Gfx::Path&, bool last);
-void paint_all_borders(DisplayListRecorder& painter, DevicePixelRect const& border_rect, CornerRadii const& corner_radii, BordersDataDevicePixels const&);
+WEB_API void paint_border(DisplayListRecorder& painter, BorderEdge edge, DevicePixelRect const& rect, CornerRadius const& radius, CornerRadius const& opposite_radius, BordersDataDevicePixels const& borders_data, Gfx::Path&, bool last);
+WEB_API void paint_all_borders(DisplayListRecorder& painter, DevicePixelRect const& border_rect, CornerRadii const& corner_radii, BordersDataDevicePixels const&);
 
-Gfx::Color border_color(BorderEdge edge, BordersDataDevicePixels const& borders_data);
+WEB_API Gfx::Color border_color(BorderEdge edge, BordersDataDevicePixels const& borders_data);
 
 }

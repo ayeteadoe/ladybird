@@ -12,6 +12,7 @@
 #include <LibWeb/Bindings/AudioNodePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::WebAudio {
@@ -45,7 +46,7 @@ struct AudioParamConnection {
 };
 
 // https://webaudio.github.io/web-audio-api/#AudioNode
-class AudioNode : public DOM::EventTarget {
+class WEB_API AudioNode : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(AudioNode, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(AudioNode);
 

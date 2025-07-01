@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioNode.h>
 
 namespace Web::WebAudio {
@@ -16,7 +17,7 @@ struct MediaElementAudioSourceOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#MediaElementAudioSourceNode
-class MediaElementAudioSourceNode final : public AudioNode {
+class WEB_API MediaElementAudioSourceNode final : public AudioNode {
     WEB_PLATFORM_OBJECT(MediaElementAudioSourceNode, AudioNode);
     GC_DECLARE_ALLOCATOR(MediaElementAudioSourceNode);
 

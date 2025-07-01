@@ -10,12 +10,13 @@
 #include <AK/Optional.h>
 #include <AK/String.h>
 #include <LibWeb/CSS/PropertyID.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.css-houdini.org/css-typed-om-1/#numeric-typing
 // FIXME: Add IDL for this.
-class CSSNumericType {
+class WEB_API CSSNumericType {
 public:
     // https://drafts.css-houdini.org/css-typed-om-1/#cssnumericvalue-base-type
     enum class BaseType {

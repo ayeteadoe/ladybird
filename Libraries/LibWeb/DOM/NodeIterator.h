@@ -8,11 +8,12 @@
 
 #include <LibJS/Runtime/Object.h>
 #include <LibWeb/DOM/NodeFilter.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
 // https://dom.spec.whatwg.org/#nodeiterator
-class NodeIterator final : public Bindings::PlatformObject {
+class WEB_API NodeIterator final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(NodeIterator, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(NodeIterator);
 

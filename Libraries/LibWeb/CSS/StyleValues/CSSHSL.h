@@ -8,11 +8,12 @@
 
 #include <LibWeb/CSS/StyleValues/CSSColorValue.h>
 #include <LibWeb/CSS/StyleValues/NumberStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.css-houdini.org/css-typed-om-1/#csshsl
-class CSSHSL final : public CSSColorValue {
+class WEB_API CSSHSL final : public CSSColorValue {
 public:
     static ValueComparingNonnullRefPtr<CSSHSL const> create(ValueComparingNonnullRefPtr<CSSStyleValue const> h, ValueComparingNonnullRefPtr<CSSStyleValue const> s, ValueComparingNonnullRefPtr<CSSStyleValue const> l, ValueComparingRefPtr<CSSStyleValue const> alpha, ColorSyntax color_syntax)
     {

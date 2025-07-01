@@ -8,11 +8,12 @@
 #pragma once
 
 #include <LibWeb/DOM/StyleElementUtils.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
 
-class HTMLStyleElement final : public HTMLElement {
+class WEB_API HTMLStyleElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLStyleElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLStyleElement);
 

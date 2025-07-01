@@ -10,12 +10,13 @@
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/EntriesAPI/FileSystemEntry.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/DragDataStore.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/dnd.html#the-datatransferitem-interface
-class DataTransferItem : public Bindings::PlatformObject {
+class WEB_API DataTransferItem : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(DataTransferItem, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(DataTransferItem);
 

@@ -7,12 +7,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGGraphicsElement.h>
 #include <LibWeb/SVG/SVGURIReference.h>
 
 namespace Web::SVG {
 
-class SVGAElement final
+class WEB_API SVGAElement final
     : public SVGGraphicsElement
     , public SVGURIReferenceMixin<SupportsXLinkHref::Yes> {
     WEB_PLATFORM_OBJECT(SVGAElement, SVGGraphicsElement);

@@ -9,6 +9,7 @@
 #include <AK/Vector.h>
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Buffers.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
 #include <LibWeb/WebIDL/Types.h>
@@ -22,7 +23,7 @@ struct AudioBufferOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#AudioBuffer
-class AudioBuffer final : public Bindings::PlatformObject {
+class WEB_API AudioBuffer final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(AudioBuffer, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(AudioBuffer);
 

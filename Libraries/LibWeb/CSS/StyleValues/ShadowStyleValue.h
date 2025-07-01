@@ -12,6 +12,7 @@
 #include <LibGfx/Color.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/Length.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -20,7 +21,7 @@ enum class ShadowPlacement {
     Inner,
 };
 
-class ShadowStyleValue final : public StyleValueWithDefaultOperators<ShadowStyleValue> {
+class WEB_API ShadowStyleValue final : public StyleValueWithDefaultOperators<ShadowStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<ShadowStyleValue const> create(
         ValueComparingRefPtr<CSSStyleValue const> color,

@@ -21,7 +21,7 @@ struct BoundaryPoint {
 };
 
 // https://dom.spec.whatwg.org/#abstractrange
-class AbstractRange : public Bindings::PlatformObject {
+class WEB_API AbstractRange : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(AbstractRange, Bindings::PlatformObject);
 
 public:

@@ -16,7 +16,7 @@
 
 namespace Web::WebGL {
 
-class WebGLRenderingContext : public Bindings::PlatformObject
+class WEB_API WebGLRenderingContext : public Bindings::PlatformObject
     , public WebGLRenderingContextImpl {
     WEB_PLATFORM_OBJECT(WebGLRenderingContext, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(WebGLRenderingContext);
@@ -90,7 +90,7 @@ private:
     virtual void set_error(GLenum error) override;
 };
 
-void fire_webgl_context_event(HTML::HTMLCanvasElement& canvas_element, FlyString const& type);
-void fire_webgl_context_creation_error(HTML::HTMLCanvasElement& canvas_element);
+WEB_API void fire_webgl_context_event(HTML::HTMLCanvasElement& canvas_element, FlyString const& type);
+WEB_API void fire_webgl_context_creation_error(HTML::HTMLCanvasElement& canvas_element);
 
 }

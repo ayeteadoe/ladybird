@@ -21,9 +21,9 @@ struct NetworkPartitionKey {
     bool operator==(NetworkPartitionKey const&) const = default;
 };
 
-NetworkPartitionKey determine_the_network_partition_key(HTML::Environment const& environment);
+WEB_API NetworkPartitionKey determine_the_network_partition_key(HTML::Environment const& environment);
 
-Optional<NetworkPartitionKey> determine_the_network_partition_key(Infrastructure::Request const& request);
+WEB_API Optional<NetworkPartitionKey> determine_the_network_partition_key(Infrastructure::Request const& request);
 
 }
 

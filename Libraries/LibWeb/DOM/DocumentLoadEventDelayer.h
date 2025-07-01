@@ -12,7 +12,7 @@
 
 namespace Web::DOM {
 
-class DocumentLoadEventDelayer {
+class WEB_API DocumentLoadEventDelayer {
     AK_MAKE_NONCOPYABLE(DocumentLoadEventDelayer);
 
 public:

@@ -11,6 +11,7 @@
 #include <LibWeb/DOM/Element.h>
 #include <LibWeb/DOM/Event.h>
 #include <LibWeb/DOM/Utils.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
@@ -19,7 +20,7 @@ struct ToggleEventInit : public DOM::EventInit {
     String new_state;
 };
 
-class ToggleEvent : public DOM::Event {
+class WEB_API ToggleEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(ToggleEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(ToggleEvent);
 

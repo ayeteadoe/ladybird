@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebGL/Types.h>
 #include <LibWeb/WebGL/WebGLObject.h>
 
 namespace Web::WebGL {
 
-class WebGLVertexArrayObject : public WebGLObject {
+class WEB_API WebGLVertexArrayObject : public WebGLObject {
     WEB_PLATFORM_OBJECT(WebGLVertexArrayObject, WebGLObject);
     GC_DECLARE_ALLOCATOR(WebGLVertexArrayObject);
 

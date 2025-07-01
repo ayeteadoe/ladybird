@@ -14,7 +14,7 @@
 
 namespace Web::DOM {
 
-class EditingHostManager
+class WEB_API EditingHostManager
     : public JS::Cell
     , public InputEventsTarget {
     GC_CELL(EditingHostManager, JS::Cell);

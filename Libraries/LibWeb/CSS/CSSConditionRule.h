@@ -12,7 +12,7 @@
 
 namespace Web::CSS {
 
-class CSSConditionRule : public CSSGroupingRule {
+class WEB_API CSSConditionRule : public CSSGroupingRule {
     WEB_PLATFORM_OBJECT(CSSConditionRule, CSSGroupingRule);
 
 public:

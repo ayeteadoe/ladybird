@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Animations {
 
@@ -18,7 +19,7 @@ struct AnimationPlaybackEventInit : public DOM::EventInit {
 };
 
 // https://www.w3.org/TR/web-animations-1/#animationplaybackevent
-class AnimationPlaybackEvent : public DOM::Event {
+class WEB_API AnimationPlaybackEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(AnimationPlaybackEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(AnimationPlaybackEvent);
 

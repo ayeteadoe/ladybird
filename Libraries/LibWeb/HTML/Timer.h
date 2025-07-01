@@ -17,7 +17,7 @@
 
 namespace Web::HTML {
 
-class Timer final : public JS::Cell {
+class WEB_API Timer final : public JS::Cell {
     GC_CELL(Timer, JS::Cell);
     GC_DECLARE_ALLOCATOR(Timer);
 

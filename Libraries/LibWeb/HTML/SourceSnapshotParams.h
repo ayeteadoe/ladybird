@@ -7,13 +7,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/PolicyContainers.h>
 #include <LibWeb/HTML/SandboxingFlagSet.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/browsing-the-web.html#source-snapshot-params
-struct SourceSnapshotParams : public GC::Cell {
+struct WEB_API SourceSnapshotParams : public GC::Cell {
     GC_CELL(SourceSnapshotParams, GC::Cell)
     GC_DECLARE_ALLOCATOR(SourceSnapshotParams);
 

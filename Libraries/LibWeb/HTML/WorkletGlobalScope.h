@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/worklets.html#workletglobalscope
-class WorkletGlobalScope : public Bindings::PlatformObject {
+class WEB_API WorkletGlobalScope : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(WorkletGlobalScope, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(WorkletGlobalScope);
 

@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebGL/Types.h>
 #include <LibWeb/WebGL/WebGLObject.h>
 
 namespace Web::WebGL {
 
-class WebGLSampler : public WebGLObject {
+class WEB_API WebGLSampler : public WebGLObject {
     WEB_PLATFORM_OBJECT(WebGLSampler, WebGLObject);
     GC_DECLARE_ALLOCATOR(WebGLSampler);
 

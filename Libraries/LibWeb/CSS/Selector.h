@@ -16,13 +16,14 @@
 #include <LibWeb/CSS/PseudoClass.h>
 #include <LibWeb/CSS/PseudoClassBitmap.h>
 #include <LibWeb/CSS/PseudoElement.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 using SelectorList = Vector<NonnullRefPtr<class Selector>>;
 
 // This is a <complex-selector> in the spec. https://www.w3.org/TR/selectors-4/#complex
-class Selector : public RefCounted<Selector> {
+class WEB_API Selector : public RefCounted<Selector> {
 public:
     class PseudoElementSelector {
     public:
@@ -272,9 +273,9 @@ private:
     Array<u32, 8> m_ancestor_hashes;
 };
 
-String serialize_a_group_of_selectors(SelectorList const& selectors);
+WEB_API String serialize_a_group_of_selectors(SelectorList const& selectors);
 
-SelectorList adapt_nested_relative_selector_list(SelectorList const&);
+WEB_API SelectorList adapt_nested_relative_selector_list(SelectorList const&);
 
 }
 

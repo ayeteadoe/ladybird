@@ -7,11 +7,12 @@
 #pragma once
 
 #include <AK/String.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvasfilters
-class CanvasFilters {
+class WEB_API CanvasFilters {
 public:
     ~CanvasFilters() = default;
 

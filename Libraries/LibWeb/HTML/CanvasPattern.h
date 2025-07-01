@@ -9,11 +9,12 @@
 
 #include <LibGfx/PaintStyle.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/Canvas/CanvasDrawImage.h>
 
 namespace Web::HTML {
 
-class CanvasPatternPaintStyle final : public Gfx::PaintStyle {
+class WEB_API CanvasPatternPaintStyle final : public Gfx::PaintStyle {
 public:
     enum class Repetition {
         Repeat,

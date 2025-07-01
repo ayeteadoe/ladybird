@@ -15,7 +15,7 @@
 
 namespace Web::PermissionsPolicy {
 
-class AutoplayAllowlist {
+class WEB_API AutoplayAllowlist {
 public:
     static AutoplayAllowlist& the();
 

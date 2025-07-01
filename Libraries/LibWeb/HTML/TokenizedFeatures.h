@@ -8,6 +8,7 @@
 
 #include <AK/HashMap.h>
 #include <AK/String.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML::TokenizedFeature {
 
@@ -33,8 +34,8 @@ using Map = OrderedHashMap<String, String>;
 
 namespace Web::HTML {
 
-TokenizedFeature::Map tokenize_open_features(StringView features);
-TokenizedFeature::Popup check_if_a_popup_window_is_requested(TokenizedFeature::Map const&);
+WEB_API TokenizedFeature::Map tokenize_open_features(StringView features);
+WEB_API TokenizedFeature::Popup check_if_a_popup_window_is_requested(TokenizedFeature::Map const&);
 
 template<Enum T>
 T parse_boolean_feature(StringView value);

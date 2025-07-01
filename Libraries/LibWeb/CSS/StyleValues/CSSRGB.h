@@ -8,11 +8,12 @@
 
 #include <LibWeb/CSS/StyleValues/CSSColorValue.h>
 #include <LibWeb/CSS/StyleValues/NumberStyleValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.css-houdini.org/css-typed-om-1/#cssrgb
-class CSSRGB final : public CSSColorValue {
+class WEB_API CSSRGB final : public CSSColorValue {
 public:
     static ValueComparingNonnullRefPtr<CSSRGB const> create(ValueComparingNonnullRefPtr<CSSStyleValue const> r, ValueComparingNonnullRefPtr<CSSStyleValue const> g, ValueComparingNonnullRefPtr<CSSStyleValue const> b, ValueComparingRefPtr<CSSStyleValue const> alpha, ColorSyntax color_syntax, Optional<FlyString> name = {})
     {

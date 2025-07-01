@@ -8,6 +8,7 @@
 
 #include <LibCore/Forward.h>
 #include <LibGfx/Forward.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/FormAssociatedElement.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/HTML/NavigableContainer.h>
@@ -15,7 +16,7 @@
 
 namespace Web::HTML {
 
-class HTMLObjectElement final
+class WEB_API HTMLObjectElement final
     : public NavigableContainer
     , public FormAssociatedElement
     , public Layout::ImageProvider {

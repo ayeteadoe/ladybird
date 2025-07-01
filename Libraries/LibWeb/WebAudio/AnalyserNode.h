@@ -8,6 +8,7 @@
 
 #include <LibJS/Forward.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioNode.h>
 #include <LibWeb/WebIDL/Buffers.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
@@ -23,7 +24,7 @@ struct AnalyserOptions : AudioNodeOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#AnalyserNode
-class AnalyserNode : public AudioNode {
+class WEB_API AnalyserNode : public AudioNode {
     WEB_PLATFORM_OBJECT(AnalyserNode, AudioNode);
     GC_DECLARE_ALLOCATOR(AnalyserNode);
 

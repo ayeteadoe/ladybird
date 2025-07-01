@@ -10,6 +10,7 @@
 #include <LibWeb/ARIA/AriaData.h>
 #include <LibWeb/ARIA/Roles.h>
 #include <LibWeb/ARIA/StateAndProperties.h>
+#include <LibWeb/Export.h>
 
 namespace Web::ARIA {
 
@@ -22,7 +23,7 @@ enum class NameFromSource {
 
 // https://www.w3.org/TR/wai-aria-1.2/#roletype
 // The base role from which all other roles inherit.
-class RoleType {
+class WEB_API RoleType {
 public:
     static ErrorOr<NonnullOwnPtr<RoleType>> build_role_object(Role, bool, AriaData const&);
 

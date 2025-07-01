@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSGroupingRule.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-cascade-5/#the-csslayerblockrule-interface
-class CSSLayerBlockRule final : public CSSGroupingRule {
+class WEB_API CSSLayerBlockRule final : public CSSGroupingRule {
     WEB_PLATFORM_OBJECT(CSSLayerBlockRule, CSSGroupingRule);
     GC_DECLARE_ALLOCATOR(CSSLayerBlockRule);
 

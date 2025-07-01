@@ -20,7 +20,7 @@ struct VideoFrame {
     double position { 0.0 };
 };
 
-class HTMLVideoElement final : public HTMLMediaElement {
+class WEB_API HTMLVideoElement final : public HTMLMediaElement {
     WEB_PLATFORM_OBJECT(HTMLVideoElement, HTMLMediaElement);
     GC_DECLARE_ALLOCATOR(HTMLVideoElement);
 

@@ -8,11 +8,12 @@
 
 #include <AK/Queue.h>
 #include <LibJS/Heap/Cell.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/EventLoop/Task.h>
 
 namespace Web::HTML {
 
-class TaskQueue : public JS::Cell {
+class WEB_API TaskQueue : public JS::Cell {
     GC_CELL(TaskQueue, JS::Cell);
     GC_DECLARE_ALLOCATOR(TaskQueue);
 

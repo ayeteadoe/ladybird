@@ -8,6 +8,7 @@
 
 #include <AK/IterationDecision.h>
 #include <LibGfx/PaintStyle.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/PaintStyle.h>
 #include <LibWeb/SVG/AttributeParser.h>
 #include <LibWeb/SVG/SVGElement.h>
@@ -36,7 +37,7 @@ inline Painting::SVGGradientPaintStyle::SpreadMethod to_painting_spread_method(S
     }
 }
 
-class SVGGradientElement
+class WEB_API SVGGradientElement
     : public SVGElement
     , public SVGURIReferenceMixin<SupportsXLinkHref::Yes> {
     WEB_PLATFORM_OBJECT(SVGGradientElement, SVGElement);

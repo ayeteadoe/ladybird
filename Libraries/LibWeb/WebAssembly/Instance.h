@@ -14,11 +14,12 @@
 #include <LibWasm/AbstractMachine/AbstractMachine.h>
 #include <LibWeb/Bindings/ExceptionOrUtils.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAssembly/WebAssembly.h>
 
 namespace Web::WebAssembly {
 
-class Instance : public Bindings::PlatformObject {
+class WEB_API Instance : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Instance, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Instance);
 

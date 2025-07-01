@@ -16,7 +16,7 @@
 
 namespace Web::DOM {
 
-class Position final : public JS::Cell {
+class WEB_API Position final : public JS::Cell {
     GC_CELL(Position, JS::Cell);
     GC_DECLARE_ALLOCATOR(Position);
 

@@ -6,11 +6,12 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 
 namespace Web::HTML {
 
-class HTMLUnknownElement final : public HTMLElement {
+class WEB_API HTMLUnknownElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLUnknownElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLUnknownElement);
 

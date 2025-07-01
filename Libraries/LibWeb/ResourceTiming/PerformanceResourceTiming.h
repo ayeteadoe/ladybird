@@ -10,12 +10,13 @@
 #include <LibWeb/Bindings/PerformanceResourceTimingPrototype.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Requests.h>
 #include <LibWeb/Fetch/Infrastructure/HTTP/Responses.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/PerformanceTimeline/PerformanceEntry.h>
 
 namespace Web::ResourceTiming {
 
 // https://w3c.github.io/resource-timing/#dom-performanceresourcetiming
-class PerformanceResourceTiming : public PerformanceTimeline::PerformanceEntry {
+class WEB_API PerformanceResourceTiming : public PerformanceTimeline::PerformanceEntry {
     WEB_PLATFORM_OBJECT(PerformanceResourceTiming, PerformanceTimeline::PerformanceEntry);
     GC_DECLARE_ALLOCATOR(PerformanceResourceTiming);
 
@@ -85,6 +86,6 @@ private:
     FlyString m_delivery_type;
 };
 
-HighResolutionTime::DOMHighResTimeStamp convert_fetch_timestamp(HighResolutionTime::DOMHighResTimeStamp time_stamp, JS::Object const& global);
+WEB_API HighResolutionTime::DOMHighResTimeStamp convert_fetch_timestamp(HighResolutionTime::DOMHighResTimeStamp time_stamp, JS::Object const& global);
 
 }

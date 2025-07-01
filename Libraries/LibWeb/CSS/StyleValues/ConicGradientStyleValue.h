@@ -11,11 +11,12 @@
 
 #include <LibWeb/CSS/Angle.h>
 #include <LibWeb/CSS/StyleValues/AbstractImageStyleValue.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/GradientPainting.h>
 
 namespace Web::CSS {
 
-class ConicGradientStyleValue final : public AbstractImageStyleValue {
+class WEB_API ConicGradientStyleValue final : public AbstractImageStyleValue {
 public:
     static ValueComparingNonnullRefPtr<ConicGradientStyleValue const> create(Angle from_angle, ValueComparingNonnullRefPtr<PositionStyleValue const> position, Vector<AngularColorStopListElement> color_stop_list, GradientRepeating repeating, Optional<InterpolationMethod> interpolation_method)
     {

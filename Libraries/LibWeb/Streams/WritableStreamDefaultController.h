@@ -8,12 +8,13 @@
 
 #include <AK/SinglyLinkedList.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Streams/AbstractOperations.h>
 
 namespace Web::Streams {
 
 // https://streams.spec.whatwg.org/#writablestreamdefaultcontroller
-class WritableStreamDefaultController final : public Bindings::PlatformObject {
+class WEB_API WritableStreamDefaultController final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(WritableStreamDefaultController, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(WritableStreamDefaultController);
 

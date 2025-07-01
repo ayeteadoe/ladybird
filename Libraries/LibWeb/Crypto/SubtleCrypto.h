@@ -14,10 +14,11 @@
 #include <LibWeb/Bindings/SubtleCryptoPrototype.h>
 #include <LibWeb/Crypto/CryptoAlgorithms.h>
 #include <LibWeb/Crypto/CryptoKey.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Crypto {
 
-class SubtleCrypto final : public Bindings::PlatformObject {
+class WEB_API SubtleCrypto final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(SubtleCrypto, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(SubtleCrypto);
 
@@ -52,6 +53,6 @@ struct NormalizedAlgorithmAndParameter {
     NonnullOwnPtr<AlgorithmMethods> methods;
     NonnullOwnPtr<AlgorithmParams> parameter;
 };
-WebIDL::ExceptionOr<NormalizedAlgorithmAndParameter> normalize_an_algorithm(JS::Realm&, AlgorithmIdentifier const& algorithm, String operation);
+WEB_API WebIDL::ExceptionOr<NormalizedAlgorithmAndParameter> normalize_an_algorithm(JS::Realm&, AlgorithmIdentifier const& algorithm, String operation);
 
 }

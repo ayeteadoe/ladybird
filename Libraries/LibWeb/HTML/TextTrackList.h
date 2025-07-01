@@ -8,11 +8,12 @@
 
 #include <LibGC/RootVector.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/TextTrack.h>
 
 namespace Web::HTML {
 
-class TextTrackList final : public DOM::EventTarget {
+class WEB_API TextTrackList final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(TextTrackList, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(TextTrackList);
 

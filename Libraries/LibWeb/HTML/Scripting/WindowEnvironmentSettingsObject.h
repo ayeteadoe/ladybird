@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibJS/Heap/Cell.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/Scripting/Environments.h>
 
 namespace Web::HTML {
 
-class WindowEnvironmentSettingsObject final : public EnvironmentSettingsObject {
+class WEB_API WindowEnvironmentSettingsObject final : public EnvironmentSettingsObject {
     GC_CELL(WindowEnvironmentSettingsObject, EnvironmentSettingsObject);
     GC_DECLARE_ALLOCATOR(WindowEnvironmentSettingsObject);
 

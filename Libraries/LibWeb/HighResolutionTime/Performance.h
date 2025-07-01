@@ -9,13 +9,14 @@
 
 #include <LibCore/ElapsedTimer.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/WindowOrWorkerGlobalScope.h>
 #include <LibWeb/UserTiming/PerformanceMark.h>
 #include <LibWeb/UserTiming/PerformanceMeasure.h>
 
 namespace Web::HighResolutionTime {
 
-class Performance final : public DOM::EventTarget {
+class WEB_API Performance final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(Performance, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(Performance);
 

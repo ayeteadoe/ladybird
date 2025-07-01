@@ -14,6 +14,7 @@
 #include <LibWasm/Types.h>
 #include <LibWeb/Bindings/ExceptionOrUtils.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAssembly/WebAssembly.h>
 
 namespace Web::Bindings {
@@ -36,7 +37,7 @@ struct ModuleExportDescriptor {
     Bindings::ImportExportKind kind;
 };
 
-class Module : public Bindings::PlatformObject {
+class WEB_API Module : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Module, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Module);
 

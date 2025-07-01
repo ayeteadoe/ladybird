@@ -15,6 +15,7 @@
 #include <LibWeb/Bindings/ExceptionOrUtils.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Bindings/TablePrototype.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::WebAssembly {
 
@@ -24,7 +25,7 @@ struct TableDescriptor {
     Optional<u32> maximum;
 };
 
-class Table : public Bindings::PlatformObject {
+class WEB_API Table : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Table, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Table);
 

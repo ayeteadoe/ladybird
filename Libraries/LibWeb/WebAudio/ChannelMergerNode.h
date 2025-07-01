@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebAudio/AudioNode.h>
 
 namespace Web::WebAudio {
@@ -16,7 +17,7 @@ struct ChannelMergerOptions : AudioNodeOptions {
 };
 
 // https://webaudio.github.io/web-audio-api/#ChannelMergerNode
-class ChannelMergerNode final : public AudioNode {
+class WEB_API ChannelMergerNode final : public AudioNode {
     WEB_PLATFORM_OBJECT(ChannelMergerNode, AudioNode);
     GC_DECLARE_ALLOCATOR(ChannelMergerNode);
 

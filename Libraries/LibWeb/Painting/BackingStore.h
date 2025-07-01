@@ -9,6 +9,7 @@
 #include <AK/AtomicRefCounted.h>
 #include <AK/Noncopyable.h>
 #include <LibGfx/Size.h>
+#include <LibWeb/Forward.h>
 
 #ifdef AK_OS_MACOS
 #    include <LibCore/IOSurface.h>
@@ -16,7 +17,7 @@
 
 namespace Web::Painting {
 
-class BackingStore : public AtomicRefCounted<BackingStore> {
+class WEB_API BackingStore : public AtomicRefCounted<BackingStore> {
     AK_MAKE_NONCOPYABLE(BackingStore);
 
 public:
@@ -27,7 +28,7 @@ public:
     virtual ~BackingStore() { }
 };
 
-class BitmapBackingStore final : public BackingStore {
+class WEB_API BitmapBackingStore final : public BackingStore {
 public:
     static NonnullRefPtr<BitmapBackingStore> create(RefPtr<Gfx::Bitmap> bitmap)
     {
@@ -44,7 +45,7 @@ private:
 };
 
 #ifdef AK_OS_MACOS
-class IOSurfaceBackingStore final : public BackingStore {
+class WEB_API IOSurfaceBackingStore final : public BackingStore {
 public:
     static NonnullRefPtr<IOSurfaceBackingStore> create(Core::IOSurfaceHandle&& iosurface_handle)
     {

@@ -15,10 +15,11 @@
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Bindings/Serializable.h>
 #include <LibWeb/Crypto/CryptoBindings.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::Crypto {
 
-class CryptoKey final
+class WEB_API CryptoKey final
     : public Bindings::PlatformObject
     , public Bindings::Serializable {
     WEB_PLATFORM_OBJECT(CryptoKey, Bindings::PlatformObject);
@@ -69,7 +70,7 @@ private:
 };
 
 // https://w3c.github.io/webcrypto/#ref-for-dfn-CryptoKeyPair-2
-class CryptoKeyPair : public JS::Object {
+class WEB_API CryptoKeyPair : public JS::Object {
     JS_OBJECT(CryptoKeyPair, JS::Object);
     GC_DECLARE_ALLOCATOR(CryptoKeyPair);
 

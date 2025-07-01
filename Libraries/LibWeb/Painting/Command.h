@@ -27,6 +27,7 @@
 #include <LibGfx/TextLayout.h>
 #include <LibWeb/CSS/ComputedValues.h>
 #include <LibWeb/CSS/Enums.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/BorderRadiiData.h>
 #include <LibWeb/Painting/BorderRadiusCornerClipper.h>
 #include <LibWeb/Painting/GradientData.h>
@@ -38,7 +39,7 @@ namespace Web::Painting {
 
 class DisplayList;
 
-struct DrawGlyphRun {
+struct WEB_API DrawGlyphRun {
     NonnullRefPtr<Gfx::GlyphRun const> glyph_run;
     double scale { 1 };
     Gfx::IntRect rect;
@@ -153,14 +154,14 @@ struct PaintLinearGradient {
     }
 };
 
-struct PaintOuterBoxShadow {
+struct WEB_API PaintOuterBoxShadow {
     PaintBoxShadowParams box_shadow_params;
 
     [[nodiscard]] Gfx::IntRect bounding_rect() const;
     void translate_by(Gfx::IntPoint const& offset);
 };
 
-struct PaintInnerBoxShadow {
+struct WEB_API PaintInnerBoxShadow {
     PaintBoxShadowParams box_shadow_params;
 
     [[nodiscard]] Gfx::IntRect bounding_rect() const;

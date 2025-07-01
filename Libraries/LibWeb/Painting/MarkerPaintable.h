@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Layout/ListItemMarkerBox.h>
 #include <LibWeb/Painting/PaintableBox.h>
 
 namespace Web::Painting {
 
-class MarkerPaintable final : public PaintableBox {
+class WEB_API MarkerPaintable final : public PaintableBox {
     GC_CELL(MarkerPaintable, PaintableBox);
     GC_DECLARE_ALLOCATOR(MarkerPaintable);
 

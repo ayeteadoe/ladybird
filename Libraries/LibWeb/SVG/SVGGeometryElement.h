@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Geometry/DOMPoint.h>
 #include <LibWeb/SVG/SVGGraphicsElement.h>
 
 namespace Web::SVG {
 
 // https://svgwg.org/svg2-draft/types.html#InterfaceSVGGeometryElement
-class SVGGeometryElement : public SVGGraphicsElement {
+class WEB_API SVGGeometryElement : public SVGGraphicsElement {
     WEB_PLATFORM_OBJECT(SVGGeometryElement, SVGGraphicsElement);
 
 public:

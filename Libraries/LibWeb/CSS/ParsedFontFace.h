@@ -13,10 +13,11 @@
 #include <LibWeb/CSS/Enums.h>
 #include <LibWeb/CSS/Percentage.h>
 #include <LibWeb/CSS/URL.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class ParsedFontFace {
+class WEB_API ParsedFontFace {
 public:
     struct Source {
         Variant<FlyString, URL> local_or_url;

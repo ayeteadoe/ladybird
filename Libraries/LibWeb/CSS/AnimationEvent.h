@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOM/Event.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -19,7 +20,7 @@ struct AnimationEventInit : public DOM::EventInit {
 };
 
 // https://www.w3.org/TR/css-animations-1/#animationevent
-class AnimationEvent : public DOM::Event {
+class WEB_API AnimationEvent : public DOM::Event {
     WEB_PLATFORM_OBJECT(AnimationEvent, DOM::Event);
     GC_DECLARE_ALLOCATOR(AnimationEvent);
 

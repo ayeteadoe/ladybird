@@ -18,7 +18,7 @@
 
 namespace Web::HTML {
 
-class RenderingThread {
+class WEB_API RenderingThread {
     AK_MAKE_NONCOPYABLE(RenderingThread);
     AK_MAKE_NONMOVABLE(RenderingThread);
 

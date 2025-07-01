@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/Painting/ClipFrame.h>
 #include <LibWeb/Painting/ScrollFrame.h>
 
 namespace Web::Painting {
 
-class ClippableAndScrollable {
+class WEB_API ClippableAndScrollable {
 public:
     virtual ~ClippableAndScrollable() = default;
 

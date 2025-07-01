@@ -8,10 +8,11 @@
 
 #include <LibWeb/CSS/CalculatedOr.h>
 #include <LibWeb/CSS/StyleValues/CSSColorValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class ColorMixStyleValue final : public CSSColorValue {
+class WEB_API ColorMixStyleValue final : public CSSColorValue {
 public:
     virtual ~ColorMixStyleValue() override = default;
 

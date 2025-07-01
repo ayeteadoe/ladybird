@@ -20,7 +20,7 @@ struct ClipboardUnsanitizedFormats {
     Optional<Vector<String>> unsanitized;
 };
 
-class Clipboard final : public DOM::EventTarget {
+class WEB_API Clipboard final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(Clipboard, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(Clipboard);
 

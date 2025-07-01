@@ -9,6 +9,7 @@
 #include <AK/FlyString.h>
 #include <AK/Optional.h>
 #include <AK/Vector.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
@@ -18,10 +19,10 @@ enum class PagePseudoClass : u8 {
     First,
     Blank,
 };
-Optional<PagePseudoClass> page_pseudo_class_from_string(StringView);
-StringView to_string(PagePseudoClass);
+WEB_API Optional<PagePseudoClass> page_pseudo_class_from_string(StringView);
+WEB_API StringView to_string(PagePseudoClass);
 
-class PageSelector {
+class WEB_API PageSelector {
 public:
     PageSelector(Optional<FlyString> name, Vector<PagePseudoClass>);
 

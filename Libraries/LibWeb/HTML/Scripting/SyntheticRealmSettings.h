@@ -14,7 +14,7 @@ namespace Web::HTML {
 
 // https://whatpr.org/html/9893/webappapis.html#synthetic-realm-settings-objects
 // Each synthetic realm has an associated synthetic realm settings object with the following fields:
-struct SyntheticRealmSettings {
+struct WEB_API SyntheticRealmSettings {
     // An execution context
     // The JavaScript execution context for the scripts within this realm.
     NonnullOwnPtr<JS::ExecutionContext> execution_context;

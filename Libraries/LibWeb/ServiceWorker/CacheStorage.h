@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/WebIDL/Promise.h>
 
 namespace Web::ServiceWorker {
 
 // https://w3c.github.io/ServiceWorker/#cachestorage-interface
-class CacheStorage : public Bindings::PlatformObject {
+class WEB_API CacheStorage : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(CacheStorage, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(CacheStorage);
 

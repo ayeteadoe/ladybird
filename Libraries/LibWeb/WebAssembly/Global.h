@@ -10,6 +10,7 @@
 #include <LibWeb/Bindings/ExceptionOrUtils.h>
 #include <LibWeb/Bindings/GlobalPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::WebAssembly {
 
@@ -18,7 +19,7 @@ struct GlobalDescriptor {
     bool mutable_ { false };
 };
 
-class Global : public Bindings::PlatformObject {
+class WEB_API Global : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(Global, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(Global);
 

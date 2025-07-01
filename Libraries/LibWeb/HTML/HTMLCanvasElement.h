@@ -8,12 +8,13 @@
 
 #include <LibGfx/Forward.h>
 #include <LibGfx/PaintingSurface.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/HTMLElement.h>
 #include <LibWeb/WebIDL/Types.h>
 
 namespace Web::HTML {
 
-class HTMLCanvasElement final : public HTMLElement {
+class WEB_API HTMLCanvasElement final : public HTMLElement {
     WEB_PLATFORM_OBJECT(HTMLCanvasElement, HTMLElement);
     GC_DECLARE_ALLOCATOR(HTMLCanvasElement);
 

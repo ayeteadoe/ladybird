@@ -12,7 +12,7 @@
 namespace Web::Bindings {
 
 // https://html.spec.whatwg.org/multipage/structured-data.html#serializable-objects
-class Serializable {
+class WEB_API Serializable {
 public:
     virtual ~Serializable() = default;
 

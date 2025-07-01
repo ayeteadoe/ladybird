@@ -28,7 +28,7 @@ struct TextDecodeOptions {
 };
 
 // https://encoding.spec.whatwg.org/#textdecoder
-class TextDecoder : public Bindings::PlatformObject {
+class WEB_API TextDecoder : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(TextDecoder, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(TextDecoder);
 

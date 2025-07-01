@@ -9,10 +9,11 @@
 
 #include <AK/HashMap.h>
 #include <AK/String.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::MimeSniff {
 
-bool is_javascript_mime_type_essence_match(StringView);
+WEB_API bool is_javascript_mime_type_essence_match(StringView);
 
 // https://mimesniff.spec.whatwg.org/#javascript-mime-type
 // A JavaScript MIME type is any MIME type whose essence is one of the following:
@@ -36,7 +37,7 @@ static constexpr Array s_javascript_mime_type_essence_strings = {
 };
 
 // https://mimesniff.spec.whatwg.org/#mime-type
-class MimeType {
+class WEB_API MimeType {
 public:
     [[nodiscard]] static MimeType create(String type, String subtype);
     [[nodiscard]] static Optional<MimeType> parse(StringView);
@@ -88,6 +89,6 @@ private:
     String m_cached_essence;
 };
 
-String minimise_a_supported_mime_type(MimeType const&);
+WEB_API String minimise_a_supported_mime_type(MimeType const&);
 
 }

@@ -8,10 +8,11 @@
 
 #include <AK/RefCounted.h>
 #include <LibWeb/DOM/Text.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::DOM {
 
-class CDATASection final : public Text {
+class WEB_API CDATASection final : public Text {
     WEB_PLATFORM_OBJECT(CDATASection, Text);
     GC_DECLARE_ALLOCATOR(CDATASection);
 

@@ -8,10 +8,11 @@
 
 #include <AK/StringView.h>
 #include <LibJS/Runtime/NativeFunction.h>
+#include <LibWeb/Export.h>
 
 namespace Web::Bindings {
 
-class ImageConstructor final : public JS::NativeFunction {
+class WEB_API ImageConstructor final : public JS::NativeFunction {
     JS_OBJECT(ImageConstructor, JS::NativeFunction);
     GC_DECLARE_ALLOCATOR(ImageConstructor);
 

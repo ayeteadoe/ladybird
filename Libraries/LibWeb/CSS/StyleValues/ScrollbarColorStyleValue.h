@@ -9,10 +9,11 @@
 #include <AK/OwnPtr.h>
 #include <LibWeb/CSS/CSSStyleValue.h>
 #include <LibWeb/CSS/StyleValues/CSSColorValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class ScrollbarColorStyleValue final : public StyleValueWithDefaultOperators<ScrollbarColorStyleValue> {
+class WEB_API ScrollbarColorStyleValue final : public StyleValueWithDefaultOperators<ScrollbarColorStyleValue> {
 public:
     static ValueComparingNonnullRefPtr<ScrollbarColorStyleValue const> create(NonnullRefPtr<CSSStyleValue const> thumb_color, NonnullRefPtr<CSSStyleValue const> track_color);
     virtual ~ScrollbarColorStyleValue() override = default;

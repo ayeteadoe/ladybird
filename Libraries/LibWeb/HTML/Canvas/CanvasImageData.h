@@ -6,12 +6,13 @@
 
 #pragma once
 
+#include <LibWeb/Forward.h>
 #include <LibWeb/HTML/ImageData.h>
 
 namespace Web::HTML {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#canvasimagedata
-class CanvasImageData {
+class WEB_API CanvasImageData {
 public:
     virtual ~CanvasImageData() = default;
 

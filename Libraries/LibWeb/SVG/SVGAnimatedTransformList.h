@@ -7,12 +7,13 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/SVG/SVGTransformList.h>
 
 namespace Web::SVG {
 
 // https://svgwg.org/svg2-draft/single-page.html#coords-InterfaceSVGTransformList
-class SVGAnimatedTransformList final : public Bindings::PlatformObject {
+class WEB_API SVGAnimatedTransformList final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(SVGAnimatedTransformList, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(SVGAnimatedTransformList);
 

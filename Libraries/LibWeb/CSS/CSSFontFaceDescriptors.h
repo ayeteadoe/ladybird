@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/CSS/CSSDescriptors.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
 // https://drafts.csswg.org/css-fonts-4/#cssfontfacedescriptors
-class CSSFontFaceDescriptors final
+class WEB_API CSSFontFaceDescriptors final
     : public CSSDescriptors {
     WEB_PLATFORM_OBJECT(CSSFontFaceDescriptors, CSSDescriptors);
     GC_DECLARE_ALLOCATOR(CSSFontFaceDescriptors);

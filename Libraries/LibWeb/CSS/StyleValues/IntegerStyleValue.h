@@ -7,10 +7,11 @@
 #pragma once
 
 #include <LibWeb/CSS/StyleValues/CSSUnitValue.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::CSS {
 
-class IntegerStyleValue final : public CSSUnitValue {
+class WEB_API IntegerStyleValue final : public CSSUnitValue {
 public:
     static ValueComparingNonnullRefPtr<IntegerStyleValue const> create(i64 value)
     {

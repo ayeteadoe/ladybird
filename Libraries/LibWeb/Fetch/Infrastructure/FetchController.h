@@ -21,7 +21,7 @@
 namespace Web::Fetch::Infrastructure {
 
 // https://fetch.spec.whatwg.org/#fetch-controller
-class FetchController : public JS::Cell {
+class WEB_API FetchController : public JS::Cell {
     GC_CELL(FetchController, JS::Cell);
     GC_DECLARE_ALLOCATOR(FetchController);
 

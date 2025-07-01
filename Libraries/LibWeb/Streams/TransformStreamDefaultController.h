@@ -7,11 +7,12 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Forward.h>
 #include <LibWeb/Streams/Algorithms.h>
 
 namespace Web::Streams {
 
-class TransformStreamDefaultController : public Bindings::PlatformObject {
+class WEB_API TransformStreamDefaultController : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(TransformStreamDefaultController, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(TransformStreamDefaultController);
 

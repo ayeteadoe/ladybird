@@ -7,6 +7,7 @@
 #pragma once
 
 #include <AK/FlyString.h>
+#include <LibWeb/Forward.h>
 
 namespace Web::HTML {
 namespace AttributeNames {
@@ -319,6 +320,6 @@ ENUMERATE_HTML_ATTRIBUTES
 
 }
 
-bool is_boolean_attribute(FlyString const& attribute);
+WEB_API bool is_boolean_attribute(FlyString const& attribute);
 
 }
