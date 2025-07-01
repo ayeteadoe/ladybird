@@ -232,15 +232,15 @@ enum class AnimationType {
     Custom,
     None,
 };
-AnimationType animation_type_from_longhand_property(PropertyID);
-bool is_animatable_property(PropertyID);
+WEB_API AnimationType animation_type_from_longhand_property(PropertyID);
+WEB_API bool is_animatable_property(PropertyID);
 
-Optional<PropertyID> property_id_from_camel_case_string(StringView);
-Optional<PropertyID> property_id_from_string(StringView);
-[[nodiscard]] FlyString const& string_from_property_id(PropertyID);
-[[nodiscard]] FlyString const& camel_case_string_from_property_id(PropertyID);
-bool is_inherited_property(PropertyID);
-NonnullRefPtr<CSSStyleValue const> property_initial_value(PropertyID);
+WEB_API Optional<PropertyID> property_id_from_camel_case_string(StringView);
+WEB_API Optional<PropertyID> property_id_from_string(StringView);
+[[nodiscard]] WEB_API FlyString const& string_from_property_id(PropertyID);
+[[nodiscard]] WEB_API FlyString const& camel_case_string_from_property_id(PropertyID);
+WEB_API bool is_inherited_property(PropertyID);
+WEB_API NonnullRefPtr<CSSStyleValue const> property_initial_value(PropertyID);
 
 enum class ValueType {
     Angle,
@@ -269,32 +269,32 @@ enum class ValueType {
     Time,
     Url,
 };
-bool property_accepts_type(PropertyID, ValueType);
-bool property_accepts_keyword(PropertyID, Keyword);
-Optional<ValueType> property_resolves_percentages_relative_to(PropertyID);
-Vector<StringView> property_custom_ident_blacklist(PropertyID);
+WEB_API bool property_accepts_type(PropertyID, ValueType);
+WEB_API bool property_accepts_keyword(PropertyID, Keyword);
+WEB_API Optional<ValueType> property_resolves_percentages_relative_to(PropertyID);
+WEB_API Vector<StringView> property_custom_ident_blacklist(PropertyID);
 
 // These perform range-checking, but are also safe to call with properties that don't accept that type. (They'll just return false.)
-bool property_accepts_angle(PropertyID, Angle const&);
-bool property_accepts_flex(PropertyID, Flex const&);
-bool property_accepts_frequency(PropertyID, Frequency const&);
-bool property_accepts_integer(PropertyID, i64 const&);
-bool property_accepts_length(PropertyID, Length const&);
-bool property_accepts_number(PropertyID, double const&);
-bool property_accepts_percentage(PropertyID, Percentage const&);
-bool property_accepts_resolution(PropertyID, Resolution const&);
-bool property_accepts_time(PropertyID, Time const&);
+WEB_API bool property_accepts_angle(PropertyID, Angle const&);
+WEB_API bool property_accepts_flex(PropertyID, Flex const&);
+WEB_API bool property_accepts_frequency(PropertyID, Frequency const&);
+WEB_API bool property_accepts_integer(PropertyID, i64 const&);
+WEB_API bool property_accepts_length(PropertyID, Length const&);
+WEB_API bool property_accepts_number(PropertyID, double const&);
+WEB_API bool property_accepts_percentage(PropertyID, Percentage const&);
+WEB_API bool property_accepts_resolution(PropertyID, Resolution const&);
+WEB_API bool property_accepts_time(PropertyID, Time const&);
 
-bool property_is_shorthand(PropertyID);
-Vector<PropertyID> longhands_for_shorthand(PropertyID);
-Vector<PropertyID> expanded_longhands_for_shorthand(PropertyID);
-bool property_maps_to_shorthand(PropertyID);
-Vector<PropertyID> shorthands_for_longhand(PropertyID);
+WEB_API bool property_is_shorthand(PropertyID);
+WEB_API Vector<PropertyID> longhands_for_shorthand(PropertyID);
+WEB_API Vector<PropertyID> expanded_longhands_for_shorthand(PropertyID);
+WEB_API bool property_maps_to_shorthand(PropertyID);
+WEB_API Vector<PropertyID> shorthands_for_longhand(PropertyID);
 
-size_t property_maximum_value_count(PropertyID);
+WEB_API size_t property_maximum_value_count(PropertyID);
 
-bool property_affects_layout(PropertyID);
-bool property_affects_stacking_context(PropertyID);
+WEB_API bool property_affects_layout(PropertyID);
+WEB_API bool property_affects_stacking_context(PropertyID);
 
 constexpr PropertyID first_property_id = PropertyID::@first_property_id@;
 constexpr PropertyID last_property_id = PropertyID::@last_property_id@;
@@ -311,9 +311,9 @@ enum class Quirk {
     // https://quirks.spec.whatwg.org/#the-unitless-length-quirk
     UnitlessLength,
 };
-bool property_has_quirk(PropertyID, Quirk);
+WEB_API bool property_has_quirk(PropertyID, Quirk);
 
-bool property_is_logical_alias(PropertyID);
+WEB_API bool property_is_logical_alias(PropertyID);
 
 } // namespace Web::CSS
 
