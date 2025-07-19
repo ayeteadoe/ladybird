@@ -81,10 +81,23 @@ public:
 
     Function<void(FileWatcherEvent const&)> on_change;
 
+    // FIXME: Create FileWatcherWindows instead (like we have for TransportSocketWindows.h)
+#if defined(AK_OS_WINDOWS)
+    struct WindowsWatch;
+    HashMap<ByteString, OwnPtr<WindowsWatch>> m_watches;
+    static unsigned long event_mask_to_notify_filter(FileWatcherEvent::Type event_mask);
+    void process_directory_changes(WindowsWatch& watch);
+    void start_monitoring(WindowsWatch& watch);
+#endif
+
 protected:
+#if defined(AK_OS_WINDOWS)
+    FileWatcher();
+#else
     FileWatcher(int watcher_fd, NonnullRefPtr<Notifier>);
 
     NonnullRefPtr<Notifier> m_notifier;
+#endif
 };
 
 }

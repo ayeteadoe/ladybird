@@ -166,8 +166,19 @@ ErrorOr<void> unlink(StringView path)
         return Error::from_errno(EFAULT);
 
     ByteString path_string = path;
-    if (_unlink(path_string.characters()) < 0)
+    if (_unlink(path_string.characters()) < 0) {
+        [[maybe_unused]]auto t = strerror(errno);
         return Error::from_syscall("unlink"sv, errno);
+    }
+    return {};
+}
+
+ErrorOr<void> symlink(StringView target, StringView link_path)
+{
+    ByteString target_string = target;
+    ByteString link_path_string = link_path;
+    if (CreateSymbolicLink(target_string.characters(), link_path_string.characters(), 0) == 0)
+        return Error::from_windows_error();
     return {};
 }
 

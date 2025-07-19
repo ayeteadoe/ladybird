@@ -177,14 +177,25 @@ static int notifier_type_to_network_event(NotificationType type)
 
 void EventLoopManagerWindows::register_notifier(Notifier& notifier)
 {
-    HANDLE event = CreateEvent(NULL, FALSE, FALSE, NULL);
-    VERIFY(event);
-    int rc = WSAEventSelect(notifier.fd(), event, notifier_type_to_network_event(notifier.type()));
-    VERIFY(!rc);
-
+    HANDLE handle = to_handle(notifier.fd());
+    DWORD flags;
     auto& notifiers = ThreadData::the()->notifiers;
-    VERIFY(!notifiers.get(event).has_value());
-    notifiers.set(Handle(event), &notifier);
+
+    // Check if the handle represents a socket or an event
+    if (GetHandleInformation(handle, &flags)) {
+        // It's a valid Windows handle (event), use it directly
+        VERIFY(!notifiers.get(handle).has_value());
+        notifiers.set(Handle(handle), &notifier);
+    } else {
+        // It's a socket file descriptor, create an event and use WSAEventSelect
+        HANDLE event = CreateEvent(NULL, FALSE, FALSE, NULL);
+        VERIFY(event);
+        VERIFY(WSAEventSelect(notifier.fd(), event, notifier_type_to_network_event(notifier.type())) == 0 || WSAGetLastError() == WSAENOTSOCK);
+
+        auto& notifiers = ThreadData::the()->notifiers;
+        VERIFY(!notifiers.get(event).has_value());
+        notifiers.set(Handle(event), &notifier);
+    }
 }
 
 void EventLoopManagerWindows::unregister_notifier(Notifier& notifier)
