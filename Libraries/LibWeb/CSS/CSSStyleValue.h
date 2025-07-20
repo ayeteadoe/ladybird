@@ -25,6 +25,7 @@
 #include <LibWeb/CSS/Length.h>
 #include <LibWeb/CSS/PreferredColorScheme.h>
 #include <LibWeb/CSS/SerializationMode.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Forward.h>
 
 namespace Web::CSS {
@@ -94,7 +95,7 @@ struct ColorResolutionContext {
 };
 
 // https://drafts.css-houdini.org/css-typed-om-1/#cssstylevalue
-class CSSStyleValue : public RefCounted<CSSStyleValue> {
+class WEB_API CSSStyleValue : public RefCounted<CSSStyleValue> {
 public:
     virtual ~CSSStyleValue() = default;
 
