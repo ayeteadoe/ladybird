@@ -13,6 +13,7 @@
 #include <AK/Vector.h>
 #include <LibGC/Function.h>
 #include <LibGC/Ptr.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/PixelUnits.h>
 #include <LibWeb/UIEvents/MouseButton.h>
@@ -23,7 +24,7 @@
 namespace Web::WebDriver {
 
 // https://w3c.github.io/webdriver/#dfn-action-object
-struct ActionObject {
+struct WEB_API ActionObject {
     enum class Subtype {
         Pause,
         KeyUp,

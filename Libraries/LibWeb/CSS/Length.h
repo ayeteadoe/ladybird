@@ -11,6 +11,7 @@
 #include <LibGfx/Forward.h>
 #include <LibGfx/Rect.h>
 #include <LibWeb/CSS/SerializationMode.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/PixelUnits.h>
 
@@ -86,7 +87,7 @@ public:
 
     static Optional<Type> unit_from_name(StringView);
 
-    Length(double value, Type type);
+    WEB_API Length(double value, Type type);
     ~Length();
 
     static Length make_auto();

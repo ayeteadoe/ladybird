@@ -9,6 +9,7 @@
 #include <AK/Noncopyable.h>
 #include <LibJS/Heap/Cell.h>
 #include <LibURL/Origin.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/HTML/NavigableContainer.h>
 #include <LibWeb/HTML/SandboxingFlagSet.h>
 #include <LibWeb/HTML/SessionHistoryEntry.h>
@@ -127,7 +128,7 @@ URL::Origin determine_the_origin(Optional<URL::URL const&>, SandboxingFlagSet, O
 SandboxingFlagSet determine_the_creation_sandboxing_flags(BrowsingContext const&, GC::Ptr<DOM::Element> embedder);
 
 // FIXME: Find a better home for these
-bool url_matches_about_blank(URL::URL const& url);
+WEB_API bool url_matches_about_blank(URL::URL const& url);
 bool url_matches_about_srcdoc(URL::URL const& url);
 
 }

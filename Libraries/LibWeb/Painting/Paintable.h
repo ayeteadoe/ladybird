@@ -8,6 +8,7 @@
 
 #include <LibGC/Root.h>
 #include <LibWeb/CSS/ComputedValues.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/InvalidateDisplayList.h>
 #include <LibWeb/PixelUnits.h>
@@ -147,7 +148,7 @@ public:
     friend class Layout::Node;
 
 protected:
-    explicit Paintable(Layout::Node const&);
+    WEB_API explicit Paintable(Layout::Node const&);
 
     virtual void visit_edges(Cell::Visitor&) override;
 

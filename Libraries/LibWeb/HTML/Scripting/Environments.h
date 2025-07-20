@@ -11,6 +11,7 @@
 #include <LibJS/Forward.h>
 #include <LibURL/Origin.h>
 #include <LibURL/URL.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/HTML/EventLoop/EventLoop.h>
 #include <LibWeb/HTML/Scripting/ModuleMap.h>
@@ -200,7 +201,7 @@ EnvironmentSettingsObject& relevant_settings_object(JS::Object const&);
 EnvironmentSettingsObject& relevant_settings_object(DOM::Node const&);
 EnvironmentSettingsObject& relevant_principal_settings_object(JS::Object const&);
 
-JS::Object& relevant_global_object(JS::Object const&);
+WEB_API JS::Object& relevant_global_object(JS::Object const&);
 JS::Object& relevant_principal_global_object(JS::Object const&);
 
 JS::Realm& entry_realm();

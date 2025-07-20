@@ -12,6 +12,7 @@
 #include <LibCore/Forward.h>
 #include <LibGC/Ptr.h>
 #include <LibJS/Forward.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/HTML/EventLoop/TaskQueue.h>
 #include <LibWeb/HighResolutionTime/DOMHighResTimeStamp.h>
 
@@ -142,7 +143,7 @@ private:
 
 EventLoop& main_thread_event_loop();
 TaskID queue_a_task(HTML::Task::Source, GC::Ptr<EventLoop>, GC::Ptr<DOM::Document>, GC::Ref<GC::Function<void()>> steps);
-TaskID queue_global_task(HTML::Task::Source, JS::Object&, GC::Ref<GC::Function<void()>> steps);
+WEB_API TaskID queue_global_task(HTML::Task::Source, JS::Object&, GC::Ref<GC::Function<void()>> steps);
 void queue_a_microtask(DOM::Document const*, GC::Ref<GC::Function<void()>> steps);
 void perform_a_microtask_checkpoint();
 

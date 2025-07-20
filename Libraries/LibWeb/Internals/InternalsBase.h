@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Forward.h>
 
 namespace Web::Internals {
@@ -19,7 +20,7 @@ public:
     virtual ~InternalsBase() override;
 
 protected:
-    explicit InternalsBase(JS::Realm&);
+    WEB_API explicit InternalsBase(JS::Realm&);
 
     HTML::Window& window() const;
     Page& page() const;

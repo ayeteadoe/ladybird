@@ -25,6 +25,7 @@
 #include <LibWeb/CSS/PreferredContrast.h>
 #include <LibWeb/CSS/PreferredMotion.h>
 #include <LibWeb/Cookie/Cookie.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/HTML/ActivateTab.h>
 #include <LibWeb/HTML/AudioPlayState.h>
@@ -423,9 +424,9 @@ protected:
 namespace IPC {
 
 template<>
-ErrorOr<void> encode(Encoder&, Web::Page::MediaContextMenu const&);
+WEB_API ErrorOr<void> encode(Encoder&, Web::Page::MediaContextMenu const&);
 
 template<>
-ErrorOr<Web::Page::MediaContextMenu> decode(Decoder&);
+WEB_API ErrorOr<Web::Page::MediaContextMenu> decode(Decoder&);
 
 }

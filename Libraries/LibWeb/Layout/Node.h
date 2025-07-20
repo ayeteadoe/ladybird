@@ -12,6 +12,7 @@
 #include <LibJS/Heap/Cell.h>
 #include <LibWeb/CSS/StyleValues/ImageStyleValue.h>
 #include <LibWeb/DOM/Document.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/Painting/PaintContext.h>
 #include <LibWeb/Painting/Paintable.h>
@@ -201,7 +202,7 @@ public:
     void set_has_been_wrapped_in_table_wrapper(bool value) { m_has_been_wrapped_in_table_wrapper = value; }
 
 protected:
-    Node(DOM::Document&, DOM::Node*);
+    WEB_API Node(DOM::Document&, DOM::Node*);
 
     virtual void visit_edges(Cell::Visitor&) override;
 

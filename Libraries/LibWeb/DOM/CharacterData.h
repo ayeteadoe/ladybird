@@ -12,6 +12,7 @@
 #include <LibWeb/DOM/ChildNode.h>
 #include <LibWeb/DOM/Node.h>
 #include <LibWeb/DOM/NonDocumentTypeChildNode.h>
+#include <LibWeb/Export.h>
 
 namespace Web::DOM {
 
@@ -44,7 +45,7 @@ public:
     Unicode::Segmenter& word_segmenter() const;
 
 protected:
-    CharacterData(Document&, NodeType, String const&);
+    WEB_API CharacterData(Document&, NodeType, String const&);
 
     virtual void initialize(JS::Realm&) override;
 

@@ -9,6 +9,7 @@
 #include <AK/String.h>
 #include <AK/Time.h>
 #include <LibIPC/Forward.h>
+#include <LibWeb/Export.h>
 
 namespace Web::Cookie {
 
@@ -24,7 +25,7 @@ enum class Source {
     Http,
 };
 
-struct Cookie {
+struct WEB_API Cookie {
     String creation_time_to_string() const;
     String last_access_time_to_string() const;
     String expiry_time_to_string() const;
@@ -43,7 +44,7 @@ struct Cookie {
     bool persistent { false };
 };
 
-StringView same_site_to_string(SameSite same_site_mode);
+WEB_API StringView same_site_to_string(SameSite same_site_mode);
 SameSite same_site_from_string(StringView same_site_mode);
 
 }
@@ -51,9 +52,9 @@ SameSite same_site_from_string(StringView same_site_mode);
 namespace IPC {
 
 template<>
-ErrorOr<void> encode(Encoder&, Web::Cookie::Cookie const&);
+WEB_API ErrorOr<void> encode(Encoder&, Web::Cookie::Cookie const&);
 
 template<>
-ErrorOr<Web::Cookie::Cookie> decode(Decoder&);
+WEB_API ErrorOr<Web::Cookie::Cookie> decode(Decoder&);
 
 }

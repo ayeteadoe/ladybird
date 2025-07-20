@@ -8,6 +8,7 @@
 
 #include <LibWeb/DOM/Element.h>
 #include <LibWeb/DOM/ParentNode.h>
+#include <LibWeb/Export.h>
 
 namespace Web::DOM {
 
@@ -29,7 +30,7 @@ public:
     void set_host(Element*);
 
 protected:
-    explicit DocumentFragment(Document& document);
+    WEB_API explicit DocumentFragment(Document& document);
 
     virtual void initialize(JS::Realm&) override;
     virtual void visit_edges(Cell::Visitor&) override;

@@ -11,6 +11,7 @@
 #include <LibJS/Runtime/PromiseCapability.h>
 #include <LibJS/Runtime/Realm.h>
 #include <LibJS/Runtime/VM.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/WebIDL/Promise.h>
 
 namespace Web::WebIDL {
@@ -54,7 +55,7 @@ public:
     }
 
 protected:
-    AsyncIterator(JS::Realm&, JS::Object::PropertyKind);
+    WEB_API AsyncIterator(JS::Realm&, JS::Object::PropertyKind);
 
     virtual void visit_edges(Cell::Visitor&) override;
 

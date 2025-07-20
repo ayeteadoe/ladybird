@@ -8,6 +8,7 @@
 
 #include <AK/Optional.h>
 #include <LibWeb/DOM/Element.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/HTML/EventNames.h>
 #include <LibWeb/HTML/GlobalEventHandlers.h>
 #include <LibWeb/HTML/HTMLOrSVGElement.h>
@@ -163,7 +164,7 @@ public:
     bool is_form_associated_custom_element();
 
 protected:
-    HTMLElement(DOM::Document&, DOM::QualifiedName);
+    WEB_API HTMLElement(DOM::Document&, DOM::QualifiedName);
 
     virtual void initialize(JS::Realm&) override;
 

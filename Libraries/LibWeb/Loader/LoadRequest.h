@@ -11,6 +11,7 @@
 #include <AK/Time.h>
 #include <LibCore/ElapsedTimer.h>
 #include <LibURL/URL.h>
+#include <LibWeb/Export.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/Page/Page.h>
 
@@ -18,7 +19,7 @@ namespace Web {
 
 class LoadRequest {
 public:
-    LoadRequest();
+    WEB_API LoadRequest();
 
     static LoadRequest create_for_url_on_page(const URL::URL& url, Page* page);
 

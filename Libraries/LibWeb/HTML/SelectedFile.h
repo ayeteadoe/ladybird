@@ -11,6 +11,7 @@
 #include <AK/Variant.h>
 #include <LibIPC/File.h>
 #include <LibIPC/Forward.h>
+#include <LibWeb/Export.h>
 
 namespace Web::HTML {
 
@@ -40,9 +41,9 @@ private:
 namespace IPC {
 
 template<>
-ErrorOr<void> encode(Encoder&, Web::HTML::SelectedFile const&);
+WEB_API ErrorOr<void> encode(Encoder&, Web::HTML::SelectedFile const&);
 
 template<>
-ErrorOr<Web::HTML::SelectedFile> decode(Decoder&);
+WEB_API ErrorOr<Web::HTML::SelectedFile> decode(Decoder&);
 
 }
