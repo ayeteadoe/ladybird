@@ -16,6 +16,7 @@ add_subdirectory(LibXML)
 
 if (ENABLE_GUI_TARGETS)
     add_subdirectory(LibGfx)
+    add_subdirectory(LibMedia)
     add_subdirectory(LibWeb)
     add_subdirectory(LibWebView)
 endif()
@@ -27,10 +28,6 @@ endif()
 
 add_subdirectory(LibCore)
 add_subdirectory(LibDNS)
-
-if (ENABLE_GUI_TARGETS)
-    add_subdirectory(LibMedia)
-endif()
 
 if (ENABLE_CLANG_PLUGINS AND CMAKE_CXX_COMPILER_ID MATCHES "Clang$")
     add_subdirectory(ClangPlugins)
