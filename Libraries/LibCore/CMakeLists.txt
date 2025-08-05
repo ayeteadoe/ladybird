@@ -58,12 +58,11 @@ set(SOURCES
 )
 
 if (WIN32)
-    # FIXME: Support UDPServer on Windows
     list(APPEND SOURCES
         SocketWindows.cpp
         AnonymousBufferWindows.cpp
         EventLoopImplementationWindows.cpp
-        # FIXME: TCPServer still needs to be implemented on Windows, this is currently just a stub to allow LibDevTools to build
+        UDPServerWindows.cpp
         TCPServerWindows.cpp)
 else()
     list(APPEND SOURCES
@@ -77,6 +76,8 @@ endif()
 
 if (NOT WIN32 AND NOT EMSCRIPTEN)
     list(APPEND SOURCES LocalServer.cpp)
+elseif (WIN32)
+    list(APPEND SOURCES LocalServerWindows.cpp)
 endif()
 
 # FIXME: Implement these for other systems.
