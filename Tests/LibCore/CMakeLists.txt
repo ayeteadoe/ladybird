@@ -6,6 +6,7 @@ set(TEST_SOURCES
     TestLibCoreMimeType.cpp
     TestLibCorePromise.cpp
     TestLibCoreSharedSingleProducerCircularQueue.cpp
+    TestTimeZoneWatcher.cpp
 )
 
 # FIXME: Change these tests to use a portable tempfile directory
