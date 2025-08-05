@@ -104,7 +104,8 @@ size_t EventLoopImplementationWindows::pump(PumpMode)
     size_t event_count = 1 + notifiers.size() + timers.size();
     // If 64 events limit proves to be insufficient RegisterWaitForSingleObject or other methods
     // can be used instead as mentioned in https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitformultipleobjects
-    // TODO: investigate if event_count can realistically exceed 64
+    // FIXME: The event limit is not sufficient enough for running test-web, we crash due to exceeding the limit,
+    //  so one of the alternative strategies mentioned above must be used
     VERIFY(event_count <= MAXIMUM_WAIT_OBJECTS);
 
     Vector<HANDLE, MAXIMUM_WAIT_OBJECTS> event_handles;

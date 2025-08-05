@@ -45,9 +45,8 @@ ErrorOr<BrowserProcess::ProcessDisposition> BrowserProcess::connect(Vector<ByteS
     return ProcessDisposition::ContinueMainProcess;
 }
 
-ErrorOr<void> BrowserProcess::connect_as_client([[maybe_unused]] ByteString const& socket_path, [[maybe_unused]] Vector<ByteString> const& raw_urls, [[maybe_unused]] NewWindow new_window)
+ErrorOr<void> BrowserProcess::connect_as_client(ByteString const& socket_path, Vector<ByteString> const& raw_urls, NewWindow new_window)
 {
-#if !defined(AK_OS_WINDOWS)
     // TODO: Mach IPC
     auto socket = TRY(Core::LocalSocket::connect(socket_path));
     auto client = UIProcessClient::construct(make<IPC::Transport>(move(socket)));
@@ -61,14 +60,10 @@ ErrorOr<void> BrowserProcess::connect_as_client([[maybe_unused]] ByteString cons
     }
 
     return {};
-#else
-    return Error::from_string_literal("BrowserProcess::connect_as_client() is not implemented on Windows");
-#endif
 }
 
-ErrorOr<void> BrowserProcess::connect_as_server([[maybe_unused]] ByteString const& socket_path)
+ErrorOr<void> BrowserProcess::connect_as_server(ByteString const& socket_path)
 {
-#if !defined(AK_OS_WINDOWS)
     // TODO: Mach IPC
     auto socket_fd = TRY(Process::create_ipc_socket(socket_path));
     m_socket_path = socket_path;
@@ -90,16 +85,18 @@ ErrorOr<void> BrowserProcess::connect_as_server([[maybe_unused]] ByteString cons
     };
 
     return {};
-#else
-    return Error::from_string_literal("BrowserProcess::connect_as_server() is not implemented on Windows");
-#endif
 }
 
 BrowserProcess::~BrowserProcess()
 {
     if (m_pid_file) {
         MUST(m_pid_file->truncate(0));
+#if !defined(AK_OS_WINDOWS)
+        // FIXME: This unlink() call is failing due to permissions issues
+        //  (Most likely still head by one of the service processes?). For now,
+        //  need to manually delete the .pid file before launching Ladybird
         MUST(Core::System::unlink(m_pid_path));
+#endif
     }
 
     if (!m_socket_path.is_empty())
