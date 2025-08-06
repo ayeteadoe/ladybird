@@ -457,12 +457,6 @@ void ConnectionFromClient::set_use_system_dns()
     default_resolver()->dns.reset_connection();
 }
 
-#ifdef AK_OS_WINDOWS
-void ConnectionFromClient::start_request(i32, ByteString, URL::URL, HTTP::HeaderMap, ByteBuffer, Core::ProxyData)
-{
-    VERIFY(0 && "RequestServer::ConnectionFromClient::start_request is not implemented");
-}
-#else
 void ConnectionFromClient::start_request(i32 request_id, ByteString method, URL::URL url, HTTP::HeaderMap request_headers, ByteBuffer request_body, Core::ProxyData proxy_data)
 {
     auto host = url.serialized_host().to_byte_string();
@@ -487,7 +481,29 @@ void ConnectionFromClient::start_request(i32 request_id, ByteString method, URL:
                 return;
             }
 
+#if !defined(AK_OS_WINDOWS)
             auto fds_or_error = Core::System::pipe2(O_NONBLOCK);
+#else
+            auto fds_or_error = []() -> ErrorOr<Array<int, 2>> {
+                HANDLE read_handle, write_handle;
+                if (CreatePipe(&read_handle, &write_handle, nullptr, 0)) {
+                    ArmedScopeGuard close_handles { [read_handle, write_handle]() {
+                        CloseHandle(read_handle);
+                        CloseHandle(write_handle);
+                    } };
+
+                    DWORD mode = PIPE_NOWAIT;
+                    if (!SetNamedPipeHandleState(read_handle, &mode, nullptr, nullptr) || !SetNamedPipeHandleState(write_handle, &mode, nullptr, nullptr)) {
+                        return Error::from_windows_error();
+                    }
+                    close_handles.disarm();
+
+                    //return Array { _open_osfhandle(reinterpret_cast<intptr_t>(read_handle), _O_RDONLY), _open_osfhandle(reinterpret_cast<intptr_t>(write_handle), _O_WRONLY) };
+                    return Array { to_fd(read_handle), to_fd(write_handle) };
+                }
+                return Error::from_windows_error();
+            }();
+#endif
             if (fds_or_error.is_error()) {
                 dbgln("StartRequest: Failed to create pipe: {}", fds_or_error.error());
                 return;
@@ -589,7 +605,6 @@ void ConnectionFromClient::start_request(i32 request_id, ByteString method, URL:
             m_active_requests.set(request_id, move(request));
         });
 }
-#endif
 
 static Requests::NetworkError map_curl_code_to_network_error(CURLcode const& code)
 {
