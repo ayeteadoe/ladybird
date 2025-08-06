@@ -1486,6 +1486,10 @@ WebIDL::ExceptionOr<void> Navigable::navigate(NavigateParams params)
     auto& page_client = active_document.page().client();
 
     // AD-HOC: If we are not able to continue in this process, request a new process from the UI.
+    // 
+    // FIXME: This is the one area wrt bugs for site loading on Windows. We end up requesting a new process and the CloseServer() 
+    // command ends up crashing the existing process, that doesn't seem like it'd ultimate be an issue givent he process is going away anyways, 
+    // but it does in fact cause issues
     if (is_top_level_traversable() && !page_client.is_url_suitable_for_same_process_navigation(active_document.url(), params.url)) {
         page_client.request_new_process_for_navigation(params.url);
         return {};

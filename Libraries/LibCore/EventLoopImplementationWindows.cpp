@@ -9,6 +9,7 @@
 #include <AK/HashMap.h>
 #include <LibCore/EventLoopImplementationWindows.h>
 #include <LibCore/Notifier.h>
+#include <LibCore/System.h>
 #include <LibCore/ThreadEventQueue.h>
 #include <LibCore/Timer.h>
 
@@ -178,8 +179,10 @@ void EventLoopManagerWindows::register_notifier(Notifier& notifier)
 {
     HANDLE event = CreateEvent(NULL, FALSE, FALSE, NULL);
     VERIFY(event);
-    int rc = WSAEventSelect(notifier.fd(), event, notifier_type_to_network_event(notifier.type()));
-    VERIFY(!rc);
+    if (System::is_socket(notifier.fd())) {
+        int rc = WSAEventSelect(notifier.fd(), event, notifier_type_to_network_event(notifier.type()));
+        VERIFY(!rc);
+    }
 
     auto& notifiers = ThreadData::the()->notifiers;
     VERIFY(!notifiers.get(event).has_value());

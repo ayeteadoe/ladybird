@@ -120,9 +120,13 @@ bool PageClient::is_connection_open() const
     return client().is_open();
 }
 
-bool PageClient::is_url_suitable_for_same_process_navigation(URL::URL const& current_url, URL::URL const& target_url) const
+bool PageClient::is_url_suitable_for_same_process_navigation([[maybe_unused]]URL::URL const& current_url, [[maybe_unused]] URL::URL const& target_url) const
 {
-    return WebView::is_url_suitable_for_same_process_navigation(current_url, target_url);
+    // FIXME: This is where we are getting the WebContent crash that kills the process before it can finalize whatever it needs to do for the HTTP request 
+    // (I think, haven't looked into it enough yet). Given this is Ad-Hc and not part of the spec, we may be fine with just skipping this check entirely on 
+    // Windows for now, but we'll see
+    //return WebView::is_url_suitable_for_same_process_navigation(current_url, target_url);
+    return true;
 }
 
 void PageClient::request_new_process_for_navigation(URL::URL const& url)
