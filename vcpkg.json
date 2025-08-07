@@ -26,6 +26,10 @@
       ]
     },
     {
+      "name": "dawn",
+      "platform": "linux"
+    },
+    {
       "name": "dirent",
       "platform": "windows"
     },
