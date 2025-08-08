@@ -21,6 +21,8 @@
 #include <LibWeb/Page/Page.h>
 #include <LibWeb/ServiceWorker/ServiceWorkerContainer.h>
 
+#include <webgpu/webgpu_cpp.h>
+
 namespace Web::HTML {
 
 GC_DEFINE_ALLOCATOR(Navigator);
@@ -33,6 +35,27 @@ GC::Ref<Navigator> Navigator::create(JS::Realm& realm)
 Navigator::Navigator(JS::Realm& realm)
     : PlatformObject(realm)
 {
+    wgpu::InstanceDescriptor instanceDescriptor{};
+    instanceDescriptor.capabilities.timedWaitAnyEnable = true;
+    wgpu::Instance instance = wgpu::CreateInstance(&instanceDescriptor);
+    VERIFY(instance != nullptr);
+
+    // Synchronously request the adapter.
+    wgpu::RequestAdapterOptions options = {};
+    wgpu::Adapter adapter;
+
+    auto callback = [](wgpu::RequestAdapterStatus status, wgpu::Adapter adapter, [[maybe_unused]]const char *message, void *userdata) {
+        if (status != wgpu::RequestAdapterStatus::Success) {
+            return;
+        }
+        *static_cast<wgpu::Adapter *>(userdata) = adapter;
+    };
+
+
+    auto callbackMode = wgpu::CallbackMode::WaitAnyOnly;
+    void *userdata = &adapter;
+    instance.WaitAny(instance.RequestAdapter(&options, callbackMode, callback, userdata), UINT64_MAX);
+    VERIFY(adapter != nullptr);
 }
 
 Navigator::~Navigator() = default;
