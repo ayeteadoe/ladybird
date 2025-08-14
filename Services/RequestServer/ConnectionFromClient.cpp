@@ -485,23 +485,13 @@ void ConnectionFromClient::start_request(i32 request_id, ByteString method, URL:
             auto fds_or_error = Core::System::pipe2(O_NONBLOCK);
 #else
             auto fds_or_error = []() -> ErrorOr<Array<int, 2>> {
-                HANDLE read_handle, write_handle;
-                if (CreatePipe(&read_handle, &write_handle, nullptr, 0)) {
-                    ArmedScopeGuard close_handles { [read_handle, write_handle]() {
-                        CloseHandle(read_handle);
-                        CloseHandle(write_handle);
-                    } };
 
-                    DWORD mode = PIPE_NOWAIT;
-                    if (!SetNamedPipeHandleState(read_handle, &mode, nullptr, nullptr) || !SetNamedPipeHandleState(write_handle, &mode, nullptr, nullptr)) {
-                        return Error::from_windows_error();
-                    }
-                    close_handles.disarm();
-
-                    //return Array { _open_osfhandle(reinterpret_cast<intptr_t>(read_handle), _O_RDONLY), _open_osfhandle(reinterpret_cast<intptr_t>(write_handle), _O_WRONLY) };
-                    return Array { to_fd(read_handle), to_fd(write_handle) };
-                }
-                return Error::from_windows_error();
+                int socket_fds[2] {};
+                TRY(Core::System::socketpair(AF_LOCAL, SOCK_STREAM, 0, socket_fds));
+                int option = 1;
+                TRY(Core::System::ioctl(socket_fds[0], FIONBIO, option));
+                TRY(Core::System::ioctl(socket_fds[1], FIONBIO, option));
+                return Array { socket_fds[0], socket_fds[1] };
             }();
 #endif
             if (fds_or_error.is_error()) {

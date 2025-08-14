@@ -244,17 +244,8 @@ ErrorOr<int> dup(int handle)
 
 bool is_socket(int handle)
 {
-    SOCKET sock = (SOCKET)handle;
-    int sock_type;
-    int optlen = sizeof(sock_type);
-
-    if (::getsockopt(sock, SOL_SOCKET, SO_TYPE, (char*)&sock_type, &optlen) == 0) {
-        return true;
-    }
-    return false;
-    //
-    // // FILE_TYPE_PIPE is returned for sockets and pipes. We don't use Windows pipes.
-    // return GetFileType(to_handle(handle)) == FILE_TYPE_PIPE;
+    // FILE_TYPE_PIPE is returned for sockets and pipes. We don't use Windows pipes.
+    return GetFileType(to_handle(handle)) == FILE_TYPE_PIPE;
 }
 
 ErrorOr<void> bind(int sockfd, struct sockaddr const* name, socklen_t name_size)
