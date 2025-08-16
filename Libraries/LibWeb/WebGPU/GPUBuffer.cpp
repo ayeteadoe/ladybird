@@ -77,6 +77,11 @@ void GPUBuffer::visit_edges(Visitor& visitor)
     Base::visit_edges(visitor);
 }
 
+wgpu::Buffer GPUBuffer::as_wgpu() const
+{
+    return m_impl->buffer;
+}
+
 String const& GPUBuffer::label() const
 {
     return m_impl->label;

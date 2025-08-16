@@ -37,6 +37,8 @@ class GPUBuffer final : public Bindings::PlatformObject {
 
     ~GPUBuffer() override;
 
+    wgpu::Buffer as_wgpu() const;
+
     String const& label() const;
     void set_label(String const& label);
 
