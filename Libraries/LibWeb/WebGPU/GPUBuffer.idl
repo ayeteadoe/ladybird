@@ -1,0 +1,33 @@
+#import <WebGPU/GPUObjectBase.idl>
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpubufferusageflags
+typedef [EnforceRange] unsigned long GPUBufferUsageFlags;
+
+/// FIXME: Attempting to declare GPUBufferUsage a IDL parser failure on the line after {: "GPUBuffer.idl:8: error: expected '('", so will just use constants for now
+
+// https://www.w3.org/TR/webgpu/#gpubufferdescriptor
+dictionary GPUBufferDescriptor
+         : GPUObjectDescriptorBase {
+    required GPUSize64 size;
+    required GPUBufferUsageFlags usage;
+    boolean mappedAtCreation = false;
+};
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpubuffermapstate
+enum GPUBufferMapState {
+    "unmapped",
+    "pending",
+    "mapped",
+};
+
+// https://www.w3.org/TR/webgpu/#gpubuffer
+[Exposed=(Window, Worker), SecureContext]
+interface GPUBuffer {
+    readonly attribute GPUSize64Out size;
+    readonly attribute GPUFlagsConstant usage;
+
+    readonly attribute GPUBufferMapState mapState;
+
+   // FIXME: Implement methods
+};
+GPUBuffer includes GPUObjectBase;
