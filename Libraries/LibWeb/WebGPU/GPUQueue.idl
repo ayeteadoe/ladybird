@@ -13,7 +13,8 @@ interface GPUQueue {
 
     // FIXME: Promise<undefined> onSubmittedWorkDone();
 
-    // FIXME: undefined writeBuffer(GPUBuffer buffer, GPUSize64 bufferOffset, AllowSharedBufferSource data, optional GPUSize64 dataOffset = 0, optional GPUSize64 size);
+    // FIXME: Define data param as https://webidl.spec.whatwg.org/#AllowSharedBufferSource
+    undefined writeBuffer(GPUBuffer buffer, GPUSize64 bufferOffset, ArrayBuffer data, optional GPUSize64 dataOffset = 0, optional GPUSize64 size);
 
     // FIXME: undefined writeTexture(GPUTexelCopyTextureInfo destination, AllowSharedBufferSource data, GPUTexelCopyBufferLayout dataLayout, GPUExtent3D size);
 

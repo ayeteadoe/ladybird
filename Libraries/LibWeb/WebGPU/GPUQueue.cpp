@@ -4,11 +4,13 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <LibJS/Runtime/ArrayBuffer.h>
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPU.h>
 #include <LibWeb/WebGPU/GPUCommandBuffer.h>
 #include <LibWeb/WebGPU/GPUQueue.h>
+#include <LibWeb/WebIDL/Buffers.h>
 
 #include <webgpu/webgpu_cpp.h>
 
@@ -74,6 +76,12 @@ void GPUQueue::submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_
         wgpu_command_buffers.append(command_buffer->as_wgpu());
     }
     m_impl->queue.Submit(command_buffers.size(), wgpu_command_buffers.data());
+}
+void GPUQueue::write_buffer(GC::Ref<GPUBuffer> buffer, WebIDL::UnsignedLongLong buffer_offset, GC::Root<WebIDL::BufferSource> const& data, /*FIXME: Dawn does not expose this field*/ [[maybe_unused]] Optional<WebIDL::UnsignedLongLong> data_offset, Optional<WebIDL::UnsignedLongLong> size)
+{
+    ByteBuffer const data_buffer = data->viewed_array_buffer()->buffer();
+    m_impl->queue.WriteBuffer(buffer->as_wgpu(), buffer_offset, data_buffer.data(), size.value_or(0));
+    dbgln("Wrote buffer of size {} to the device", size);
 }
 
 }
