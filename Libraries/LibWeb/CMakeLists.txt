@@ -1036,6 +1036,7 @@ set(SOURCES
     WebGPU/GPU.cpp
     WebGPU/GPUAdapter.cpp
     WebGPU/GPUAdapterInfo.cpp
+    WebGPU/GPUBuffer.cpp
     WebGPU/GPUCanvasContext.cpp
     WebGPU/GPUCommandBuffer.cpp
     WebGPU/GPUCommandEncoder.cpp

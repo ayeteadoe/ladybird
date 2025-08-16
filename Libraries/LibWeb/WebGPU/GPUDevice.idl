@@ -1,5 +1,6 @@
 #import <DOM/EventTarget.idl>
 #import <WebGPU/GPUAdapterInfo.idl>
+#import <WebGPU/GPUBuffer.idl>
 #import <WebGPU/GPUCommandEncoder.idl>
 #import <WebGPU/GPUQueue.idl>
 #import <WebGPU/GPUObjectBase.idl>
@@ -26,7 +27,7 @@ interface GPUDevice : EventTarget {
 
     [FIXME] undefined destroy();
 
-    // FIXME: GPUBuffer createBuffer(GPUBufferDescriptor descriptor);
+    GPUBuffer createBuffer(GPUBufferDescriptor descriptor);
     GPUTexture createTexture(GPUTextureDescriptor descriptor);
     // FIXME: GPUSampler createSampler(optional GPUSamplerDescriptor descriptor = {});
     // FIXME: GPUExternalTexture importExternalTexture(GPUExternalTextureDescriptor descriptor);

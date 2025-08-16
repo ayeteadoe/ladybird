@@ -9,6 +9,9 @@ typedef unsigned long GPUSize32Out;
 // https://www.w3.org/TR/webgpu/#typedefdef-gpusize64
 typedef [EnforceRange] unsigned long long GPUSize64;
 
+// https://www.w3.org/TR/webgpu/#typedefdef-gpusize64out
+typedef unsigned long long GPUSize64Out;
+
 // https://www.w3.org/TR/webgpu/#typedefdef-gpuintegercoordinate
 typedef [EnforceRange] unsigned long GPUIntegerCoordinate;
 
