@@ -3,6 +3,7 @@
 #import <WebGPU/GPUBuffer.idl>
 #import <WebGPU/GPUQueue.idl>
 #import <WebGPU/GPUObjectBase.idl>
+#import <WebGPU/GPUShaderModule.idl>
 #import <WebGPU/GPUSupportedFeatures.idl>
 #import <WebGPU/GPUSupportedLimits.idl>
 
@@ -21,6 +22,7 @@ interface GPUDevice : EventTarget {
     [SameObject] readonly attribute GPUQueue queue;
 
     GPUBuffer createBuffer(GPUBufferDescriptor descriptor);
+    GPUShaderModule createShaderModule(GPUShaderModuleDescriptor descriptor);
     // FIXME: Implement remaining methods
 };
 GPUDevice includes GPUObjectBase;
