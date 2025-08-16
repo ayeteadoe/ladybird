@@ -10,6 +10,7 @@
 #include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
+#include <LibWeb/WebGPU/GPUShaderModule.h>
 #include <LibWeb/WebGPU/GPUTexture.h>
 
 #include <webgpu/webgpu_cpp.h>
@@ -208,6 +209,22 @@ GC::Ref<GPUCommandEncoder> GPUDevice::create_command_encoder(GPUCommandEncoderDe
     wgpu::CommandEncoder native_command_encoder = m_impl->device.CreateCommandEncoder(&command_encoder_descriptor_options);
     auto& realm = this->realm();
     return MUST(GPUCommandEncoder::create(realm, move(native_command_encoder)));
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createshadermodule
+GC::Ref<GPUShaderModule> GPUDevice::create_shader_module(GPUShaderModuleDescriptor const& options) const
+{
+    wgpu::ShaderSourceWGSL wgsl_source;
+    auto code_view = options.code.bytes_as_string_view();
+    auto code_view_bytes = code_view.bytes();
+    wgsl_source.code = wgpu::StringView { bit_cast<char const*>(code_view_bytes.data()), code_view_bytes.size() };
+
+    wgpu::ShaderModuleDescriptor shader_module_descriptor_options { .nextInChain = &wgsl_source };
+
+    wgpu::ShaderModule native_shader_module = m_impl->device.CreateShaderModule(&shader_module_descriptor_options);
+
+    auto& realm = this->realm();
+    return MUST(GPUShaderModule::create(realm, move(native_shader_module)));
 }
 
 }

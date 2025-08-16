@@ -50,6 +50,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     GC::Ref<GPUCommandEncoder> create_command_encoder(GPUCommandEncoderDescriptor const&) const;
 
+    GC::Ref<GPUShaderModule> create_shader_module(GPUShaderModuleDescriptor const&) const;
+
 private:
     struct Impl;
     explicit GPUDevice(JS::Realm&, Impl);
