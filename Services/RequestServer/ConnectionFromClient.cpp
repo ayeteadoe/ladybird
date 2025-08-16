@@ -153,7 +153,17 @@ struct ConnectionFromClient::ActiveRequest : public Weakable<ActiveRequest> {
         Vector<u8> bytes_to_send;
         bytes_to_send.resize(send_buffer.used_buffer_size());
         send_buffer.peek_some(bytes_to_send);
+        // FIXME: We should create a better abstraction here for RequestServer read/write fds. Maybe a class like "RequestStream" where there can be a Unix impl (creates fds via pipe2 and just uses regular FIle I/O) and a Windows impl (creates fds via socketpair and uses LocalSocket stream I/O)
+#if !defined(AK_OS_WINDOWS)
         auto result = Core::System::write(this->writer_fd, bytes_to_send);
+#else
+        auto result = [this, bytes_to_send]() -> ErrorOr<ssize_t> {
+            auto sent = ::send(this->writer_fd, reinterpret_cast<char const*>(bytes_to_send.data()), bytes_to_send.size(), 0);
+            if (sent == SOCKET_ERROR)
+                return Error::from_windows_error();
+            return static_cast<DWORD>(sent);
+        }();
+#endif
         if (result.is_error()) {
             if (result.error().code() != EAGAIN) {
                 return result.release_error();

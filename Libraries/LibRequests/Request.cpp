@@ -38,7 +38,12 @@ void Request::set_request_fd(Badge<Requests::RequestClient>, int fd)
     m_fd = fd;
 
     auto notifier = Core::Notifier::construct(fd, Core::Notifier::Type::Read);
+    // FIXME: Enable this here
+//#if defined(AK_OS_WINDOWS)
+//    auto stream = MUST(Core::LocalSocket::adopt_fd(fd));
+//#else
     auto stream = MUST(Core::File::adopt_fd(fd, Core::File::OpenMode::Read));
+//#endif
     notifier->on_activation = move(m_internal_stream_data->read_notifier->on_activation);
     m_internal_stream_data->read_notifier = move(notifier);
     m_internal_stream_data->read_stream = move(stream);

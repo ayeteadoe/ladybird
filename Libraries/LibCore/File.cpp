@@ -125,7 +125,26 @@ ErrorOr<Bytes> File::read_some(Bytes buffer)
         return Error::from_errno(EBADF);
     }
 
-    ssize_t nread = TRY(System::read(m_fd, buffer));
+    // FIXME: Instead of this, the Request should create a LocakSocket stream instead of a File stream for the read request fd on Windows given we use socketpair
+    auto read_result = [this, &buffer]()  -> ErrorOr<ssize_t> {
+        int socket_type;
+        int optlen = sizeof(socket_type);
+        // Try to get socket options - if it succeeds, it's a socket
+        int result = ::getsockopt(m_fd, SOL_SOCKET, SO_TYPE, (char*)&socket_type, &optlen);
+        if (result != SOCKET_ERROR) {
+            auto received = ::recv(m_fd, reinterpret_cast<char*>(buffer.data()), buffer.size(), 0);
+            if (received == SOCKET_ERROR)
+                return Error::from_windows_error();
+            return static_cast<DWORD>(received);
+        }
+        else
+        {
+            return TRY(System::read(m_fd, buffer));;
+        }
+    }();
+
+    ssize_t nread = TRY(read_result);
+
     m_last_read_was_eof = nread == 0;
     m_file_offset += nread;
     return buffer.trim(nread);
