@@ -1197,6 +1197,8 @@ class GPUDevice;
 struct GPUDeviceDescriptor;
 class GPUQueue;
 struct GPURequestAdapterOptions;
+class GPUShaderModule;
+struct GPUShaderModuleDescriptor;
 class GPUSupportedFeatures;
 class GPUSupportedLimits;
 class WGSLLanguageFeatures;
