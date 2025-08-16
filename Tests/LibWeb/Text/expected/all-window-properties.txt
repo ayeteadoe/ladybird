@@ -158,6 +158,7 @@ Function
 GPU
 GPUAdapter
 GPUAdapterInfo
+GPUBuffer
 GPUDevice
 GPUQueue
 GPUSupportedFeatures

@@ -1025,6 +1025,7 @@ set(SOURCES
     WebGPU/GPU.cpp
     WebGPU/GPUAdapter.cpp
     WebGPU/GPUAdapterInfo.cpp
+    WebGPU/GPUBuffer.cpp
     WebGPU/GPUDevice.cpp
     WebGPU/GPUObjectBase.cpp
     WebGPU/GPUQueue.cpp
