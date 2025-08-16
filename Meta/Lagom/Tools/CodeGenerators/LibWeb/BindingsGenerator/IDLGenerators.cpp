@@ -87,6 +87,7 @@ static bool is_platform_object(Type const& type)
         "GPUDevice"sv,
         "GPUQueue"sv,
         "GPURenderPassEncoder"sv,
+        "GPUShaderModule"sv,
         "GPUSupportedFeatures"sv,
         "GPUSupportedLimits"sv,
         "GPUTexture"sv,

@@ -1,0 +1,15 @@
+#import <WebGPU/GPUObjectBase.idl>
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpushadermoduledescriptor
+dictionary GPUShaderModuleDescriptor
+         : GPUObjectDescriptorBase {
+    required USVString code;
+    // FIXME: Expose remaining fields
+};
+
+// https://www.w3.org/TR/webgpu/#gpushadermodule
+[Exposed=(Window, Worker), SecureContext]
+interface GPUShaderModule {
+    // FIXME: Implement methods
+};
+GPUShaderModule includes GPUObjectBase;
