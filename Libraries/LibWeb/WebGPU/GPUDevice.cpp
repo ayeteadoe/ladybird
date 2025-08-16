@@ -8,6 +8,7 @@
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
+#include <LibWeb/WebGPU/GPUShaderModule.h>
 
 #include <webgpu/webgpu_cpp.h>
 
@@ -90,6 +91,22 @@ GC::Ref<GPUBuffer> GPUDevice::create_buffer(GPUBufferDescriptor const& options) 
 
     auto& realm = this->realm();
     return MUST(GPUBuffer::create(realm, move(native_buffer)));
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createshadermodule
+GC::Ref<GPUShaderModule> GPUDevice::create_shader_module(GPUShaderModuleDescriptor const& options) const
+{
+    wgpu::ShaderSourceWGSL wgsl_source;
+    auto code_view = options.code.bytes_as_string_view();
+    auto code_view_bytes = code_view.bytes();
+    wgsl_source.code = wgpu::StringView { bit_cast<char const*>(code_view_bytes.data()), code_view_bytes.size() };
+
+    wgpu::ShaderModuleDescriptor shader_module_descriptor_options { .nextInChain = &wgsl_source };
+
+    wgpu::ShaderModule native_shader_module = m_impl->device.CreateShaderModule(&shader_module_descriptor_options);
+
+    auto& realm = this->realm();
+    return MUST(GPUShaderModule::create(realm, move(native_shader_module)));
 }
 
 }

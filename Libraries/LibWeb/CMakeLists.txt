@@ -1000,6 +1000,7 @@ set(SOURCES
     WebGPU/GPUDevice.cpp
     WebGPU/GPUObjectBase.cpp
     WebGPU/GPUQueue.cpp
+    WebGPU/GPUShaderModule.cpp
     WebGPU/GPUSupportedFeatures.cpp
     WebGPU/GPUSupportedLimits.cpp
     WebGPU/WGSLLanguageFeatures.cpp

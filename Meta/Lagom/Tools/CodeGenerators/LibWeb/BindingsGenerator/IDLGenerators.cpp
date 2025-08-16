@@ -73,6 +73,7 @@ static bool is_platform_object(Type const& type)
         "GPUBuffer"sv,
         "GPUDevice"sv,
         "GPUQueue"sv,
+        "GPUShaderModule"sv,
         "GPUSupportedFeatures"sv,
         "GPUSupportedLimits"sv,
         "WGSLLanguageFeatures"sv,
