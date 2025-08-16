@@ -8,7 +8,9 @@
 
 #include <LibWeb/Bindings/GPUQueuePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUObjectBase.h>
+#include <LibWeb/WebIDL/Types.h>
 
 namespace wgpu {
 
@@ -33,6 +35,8 @@ class GPUQueue final : public Bindings::PlatformObject {
 
     String const& label() const;
     void set_label(String const& label);
+
+    void write_buffer(GC::Ref<GPUBuffer>, WebIDL::UnsignedLongLong, GC::Root<WebIDL::BufferSource> const&, Optional<WebIDL::UnsignedLongLong>, Optional<WebIDL::UnsignedLongLong>);
 
 private:
     struct Impl;
