@@ -6,6 +6,7 @@
 
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
+#include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
 
 #include <webgpu/webgpu_cpp.h>
@@ -70,6 +71,29 @@ void GPUDevice::set_label(String const& label)
 GC::Ref<GPUQueue> GPUDevice::queue() const
 {
     return m_impl->queue;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createbuffer
+GC::Ref<GPUBuffer> GPUDevice::create_buffer(GPUBufferDescriptor const& options) const
+{
+    wgpu::BufferDescriptor buffer_descriptor_options = options.to_wgpu();
+
+    // Content timeline steps:
+    // 1. Let b be ! create a new WebGPU object(this, GPUBuffer, descriptor).
+    // 2. Set b.size to descriptor.size.
+    // 3. Set b.usage to descriptor.usage.
+    // 4. FIXME: If descriptor.mappedAtCreation is true:
+    //      1. If descriptor.size is not a multiple of 4, throw a RangeError.
+    //      2. Set b.[[mapping]] to ? initialize an active buffer mapping with mode WRITE and range [0, descriptor.size].
+    if (buffer_descriptor_options.mappedAtCreation) {
+    }
+
+    // FIXME: Issue the initialization steps on the Device timeline of this.
+
+    wgpu::Buffer native_buffer = m_impl->device.CreateBuffer(&buffer_descriptor_options);
+
+    auto& realm = this->realm();
+    return MUST(GPUBuffer::create(realm, move(native_buffer)));
 }
 
 }

@@ -1,5 +1,6 @@
 #import <DOM/EventTarget.idl>
 #import <WebGPU/GPUAdapterInfo.idl>
+#import <WebGPU/GPUBuffer.idl>
 #import <WebGPU/GPUQueue.idl>
 #import <WebGPU/GPUObjectBase.idl>
 #import <WebGPU/GPUSupportedFeatures.idl>
@@ -19,6 +20,7 @@ interface GPUDevice : EventTarget {
 
     [SameObject] readonly attribute GPUQueue queue;
 
-    // FIXME: Implement methods
+    GPUBuffer createBuffer(GPUBufferDescriptor descriptor);
+    // FIXME: Implement remaining methods
 };
 GPUDevice includes GPUObjectBase;

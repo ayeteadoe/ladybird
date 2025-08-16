@@ -40,6 +40,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     GC::Ref<GPUQueue> queue() const;
 
+    GC::Ref<GPUBuffer> create_buffer(GPUBufferDescriptor const&) const;
+
 private:
     struct Impl;
     explicit GPUDevice(JS::Realm&, Impl);
