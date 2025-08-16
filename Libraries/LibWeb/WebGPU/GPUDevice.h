@@ -43,6 +43,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     GC::Ref<GPUQueue> queue() const;
 
+    GC::Ref<GPUBuffer> create_buffer(GPUBufferDescriptor const&) const;
+
     GC::Ref<GPUTexture> create_texture(GPUTextureDescriptor const&) const;
 
     GC::Ref<GPUCommandEncoder> create_command_encoder(GPUCommandEncoderDescriptor const&) const;

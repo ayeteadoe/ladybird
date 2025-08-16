@@ -7,6 +7,7 @@
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPU.h>
+#include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
 #include <LibWeb/WebGPU/GPUTexture.h>
@@ -78,6 +79,40 @@ GC::Ref<GPU> GPUDevice::instance() const
 GC::Ref<GPUQueue> GPUDevice::queue() const
 {
     return m_impl->queue;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createbuffer
+GC::Ref<GPUBuffer> GPUDevice::create_buffer(GPUBufferDescriptor const& options) const
+{
+    wgpu::BufferDescriptor buffer_descriptor {};
+    buffer_descriptor.size = options.size;
+    buffer_descriptor.mappedAtCreation = options.mapped_at_creation;
+    // FIXME: Support all buffer usage flags
+    wgpu::BufferUsage buffer_usage {};
+    if (options.usage & static_cast<u64>(wgpu::BufferUsage::Vertex)) {
+        buffer_usage |= wgpu::BufferUsage::Vertex;
+    }
+    if (options.usage & static_cast<u64>(wgpu::BufferUsage::CopySrc)) {
+        buffer_usage |= wgpu::BufferUsage::CopySrc;
+    }
+    buffer_descriptor.usage = buffer_usage;
+
+    // Content timeline steps:
+    // 1. Let b be ! create a new WebGPU object(this, GPUBuffer, descriptor).
+    // 2. Set b.size to descriptor.size.
+    // 3. Set b.usage to descriptor.usage.
+    // 4. FIXME: If descriptor.mappedAtCreation is true:
+    //      1. If descriptor.size is not a multiple of 4, throw a RangeError.
+    //      2. Set b.[[mapping]] to ? initialize an active buffer mapping with mode WRITE and range [0, descriptor.size].
+    if (buffer_descriptor.mappedAtCreation) {
+    }
+
+    // FIXME: Issue the initialization steps on the Device timeline of this.
+
+    wgpu::Buffer native_buffer = m_impl->device.CreateBuffer(&buffer_descriptor);
+
+    auto& realm = this->realm();
+    return MUST(GPUBuffer::create(realm, m_impl->instance, move(native_buffer)));
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createtexture
