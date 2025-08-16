@@ -8,6 +8,14 @@ dictionary GPUQueueDescriptor
 // https://www.w3.org/TR/webgpu/#gpuqueue
 [Exposed=(Window, Worker), SecureContext]
 interface GPUQueue {
-    // FIXME: Implement methods
+    // FIXME: Define data param as https://webidl.spec.whatwg.org/#AllowSharedBufferSource
+    undefined writeBuffer(
+        GPUBuffer buffer,
+        GPUSize64 bufferOffset,
+        ArrayBuffer data,
+        optional GPUSize64 dataOffset = 0,
+        optional GPUSize64 size);
+
+    // FIXME: Implement remaining methods
 };
 GPUQueue includes GPUObjectBase;

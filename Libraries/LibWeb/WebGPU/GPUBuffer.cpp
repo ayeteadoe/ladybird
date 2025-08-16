@@ -24,6 +24,9 @@ wgpu::BufferDescriptor GPUBufferDescriptor::to_wgpu() const
     if (usage & static_cast<u64>(wgpu::BufferUsage::CopySrc)) {
         buffer_usage |= wgpu::BufferUsage::CopySrc;
     }
+    if (usage & static_cast<u64>(wgpu::BufferUsage::CopyDst)) {
+        buffer_usage |= wgpu::BufferUsage::CopyDst;
+    }
 
     return wgpu::BufferDescriptor { .size = size, .usage = buffer_usage, .mappedAtCreation = mapped_at_creation };
 }
@@ -78,6 +81,11 @@ void GPUBuffer::initialize(JS::Realm& realm)
 void GPUBuffer::visit_edges(Visitor& visitor)
 {
     Base::visit_edges(visitor);
+}
+
+wgpu::Buffer GPUBuffer::as_wgpu() const
+{
+    return m_impl->buffer;
 }
 
 String const& GPUBuffer::label() const
