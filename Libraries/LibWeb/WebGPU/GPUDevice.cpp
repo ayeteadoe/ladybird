@@ -9,6 +9,7 @@
 #include <LibWeb/WebGPU/GPU.h>
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
+#include <LibWeb/WebGPU/GPUTexture.h>
 
 #include <webgpu/webgpu_cpp.h>
 
@@ -84,6 +85,16 @@ GC::Ref<GPU> GPUDevice::instance() const
 GC::Ref<GPUQueue> GPUDevice::queue() const
 {
     return m_impl->queue;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createtexture
+// FIXME: Spec comments
+GC::Ref<GPUTexture> GPUDevice::create_texture(GPUTextureDescriptor const& options) const
+{
+    wgpu::TextureDescriptor texture_descriptor_options = options.to_wgpu();
+    wgpu::Texture native_texture = m_impl->device.CreateTexture(&texture_descriptor_options);
+    auto& realm = this->realm();
+    return MUST(GPUTexture::create(realm, move(native_texture)));
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createcommandencoder
