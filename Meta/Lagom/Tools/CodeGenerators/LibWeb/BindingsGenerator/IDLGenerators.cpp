@@ -77,6 +77,7 @@ static bool is_platform_object(Type const& type)
         "GPUShaderModule"sv,
         "GPUSupportedFeatures"sv,
         "GPUSupportedLimits"sv,
+        "GPUTexture"sv,
         "WGSLLanguageFeatures"sv,
         "HTMLCollection"sv,
         "IDBCursor"sv,
