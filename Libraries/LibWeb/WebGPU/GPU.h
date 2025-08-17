@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/GPUPrototype.h>
+#include <LibWeb/Bindings/GPUTexturePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/WebGPU/GPUAdapter.h>
 

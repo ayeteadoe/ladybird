@@ -1,3 +1,32 @@
+// FIXME: Should move the typedefs to a GPUTypes.idl
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpusize32
+typedef [EnforceRange] unsigned long GPUSize32;
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpusize32out
+typedef unsigned long GPUSize32Out;
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpusize64
+typedef [EnforceRange] unsigned long long GPUSize64;
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpuintegercoordinate
+typedef [EnforceRange] unsigned long GPUIntegerCoordinate;
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpuintegercoordinateout
+typedef unsigned long GPUIntegerCoordinateOut;
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpuflagsconstant
+typedef unsigned long GPUFlagsConstant;
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpuextent3d
+dictionary GPUExtent3DDict {
+    required GPUIntegerCoordinate width;
+    GPUIntegerCoordinate height = 1;
+    GPUIntegerCoordinate depthOrArrayLayers = 1;
+};
+// FIXME: typedef (sequence<GPUIntegerCoordinate> or GPUExtent3DDict) GPUExtent3D;
+typedef GPUExtent3DDict GPUExtent3D;
+
 // https://www.w3.org/TR/webgpu/#dictdef-gpuobjectdescriptorbase
 dictionary GPUObjectDescriptorBase {
     USVString label = "";
