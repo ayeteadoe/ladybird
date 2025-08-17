@@ -7,6 +7,7 @@
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPUBuffer.h>
+#include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
 #include <LibWeb/WebGPU/GPUShaderModule.h>
 
@@ -94,6 +95,7 @@ GC::Ref<GPUBuffer> GPUDevice::create_buffer(GPUBufferDescriptor const& options) 
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createshadermodule
+// FIXME: Spec comments
 GC::Ref<GPUShaderModule> GPUDevice::create_shader_module(GPUShaderModuleDescriptor const& options) const
 {
     wgpu::ShaderSourceWGSL wgsl_source;
@@ -107,6 +109,16 @@ GC::Ref<GPUShaderModule> GPUDevice::create_shader_module(GPUShaderModuleDescript
 
     auto& realm = this->realm();
     return MUST(GPUShaderModule::create(realm, move(native_shader_module)));
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createcommandencoder
+// FIXME: Spec comments
+GC::Ref<GPUCommandEncoder> GPUDevice::create_command_encoder(GPUCommandEncoderDescriptor const& options) const
+{
+    wgpu::CommandEncoderDescriptor command_encoder_descriptor_options = options.to_wgpu();
+    wgpu::CommandEncoder native_command_encoder = m_impl->device.CreateCommandEncoder(&command_encoder_descriptor_options);
+    auto& realm = this->realm();
+    return MUST(GPUCommandEncoder::create(realm, move(native_command_encoder)));
 }
 
 }
