@@ -44,6 +44,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     GC::Ref<GPUQueue> queue() const;
 
+    GC::Ref<GPUCommandEncoder> create_command_encoder(GPUCommandEncoderDescriptor const&) const;
+
 private:
     struct Impl;
     explicit GPUDevice(JS::Realm&, Impl);

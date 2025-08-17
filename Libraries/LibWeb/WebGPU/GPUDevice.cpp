@@ -7,6 +7,7 @@
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPU.h>
+#include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
 
 #include <webgpu/webgpu_cpp.h>
@@ -83,6 +84,16 @@ GC::Ref<GPU> GPUDevice::instance() const
 GC::Ref<GPUQueue> GPUDevice::queue() const
 {
     return m_impl->queue;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createcommandencoder
+// FIXME: Spec comments
+GC::Ref<GPUCommandEncoder> GPUDevice::create_command_encoder(GPUCommandEncoderDescriptor const& options) const
+{
+    wgpu::CommandEncoderDescriptor command_encoder_descriptor_options = options.to_wgpu();
+    wgpu::CommandEncoder native_command_encoder = m_impl->device.CreateCommandEncoder(&command_encoder_descriptor_options);
+    auto& realm = this->realm();
+    return MUST(GPUCommandEncoder::create(realm, move(native_command_encoder)));
 }
 
 }
