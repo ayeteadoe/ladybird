@@ -7,6 +7,7 @@
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPU.h>
+#include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
 #include <LibWeb/WebGPU/GPUTexture.h>
 
@@ -148,6 +149,16 @@ GC::Ref<GPUTexture> GPUDevice::create_texture(GPUTextureDescriptor const& option
     wgpu::Texture native_texture = m_impl->device.CreateTexture(&texture_descriptor);
     auto& realm = this->realm();
     return MUST(GPUTexture::create(realm, move(native_texture)));
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createcommandencoder
+// FIXME: Spec comments
+GC::Ref<GPUCommandEncoder> GPUDevice::create_command_encoder(GPUCommandEncoderDescriptor const& options) const
+{
+    wgpu::CommandEncoderDescriptor command_encoder_descriptor_options = options.to_wgpu();
+    wgpu::CommandEncoder native_command_encoder = m_impl->device.CreateCommandEncoder(&command_encoder_descriptor_options);
+    auto& realm = this->realm();
+    return MUST(GPUCommandEncoder::create(realm, move(native_command_encoder)));
 }
 
 }

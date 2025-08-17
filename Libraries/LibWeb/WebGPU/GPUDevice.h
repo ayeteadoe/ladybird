@@ -45,6 +45,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     GC::Ref<GPUTexture> create_texture(GPUTextureDescriptor const&) const;
 
+    GC::Ref<GPUCommandEncoder> create_command_encoder(GPUCommandEncoderDescriptor const&) const;
+
 private:
     struct Impl;
     explicit GPUDevice(JS::Realm&, Impl);
