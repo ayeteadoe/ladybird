@@ -1227,6 +1227,8 @@ class GPU;
 class GPUAdapter;
 class GPUAdapterInfo;
 class GPUCanvasContext;
+class GPUCommandEncoder;
+struct GPUCommandEncoderDescriptor;
 class GPUDevice;
 struct GPUDeviceDescriptor;
 class GPUQueue;

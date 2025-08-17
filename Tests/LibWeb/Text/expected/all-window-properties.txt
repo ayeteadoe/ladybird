@@ -170,6 +170,7 @@ GPU
 GPUAdapter
 GPUAdapterInfo
 GPUCanvasContext
+GPUCommandEncoder
 GPUDevice
 GPUQueue
 GPUSupportedFeatures
