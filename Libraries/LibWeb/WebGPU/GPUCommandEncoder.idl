@@ -1,0 +1,12 @@
+#import <WebGPU/GPUObjectBase.idl>
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpucommandencoderdescriptor
+dictionary GPUCommandEncoderDescriptor
+         : GPUObjectDescriptorBase {
+};
+
+// https://www.w3.org/TR/webgpu/#gpucommandencoder
+[Exposed=(Window, Worker), SecureContext]
+interface GPUCommandEncoder {
+};
+GPUCommandEncoder includes GPUObjectBase;
