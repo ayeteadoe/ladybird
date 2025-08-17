@@ -1219,6 +1219,8 @@ class GPUShaderModule;
 struct GPUShaderModuleDescriptor;
 class GPUSupportedFeatures;
 class GPUSupportedLimits;
+class GPUTexture;
+struct GPUTextureDescriptor;
 class WGSLLanguageFeatures;
 
 }
