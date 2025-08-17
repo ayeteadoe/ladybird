@@ -1,6 +1,7 @@
 #import <DOM/EventTarget.idl>
 #import <WebGPU/GPUAdapterInfo.idl>
 #import <WebGPU/GPUBuffer.idl>
+#import <WebGPU/GPUCommandEncoder.idl>
 #import <WebGPU/GPUQueue.idl>
 #import <WebGPU/GPUObjectBase.idl>
 #import <WebGPU/GPUShaderModule.idl>
@@ -23,6 +24,8 @@ interface GPUDevice : EventTarget {
 
     GPUBuffer createBuffer(GPUBufferDescriptor descriptor);
     GPUShaderModule createShaderModule(GPUShaderModuleDescriptor descriptor);
+
+     GPUCommandEncoder createCommandEncoder(optional GPUCommandEncoderDescriptor descriptor = {});
     // FIXME: Implement remaining methods
 };
 GPUDevice includes GPUObjectBase;
