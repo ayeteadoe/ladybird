@@ -39,6 +39,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     GC::Ref<GPUQueue> queue() const;
 
+    GC::Ref<GPUTexture> create_texture(GPUTextureDescriptor const&) const;
+
 private:
     struct Impl;
     explicit GPUDevice(JS::Realm&, Impl);

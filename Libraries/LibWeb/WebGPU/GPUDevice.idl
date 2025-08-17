@@ -4,6 +4,7 @@
 #import <WebGPU/GPUObjectBase.idl>
 #import <WebGPU/GPUSupportedFeatures.idl>
 #import <WebGPU/GPUSupportedLimits.idl>
+#import <WebGPU/GPUTexture.idl>
 
 // https://www.w3.org/TR/webgpu/#gpudevicedescriptor
 dictionary GPUDeviceDescriptor
@@ -25,7 +26,7 @@ interface GPUDevice : EventTarget {
     [FIXME] undefined destroy();
 
     // FIXME: GPUBuffer createBuffer(GPUBufferDescriptor descriptor);
-    // FIXME: GPUTexture createTexture(GPUTextureDescriptor descriptor);
+    GPUTexture createTexture(GPUTextureDescriptor descriptor);
     // FIXME: GPUSampler createSampler(optional GPUSamplerDescriptor descriptor = {});
     // FIXME: GPUExternalTexture importExternalTexture(GPUExternalTextureDescriptor descriptor);
 
