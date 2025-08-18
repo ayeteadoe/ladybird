@@ -1042,6 +1042,7 @@ set(SOURCES
     WebGPU/GPUSupportedFeatures.cpp
     WebGPU/GPUSupportedLimits.cpp
     WebGPU/GPUTexture.cpp
+    WebGPU/GPUTextureView.cpp
     WebGPU/WGSLLanguageFeatures.cpp
     WebIDL/AbstractOperations.cpp
     WebIDL/AsyncIterator.cpp
