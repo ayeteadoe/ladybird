@@ -1,3 +1,4 @@
+#import <WebGPU/GPUCommandBuffer.idl>
 #import <WebGPU/GPUObjectBase.idl>
 
 // https://www.w3.org/TR/webgpu/#gpuqueuedescriptor
@@ -8,7 +9,7 @@ dictionary GPUQueueDescriptor
 // https://www.w3.org/TR/webgpu/#gpuqueue
 [Exposed=(Window, Worker), SecureContext]
 interface GPUQueue {
-    // FIXME: undefined submit(sequence<GPUCommandBuffer> commandBuffers);
+    undefined submit(sequence<GPUCommandBuffer> commandBuffers);
 
     // FIXME: Promise<undefined> onSubmittedWorkDone();
 
