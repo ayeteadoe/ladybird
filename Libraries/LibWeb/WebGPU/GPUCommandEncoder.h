@@ -37,6 +37,8 @@ class GPUCommandEncoder final : public Bindings::PlatformObject {
     String const& label() const;
     void set_label(String const& label);
 
+    GC::Ref<GPUCommandBuffer> finish(GPUCommandBufferDescriptor const& descriptor);
+
 private:
     struct Impl;
     explicit GPUCommandEncoder(JS::Realm&, Impl);

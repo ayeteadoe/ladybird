@@ -1166,6 +1166,8 @@ class GPUAdapter;
 class GPUAdapterInfo;
 class GPUBuffer;
 struct GPUBufferDescriptor;
+class GPUCommandBuffer;
+struct GPUCommandBufferDescriptor;
 class GPUCommandEncoder;
 struct GPUCommandEncoderDescriptor;
 class GPUDevice;
