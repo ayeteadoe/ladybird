@@ -21,6 +21,15 @@ typedef unsigned long GPUIntegerCoordinateOut;
 // https://www.w3.org/TR/webgpu/#typedefdef-gpuflagsconstant
 typedef unsigned long GPUFlagsConstant;
 
+// https://www.w3.org/TR/webgpu/#typedefdef-gpuorigin3d
+dictionary GPUOrigin3DDict {
+    GPUIntegerCoordinate x = 0;
+    GPUIntegerCoordinate y = 0;
+    GPUIntegerCoordinate z = 0;
+};
+// FIXME: typedef (sequence<GPUIntegerCoordinate> or GPUOrigin3DDict) GPUOrigin3D;
+typedef GPUOrigin3DDict GPUOrigin3D;
+
 // https://www.w3.org/TR/webgpu/#typedefdef-gpuextent3d
 dictionary GPUExtent3DDict {
     required GPUIntegerCoordinate width;

@@ -4,11 +4,15 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include "GPUTexture.h"
+
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
+#include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/GPURenderPassEncoder.h>
+#include <LibWeb/WebGPU/GPUTexture.h>
 #include <LibWeb/WebGPU/GPUTextureView.h>
 
 #include <webgpu/webgpu_cpp.h>
@@ -16,6 +20,48 @@
 namespace Web::WebGPU {
 
 GC_DEFINE_ALLOCATOR(GPUCommandEncoder);
+
+wgpu::TexelCopyBufferLayout GPUTexelCopyBufferLayout::to_wgpu() const
+{
+    wgpu::TexelCopyBufferLayout copy_buffer_layout;
+    copy_buffer_layout.offset = offset;
+    if (bytes_per_row.has_value()) {
+        copy_buffer_layout.bytesPerRow = bytes_per_row.value();
+    }
+    if (rows_per_image.has_value()) {
+        copy_buffer_layout.rowsPerImage = rows_per_image.value();
+    }
+    return copy_buffer_layout;
+}
+
+wgpu::TexelCopyBufferInfo GPUTexelCopyBufferInfo::to_wgpu() const
+{
+    return wgpu::TexelCopyBufferInfo { .buffer = buffer->as_wgpu(), .layout = GPUTexelCopyBufferLayout::to_wgpu() };
+}
+
+wgpu::TexelCopyTextureInfo GPUTexelCopyTextureInfo::to_wgpu() const
+{
+    wgpu::TexelCopyTextureInfo texel_copy_texture_info {};
+    texel_copy_texture_info.texture = texture->wgpu();
+    texel_copy_texture_info.mipLevel = mip_level;
+    texel_copy_texture_info.origin.x = origin.x;
+    texel_copy_texture_info.origin.y = origin.y;
+    texel_copy_texture_info.origin.z = origin.z;
+    switch (aspect) {
+    case Bindings::GPUTextureAspect::All:
+        texel_copy_texture_info.aspect = wgpu::TextureAspect::All;
+        break;
+    case Bindings::GPUTextureAspect::DepthOnly:
+        texel_copy_texture_info.aspect = wgpu::TextureAspect::DepthOnly;
+        break;
+    case Bindings::GPUTextureAspect::StencilOnly:
+        texel_copy_texture_info.aspect = wgpu::TextureAspect::StencilOnly;
+        break;
+    default:
+        break;
+    }
+    return texel_copy_texture_info;
+}
 
 wgpu::CommandEncoderDescriptor GPUCommandEncoderDescriptor::to_wgpu() const
 {
@@ -121,6 +167,16 @@ GC::Ref<GPURenderPassEncoder> GPUCommandEncoder::begin_render_pass(GPURenderPass
     wgpu::RenderPassEncoder native_render_pass_encoder = m_impl->command_encoder.BeginRenderPass(&render_pass_encoder_descriptor);
     auto& realm = this->realm();
     return MUST(GPURenderPassEncoder::create(realm, move(native_render_pass_encoder)));
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpucommandencoder-copytexturetobuffer
+// FIXME: Spec comments
+void GPUCommandEncoder::copy_texture_to_buffer(GPUTexelCopyTextureInfo const& copy_texture_info, GPUTexelCopyBufferInfo const& copy_buffer_info, GPUExtent3D const& extent_3d)
+{
+    wgpu::TexelCopyTextureInfo wgpu_copy_texture_info = copy_texture_info.to_wgpu();
+    wgpu::TexelCopyBufferInfo wgpu_copy_buffer_info = copy_buffer_info.to_wgpu();
+    wgpu::Extent3D wgpu_extent_3d { .width = extent_3d.width, .height = extent_3d.height, .depthOrArrayLayers = extent_3d.depth_or_array_layers };
+    m_impl->command_encoder.CopyTextureToBuffer(&wgpu_copy_texture_info, &wgpu_copy_buffer_info, &wgpu_extent_3d);
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpucommandencoder-finish

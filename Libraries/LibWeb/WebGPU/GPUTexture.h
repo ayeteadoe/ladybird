@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/GPUPrototype.h>
 #include <LibWeb/Bindings/GPUTexturePrototype.h>
+#include <LibWeb/Bindings/GPUTextureViewPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/WebGPU/GPUObjectBase.h>
