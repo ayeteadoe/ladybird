@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <LibWeb/Bindings/GPUPrototype.h>
 #include <LibWeb/Bindings/GPUTexturePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Forward.h>
@@ -54,6 +55,8 @@ class GPUTexture final : public Bindings::PlatformObject {
     Bindings::GPUTextureDimension dimension() const;
     Bindings::GPUTextureFormat format() const;
     GPUTextureUsageFlags usage() const;
+
+    GC::Ref<GPUTextureView> create_view(GPUTextureViewDescriptor const& options);
 
 private:
     struct Impl;

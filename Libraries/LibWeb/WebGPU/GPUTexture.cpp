@@ -7,6 +7,7 @@
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPUTexture.h>
+#include <LibWeb/WebGPU/GPUTextureView.h>
 
 #include <webgpu/webgpu_cpp.h>
 
@@ -136,6 +137,98 @@ Bindings::GPUTextureFormat GPUTexture::format() const
 GPUTextureUsageFlags GPUTexture::usage() const
 {
     return m_impl->usage;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gputexture-createview
+// FIXME: Spec comments
+GC::Ref<GPUTextureView> GPUTexture::create_view(GPUTextureViewDescriptor const&)
+{
+    wgpu::TextureView texture_view = nullptr;
+    // if (options.has_value()) {
+    //     wgpu::TextureViewDescriptor texture_view_descriptor {};
+    //
+    //     // FIXME: Support remaining texture formats
+    //     switch (options->format) {
+    //     case Bindings::GPUTextureFormat::Bgra8unorm:
+    //         texture_view_descriptor.format = wgpu::TextureFormat::BGRA8Unorm;
+    //         break;
+    //     default:
+    //         break;
+    //     }
+    //
+    //     switch (options->dimension) {
+    //     case Bindings::GPUTextureViewDimension::_1d:
+    //         texture_view_descriptor.dimension = wgpu::TextureViewDimension::e1D;
+    //         break;
+    //     case Bindings::GPUTextureViewDimension::_2d:
+    //         texture_view_descriptor.dimension = wgpu::TextureViewDimension::e2D;
+    //         break;
+    //     case Bindings::GPUTextureViewDimension::_2dArray:
+    //         texture_view_descriptor.dimension = wgpu::TextureViewDimension::e2DArray;
+    //         break;
+    //     case Bindings::GPUTextureViewDimension::Cube:
+    //         texture_view_descriptor.dimension = wgpu::TextureViewDimension::Cube;
+    //         break;
+    //     case Bindings::GPUTextureViewDimension::CubeArray:
+    //         texture_view_descriptor.dimension = wgpu::TextureViewDimension::CubeArray;
+    //         break;
+    //     case Bindings::GPUTextureViewDimension::_3d:
+    //         texture_view_descriptor.dimension = wgpu::TextureViewDimension::e3D;
+    //         break;
+    //     default:
+    //         break;
+    //     }
+    //
+    //     wgpu::TextureUsage texture_usage = wgpu::TextureUsage::None;
+    //     if (options->usage & static_cast<u64>(wgpu::TextureUsage::CopySrc)) {
+    //         texture_usage |= wgpu::TextureUsage::CopySrc;
+    //     }
+    //     if (options->usage & static_cast<u64>(wgpu::TextureUsage::CopyDst)) {
+    //         texture_usage |= wgpu::TextureUsage::CopyDst;
+    //     }
+    //     if (options->usage & static_cast<u64>(wgpu::TextureUsage::TextureBinding)) {
+    //         texture_usage |= wgpu::TextureUsage::TextureBinding;
+    //     }
+    //     if (options->usage & static_cast<u64>(wgpu::TextureUsage::StorageBinding)) {
+    //         texture_usage |= wgpu::TextureUsage::StorageBinding;
+    //     }
+    //     if (options->usage & static_cast<u64>(wgpu::TextureUsage::RenderAttachment)) {
+    //         texture_usage |= wgpu::TextureUsage::RenderAttachment;
+    //     }
+    //     if (options->usage & static_cast<u64>(wgpu::TextureUsage::TransientAttachment)) {
+    //         texture_usage |= wgpu::TextureUsage::TransientAttachment;
+    //     }
+    //     if (options->usage & static_cast<u64>(wgpu::TextureUsage::StorageAttachment)) {
+    //         texture_usage |= wgpu::TextureUsage::StorageAttachment;
+    //     }
+    //     texture_view_descriptor.usage = texture_usage;
+    //
+    //     switch (options->aspect) {
+    //     case Bindings::GPUTextureAspect::All:
+    //         texture_view_descriptor.aspect = wgpu::TextureAspect::All;
+    //         break;
+    //     case Bindings::GPUTextureAspect::DepthOnly:
+    //         texture_view_descriptor.aspect = wgpu::TextureAspect::DepthOnly;
+    //         break;
+    //     case Bindings::GPUTextureAspect::StencilOnly:
+    //         texture_view_descriptor.aspect = wgpu::TextureAspect::StencilOnly;
+    //         break;
+    //     default:
+    //         break;
+    //     }
+    //     texture_view_descriptor.baseMipLevel = options->base_mip_level;
+    //     texture_view_descriptor.mipLevelCount = options->mip_level_count.value_or(wgpu::kMipLevelCountUndefined);
+    //     texture_view_descriptor.baseArrayLayer = options->base_array_layer;
+    //     texture_view_descriptor.arrayLayerCount = options->array_layer_count.value_or(wgpu::kArrayLayerCountUndefined);
+    //     texture_view = m_impl->texture.CreateView(&texture_view_descriptor);
+    // }
+    // else {
+    //     texture_view = m_impl->texture.CreateView();
+    // }
+    // FIXME: Make an empty/unspecified options equivalent to calling CreateView() with nullptr
+    texture_view = m_impl->texture.CreateView(nullptr);
+    auto& realm = this->realm();
+    return MUST(GPUTextureView::create(realm, move(texture_view)));
 }
 
 }
