@@ -35,6 +35,8 @@ class GPUQueue final : public Bindings::PlatformObject {
     String const& label() const;
     void set_label(String const& label);
 
+    void submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_buffers);
+
 private:
     struct Impl;
     explicit GPUQueue(JS::Realm&, Impl);
