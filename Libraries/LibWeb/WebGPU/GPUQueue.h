@@ -36,6 +36,8 @@ class GPUQueue final : public Bindings::PlatformObject {
     String const& label() const;
     void set_label(String const& label);
 
+    void submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_buffers);
+
     void write_buffer(GC::Ref<GPUBuffer>, WebIDL::UnsignedLongLong, GC::Root<WebIDL::BufferSource> const&, Optional<WebIDL::UnsignedLongLong>, Optional<WebIDL::UnsignedLongLong>);
 
 private:
