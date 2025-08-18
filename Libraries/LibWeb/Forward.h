@@ -1237,6 +1237,8 @@ class GPUSupportedFeatures;
 class GPUSupportedLimits;
 class GPUTexture;
 struct GPUTextureDescriptor;
+class GPUTextureView;
+struct GPUTextureViewDescriptor;
 class WGSLLanguageFeatures;
 
 }

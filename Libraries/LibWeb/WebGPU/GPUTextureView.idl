@@ -1,0 +1,38 @@
+#import <WebGPU/GPU.idl>
+#import <WebGPU/GPUObjectBase.idl>
+
+// https://www.w3.org/TR/webgpu/#enumdef-gputextureviewdimension
+enum GPUTextureViewDimension {
+    "1d",
+    "2d",
+    "2d-array",
+    "cube",
+    "cube-array",
+    "3d",
+};
+
+// https://www.w3.org/TR/webgpu/#enumdef-gputextureaspect
+enum GPUTextureAspect {
+    "all",
+    "stencil-only",
+    "depth-only",
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gputextureviewdescriptor
+dictionary GPUTextureViewDescriptor
+         : GPUObjectDescriptorBase {
+    GPUTextureFormat format;
+    GPUTextureViewDimension dimension;
+    GPUTextureUsageFlags usage = 0;
+    GPUTextureAspect aspect = "all";
+    GPUIntegerCoordinate baseMipLevel = 0;
+    GPUIntegerCoordinate mipLevelCount;
+    GPUIntegerCoordinate baseArrayLayer = 0;
+    GPUIntegerCoordinate arrayLayerCount;
+};
+
+// https://www.w3.org/TR/webgpu/#gputextureview
+[Exposed=(Window, Worker), SecureContext]
+interface GPUTextureView {
+};
+GPUTextureView includes GPUObjectBase;
