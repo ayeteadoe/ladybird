@@ -7,6 +7,7 @@
 #include <LibJS/Runtime/ArrayBuffer.h>
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
+#include <LibWeb/WebGPU/GPUCommandBuffer.h>
 #include <LibWeb/WebGPU/GPUQueue.h>
 #include <LibWeb/WebIDL/Buffers.h>
 
@@ -63,6 +64,17 @@ String const& GPUQueue::label() const
 void GPUQueue::set_label(String const& label)
 {
     m_impl->label = label;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpuqueue-submit
+// FIXME: Spec comments
+void GPUQueue::submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_buffers)
+{
+    Vector<wgpu::CommandBuffer> wgpu_command_buffers;
+    for (auto const& command_buffer : command_buffers) {
+        wgpu_command_buffers.append(command_buffer->as_wgpu());
+    }
+    m_impl->queue.Submit(command_buffers.size(), wgpu_command_buffers.data());
 }
 
 void GPUQueue::write_buffer(GC::Ref<GPUBuffer> buffer, WebIDL::UnsignedLongLong buffer_offset, GC::Root<WebIDL::BufferSource> const& data, /*FIXME: Dawn does not expose this field*/ [[maybe_unused]] Optional<WebIDL::UnsignedLongLong> data_offset, Optional<WebIDL::UnsignedLongLong> size)
