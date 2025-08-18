@@ -1,3 +1,4 @@
+#import <WebGPU/GPUCommandBuffer.idl>
 #import <WebGPU/GPUObjectBase.idl>
 
 // https://www.w3.org/TR/webgpu/#gpuqueuedescriptor
@@ -8,6 +9,8 @@ dictionary GPUQueueDescriptor
 // https://www.w3.org/TR/webgpu/#gpuqueue
 [Exposed=(Window, Worker), SecureContext]
 interface GPUQueue {
+    undefined submit(sequence<GPUCommandBuffer> commandBuffers);
+
     // FIXME: Define data param as https://webidl.spec.whatwg.org/#AllowSharedBufferSource
     undefined writeBuffer(
         GPUBuffer buffer,
