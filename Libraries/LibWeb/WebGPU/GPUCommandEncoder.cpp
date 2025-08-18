@@ -6,6 +6,7 @@
 
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
+#include <LibWeb/WebGPU/GPUCommandBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
 
 #include <webgpu/webgpu_cpp.h>
@@ -61,6 +62,16 @@ String const& GPUCommandEncoder::label() const
 void GPUCommandEncoder::set_label(String const& label)
 {
     m_impl->label = label;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpucommandencoder-finish
+// FIXME: Spec comments
+GC::Ref<GPUCommandBuffer> GPUCommandEncoder::finish(GPUCommandBufferDescriptor const& descriptor)
+{
+    wgpu::CommandBufferDescriptor command_buffer_descriptor = descriptor.to_wgpu();
+    wgpu::CommandBuffer native_command_buffer = m_impl->command_encoder.Finish(&command_buffer_descriptor);
+    auto& realm = this->realm();
+    return MUST(GPUCommandBuffer::create(realm, move(native_command_buffer)));
 }
 
 }
