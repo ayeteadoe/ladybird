@@ -7,6 +7,7 @@
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPUTexture.h>
+#include <LibWeb/WebGPU/GPUTextureView.h>
 
 #include <webgpu/webgpu_cpp.h>
 
@@ -204,6 +205,16 @@ Bindings::GPUTextureFormat GPUTexture::format() const
 GPUTextureUsageFlags GPUTexture::usage() const
 {
     return m_impl->usage;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gputexture-createview
+// FIXME: Spec comments
+GC::Ref<GPUTextureView> GPUTexture::create_view(GPUTextureViewDescriptor const& options)
+{
+    wgpu::TextureViewDescriptor texture_view_descriptor_options = options.to_wgpu();
+    wgpu::TextureView native_texture_view = m_impl->texture.CreateView(&texture_view_descriptor_options);
+    auto& realm = this->realm();
+    return MUST(GPUTextureView::create(realm, move(native_texture_view)));
 }
 
 }
