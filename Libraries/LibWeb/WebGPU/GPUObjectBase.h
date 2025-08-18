@@ -16,8 +16,18 @@ namespace Web::WebGPU {
 using GPUSize32 = u32;
 using GPUSize32Out = GPUSize32;
 
+using GPUSize64 = u64;
+
 using GPUIntegerCoordinate = u32;
 using GPUIntegerCoordinateOut = GPUIntegerCoordinate;
+
+struct GPUOrigin3DDict {
+    GPUIntegerCoordinate x;
+    GPUIntegerCoordinate y;
+    GPUIntegerCoordinate z;
+};
+// FIXME: using GPUOrigin3D = Variant<Vector<GPUIntegerCoordinate>, GPUOrigin3DDict>;
+using GPUOrigin3D = GPUOrigin3DDict;
 
 struct GPUExtent3DDict {
     GPUIntegerCoordinate width;
