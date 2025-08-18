@@ -8,6 +8,8 @@
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPUCommandBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
+#include <LibWeb/WebGPU/GPURenderPassEncoder.h>
+#include <LibWeb/WebGPU/GPUTextureView.h>
 
 #include <webgpu/webgpu_cpp.h>
 
@@ -62,6 +64,51 @@ String const& GPUCommandEncoder::label() const
 void GPUCommandEncoder::set_label(String const& label)
 {
     m_impl->label = label;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpucommandencoder-beginrenderpass
+// FIXME: Spec comments
+GC::Ref<GPURenderPassEncoder> GPUCommandEncoder::begin_render_pass(GPURenderPassDescriptor const& descriptor) const
+{
+    wgpu::RenderPassDescriptor render_pass_encoder_descriptor {};
+    Vector<wgpu::RenderPassColorAttachment> render_pass_color_attachments;
+    for (auto const& color_attachment : descriptor.color_attachments) {
+        auto const& clear_value = color_attachment.clear_value;
+        wgpu::RenderPassColorAttachment wgpu_color_attachment {};
+        wgpu_color_attachment.view = color_attachment.view->as_wgpu();
+        wgpu_color_attachment.clearValue.r = clear_value.r;
+        wgpu_color_attachment.clearValue.g = clear_value.g;
+        wgpu_color_attachment.clearValue.b = clear_value.b;
+        wgpu_color_attachment.clearValue.a = clear_value.a;
+        switch (color_attachment.load_op) {
+        case Bindings::GPULoadOp::Clear:
+            wgpu_color_attachment.loadOp = wgpu::LoadOp::Clear;
+            break;
+        case Bindings::GPULoadOp::Load:
+            wgpu_color_attachment.loadOp = wgpu::LoadOp::Load;
+            break;
+        default:
+            break;
+        }
+        switch (color_attachment.store_op) {
+        case Bindings::GPUStoreOp::Store:
+            wgpu_color_attachment.storeOp = wgpu::StoreOp::Store;
+            break;
+        case Bindings::GPUStoreOp::Discard:
+            wgpu_color_attachment.storeOp = wgpu::StoreOp::Discard;
+            break;
+        default:
+            break;
+        }
+        render_pass_color_attachments.append(wgpu_color_attachment);
+    }
+    render_pass_encoder_descriptor.colorAttachmentCount = descriptor.color_attachments.size();
+    render_pass_encoder_descriptor.colorAttachments = render_pass_color_attachments.data();
+    // FIXME: Finish impl
+
+    wgpu::RenderPassEncoder native_render_pass_encoder = m_impl->command_encoder.BeginRenderPass(&render_pass_encoder_descriptor);
+    auto& realm = this->realm();
+    return MUST(GPURenderPassEncoder::create(realm, move(native_render_pass_encoder)));
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpucommandencoder-finish

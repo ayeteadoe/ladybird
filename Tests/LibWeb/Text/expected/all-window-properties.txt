@@ -164,6 +164,7 @@ GPUCommandBuffer
 GPUCommandEncoder
 GPUDevice
 GPUQueue
+GPURenderPassEncoder
 GPUSupportedFeatures
 GPUSupportedLimits
 GPUTexture

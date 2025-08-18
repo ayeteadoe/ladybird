@@ -1216,6 +1216,8 @@ class GPUDevice;
 struct GPUDeviceDescriptor;
 class GPUQueue;
 struct GPURequestAdapterOptions;
+class GPURenderPassEncoder;
+struct GPURenderPassDescriptor;
 class GPUSupportedFeatures;
 class GPUSupportedLimits;
 class GPUTexture;
