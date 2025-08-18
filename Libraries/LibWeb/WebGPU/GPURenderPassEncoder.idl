@@ -1,0 +1,51 @@
+#import <WebGPU/GPUObjectBase.idl>
+#import <WebGPU/GPUTextureView.idl>
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpucolor
+dictionary GPUColorDict {
+    required double r;
+    required double g;
+    required double b;
+    required double a;
+};
+typedef (sequence<double> or GPUColorDict) GPUColor;
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpuloadop
+enum GPULoadOp {
+    "load",
+    "clear",
+};
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpustoreop
+enum GPUStoreOp {
+    "store",
+    "discard",
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpurenderpasscolorattachment
+dictionary GPURenderPassColorAttachment {
+    // FIXME: required (GPUTexture or GPUTextureView) view;
+    required GPUTextureView view;
+    // FIXME: GPUIntegerCoordinate depthSlice;
+    // FIXME: (GPUTexture or GPUTextureView) resolveTarget;
+
+    GPUColor clearValue;
+    required GPULoadOp loadOp;
+    required GPUStoreOp storeOp;
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpurenderpassdescriptor
+dictionary GPURenderPassDescriptor
+         : GPUObjectDescriptorBase {
+    // FIXME: Support ? entries in a sequence
+    required sequence<GPURenderPassColorAttachment> colorAttachments;
+};
+
+// https://www.w3.org/TR/webgpu/#gpurenderpassencoder
+[Exposed=(Window, Worker), SecureContext]
+interface GPURenderPassEncoder {
+    // FIXME: Implement remaining methods
+    undefined end();
+};
+GPURenderPassEncoder includes GPUObjectBase;
+// FIXME: Include remaining interfaces
