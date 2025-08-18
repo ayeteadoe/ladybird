@@ -166,6 +166,7 @@ GPUQueue
 GPUSupportedFeatures
 GPUSupportedLimits
 GPUTexture
+GPUTextureView
 GainNode
 Gamepad
 GamepadButton
