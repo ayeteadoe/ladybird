@@ -37,6 +37,8 @@ class GPUCommandEncoder final : public Bindings::PlatformObject {
     String const& label() const;
     void set_label(String const& label);
 
+    GC::Ref<GPURenderPassEncoder> begin_render_pass(GPURenderPassDescriptor const& descriptor) const;
+
     GC::Ref<GPUCommandBuffer> finish(GPUCommandBufferDescriptor const& descriptor);
 
 private:
