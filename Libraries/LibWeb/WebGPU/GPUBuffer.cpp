@@ -18,6 +18,9 @@ wgpu::BufferDescriptor GPUBufferDescriptor::to_wgpu() const
 {
     // FIXME: Support all buffer usage flags
     wgpu::BufferUsage buffer_usage {};
+    if (usage & static_cast<u64>(wgpu::BufferUsage::MapRead)) {
+        buffer_usage = wgpu::BufferUsage::MapRead;
+    }
     if (usage & static_cast<u64>(wgpu::BufferUsage::Vertex)) {
         buffer_usage |= wgpu::BufferUsage::Vertex;
     }
