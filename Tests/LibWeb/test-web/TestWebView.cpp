@@ -42,7 +42,12 @@ NonnullRefPtr<Core::Promise<RefPtr<Gfx::Bitmap const>>> TestWebView::take_screen
 
 void TestWebView::did_receive_screenshot(Badge<WebView::WebContentClient>, Gfx::ShareableBitmap const& screenshot)
 {
+#if defined(AK_OS_WINDOWS)
+    if (!m_pending_screenshot)
+        return;
+#else
     VERIFY(m_pending_screenshot);
+#endif
 
     auto pending_screenshot = move(m_pending_screenshot);
     pending_screenshot->resolve(screenshot.bitmap());
