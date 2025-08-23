@@ -16,12 +16,8 @@ elseif (WIN32)
     target_link_libraries(test-web PRIVATE LibDevTools)
     find_package(pthread REQUIRED)
     target_include_directories(test-web PRIVATE $<BUILD_INTERFACE:${PTHREAD_INCLUDE_DIR}>)
-    lagom_windows_bin(test-web CONSOLE)
-endif()
-
-# FIXME: Increase support for building targets on Windows
-if (WIN32 AND ENABLE_WINDOWS_CI)
-    return()
+    #lagom_windows_bin(test-web CONSOLE)
+    lagom_copy_runtime_dlls(test-web)
 endif()
 
 if (BUILD_TESTING)
@@ -32,7 +28,14 @@ if (BUILD_TESTING)
         COMMAND $<TARGET_FILE:test-web> --python-executable ${Python3_EXECUTABLE} --dump-failed-ref-tests --per-test-timeout 120 --verbose
     )
 
-    set_tests_properties(LibWeb PROPERTIES
-        ENVIRONMENT LADYBIRD_SOURCE_DIR=${LADYBIRD_PROJECT_ROOT}
-        TIMEOUT_SIGNAL_NAME SIGTERM)
+    if (NOT WIN32)
+        set_tests_properties(LibWeb PROPERTIES
+            ENVIRONMENT LADYBIRD_SOURCE_DIR=${LADYBIRD_PROJECT_ROOT}
+            TIMEOUT_SIGNAL_NAME SIGTERM
+        )
+    else()
+        set_tests_properties(LibWeb PROPERTIES
+            ENVIRONMENT LADYBIRD_SOURCE_DIR=${LADYBIRD_PROJECT_ROOT}
+        )
+    endif()
 endif()

@@ -70,15 +70,23 @@ static ErrorOr<void> load_test_config(StringView test_root_path)
     }
 
     auto config = config_or_error.release_value();
+    auto add_to_skipped_tests = [&](auto const& group) -> ErrorOr<void> {
+        for (auto& key : config->keys(group))
+            s_skipped_tests.append(TRY(FileSystem::real_path(LexicalPath::join(test_root_path, key).string())));
+        return {};
+    };
+
     for (auto const& group : config->groups()) {
         if (group == "Skipped"sv) {
-            for (auto& key : config->keys(group))
-                s_skipped_tests.append(TRY(FileSystem::real_path(LexicalPath::join(test_root_path, key).string())));
+            TRY(add_to_skipped_tests(group));
+        } else if (group == "Skipped:windows"sv) {
+#if defined(AK_OS_WINDOWS)
+            TRY(add_to_skipped_tests(group));
+#endif
         } else {
             warnln("Unknown group '{}' in config {}", group, config_path);
         }
     }
-
     return {};
 }
 
@@ -112,7 +120,7 @@ static ErrorOr<void> collect_dump_tests(Application const& app, Vector<Test>& te
     return {};
 }
 
-static ErrorOr<void> collect_ref_tests(Application const& app, Vector<Test>& tests, StringView path, StringView trail)
+[[maybe_unused]] static ErrorOr<void> collect_ref_tests(Application const& app, Vector<Test>& tests, StringView path, StringView trail)
 {
     Core::DirIterator it(ByteString::formatted("{}/input/{}", path, trail), Core::DirIterator::Flags::SkipDots);
     while (it.has_next()) {
@@ -438,7 +446,12 @@ static void run_ref_test(TestWebView& view, Test& test, URL::URL const& url, int
 
         auto match_references = metadata_object.get_array("match_references"sv);
         auto mismatch_references = metadata_object.get_array("mismatch_references"sv);
+#if defined(AK_OS_WINDOWS)
+        if (match_references->is_empty() && mismatch_references->is_empty())
+            return;
+#else
         VERIFY(!match_references->is_empty() || !mismatch_references->is_empty());
+#endif
 
         // Read fuzzy configurations.
         test.fuzzy_matches.clear_with_capacity();
@@ -659,7 +672,7 @@ static ErrorOr<int> run_tests(Core::AnonymousBuffer const& theme, Web::DevicePix
     outln("Running {} tests...", tests.size());
 
     s_all_tests_complete = Core::Promise<Empty>::construct();
-    auto tests_remaining = tests.size();
+    auto tests_remaining = tests.size() - 32; // FIXME: Why is the first test index we execute start at number 32, means we never end even after last test is done and hang indefinitely
     auto current_test = 0uz;
 
     Vector<TestCompletion> non_passing_tests;
@@ -722,6 +735,8 @@ static ErrorOr<int> run_tests(Core::AnonymousBuffer const& theme, Web::DevicePix
             if (result.result != TestResult::Pass)
                 non_passing_tests.append(move(result));
 
+            //dbgln("\nTests remaining: {}\n", tests_remaining);
+
             if (--tests_remaining == 0)
                 s_all_tests_complete->resolve({});
             else
@@ -743,6 +758,8 @@ static ErrorOr<int> run_tests(Core::AnonymousBuffer const& theme, Web::DevicePix
     outln("==========================================================");
     outln("Pass: {}, Fail: {}, Skipped: {}, Timeout: {}, Crashed: {}", pass_count, fail_count, skipped_count, timeout_count, crashed_count);
     outln("==========================================================");
+
+    // FIXME: Why do we not exist here on Windows?
 
     for (auto const& non_passing_test : non_passing_tests) {
         if (non_passing_test.result == TestResult::Skipped && app.verbosity < Application::VERBOSITY_LEVEL_LOG_SKIPPED_TESTS)

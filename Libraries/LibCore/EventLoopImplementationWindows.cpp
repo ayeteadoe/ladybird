@@ -387,16 +387,18 @@ void EventLoopManagerWindows::unregister_timer(intptr_t timer_id)
     }
 }
 
+// FIXME: Add equivalent support in Windows event loop
 int EventLoopManagerWindows::register_signal([[maybe_unused]] int signal_number, [[maybe_unused]] Function<void(int)> handler)
 {
     dbgln("Core::EventLoopManagerWindows::register_signal() is not implemented");
-    VERIFY_NOT_REACHED();
+    //VERIFY_NOT_REACHED();
+    return -1;
 }
 
 void EventLoopManagerWindows::unregister_signal([[maybe_unused]] int handler_id)
 {
     dbgln("Core::EventLoopManagerWindows::unregister_signal() is not implemented");
-    VERIFY_NOT_REACHED();
+    //VERIFY_NOT_REACHED();
 }
 
 void EventLoopManagerWindows::did_post_event()
