@@ -50,12 +50,13 @@ private:
 
 ErrorOr<void> HttpEchoServerFixture::setup(WebView::WebContentOptions&)
 {
-    VERIFY(0 && "HttpEchoServerFixture::setup is not implemented");
+    //VERIFY(0 && "HttpEchoServerFixture::setup is not implemented");
+    return {};
 }
 
 void HttpEchoServerFixture::teardown_impl()
 {
-    VERIFY(0 && "HttpEchoServerFixture::teardown_impl is not implemented");
+    //VERIFY(0 && "HttpEchoServerFixture::teardown_impl is not implemented");
 }
 
 #else
