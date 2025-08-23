@@ -19,11 +19,6 @@ elseif (WIN32)
     target_include_directories(test-web PRIVATE $<BUILD_INTERFACE:${PTHREAD_INCLUDE_DIR}>)
 endif()
 
-# FIXME: Increase support for building targets on Windows
-if (WIN32 AND ENABLE_WINDOWS_CI)
-    return()
-endif()
-
 if (BUILD_TESTING)
     find_package(Python3 REQUIRED)
 
@@ -32,7 +27,14 @@ if (BUILD_TESTING)
         COMMAND $<TARGET_FILE:test-web> --python-executable ${Python3_EXECUTABLE} --dump-failed-ref-tests --per-test-timeout 120 --verbose
     )
 
-    set_tests_properties(LibWeb PROPERTIES
-        ENVIRONMENT LADYBIRD_SOURCE_DIR=${LADYBIRD_PROJECT_ROOT}
-        TIMEOUT_SIGNAL_NAME SIGTERM)
+    if (NOT WIN32)
+        set_tests_properties(LibWeb PROPERTIES
+            ENVIRONMENT LADYBIRD_SOURCE_DIR=${LADYBIRD_PROJECT_ROOT}
+            TIMEOUT_SIGNAL_NAME SIGTERM
+        )
+    else()
+        set_tests_properties(LibWeb PROPERTIES
+            ENVIRONMENT LADYBIRD_SOURCE_DIR=${LADYBIRD_PROJECT_ROOT}
+        )
+    endif()
 endif()
