@@ -34,6 +34,14 @@ set(SOURCES
 
 if (APPLE)
     list(APPEND SOURCES MachPortServer.cpp)
+elseif (LINUX AND NOT EMSCRIPTEN)
+    list(APPEND SOURCES TimeZoneWatcher/TimeZoneWatcherLinux.cpp)
+elseif (APPLE AND NOT IOS)
+    list(APPEND SOURCES TimeZoneWatcher/TimeZoneWatcherMacOS.mm)
+elseif (WIN32 AND ENABLE_QT)
+    list(APPEND SOURCES TimeZoneWatcher/TimeZoneWatcherWindowsQt.cpp)
+else()
+    list(APPEND SOURCES TimeZoneWatcher/TimeZoneWatcherUnimplemented.cpp)
 endif()
 
 set(GENERATED_SOURCES ${CURRENT_LIB_GENERATED})
@@ -96,6 +104,8 @@ if (ENABLE_QT)
     if (WIN32)
         find_package(pthread REQUIRED)
         target_include_directories(LibWebViewQt PRIVATE $<BUILD_INTERFACE:${PTHREAD_INCLUDE_DIR}>)
+        # NOTE: Required for the Qt-only Windows TimeZoneWatcher implementation
+        target_link_libraries(LibWebView PUBLIC Qt::Core)
     endif()
     target_link_libraries(LibWebViewPlatform INTERFACE LibWebViewQt)
 elseif (APPLE)

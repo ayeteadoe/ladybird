@@ -83,19 +83,16 @@ if (LINUX AND NOT EMSCRIPTEN)
     list(APPEND SOURCES
         FileWatcherLinux.cpp
         Platform/ProcessStatisticsLinux.cpp
-        TimeZoneWatcherLinux.cpp
     )
 elseif (APPLE AND NOT IOS)
     list(APPEND SOURCES
         FileWatcherMacOS.mm
         Platform/ProcessStatisticsMach.cpp
-        TimeZoneWatcherMacOS.mm
     )
 else()
     list(APPEND SOURCES
         FileWatcherUnimplemented.cpp
         Platform/ProcessStatisticsUnimplemented.cpp
-        TimeZoneWatcherUnimplemented.cpp
     )
 endif()
 

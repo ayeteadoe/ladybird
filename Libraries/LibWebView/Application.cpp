@@ -9,7 +9,6 @@
 #include <LibCore/Environment.h>
 #include <LibCore/StandardPaths.h>
 #include <LibCore/System.h>
-#include <LibCore/TimeZoneWatcher.h>
 #include <LibDevTools/DevToolsServer.h>
 #include <LibFileSystem/FileSystem.h>
 #include <LibImageDecoderClient/Client.h>
@@ -19,6 +18,7 @@
 #include <LibWebView/Database.h>
 #include <LibWebView/HeadlessWebView.h>
 #include <LibWebView/HelperProcess.h>
+#include <LibWebView/TimeZoneWatcher.h>
 #include <LibWebView/URL.h>
 #include <LibWebView/UserAgent.h>
 #include <LibWebView/Utilities.h>
@@ -348,17 +348,18 @@ ErrorOr<void> Application::launch_services()
 
     // No need to monitor the system time zone if the TZ environment variable is set, as it overrides system preferences.
     if (!Core::Environment::has("TZ"sv)) {
-        if (auto time_zone_watcher = Core::TimeZoneWatcher::create(); time_zone_watcher.is_error()) {
+        if (auto time_zone_watcher = TimeZoneWatcher::create(); time_zone_watcher.is_error()) {
             warnln("Unable to monitor system time zone: {}", time_zone_watcher.error());
         } else {
             m_time_zone_watcher = time_zone_watcher.release_value();
 
-            m_time_zone_watcher->on_time_zone_changed = []() {
+            m_time_zone_watcher->set_on_time_zone_changed([]() {
+                dbgln("System time zone changed");
                 WebContentClient::for_each_client([&](WebView::WebContentClient& client) {
                     client.async_system_time_zone_changed();
                     return IterationDecision::Continue;
                 });
-            };
+            });
         }
     }
 
@@ -615,6 +616,13 @@ void Application::refresh_tab_list()
     if (!m_devtools)
         return;
     m_devtools->refresh_tab_list();
+}
+
+Optional<TimeZoneWatcher&> Application::time_zone_watcher()
+{
+    if (m_time_zone_watcher != nullptr)
+        return *m_time_zone_watcher;
+    return {};
 }
 
 Vector<DevTools::TabDescription> Application::tab_list() const

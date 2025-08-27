@@ -14,6 +14,12 @@
 #include <QFileDialog>
 #include <QFileOpenEvent>
 
+#if defined(AK_OS_WINDOWS)
+#    include <AK/Windows.h>
+#    include <LibWebView/TimeZoneWatcher.h>
+#    include <QAbstractNativeEventFilter>
+#endif
+
 namespace Ladybird {
 
 class LadybirdQApplication : public QApplication {
@@ -26,6 +32,16 @@ public:
     virtual bool event(QEvent* event) override
     {
         auto& application = static_cast<Application&>(WebView::Application::the());
+
+#if defined(AK_OS_WINDOWS)
+        static bool time_zone_watcher_installed = false;
+        auto time_zone_watcher = application.time_zone_watcher();
+        if (!time_zone_watcher_installed && time_zone_watcher.has_value()) {
+            QAbstractNativeEventFilter& event_filter = time_zone_watcher.value().qt_native_event_filter();
+            installNativeEventFilter(&event_filter);
+            time_zone_watcher_installed = true;
+        }
+#endif
 
         switch (event->type()) {
         case QEvent::FileOpen: {

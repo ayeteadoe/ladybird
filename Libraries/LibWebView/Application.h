@@ -28,6 +28,7 @@
 namespace WebView {
 
 struct ApplicationSettingsObserver;
+class TimeZoneWatcher;
 
 class WEBVIEW_API Application : public DevTools::DevToolsDelegate {
     AK_MAKE_NONCOPYABLE(Application);
@@ -70,6 +71,8 @@ public:
     };
     ErrorOr<DevtoolsState> toggle_devtools_enabled();
     void refresh_tab_list();
+
+    Optional<TimeZoneWatcher&> time_zone_watcher();
 
 protected:
     explicit Application(Optional<ByteString> ladybird_binary_path = {});
@@ -143,7 +146,7 @@ private:
     OwnPtr<CookieJar> m_cookie_jar;
     OwnPtr<StorageJar> m_storage_jar;
 
-    OwnPtr<Core::TimeZoneWatcher> m_time_zone_watcher;
+    OwnPtr<TimeZoneWatcher> m_time_zone_watcher;
 
     OwnPtr<Core::EventLoop> m_event_loop;
     OwnPtr<ProcessManager> m_process_manager;
