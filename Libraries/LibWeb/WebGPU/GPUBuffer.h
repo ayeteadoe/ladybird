@@ -10,11 +10,13 @@
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/WebGPU/GPUObjectBase.h>
+#include <LibWeb/WebIDL/Types.h>
 
 namespace wgpu {
 
 class Buffer;
 struct BufferDescriptor;
+class Instance;
 
 }
 
@@ -31,7 +33,7 @@ class GPUBuffer final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(GPUBuffer, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(GPUBuffer);
 
-    static JS::ThrowCompletionOr<GC::Ref<GPUBuffer>> create(JS::Realm&, wgpu::Buffer);
+    static JS::ThrowCompletionOr<GC::Ref<GPUBuffer>> create(JS::Realm&, wgpu::Instance, wgpu::Buffer);
 
     ~GPUBuffer() override;
 
@@ -43,6 +45,8 @@ class GPUBuffer final : public Bindings::PlatformObject {
     u64 size() const;
     u32 usage() const;
     Bindings::GPUBufferMapState map_state() const;
+
+    GC::Ref<WebIDL::Promise> map_async(/*FIXME: Usage proper GPUMapModeFlags namespace*/ WebIDL::UnsignedLong mode, Optional<WebIDL::UnsignedLongLong> offset, Optional<WebIDL::UnsignedLongLong> size);
 
 private:
     struct Impl;
