@@ -391,7 +391,7 @@ GC::Ref<WebIDL::Promise> GPUAdapter::request_device(GPUDeviceDescriptor const& o
             //      2. Set gpuDevice.[[device]] to device.
             //      3. FIXME: Set device.[[content device]] to gpuDevice.
             //      4. Set gpuDevice.label to descriptor.label.
-            GC::Ref<GPUDevice> gpu_device = MUST(GPUDevice::create(*realm, move(native_device), options.label));
+            GC::Ref<GPUDevice> gpu_device = MUST(GPUDevice::create(*realm, m_impl->instance, move(native_device), options.label));
             //      5. Resolve promise with gpuDevice.
             auto& gpu_device_realm = HTML::relevant_realm(*gpu_device);
             HTML::TemporaryExecutionContext const context { gpu_device_realm, HTML::TemporaryExecutionContext::CallbacksEnabled::Yes };

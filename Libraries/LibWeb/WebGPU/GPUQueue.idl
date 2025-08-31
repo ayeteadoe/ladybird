@@ -11,6 +11,8 @@ dictionary GPUQueueDescriptor
 interface GPUQueue {
     undefined submit(sequence<GPUCommandBuffer> commandBuffers);
 
+    Promise<undefined> onSubmittedWorkDone();
+
     // FIXME: Define data param as https://webidl.spec.whatwg.org/#AllowSharedBufferSource
     undefined writeBuffer(
         GPUBuffer buffer,
