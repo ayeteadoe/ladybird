@@ -17,6 +17,7 @@ namespace wgpu {
 
 class Device;
 struct DeviceDescriptor;
+class Instance;
 
 }
 

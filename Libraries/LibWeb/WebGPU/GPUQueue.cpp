@@ -7,10 +7,13 @@
 #include <LibJS/Runtime/ArrayBuffer.h>
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
+#include <LibWeb/HTML/Scripting/TemporaryExecutionContext.h>
+#include <LibWeb/Platform/EventLoopPlugin.h>
 #include <LibWeb/WebGPU/GPU.h>
 #include <LibWeb/WebGPU/GPUCommandBuffer.h>
 #include <LibWeb/WebGPU/GPUQueue.h>
 #include <LibWeb/WebIDL/Buffers.h>
+#include <LibWeb/WebIDL/Promise.h>
 
 #include <webgpu/webgpu_cpp.h>
 
@@ -77,6 +80,29 @@ void GPUQueue::submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_
     }
     m_impl->queue.Submit(command_buffers.size(), wgpu_command_buffers.data());
 }
+
+// https://www.w3.org/TR/webgpu/#dom-gpuqueue-onsubmittedworkdone
+// FIXME: Spec comments
+GC::Ref<WebIDL::Promise> GPUQueue::on_submitted_work_done()
+{
+    auto& realm = this->realm();
+    GC::Ref promise = WebIDL::create_promise(realm);
+    Platform::EventLoopPlugin::the().deferred_invoke(GC::create_function(realm.heap(), [this, &realm, promise]() mutable {
+        m_impl->instance->wgpu().WaitAny(m_impl->queue.OnSubmittedWorkDone(wgpu::CallbackMode::AllowProcessEvents, [realm = GC::Root(realm), promise = GC::Root(promise)](wgpu::QueueWorkDoneStatus status, wgpu::StringView message) {
+            if (status == wgpu::QueueWorkDoneStatus::Success) {
+                HTML::TemporaryExecutionContext const context { *realm, HTML::TemporaryExecutionContext::CallbacksEnabled::Yes };
+                WebIDL::resolve_promise(*realm, *promise, JS::js_undefined());
+            } else {
+                HTML::TemporaryExecutionContext const context { *realm, HTML::TemporaryExecutionContext::CallbacksEnabled::Yes };
+                WebIDL::reject_promise(*realm, *promise, WebIDL::OperationError::create(*realm, Utf16String::formatted("Unable to complete submitted queue work: {}"sv, StringView { message.data, message.length })));
+            }
+        }),
+            UINT64_MAX);
+    }));
+
+    return promise;
+}
+
 void GPUQueue::write_buffer(GC::Ref<GPUBuffer> buffer, WebIDL::UnsignedLongLong buffer_offset, GC::Root<WebIDL::BufferSource> const& data, /*FIXME: Dawn does not expose this field*/ [[maybe_unused]] Optional<WebIDL::UnsignedLongLong> data_offset, Optional<WebIDL::UnsignedLongLong> size)
 {
     ByteBuffer const data_buffer = data->viewed_array_buffer()->buffer();
