@@ -6,7 +6,11 @@
 
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
+#include <LibWeb/HTML/Scripting/TemporaryExecutionContext.h>
+#include <LibWeb/Platform/EventLoopPlugin.h>
+#include <LibWeb/WebGPU/GPU.h>
 #include <LibWeb/WebGPU/GPUBuffer.h>
+#include <LibWeb/WebIDL/Promise.h>
 
 #include <webgpu/webgpu_cpp.h>
 
@@ -90,6 +94,34 @@ u32 GPUBuffer::usage() const
 Bindings::GPUBufferMapState GPUBuffer::map_state() const
 {
     return m_impl->map_state;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpubuffer-mapasync
+// FIXME: Spec comments
+GC::Ref<WebIDL::Promise> GPUBuffer::map_async(/*FIXME: Usage proper GPUMapModeFlags namespace*/ WebIDL::UnsignedLong mode, Optional<WebIDL::UnsignedLongLong> offset, Optional<WebIDL::UnsignedLongLong> size)
+{
+    wgpu::MapMode map_mode = wgpu::MapMode::None;
+    if (mode & static_cast<WebIDL::UnsignedLong>(wgpu::MapMode::Read))
+        map_mode |= wgpu::MapMode::Read;
+    if (mode & static_cast<WebIDL::UnsignedLong>(wgpu::MapMode::Write))
+        map_mode |= wgpu::MapMode::Write;
+    auto& realm = this->realm();
+    GC::Ref promise = WebIDL::create_promise(realm);
+    Platform::EventLoopPlugin::the().deferred_invoke(GC::create_function(realm.heap(), [this, map_mode, offset, size, &realm, promise]() mutable {
+        m_impl->instance->wgpu().WaitAny(m_impl->buffer.MapAsync(map_mode, offset.value_or(0), size.value_or(0), wgpu::CallbackMode::AllowProcessEvents, [this, realm = GC::Root(realm), promise = GC::Root(promise)](wgpu::MapAsyncStatus status, wgpu::StringView message) {
+            auto& gpu_buffer_realm = HTML::relevant_realm(*this);
+            if (status == wgpu::MapAsyncStatus::Success) {
+                HTML::TemporaryExecutionContext const context { gpu_buffer_realm, HTML::TemporaryExecutionContext::CallbacksEnabled::Yes };
+                WebIDL::resolve_promise(gpu_buffer_realm, *promise, JS::js_undefined());
+            } else {
+                HTML::TemporaryExecutionContext const context { gpu_buffer_realm, HTML::TemporaryExecutionContext::CallbacksEnabled::Yes };
+                WebIDL::reject_promise(gpu_buffer_realm, *promise, WebIDL::OperationError::create(gpu_buffer_realm, Utf16String::formatted("Unable to map buffer: {}"sv, StringView { message.data, message.length })));
+            }
+        }),
+            UINT64_MAX);
+    }));
+
+    return promise;
 }
 
 }
