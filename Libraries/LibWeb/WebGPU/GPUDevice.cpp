@@ -93,7 +93,7 @@ GC::Ref<GPUBuffer> GPUDevice::create_buffer(GPUBufferDescriptor const& options) 
     wgpu::Buffer native_buffer = m_impl->device.CreateBuffer(&buffer_descriptor_options);
 
     auto& realm = this->realm();
-    return MUST(GPUBuffer::create(realm, move(native_buffer)));
+    return MUST(GPUBuffer::create(realm, m_impl->instance, move(native_buffer)));
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createtexture

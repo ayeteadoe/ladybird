@@ -3,7 +3,7 @@
 // https://www.w3.org/TR/webgpu/#typedefdef-gpubufferusageflags
 typedef [EnforceRange] unsigned long GPUBufferUsageFlags;
 
-/// FIXME: Attempting to declare GPUBufferUsage a IDL parser failure on the line after {: "GPUBuffer.idl:8: error: expected '('", so will just use constants for now
+/// FIXME: Attempting to declare GPUBufferUsage a IDL parser failure on the line after {: "GPUBuffer.idl:8: error: expected '('", so will just use constants for now.
 
 // https://www.w3.org/TR/webgpu/#gpubufferdescriptor
 dictionary GPUBufferDescriptor
@@ -20,6 +20,9 @@ enum GPUBufferMapState {
     "mapped",
 };
 
+/// FIXME: Attempting to declare GPUMapModeFlags a IDL parser failure on the line after {: "GPUBuffer.idl:8: error: expected '('", so will just use constants for now.
+// https://www.w3.org/TR/webgpu/#typedefdef-gpumapmodeflags
+
 // https://www.w3.org/TR/webgpu/#gpubuffer
 [Exposed=(Window, Worker), SecureContext]
 interface GPUBuffer {
@@ -28,6 +31,9 @@ interface GPUBuffer {
 
     readonly attribute GPUBufferMapState mapState;
 
-   // FIXME: Implement methods
+    // FIXME: Promise<undefined> mapAsync(GPUMapModeFlags mode, optional GPUSize64 offset = 0, optional GPUSize64 size);
+    Promise<undefined> mapAsync(GPUFlagsConstant mode, optional GPUSize64 offset = 0, optional GPUSize64 size);
+
+   // FIXME: Implement remaining methods
 };
 GPUBuffer includes GPUObjectBase;
