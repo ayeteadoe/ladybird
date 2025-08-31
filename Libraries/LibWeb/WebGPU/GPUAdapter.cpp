@@ -383,7 +383,7 @@ GC::Ref<WebIDL::Promise> GPUAdapter::request_device(GPUDeviceDescriptor const& o
             //      1. Let gpuDevice be a new GPUDevice instance.
             //      2. Set gpuDevice.[[device]] to device.
             //      3. FIXME: Set device.[[content device]] to gpuDevice.
-            GC::Ref<GPUDevice> gpu_device = MUST(GPUDevice::create(*realm, move(native_device)));
+            GC::Ref<GPUDevice> gpu_device = MUST(GPUDevice::create(*realm, m_impl->instance, move(native_device)));
             //      4. Set gpuDevice.label to descriptor.label.
             //      FIXME: Unsure exactly about this step, wgpu::Device only exposes SetLabel()
             gpu_device->set_label(MUST(String::from_byte_string(ByteString { device_descriptor_options.label.data, device_descriptor_options.label.length })));
