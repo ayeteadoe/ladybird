@@ -14,6 +14,7 @@
 
 namespace wgpu {
 
+class Instance;
 class Queue;
 struct QueueDescriptor;
 
@@ -29,7 +30,7 @@ class GPUQueue final : public Bindings::PlatformObject {
     WEB_PLATFORM_OBJECT(GPUQueue, Bindings::PlatformObject);
     GC_DECLARE_ALLOCATOR(GPUQueue);
 
-    static JS::ThrowCompletionOr<GC::Ref<GPUQueue>> create(JS::Realm&, wgpu::Queue);
+    static JS::ThrowCompletionOr<GC::Ref<GPUQueue>> create(JS::Realm&, wgpu::Instance, wgpu::Queue);
 
     ~GPUQueue() override;
 
@@ -37,6 +38,8 @@ class GPUQueue final : public Bindings::PlatformObject {
     void set_label(String const& label);
 
     void submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_buffers);
+
+    GC::Ref<WebIDL::Promise> on_submitted_work_done();
 
     void write_buffer(GC::Ref<GPUBuffer>, WebIDL::UnsignedLongLong, GC::Root<WebIDL::BufferSource> const&, Optional<WebIDL::UnsignedLongLong>, Optional<WebIDL::UnsignedLongLong>);
 

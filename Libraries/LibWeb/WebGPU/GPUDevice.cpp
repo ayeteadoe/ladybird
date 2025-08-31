@@ -26,6 +26,7 @@ wgpu::DeviceDescriptor GPUDeviceDescriptor::to_wgpu() const
 }
 
 struct GPUDevice::Impl {
+    wgpu::Instance instance { nullptr };
     wgpu::Device device { nullptr };
     String label;
     GC::Ref<GPUQueue> queue;
@@ -39,10 +40,10 @@ GPUDevice::GPUDevice(JS::Realm& realm, Impl impl)
 
 GPUDevice::~GPUDevice() = default;
 
-JS::ThrowCompletionOr<GC::Ref<GPUDevice>> GPUDevice::create(JS::Realm& realm, wgpu::Device device)
+JS::ThrowCompletionOr<GC::Ref<GPUDevice>> GPUDevice::create(JS::Realm& realm, wgpu::Instance instance, wgpu::Device device)
 {
     auto queue = device.GetQueue();
-    return realm.create<GPUDevice>(realm, Impl { .device = move(device), .label = ""_string, .queue = TRY(GPUQueue::create(realm, move(queue))) });
+    return realm.create<GPUDevice>(realm, Impl { .instance = instance, .device = move(device), .label = ""_string, .queue = TRY(GPUQueue::create(realm, instance, move(queue))) });
 }
 
 void GPUDevice::initialize(JS::Realm& realm)

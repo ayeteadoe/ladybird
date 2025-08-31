@@ -17,6 +17,7 @@ namespace wgpu {
 
 class Device;
 struct DeviceDescriptor;
+class Instance;
 
 }
 
@@ -31,7 +32,7 @@ class GPUDevice final : public DOM::EventTarget {
     WEB_PLATFORM_OBJECT(GPUDevice, DOM::EventTarget);
     GC_DECLARE_ALLOCATOR(GPUDevice);
 
-    static JS::ThrowCompletionOr<GC::Ref<GPUDevice>> create(JS::Realm&, wgpu::Device);
+    static JS::ThrowCompletionOr<GC::Ref<GPUDevice>> create(JS::Realm&, wgpu::Instance, wgpu::Device);
 
     ~GPUDevice() override;
 
