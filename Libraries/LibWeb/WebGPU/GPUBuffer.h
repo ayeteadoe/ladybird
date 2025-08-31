@@ -45,6 +45,10 @@ class GPUBuffer final : public Bindings::PlatformObject {
 
     GC::Ref<WebIDL::Promise> map_async(/*FIXME: Usage proper GPUMapModeFlags namespace*/ WebIDL::UnsignedLong mode, Optional<WebIDL::UnsignedLongLong> offset, Optional<WebIDL::UnsignedLongLong> size);
 
+    WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> get_mapped_range(Optional<WebIDL::UnsignedLongLong> offset, Optional<WebIDL::UnsignedLongLong> size);
+
+    void unmap();
+
 private:
     struct Impl;
     explicit GPUBuffer(JS::Realm&, Impl);

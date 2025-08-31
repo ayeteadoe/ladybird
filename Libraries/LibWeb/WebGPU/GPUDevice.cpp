@@ -89,11 +89,25 @@ GC::Ref<GPUBuffer> GPUDevice::create_buffer(GPUBufferDescriptor const& options) 
     buffer_descriptor.mappedAtCreation = options.mapped_at_creation;
     // FIXME: Support all buffer usage flags
     wgpu::BufferUsage buffer_usage {};
-    if (options.usage & static_cast<u64>(wgpu::BufferUsage::Vertex)) {
-        buffer_usage |= wgpu::BufferUsage::Vertex;
+    auto const map_read = static_cast<bool>(options.usage & static_cast<u32>(wgpu::BufferUsage::MapRead));
+    auto const map_write = static_cast<bool>(options.usage & static_cast<u32>(wgpu::BufferUsage::MapWrite));
+    auto const copy_src = static_cast<bool>(options.usage & static_cast<u32>(wgpu::BufferUsage::CopySrc));
+    auto const copy_dest = static_cast<bool>(options.usage & static_cast<u32>(wgpu::BufferUsage::CopyDst));
+    auto const vertex = static_cast<bool>(options.usage & static_cast<u32>(wgpu::BufferUsage::Vertex));
+    if (map_read) {
+        buffer_usage |= wgpu::BufferUsage::MapRead;
     }
-    if (options.usage & static_cast<u64>(wgpu::BufferUsage::CopySrc)) {
+    if (map_write) {
+        buffer_usage |= wgpu::BufferUsage::MapWrite;
+    }
+    if (copy_src) {
         buffer_usage |= wgpu::BufferUsage::CopySrc;
+    }
+    if (copy_dest) {
+        buffer_usage |= wgpu::BufferUsage::CopyDst;
+    }
+    if (vertex) {
+        buffer_usage |= wgpu::BufferUsage::Vertex;
     }
     buffer_descriptor.usage = buffer_usage;
 

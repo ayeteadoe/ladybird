@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <AK/ByteBuffer.h>
+#include <LibJS/Runtime/ArrayBuffer.h>
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/HTML/Scripting/TemporaryExecutionContext.h>
@@ -22,9 +24,6 @@ struct GPUBuffer::Impl {
     wgpu::Buffer buffer = { nullptr };
     String label;
     GC::Ref<GPU> instance;
-    u64 size;
-    u32 usage;
-    Bindings::GPUBufferMapState map_state;
 };
 
 GPUBuffer::GPUBuffer(JS::Realm& realm, Impl impl)
@@ -37,27 +36,7 @@ GPUBuffer::~GPUBuffer() = default;
 
 JS::ThrowCompletionOr<GC::Ref<GPUBuffer>> GPUBuffer::create(JS::Realm& realm, GPU& instance, wgpu::Buffer buffer)
 {
-    u64 const size = buffer.GetSize();
-    auto const usage = static_cast<u32>(buffer.GetUsage());
-    Bindings::GPUBufferMapState map_state { 0 };
-    switch (buffer.GetMapState()) {
-    case wgpu::BufferMapState::Unmapped: {
-        map_state = Bindings::GPUBufferMapState::Unmapped;
-        break;
-    }
-    case wgpu::BufferMapState::Mapped: {
-        map_state = Bindings::GPUBufferMapState::Mapped;
-        break;
-    }
-    case wgpu::BufferMapState::Pending: {
-        map_state = Bindings::GPUBufferMapState::Pending;
-        break;
-    }
-    default:
-        break;
-    }
-
-    return realm.create<GPUBuffer>(realm, Impl { .buffer = move(buffer), .label = ""_string, .instance = instance, .size = size, .usage = usage, .map_state = map_state });
+    return realm.create<GPUBuffer>(realm, Impl { .buffer = move(buffer), .label = ""_string, .instance = instance });
 }
 
 void GPUBuffer::initialize(JS::Realm& realm)
@@ -83,17 +62,34 @@ void GPUBuffer::set_label(String const& label)
 
 u64 GPUBuffer::size() const
 {
-    return m_impl->size;
+    return m_impl->buffer.GetSize();
 }
 
 u32 GPUBuffer::usage() const
 {
-    return m_impl->usage;
+    return static_cast<u32>(m_impl->buffer.GetUsage());
 }
 
 Bindings::GPUBufferMapState GPUBuffer::map_state() const
 {
-    return m_impl->map_state;
+    Bindings::GPUBufferMapState map_state { 0 };
+    switch (m_impl->buffer.GetMapState()) {
+    case wgpu::BufferMapState::Unmapped: {
+        map_state = Bindings::GPUBufferMapState::Unmapped;
+        break;
+    }
+    case wgpu::BufferMapState::Mapped: {
+        map_state = Bindings::GPUBufferMapState::Mapped;
+        break;
+    }
+    case wgpu::BufferMapState::Pending: {
+        map_state = Bindings::GPUBufferMapState::Pending;
+        break;
+    }
+    default:
+        break;
+    }
+    return map_state;
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpubuffer-mapasync
@@ -110,6 +106,7 @@ GC::Ref<WebIDL::Promise> GPUBuffer::map_async(/*FIXME: Usage proper GPUMapModeFl
     Platform::EventLoopPlugin::the().deferred_invoke(GC::create_function(realm.heap(), [this, map_mode, offset, size, &realm, promise]() mutable {
         m_impl->instance->wgpu().WaitAny(m_impl->buffer.MapAsync(map_mode, offset.value_or(0), size.value_or(0), wgpu::CallbackMode::AllowProcessEvents, [this, realm = GC::Root(realm), promise = GC::Root(promise)](wgpu::MapAsyncStatus status, wgpu::StringView message) {
             auto& gpu_buffer_realm = HTML::relevant_realm(*this);
+
             if (status == wgpu::MapAsyncStatus::Success) {
                 HTML::TemporaryExecutionContext const context { gpu_buffer_realm, HTML::TemporaryExecutionContext::CallbacksEnabled::Yes };
                 WebIDL::resolve_promise(gpu_buffer_realm, *promise, JS::js_undefined());
@@ -122,6 +119,31 @@ GC::Ref<WebIDL::Promise> GPUBuffer::map_async(/*FIXME: Usage proper GPUMapModeFl
     }));
 
     return promise;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpubuffer-getmappedrange
+// FIXME: Spec comments
+WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> GPUBuffer::get_mapped_range(Optional<WebIDL::UnsignedLongLong> offset, Optional<WebIDL::UnsignedLongLong> size)
+{
+    auto& realm = this->realm();
+    auto const mapped_range_size = size.value_or(wgpu::kWholeMapSize);
+
+    // https://github.com/webgpu-native/webgpu-headers/issues/194
+    // FIXME: Support MAP_WRITE Buffer usage
+    VERIFY(!(m_impl->buffer.GetUsage() & wgpu::BufferUsage::MapWrite));
+    auto mapped_range = m_impl->buffer.GetConstMappedRange(offset.value_or(0), mapped_range_size);
+    if (mapped_range == nullptr)
+        return realm.vm().throw_completion<JS::InternalError>("Unable to retrieve mapped range"_string);
+    auto mapped_byte_buffer = MUST(ByteBuffer::copy(mapped_range, mapped_range_size));
+
+    return JS::ArrayBuffer::create(realm, move(mapped_byte_buffer));
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpubuffer-unmap
+// FIXME: Spec comments
+void GPUBuffer::unmap()
+{
+    m_impl->buffer.Unmap();
 }
 
 }
