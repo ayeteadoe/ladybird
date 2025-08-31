@@ -4,6 +4,7 @@
 #import <WebGPU/GPUCommandEncoder.idl>
 #import <WebGPU/GPUQueue.idl>
 #import <WebGPU/GPUObjectBase.idl>
+//#import <WebGPU/GPURenderPipeline.idl>
 #import <WebGPU/GPUShaderModule.idl>
 #import <WebGPU/GPUSupportedFeatures.idl>
 #import <WebGPU/GPUSupportedLimits.idl>
@@ -27,6 +28,7 @@ interface GPUDevice : EventTarget {
     GPUTexture createTexture(GPUTextureDescriptor descriptor);
 
     GPUShaderModule createShaderModule(GPUShaderModuleDescriptor descriptor);
+    //GPURenderPipeline createRenderPipeline(GPURenderPipelineDescriptor descriptor);
 
      GPUCommandEncoder createCommandEncoder(optional GPUCommandEncoderDescriptor descriptor = {});
     // FIXME: Implement remaining methods
