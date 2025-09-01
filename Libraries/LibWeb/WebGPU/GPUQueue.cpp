@@ -57,6 +57,11 @@ void GPUQueue::visit_edges(Visitor& visitor)
     Base::visit_edges(visitor);
 }
 
+wgpu::Queue GPUQueue::wgpu() const
+{
+    return m_impl->queue;
+}
+
 String const& GPUQueue::label() const
 {
     return m_impl->label;

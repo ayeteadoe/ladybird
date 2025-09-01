@@ -53,7 +53,9 @@ private:
     OwnPtr<Gfx::Painter> m_painter;
     GC::Ref<HTML::HTMLCanvasElement> m_canvas;
 
-    GC::Ptr<GPUTexture> m_current_texture;
+    static constexpr size_t MAX_FRAMES_IN_FLIGHT = 3;
+    GC::Root<GPUTexture> m_textures[MAX_FRAMES_IN_FLIGHT];
+    size_t m_current_frame = 0;
 };
 
 }

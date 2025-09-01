@@ -58,6 +58,11 @@ void GPUDevice::visit_edges(Visitor& visitor)
     visitor.visit(m_impl->queue);
 }
 
+wgpu::Instance GPUDevice::wgpu_instance() const
+{
+    return m_impl->instance;
+}
+
 String const& GPUDevice::label() const
 {
     return m_impl->label;

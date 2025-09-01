@@ -37,6 +37,10 @@ void GPUCanvasContext::configure(GPUCanvasConfiguration const& config)
     allocate_painting_surface_if_needed();
     VERIFY(!config.device.is_null());
 
+    // auto submitted_promise = config.device->queue()->on_submitted_work_done();
+    // submitted_promise->
+
+    /*
     config.device->on_queue_submitted([this]() {
         // FIXME: Follow spec guidelines for how to update the canvas drawing buffer
         //  https://www.w3.org/TR/webgpu/#abstract-opdef-get-a-copy-of-the-image-contents-of-a-context
@@ -50,6 +54,7 @@ void GPUCanvasContext::configure(GPUCanvasConfiguration const& config)
     });
 
     m_current_texture = config.device->texture(m_size);
+    */
 
     m_surface->notify_content_will_change();
     constexpr auto transparent_black = Color(0, 0, 0, 0);
@@ -65,8 +70,7 @@ void GPUCanvasContext::configure(GPUCanvasConfiguration const& config)
 //  https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-getcurrenttexture
 GC::Root<GPUTexture> GPUCanvasContext::get_current_texture() const
 {
-    // FIXME: Use double or triple buffering
-    return m_current_texture;
+    return m_textures[m_current_frame % MAX_FRAMES_IN_FLIGHT];
 }
 
 void GPUCanvasContext::allocate_painting_surface_if_needed()
@@ -99,7 +103,11 @@ void GPUCanvasContext::visit_edges(Visitor& visitor)
 {
     Base::visit_edges(visitor);
     visitor.visit(m_canvas);
-    visitor.visit(m_current_texture);
+    /*
+    for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; ++i) {
+        visitor.visit(m_textures[i]);
+    }
+    */
 }
 
 void GPUCanvasContext::initialize(JS::Realm& realm)
