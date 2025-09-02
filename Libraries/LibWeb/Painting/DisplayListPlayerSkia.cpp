@@ -5,6 +5,8 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#define SK_SUPPORT_UNSPANNED_APIS
+
 #include <core/SkBitmap.h>
 #include <core/SkBlurTypes.h>
 #include <core/SkCanvas.h>
@@ -18,7 +20,7 @@
 #include <effects/SkGradientShader.h>
 #include <effects/SkImageFilters.h>
 #include <effects/SkRuntimeEffect.h>
-#include <gpu/GrDirectContext.h>
+#include <gpu/ganesh/GrDirectContext.h>
 #include <gpu/ganesh/SkSurfaceGanesh.h>
 #include <pathops/SkPathOps.h>
 
