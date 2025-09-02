@@ -6,23 +6,41 @@
 
 #include <LibGfx/ImmutableBitmap.h>
 #include <LibGfx/PainterSkia.h>
+#include <LibGfx/SkiaBackendContext.h>
 #include <LibWeb/DOM/Document.h>
 #include <LibWeb/HTML/TraversableNavigable.h>
 #include <LibWeb/Painting/Paintable.h>
 #include <LibWeb/WebGPU/GPUCanvasContext.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
+#include <LibWeb/WebGPU/GPUQueue.h>
 #include <LibWeb/WebGPU/GPUTexture.h>
 
+#include <gpu/graphite/dawn/DawnBackendContext.h>
 #include <webgpu/webgpu_cpp.h>
 
 namespace Web::WebGPU {
 
 GC_DEFINE_ALLOCATOR(GPUCanvasContext);
 
-GPUCanvasContext::GPUCanvasContext(JS::Realm& realm, HTML::HTMLCanvasElement& element)
+struct GPUCanvasContext::Impl {
+
+    GC::Ref<HTML::HTMLCanvasElement> canvas;
+    Gfx::IntSize size;
+
+    GC::Ptr<GPUDevice> device;
+
+    // FIXME: Support triple buffering
+    GC::Ptr<GPUTexture> current_texture;
+
+    OwnPtr<skgpu::graphite::DawnBackendContext> dawn_context;
+    RefPtr<Gfx::SkiaBackendContext> context;
+    RefPtr<Gfx::PaintingSurface> surface;
+    OwnPtr<Gfx::Painter> painter;
+};
+
+GPUCanvasContext::GPUCanvasContext(JS::Realm& realm, Impl impl)
     : PlatformObject(realm)
-    , m_size(element.bitmap_size_for_canvas())
-    , m_canvas(element)
+    , m_impl(make<Impl>(move(impl)))
 {
 }
 
@@ -30,15 +48,34 @@ GPUCanvasContext::~GPUCanvasContext() = default;
 
 JS::ThrowCompletionOr<GC::Ref<GPUCanvasContext>> GPUCanvasContext::create(JS::Realm& realm, HTML::HTMLCanvasElement& element, JS::Value)
 {
-    return realm.create<GPUCanvasContext>(realm, element);
+    return realm.create<GPUCanvasContext>(realm, Impl {
+                                                     .canvas = element,
+                                                     .size = Gfx::IntSize { element.width(), element.height() },
+                                                 });
+}
+
+GC::Ref<HTML::HTMLCanvasElement> GPUCanvasContext::canvas_for_binding() const
+{
+    return m_impl->canvas;
 }
 
 // FIXME: Add spec comments
 //  https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-configure
 void GPUCanvasContext::configure(GPUCanvasConfiguration const& config)
 {
-    allocate_painting_surface_if_needed();
+    // allocate_painting_surface_if_needed();
     VERIFY(!config.device.is_null());
+
+    m_impl->device = config.device;
+    auto queue = m_impl->device->queue();
+
+    m_impl->dawn_context = adopt_own_if_nonnull(new skgpu::graphite::DawnBackendContext {
+        .fInstance = m_impl->device->wgpu_instance(),
+        .fDevice = m_impl->device->wgpu(),
+        .fQueue = queue->wgpu(),
+        .fTick = skgpu::graphite::DawnNativeProcessEventsFunction });
+
+    m_impl->context = Gfx::SkiaBackendContext::create_dawn_context(*m_impl->dawn_context);
 
     // auto submitted_promise = config.device->queue()->on_submitted_work_done();
 
@@ -58,6 +95,7 @@ void GPUCanvasContext::configure(GPUCanvasConfiguration const& config)
     m_current_texture = config.device->texture(m_size);
     */
 
+    /*
     m_surface->notify_content_will_change();
     constexpr auto transparent_black = Color(0, 0, 0, 0);
     for (int y = 0; y < m_bitmap->height(); ++y) {
@@ -66,46 +104,59 @@ void GPUCanvasContext::configure(GPUCanvasConfiguration const& config)
         }
     }
     update_display();
+    */
 }
 
 // FIXME: Add spec comments
 //  https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-getcurrenttexture
-GC::Ptr<GPUTexture> GPUCanvasContext::get_current_texture() const
+GC::Root<GPUTexture> GPUCanvasContext::get_current_texture() const
 {
-    return m_current_texture;
+    return m_impl->current_texture;
+}
+
+RefPtr<Gfx::PaintingSurface> GPUCanvasContext::surface()
+{
+    return m_impl->surface;
 }
 
 void GPUCanvasContext::allocate_painting_surface_if_needed()
 {
-    if (m_surface || m_size.is_empty())
+    if (m_impl->surface || m_impl->size.is_empty())
         return;
 
-    // FIXME: Handle all supported configuration formats, not just RGBA
-    m_bitmap = MUST(Gfx::Bitmap::create(Gfx::BitmapFormat::RGBA8888, m_size));
-    m_surface = Gfx::PaintingSurface::wrap_bitmap(*m_bitmap);
+    GPUTextureDescriptor current_texture_descriptor {};
+    current_texture_descriptor.usage = wgpu::TextureUsage::RenderAttachment | wgpu::TextureUsage::CopySrc;
+    current_texture_descriptor.dimension = Bindings::GPUTextureDimension::_2d;
+    current_texture_descriptor.format = Bindings::GPUTextureFormat::Bgra8unorm;
+    current_texture_descriptor.size = GPUExtent3D { .width = static_cast<uint32_t>(m_impl->size.width()), .height = static_cast<uint32_t>(m_impl->size.height()) };
+    m_impl->current_texture = m_impl->device->create_texture(current_texture_descriptor);
+
+    VERIFY(!m_impl->context.is_null());
+    m_impl->surface = Gfx::PaintingSurface::create_from_wgputexture(*m_impl->context, m_impl->current_texture->as_wgpu());
 }
 
 void GPUCanvasContext::set_size(Gfx::IntSize const& size)
 {
-    if (m_size == size)
+    if (m_impl->size == size)
         return;
-    m_size = size;
-    m_surface = nullptr;
-    m_bitmap = nullptr;
+    m_impl->size = size;
+    m_impl->surface = nullptr;
 }
 
 void GPUCanvasContext::update_display() const
 {
-    if (auto* paintable = m_canvas->paintable()) {
-        paintable->set_needs_display();
-    }
+    /*
+        if (auto* paintable = m_impl->canvas->paintable()) {
+            paintable->set_needs_display();
+        }
+    */
 }
 
 void GPUCanvasContext::visit_edges(Visitor& visitor)
 {
     Base::visit_edges(visitor);
-    visitor.visit(m_canvas);
-    visitor.visit(m_current_texture);
+    visitor.visit(m_impl->canvas);
+    visitor.visit(m_impl->current_texture);
 }
 
 void GPUCanvasContext::initialize(JS::Realm& realm)

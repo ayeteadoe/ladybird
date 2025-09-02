@@ -25,13 +25,13 @@ class GPUCanvasContext final : public Bindings::PlatformObject {
 
     ~GPUCanvasContext() override;
 
-    GC::Ref<HTML::HTMLCanvasElement> canvas_for_binding() const { return *m_canvas; }
+    GC::Ref<HTML::HTMLCanvasElement> canvas_for_binding() const;
 
     void configure(GPUCanvasConfiguration const&);
 
-    GC::Ptr<GPUTexture> get_current_texture() const;
+    GC::Root<GPUTexture> get_current_texture() const;
 
-    RefPtr<Gfx::PaintingSurface> surface() { return m_surface; }
+    RefPtr<Gfx::PaintingSurface> surface();
     void allocate_painting_surface_if_needed();
 
     void set_size(Gfx::IntSize const&);
@@ -39,7 +39,8 @@ class GPUCanvasContext final : public Bindings::PlatformObject {
     void reset_to_default_state() { }
 
 private:
-    explicit GPUCanvasContext(JS::Realm&, HTML::HTMLCanvasElement&);
+    struct Impl;
+    explicit GPUCanvasContext(JS::Realm&, Impl);
 
     void update_display() const;
 
@@ -47,14 +48,7 @@ private:
 
     void initialize(JS::Realm&) override;
 
-    Gfx::IntSize m_size;
-    RefPtr<Gfx::Bitmap> m_bitmap;
-    RefPtr<Gfx::PaintingSurface> m_surface;
-    OwnPtr<Gfx::Painter> m_painter;
-    GC::Ref<HTML::HTMLCanvasElement> m_canvas;
-
-    // FIXME: Support triple buffering
-    GC::Ptr<GPUTexture> m_current_texture;
+    NonnullOwnPtr<Impl> m_impl;
 };
 
 }

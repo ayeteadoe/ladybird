@@ -58,6 +58,11 @@ void GPUDevice::visit_edges(Visitor& visitor)
     visitor.visit(m_impl->queue);
 }
 
+wgpu::Device GPUDevice::wgpu() const
+{
+    return m_impl->device;
+}
+
 wgpu::Instance GPUDevice::wgpu_instance() const
 {
     return m_impl->instance;
