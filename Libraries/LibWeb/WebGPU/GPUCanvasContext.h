@@ -29,7 +29,7 @@ class GPUCanvasContext final : public Bindings::PlatformObject {
 
     void configure(GPUCanvasConfiguration const&);
 
-    GC::Root<GPUTexture> get_current_texture() const;
+    GC::Ptr<GPUTexture> get_current_texture() const;
 
     RefPtr<Gfx::PaintingSurface> surface() { return m_surface; }
     void allocate_painting_surface_if_needed();
@@ -53,6 +53,7 @@ private:
     OwnPtr<Gfx::Painter> m_painter;
     GC::Ref<HTML::HTMLCanvasElement> m_canvas;
 
+    // FIXME: Support triple buffering
     GC::Ptr<GPUTexture> m_current_texture;
 };
 

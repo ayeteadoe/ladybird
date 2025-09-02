@@ -36,6 +36,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     ~GPUDevice() override;
 
+    wgpu::Instance wgpu_instance() const;
+
     String const& label() const;
     void set_label(String const& label);
 

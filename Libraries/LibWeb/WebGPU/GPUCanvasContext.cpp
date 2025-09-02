@@ -11,6 +11,9 @@
 #include <LibWeb/Painting/Paintable.h>
 #include <LibWeb/WebGPU/GPUCanvasContext.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
+#include <LibWeb/WebGPU/GPUTexture.h>
+
+#include <webgpu/webgpu_cpp.h>
 
 namespace Web::WebGPU {
 
@@ -37,6 +40,9 @@ void GPUCanvasContext::configure(GPUCanvasConfiguration const& config)
     allocate_painting_surface_if_needed();
     VERIFY(!config.device.is_null());
 
+    // auto submitted_promise = config.device->queue()->on_submitted_work_done();
+
+    /*
     config.device->on_queue_submitted([this]() {
         // FIXME: Follow spec guidelines for how to update the canvas drawing buffer
         //  https://www.w3.org/TR/webgpu/#abstract-opdef-get-a-copy-of-the-image-contents-of-a-context
@@ -50,6 +56,7 @@ void GPUCanvasContext::configure(GPUCanvasConfiguration const& config)
     });
 
     m_current_texture = config.device->texture(m_size);
+    */
 
     m_surface->notify_content_will_change();
     constexpr auto transparent_black = Color(0, 0, 0, 0);
@@ -63,9 +70,8 @@ void GPUCanvasContext::configure(GPUCanvasConfiguration const& config)
 
 // FIXME: Add spec comments
 //  https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-getcurrenttexture
-GC::Root<GPUTexture> GPUCanvasContext::get_current_texture() const
+GC::Ptr<GPUTexture> GPUCanvasContext::get_current_texture() const
 {
-    // FIXME: Use double or triple buffering
     return m_current_texture;
 }
 

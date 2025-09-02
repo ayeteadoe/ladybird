@@ -34,6 +34,8 @@ class GPUQueue final : public Bindings::PlatformObject {
 
     ~GPUQueue() override;
 
+    wgpu::Queue wgpu() const;
+
     String const& label() const;
     void set_label(String const& label);
 
