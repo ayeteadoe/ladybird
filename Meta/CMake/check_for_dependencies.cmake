@@ -45,7 +45,7 @@ if (NOT APPLE AND NOT ANDROID AND NOT WIN32)
     add_cxx_compile_definitions(USE_FONTCONFIG=1)
 endif()
 
-if (NOT APPLE)
+if (NOT APPLE AND NOT WIN32)
     find_package(VulkanHeaders CONFIG QUIET)
     find_package(Vulkan QUIET)
     if (VulkanHeaders_FOUND AND Vulkan_FOUND)
