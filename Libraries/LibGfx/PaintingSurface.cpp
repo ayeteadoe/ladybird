@@ -21,6 +21,8 @@
 #    include <LibGfx/VulkanImage.h>
 #    include <gpu/ganesh/vk/GrVkBackendSurface.h>
 #    include <gpu/ganesh/vk/GrVkTypes.h>
+#elif defined(AK_OS_WINDOWS)
+#    include <gpu/ganesh/d3d/GrD3DBackendContext.h>
 #endif
 
 namespace Gfx {
@@ -32,7 +34,7 @@ struct PaintingSurface::Impl {
     RefPtr<Bitmap> bitmap;
 };
 
-#if defined(AK_OS_MACOS) || defined(USE_VULKAN_DMABUF_IMAGES)
+#if defined(AK_OS_MACOS) || defined(AK_OS_WINDOWS) || defined(USE_VULKAN_DMABUF_IMAGES)
 static GrSurfaceOrigin origin_to_sk_origin(PaintingSurface::Origin origin)
 {
     switch (origin) {
@@ -132,6 +134,39 @@ NonnullRefPtr<PaintingSurface> PaintingSurface::create_from_shared_image_buffer(
     mtl_info.fTexture = sk_ret_cfp(metal_texture->texture());
     auto backend_render_target = GrBackendRenderTargets::MakeMtl(metal_texture->width(), metal_texture->height(), mtl_info);
     auto surface = SkSurfaces::WrapBackendRenderTarget(context->sk_context(), backend_render_target, origin_to_sk_origin(origin), kBGRA_8888_SkColorType, SkColorSpace::MakeSRGB(), nullptr);
+    return adopt_ref(*new PaintingSurface(make<Impl>(context, size, surface, nullptr)));
+}
+#endif
+
+#if defined(AK_OS_WINDOWS)
+static SkColorType dxgi_format_to_sk_color_type(DXGI_FORMAT format)
+{
+    switch (format) {
+    case DXGI_FORMAT_B8G8R8A8_UNORM:
+        return kBGRA_8888_SkColorType;
+        // add more as needed
+    default:
+        VERIFY_NOT_REACHED();
+        return kUnknown_SkColorType;
+    }
+}
+
+NonnullRefPtr<PaintingSurface> PaintingSurface::create_from_d3dtexture(NonnullRefPtr<SkiaBackendContext> context, ID3D12Resource& d3d_shared_texture, Origin origin)
+{
+    D3D12_RESOURCE_DESC desc = d3d_shared_texture.GetDesc();
+    DXGI_FORMAT format = desc.Format;
+
+    GrD3DTextureResourceInfo texture_info {};
+    texture_info.fResource = gr_cp(&d3d_shared_texture);
+    texture_info.fFormat = format;
+    texture_info.fSampleCount = 1;
+    texture_info.fLevelCount = 1;
+
+    IntSize size(desc.Width, desc.Height);
+
+    GrBackendRenderTarget backend_render_target(size.width(), size.height(), texture_info);
+
+    auto surface = SkSurfaces::WrapBackendRenderTarget(context->sk_context(), backend_render_target, origin_to_sk_origin(origin), dxgi_format_to_sk_color_type(format), nullptr, nullptr);
     return adopt_ref(*new PaintingSurface(make<Impl>(context, size, surface, nullptr)));
 }
 #endif

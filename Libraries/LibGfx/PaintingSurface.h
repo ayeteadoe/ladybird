@@ -26,6 +26,10 @@ struct VulkanImage;
 #    include <LibGfx/MetalContext.h>
 #endif
 
+#if defined(AK_OS_WINDOWS)
+struct ID3D12Resource;
+#endif
+
 class SkCanvas;
 class SkSurface;
 
@@ -51,6 +55,10 @@ public:
 
 #ifdef USE_VULKAN_DMABUF_IMAGES
     static NonnullRefPtr<PaintingSurface> create_from_vkimage(NonnullRefPtr<SkiaBackendContext> context, NonnullRefPtr<VulkanImage> vulkan_image, Origin origin);
+#endif
+
+#if defined(AK_OS_WINDOWS)
+    static NonnullRefPtr<PaintingSurface> create_from_d3dtexture(NonnullRefPtr<SkiaBackendContext> context, ID3D12Resource& d3d_shared_texture, Origin origin);
 #endif
 
     NonnullRefPtr<Bitmap> snapshot_bitmap() const;
