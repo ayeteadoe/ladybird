@@ -73,6 +73,8 @@ public:
 
     GC::Ref<MediaCapabilitiesAPI::MediaCapabilities> media_capabilities();
 
+    [[nodiscard]] GC::Ref<WebGPU::GPU> gpu();
+
     static WebIDL::Long max_touch_points();
 
     virtual ~Navigator() override;
