@@ -4,6 +4,12 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+// NOTE: Need to include before any AK headers as SkCPURecorder has a method TODO() that conflicts with the Ak/Assertions.h TODO macro
+#include <gpu/graphite/Context.h>
+#include <gpu/graphite/ContextOptions.h>
+#include <gpu/graphite/Recorder.h>
+#include <gpu/graphite/dawn/DawnBackendContext.h>
+
 #include <AK/NonnullOwnPtr.h>
 #include <AK/RefPtr.h>
 #include <LibGfx/Bitmap.h>
@@ -51,7 +57,7 @@ public:
 
     skgpu::VulkanExtensions const* extensions() const { return m_extensions.ptr(); }
 
-    GrDirectContext* sk_context() const override { return m_context.get(); }
+    GrDirectContext* sk_ganesh_context() const override { return m_context.get(); }
 
     VulkanContext const& vulkan_context() override { return m_vulkan_context; }
 
@@ -110,7 +116,7 @@ public:
         m_context->submit(GrSyncCpu::kYes);
     }
 
-    GrDirectContext* sk_context() const override { return m_context.get(); }
+    GrDirectContext* sk_ganesh_context() const override { return m_context.get(); }
 
     VulkanContext const& vulkan_context() override { VERIFY_NOT_REACHED(); }
 
@@ -130,5 +136,55 @@ RefPtr<SkiaBackendContext> SkiaBackendContext::create_metal_context(NonnullRefPt
     return adopt_ref(*new SkiaMetalBackendContext(move(ctx), move(metal_context)));
 }
 #endif
+
+class SkiaDawnBackendContext final : public SkiaBackendContext {
+    AK_MAKE_NONCOPYABLE(SkiaDawnBackendContext);
+    AK_MAKE_NONMOVABLE(SkiaDawnBackendContext);
+
+public:
+    SkiaDawnBackendContext(std::unique_ptr<skgpu::graphite::Context> context)
+        : m_dawn_context(move(context))
+    {
+        VERIFY(m_dawn_context);
+
+        skgpu::graphite::RecorderOptions recorder_options;
+        m_dawn_recorder = m_dawn_context->makeRecorder(recorder_options);
+        VERIFY(m_dawn_recorder);
+    }
+
+    ~SkiaDawnBackendContext() override { }
+
+    void flush_and_submit(SkSurface*) override
+    {
+        if (std::unique_ptr<skgpu::graphite::Recording> recording = m_dawn_recorder->snap()) {
+            // FIXME: Read doc for what the other fields allow if that helps in the WebGPU scenario
+            skgpu::graphite::InsertRecordingInfo insert_recording_info { .fRecording = recording.get() };
+            m_dawn_context->insertRecording(insert_recording_info);
+            m_dawn_context->submit(skgpu::graphite::SyncToCpu::kYes);
+        }
+    }
+
+    skgpu::graphite::Context* sk_graphite_context() const override
+    {
+        return m_dawn_context.get();
+    }
+
+    skgpu::graphite::Recorder* sk_graphite_recorder() const override { return m_dawn_recorder.get(); }
+
+    VulkanContext const& vulkan_context() override { VERIFY_NOT_REACHED(); }
+
+    MetalContext& metal_context() override { VERIFY_NOT_REACHED(); }
+
+private:
+    std::unique_ptr<skgpu::graphite::Context> m_dawn_context;
+    std::unique_ptr<skgpu::graphite::Recorder> m_dawn_recorder;
+};
+
+RefPtr<SkiaBackendContext> SkiaBackendContext::create_dawn_context(skgpu::graphite::DawnBackendContext& dawn_context)
+{
+    skgpu::graphite::ContextOptions context_options;
+    std::unique_ptr<skgpu::graphite::Context> ctx = skgpu::graphite::ContextFactory::MakeDawn(dawn_context, context_options);
+    return adopt_ref(*new SkiaDawnBackendContext(move(ctx)));
+}
 
 }
