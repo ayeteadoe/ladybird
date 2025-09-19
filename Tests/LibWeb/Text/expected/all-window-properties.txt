@@ -169,6 +169,7 @@ Function
 GPU
 GPUAdapter
 GPUAdapterInfo
+GPUCanvasContext
 GPUDevice
 GPUQueue
 GPUSupportedFeatures

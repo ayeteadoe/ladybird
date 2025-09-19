@@ -50,6 +50,11 @@ void GPUDevice::visit_edges(Visitor& visitor)
     visitor.visit(m_impl->queue);
 }
 
+wgpu::Device GPUDevice::wgpu() const
+{
+    return m_impl->device;
+}
+
 // NOTE: wgpu::Device does not have a GetLabel() method exposed
 
 String const& GPUDevice::label() const
@@ -62,6 +67,11 @@ void GPUDevice::set_label(String const& label)
     m_impl->label = label;
     auto label_view = label.bytes_as_string_view();
     m_impl->device.SetLabel(wgpu::StringView { label_view.characters_without_null_termination(), label_view.length() });
+}
+
+GC::Ref<GPU> GPUDevice::instance() const
+{
+    return m_impl->instance;
 }
 
 GC::Ref<GPUQueue> GPUDevice::queue() const
@@ -113,25 +123,25 @@ GC::Ref<GPUTexture> GPUDevice::create_texture(GPUTextureDescriptor const& option
         break;
     }
     wgpu::TextureUsage texture_usage = wgpu::TextureUsage::None;
-    if (options.usage & static_cast<u64>(wgpu::TextureUsage::CopySrc)) {
+    if (options.usage & static_cast<u32>(wgpu::TextureUsage::CopySrc)) {
         texture_usage |= wgpu::TextureUsage::CopySrc;
     }
-    if (options.usage & static_cast<u64>(wgpu::TextureUsage::CopyDst)) {
+    if (options.usage & static_cast<u32>(wgpu::TextureUsage::CopyDst)) {
         texture_usage |= wgpu::TextureUsage::CopyDst;
     }
-    if (options.usage & static_cast<u64>(wgpu::TextureUsage::TextureBinding)) {
+    if (options.usage & static_cast<u32>(wgpu::TextureUsage::TextureBinding)) {
         texture_usage |= wgpu::TextureUsage::TextureBinding;
     }
-    if (options.usage & static_cast<u64>(wgpu::TextureUsage::StorageBinding)) {
+    if (options.usage & static_cast<u32>(wgpu::TextureUsage::StorageBinding)) {
         texture_usage |= wgpu::TextureUsage::StorageBinding;
     }
-    if (options.usage & static_cast<u64>(wgpu::TextureUsage::RenderAttachment)) {
+    if (options.usage & static_cast<u32>(wgpu::TextureUsage::RenderAttachment)) {
         texture_usage |= wgpu::TextureUsage::RenderAttachment;
     }
-    if (options.usage & static_cast<u64>(wgpu::TextureUsage::TransientAttachment)) {
+    if (options.usage & static_cast<u32>(wgpu::TextureUsage::TransientAttachment)) {
         texture_usage |= wgpu::TextureUsage::TransientAttachment;
     }
-    if (options.usage & static_cast<u64>(wgpu::TextureUsage::StorageAttachment)) {
+    if (options.usage & static_cast<u32>(wgpu::TextureUsage::StorageAttachment)) {
         texture_usage |= wgpu::TextureUsage::StorageAttachment;
     }
     texture_descriptor.usage = texture_usage;

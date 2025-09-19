@@ -46,8 +46,12 @@ void GPUQueue::visit_edges(Visitor& visitor)
     visitor.visit(m_impl->instance);
 }
 
-// NOTE: wgpu::Queue does not have a GetLabel() method exposed
+wgpu::Queue GPUQueue::wgpu() const
+{
+    return m_impl->queue;
+}
 
+// NOTE: wgpu::Queue does not have a GetLabel() method exposed
 String const& GPUQueue::label() const
 {
     return m_impl->label;

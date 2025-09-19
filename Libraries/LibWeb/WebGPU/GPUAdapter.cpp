@@ -280,6 +280,20 @@ GC::Ref<WebIDL::Promise> GPUAdapter::request_device(Optional<GPUDeviceDescriptor
             device_descriptor = { wgpu::DeviceDescriptor::Init { .nextInChain = nullptr, .label = wgpu::StringView { device_label_view.characters_without_null_termination(), device_label_view.length() }, .defaultQueue = queue_descriptor } };
         }
 
+        Vector required_features = {
+#if defined(AK_OS_MACOS)
+            wgpu::FeatureName::SharedFenceMTLSharedEvent,
+            wgpu::FeatureName::SharedTextureMemoryIOSurface
+#elif defined(AK_OS_LINUX)
+        // FIXME: Use one of the Shared TextureMemory options available for Vulkan-based SkiabackendContext on Linux
+#elif defined(AK_OS_WINDOWS)
+        // FIXME: Use wgpu::FeatureName::SharedTextureMemoryDXGISharedHandle for DirectX-based SkiaBackendContext on Windows
+#endif
+        };
+
+        device_descriptor.requiredFeatureCount = static_cast<uint32_t>(required_features.size());
+        device_descriptor.requiredFeatures = required_features.data();
+
         // FIXME: https://www.w3.org/TR/webgpu/#dom-gpudevice-lost
         device_descriptor.SetDeviceLostCallback(
             wgpu::CallbackMode::AllowSpontaneous,

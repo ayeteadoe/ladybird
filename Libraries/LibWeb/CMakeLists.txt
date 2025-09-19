@@ -1047,12 +1047,14 @@ set(SOURCES
     WebGPU/GPU.cpp
     WebGPU/GPUAdapter.cpp
     WebGPU/GPUAdapterInfo.cpp
+    WebGPU/GPUCanvasContext.cpp
     WebGPU/GPUDevice.cpp
     WebGPU/GPUObjectBase.cpp
     WebGPU/GPUQueue.cpp
     WebGPU/GPUSupportedFeatures.cpp
     WebGPU/GPUSupportedLimits.cpp
     WebGPU/GPUTexture.cpp
+    WebGPU/WGSLLanguageFeatures.cpp
     WebGPU/WGSLLanguageFeatures.cpp
     WebIDL/AbstractOperations.cpp
     WebIDL/AsyncIterator.cpp

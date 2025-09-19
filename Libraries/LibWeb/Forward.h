@@ -1226,6 +1226,7 @@ namespace Web::WebGPU {
 class GPU;
 class GPUAdapter;
 class GPUAdapterInfo;
+class GPUCanvasContext;
 class GPUDevice;
 struct GPUDeviceDescriptor;
 class GPUQueue;
