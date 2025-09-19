@@ -21,6 +21,11 @@
 #    include <gpu/ganesh/vk/GrVkTypes.h>
 #endif
 
+#include <gpu/graphite/BackendTexture.h>
+#include <gpu/graphite/Surface.h>
+#include <gpu/graphite/dawn/DawnGraphiteTypes.h>
+#include <webgpu/webgpu_cpp.h>
+
 namespace Gfx {
 
 struct PaintingSurface::Impl {
@@ -143,6 +148,19 @@ NonnullRefPtr<PaintingSurface> PaintingSurface::create_from_iosurface(Core::IOSu
 }
 #endif
 
+NonnullRefPtr<PaintingSurface> PaintingSurface::create_from_wgputexture(NonnullRefPtr<SkiaBackendContext> context, wgpu::Texture texture)
+{
+    context->lock();
+    ScopeGuard unlock_guard([&context] {
+        context->unlock();
+    });
+
+    auto backend_render_Target = skgpu::graphite::BackendTextures::MakeDawn(texture.Get());
+    sk_sp<SkSurface> surface = SkSurfaces::WrapBackendTexture(context->sk_graphite_recorder(), backend_render_Target, kBGRA_8888_SkColorType, nullptr, nullptr);
+    IntSize const size { static_cast<int>(texture.GetWidth()), static_cast<int>(texture.GetHeight()) };
+    return adopt_ref(*new PaintingSurface(make<Impl>(context, size, surface, nullptr)));
+}
+
 PaintingSurface::PaintingSurface(NonnullOwnPtr<Impl>&& impl)
     : m_impl(move(impl))
 {
@@ -153,6 +171,11 @@ PaintingSurface::~PaintingSurface()
     lock_context();
     m_impl->surface = nullptr;
     unlock_context();
+}
+
+SkiaBackendContext::Type PaintingSurface::backend_context_type() const
+{
+    return m_impl->context->type();
 }
 
 void PaintingSurface::read_into_bitmap(Bitmap& bitmap)

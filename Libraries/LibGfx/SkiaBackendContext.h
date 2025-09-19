@@ -39,6 +39,12 @@ class SkiaBackendContext : public AtomicRefCounted<SkiaBackendContext> {
     AK_MAKE_NONMOVABLE(SkiaBackendContext);
 
 public:
+    enum Type {
+        None,
+        Ganesh,
+        Graphite
+    };
+
 #ifdef USE_VULKAN
     static RefPtr<SkiaBackendContext> create_vulkan_context(const VulkanContext& vulkan_context);
 #endif
@@ -51,6 +57,8 @@ public:
 
     SkiaBackendContext() { }
     virtual ~SkiaBackendContext() { }
+
+    virtual Type type() const { return Type::None; }
 
     virtual void flush_and_submit(SkSurface*) { }
 

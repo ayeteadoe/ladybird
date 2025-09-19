@@ -48,6 +48,8 @@ public:
 
     ~SkiaVulkanBackendContext() override { }
 
+    Type type() const override { return Type::Ganesh; }
+
     void flush_and_submit(SkSurface* surface) override
     {
         GrFlushInfo const flush_info {};
@@ -109,6 +111,8 @@ public:
 
     ~SkiaMetalBackendContext() override { }
 
+    Type type() const override { return Type::Ganesh; }
+
     void flush_and_submit(SkSurface* surface) override
     {
         GrFlushInfo const flush_info {};
@@ -153,6 +157,8 @@ public:
     }
 
     ~SkiaDawnBackendContext() override { }
+
+    Type type() const override { return Type::Graphite; }
 
     void flush_and_submit(SkSurface*) override
     {
