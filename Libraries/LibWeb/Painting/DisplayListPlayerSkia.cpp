@@ -130,6 +130,7 @@ void DisplayListPlayerSkia::fill_rect(FillRect const& command)
 
 void DisplayListPlayerSkia::draw_painting_surface(DrawPaintingSurface const& command)
 {
+    dbgln("DisplayListPlayerSkia::draw_painting_surface");
     switch (surface().backend_context_type()) {
     case Gfx::SkiaBackendContext::Type::None:
     case Gfx::SkiaBackendContext::Type::Ganesh: {

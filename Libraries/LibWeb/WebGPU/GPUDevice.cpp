@@ -57,6 +57,11 @@ void GPUDevice::visit_edges(Visitor& visitor)
     visitor.visit(m_impl->queue);
 }
 
+wgpu::Device GPUDevice::wgpu() const
+{
+    return m_impl->device;
+}
+
 // NOTE: wgpu::Device does not have a GetLabel() method exposed
 
 String const& GPUDevice::label() const
@@ -69,6 +74,11 @@ void GPUDevice::set_label(String const& label)
     m_impl->label = label;
     auto label_view = label.bytes_as_string_view();
     m_impl->device.SetLabel(wgpu::StringView { label_view.characters_without_null_termination(), label_view.length() });
+}
+
+GC::Ref<GPU> GPUDevice::instance() const
+{
+    return m_impl->instance;
 }
 
 GC::Ref<GPUQueue> GPUDevice::queue() const

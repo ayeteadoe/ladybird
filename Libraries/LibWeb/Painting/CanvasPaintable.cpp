@@ -31,14 +31,20 @@ void CanvasPaintable::paint(DisplayListRecordingContext& context, PaintPhase pha
     if (!is_visible())
         return;
 
-    PaintableBox::paint(context, phase);
+    dbgln("CanvasPaintable::paint, phase {}", to_underlying(phase));
 
+    PaintableBox::paint(context, phase);
+    // TODO: Why does this not get called for GPUCanvasContext but does for WebGL2RenderingContext?
     if (phase == PaintPhase::Foreground) {
         auto canvas_rect = context.rounded_device_rect(absolute_rect());
         ScopedCornerRadiusClip corner_clip { context, canvas_rect, normalized_border_radii_data(ShrinkRadiiForBorders::Yes) };
 
+        dbgln("Painting foreground...");
+
         if (layout_box().dom_node().surface()) {
             auto surface = layout_box().dom_node().surface();
+
+            dbgln("Has painting surface, presenting...");
 
             // FIXME: Remove this const_cast.
             const_cast<HTML::HTMLCanvasElement&>(layout_box().dom_node()).present();

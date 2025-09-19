@@ -56,25 +56,25 @@ wgpu::TextureDescriptor GPUTextureDescriptor::to_wgpu() const
         break;
     }
     wgpu::TextureUsage wgpu_usage = wgpu::TextureUsage::None;
-    if (usage & static_cast<u64>(wgpu::TextureUsage::CopySrc)) {
+    if (usage & static_cast<u32>(wgpu::TextureUsage::CopySrc)) {
         wgpu_usage |= wgpu::TextureUsage::CopySrc;
     }
-    if (usage & static_cast<u64>(wgpu::TextureUsage::CopyDst)) {
+    if (usage & static_cast<u32>(wgpu::TextureUsage::CopyDst)) {
         wgpu_usage |= wgpu::TextureUsage::CopyDst;
     }
-    if (usage & static_cast<u64>(wgpu::TextureUsage::TextureBinding)) {
+    if (usage & static_cast<u32>(wgpu::TextureUsage::TextureBinding)) {
         wgpu_usage |= wgpu::TextureUsage::TextureBinding;
     }
-    if (usage & static_cast<u64>(wgpu::TextureUsage::StorageBinding)) {
+    if (usage & static_cast<u32>(wgpu::TextureUsage::StorageBinding)) {
         wgpu_usage |= wgpu::TextureUsage::StorageBinding;
     }
-    if (usage & static_cast<u64>(wgpu::TextureUsage::RenderAttachment)) {
+    if (usage & static_cast<u32>(wgpu::TextureUsage::RenderAttachment)) {
         wgpu_usage |= wgpu::TextureUsage::RenderAttachment;
     }
-    if (usage & static_cast<u64>(wgpu::TextureUsage::TransientAttachment)) {
+    if (usage & static_cast<u32>(wgpu::TextureUsage::TransientAttachment)) {
         wgpu_usage |= wgpu::TextureUsage::TransientAttachment;
     }
-    if (usage & static_cast<u64>(wgpu::TextureUsage::StorageAttachment)) {
+    if (usage & static_cast<u32>(wgpu::TextureUsage::StorageAttachment)) {
         wgpu_usage |= wgpu::TextureUsage::StorageAttachment;
     }
     wgpu_descriptor.usage = wgpu_usage;
