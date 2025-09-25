@@ -54,6 +54,10 @@ class GPURenderPassEncoder final : public Bindings::PlatformObject {
     String const& label() const;
     void set_label(String const& label);
 
+    void set_pipeline(GC::Ref<GPURenderPipeline> render_pipeline);
+
+    void draw(GPUSize32 vertex_count, GPUSize32 instance_count = 1, GPUSize32 first_vertex = 0, GPUSize32 first_instance = 0);
+
     void end();
 
 private:
