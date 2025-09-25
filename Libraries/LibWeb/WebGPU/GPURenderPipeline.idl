@@ -1,0 +1,112 @@
+#import <WebGPU/GPU.idl>
+#import <WebGPU/GPUObjectBase.idl>
+#import <WebGPU/GPUShaderModule.idl>
+
+// FIXME: Share GPUPipelineDescriptorBase and GPUProgrammableStage with GPUComputePipeline.idl when it gets exposed
+// PipelineBase Decls
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpuautolayoutmode
+enum GPUAutoLayoutMode {
+    "auto",
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpupipelinedescriptorbase
+dictionary GPUPipelineDescriptorBase
+         : GPUObjectDescriptorBase {
+    // FIXME: required (GPUPipelineLayout or GPUAutoLayoutMode) layout;
+    required GPUAutoLayoutMode layout;
+};
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpupipelineconstantvalue
+// FIXME: typedef double GPUPipelineConstantValue; // May represent WGSL's bool, f32, i32, u32, and f16 if enabled.
+
+// https://www.w3.org/TR/webgpu/#gpuprogrammablestage
+dictionary GPUProgrammableStage {
+    required GPUShaderModule module;
+    USVString entryPoint;
+    // FIXME: record<USVString, GPUPipelineConstantValue> constants = {};
+};
+
+// https://www.w3.org/TR/webgpu/#gpupipelinebase
+interface mixin GPUPipelineBase {
+    // FIXME: [NewObject] GPUBindGroupLayout getBindGroupLayout(unsigned long index);
+};
+
+// RenderPipeline Decls
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpuvertexstate
+dictionary GPUVertexState
+         : GPUProgrammableStage {
+    // FIXME: sequence<GPUVertexBufferLayout?> buffers = [];
+};
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpuprimitivetopology
+enum GPUPrimitiveTopology {
+    "point-list",
+    "line-list",
+    "line-strip",
+    "triangle-list",
+    "triangle-strip",
+};
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpuindexformat
+enum GPUIndexFormat {
+    "uint16",
+    "uint32",
+};
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpufrontface
+enum GPUFrontFace {
+    "ccw",
+    "cw",
+};
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpucullmode
+enum GPUCullMode {
+    "none",
+    "front",
+    "back",
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpuprimitivestate
+dictionary GPUPrimitiveState {
+    GPUPrimitiveTopology topology = "triangle-list";
+    GPUIndexFormat stripIndexFormat;
+    GPUFrontFace frontFace = "ccw";
+    GPUCullMode cullMode = "none";
+
+    // Requires "depth-clip-control" feature.
+    boolean unclippedDepth = false;
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpucolortargetstate
+dictionary GPUColorTargetState {
+    required GPUTextureFormat format;
+
+    // FIXME: GPUBlendState blend;
+    // FIXME: GPUColorWriteFlags writeMask = 0xF;  // GPUColorWrite.ALL
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpufragmentstate
+dictionary GPUFragmentState
+         : GPUProgrammableStage {
+    // FIXME: Add IDL support for sequence<T?>
+    required sequence<GPUColorTargetState> targets;
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpurenderpipelinedescriptor
+dictionary GPURenderPipelineDescriptor
+         : GPUPipelineDescriptorBase {
+    required GPUVertexState vertex;
+    GPUPrimitiveState primitive = {};
+    // FIXME: GPUDepthStencilState depthStencil;
+    // FIXME: GPUMultisampleState multisample = {};
+    GPUFragmentState fragment;
+};
+
+// https://www.w3.org/TR/webgpu/#gpurenderpipeline
+[Exposed=(Window, Worker), SecureContext]
+interface GPURenderPipeline {
+};
+GPURenderPipeline includes GPUObjectBase;
+GPURenderPipeline includes GPUPipelineBase;

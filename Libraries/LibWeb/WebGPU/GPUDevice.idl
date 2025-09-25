@@ -4,6 +4,7 @@
 #import <WebGPU/GPUCommandEncoder.idl>
 #import <WebGPU/GPUQueue.idl>
 #import <WebGPU/GPUObjectBase.idl>
+#import <WebGPU/GPURenderPipeline.idl>
 #import <WebGPU/GPUShaderModule.idl>
 #import <WebGPU/GPUSupportedFeatures.idl>
 #import <WebGPU/GPUSupportedLimits.idl>
@@ -39,7 +40,7 @@ interface GPUDevice : EventTarget {
 
     GPUShaderModule createShaderModule(GPUShaderModuleDescriptor descriptor);
     // FIXME: GPUComputePipeline createComputePipeline(GPUComputePipelineDescriptor descriptor);
-    // FIXME: GPURenderPipeline createRenderPipeline(GPURenderPipelineDescriptor descriptor);
+    GPURenderPipeline createRenderPipeline(GPURenderPipelineDescriptor descriptor);
     // FIXME: Promise<GPUComputePipeline> createComputePipelineAsync(GPUComputePipelineDescriptor descriptor);
     // FIXME: Promise<GPURenderPipeline> createRenderPipelineAsync(GPURenderPipelineDescriptor descriptor);
 

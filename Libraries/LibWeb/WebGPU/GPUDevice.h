@@ -12,6 +12,7 @@
 #include <LibWeb/Forward.h>
 #include <LibWeb/WebGPU/GPUObjectBase.h>
 #include <LibWeb/WebGPU/GPUQueue.h>
+#include <LibWeb/WebGPU/GPURenderPipeline.h>
 
 namespace wgpu {
 
@@ -51,6 +52,8 @@ class GPUDevice final : public DOM::EventTarget {
     GC::Ref<GPUCommandEncoder> create_command_encoder(GPUCommandEncoderDescriptor const&) const;
 
     GC::Ref<GPUShaderModule> create_shader_module(GPUShaderModuleDescriptor const&) const;
+
+    GC::Ref<GPURenderPipeline> create_render_pipeline(GPURenderPipelineDescriptor const&) const;
 
 private:
     struct Impl;

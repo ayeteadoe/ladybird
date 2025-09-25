@@ -176,6 +176,7 @@ GPUCommandEncoder
 GPUDevice
 GPUQueue
 GPURenderPassEncoder
+GPURenderPipeline
 GPUShaderModule
 GPUSupportedFeatures
 GPUSupportedLimits

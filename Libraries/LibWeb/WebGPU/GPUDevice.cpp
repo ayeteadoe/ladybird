@@ -227,4 +227,122 @@ GC::Ref<GPUShaderModule> GPUDevice::create_shader_module(GPUShaderModuleDescript
     return MUST(GPUShaderModule::create(realm, move(native_shader_module)));
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createrenderpipeline
+// FIXME: Spec comments
+GC::Ref<GPURenderPipeline> GPUDevice::create_render_pipeline(GPURenderPipelineDescriptor const& options) const
+{
+    wgpu::VertexState vertex_state {};
+    vertex_state.module = options.vertex.module->as_wgpu();
+    if (options.vertex.entry_point.has_value()) {
+        auto entry_point = options.vertex.entry_point.value().bytes_as_string_view();
+        vertex_state.entryPoint = wgpu::StringView { entry_point.characters_without_null_termination(), entry_point.length() };
+    }
+    // FIXME: Set remaining VertexState fields
+
+    wgpu::PrimitiveState primitive_state {};
+    switch (options.primitive.topology) {
+    case Bindings::GPUPrimitiveTopology::PointList: {
+        primitive_state.topology = wgpu::PrimitiveTopology::PointList;
+        break;
+    }
+    case Bindings::GPUPrimitiveTopology::LineList: {
+        primitive_state.topology = wgpu::PrimitiveTopology::LineList;
+        break;
+    }
+    case Bindings::GPUPrimitiveTopology::LineStrip: {
+        primitive_state.topology = wgpu::PrimitiveTopology::LineStrip;
+        break;
+    }
+    case Bindings::GPUPrimitiveTopology::TriangleList: {
+        primitive_state.topology = wgpu::PrimitiveTopology::TriangleList;
+        break;
+    }
+    case Bindings::GPUPrimitiveTopology::TriangleStrip: {
+        primitive_state.topology = wgpu::PrimitiveTopology::TriangleStrip;
+        break;
+    }
+    }
+
+    // FIXME: Support this properly so it is undefined for non-strip topologies
+    // switch (options.primitive.strip_index_format) {
+    // case Bindings::GPUIndexFormat::Uint16: {
+    //     primitive_state.stripIndexFormat = wgpu::IndexFormat::Uint16;
+    //     break;
+    // }
+    // case Bindings::GPUIndexFormat::Uint32: {
+    //     primitive_state.stripIndexFormat = wgpu::IndexFormat::Uint32;
+    //     break;
+    // }
+    // }
+
+    switch (options.primitive.front_face) {
+    case Bindings::GPUFrontFace::Ccw: {
+        primitive_state.frontFace = wgpu::FrontFace::CCW;
+        break;
+    }
+    case Bindings::GPUFrontFace::Cw: {
+        primitive_state.frontFace = wgpu::FrontFace::CW;
+        break;
+    }
+    }
+
+    switch (options.primitive.cull_mode) {
+    case Bindings::GPUCullMode::None: {
+        primitive_state.cullMode = wgpu::CullMode::None;
+        break;
+    }
+    case Bindings::GPUCullMode::Front: {
+        primitive_state.cullMode = wgpu::CullMode::Front;
+        break;
+    }
+    case Bindings::GPUCullMode::Back: {
+        primitive_state.cullMode = wgpu::CullMode::Back;
+        break;
+    }
+    }
+
+    primitive_state.unclippedDepth = options.primitive.unclipped_depth;
+
+    Vector<wgpu::ColorTargetState> color_target_states;
+    for (auto const& target : options.fragment.targets) {
+        wgpu::ColorTargetState color_target_state {};
+        wgpu::TextureFormat format = wgpu::TextureFormat::Undefined;
+        // FIXME: Support remaining texture formats
+        switch (target.format) {
+        case Bindings::GPUTextureFormat::Bgra8unorm:
+            format = wgpu::TextureFormat::BGRA8Unorm;
+            break;
+        default:
+            break;
+        }
+        color_target_state.format = format;
+        // FIXME: Support blend
+        // FIXME: Support writeMask
+
+        color_target_states.append(color_target_state);
+    }
+
+    wgpu::FragmentState fragment_state;
+    fragment_state.module = options.fragment.module->as_wgpu();
+    if (options.fragment.entry_point.has_value()) {
+        auto entry_point = options.fragment.entry_point.value().bytes_as_string_view();
+        fragment_state.entryPoint = wgpu::StringView { entry_point.characters_without_null_termination(), entry_point.length() };
+    }
+    fragment_state.targetCount = static_cast<uint32_t>(color_target_states.size());
+    fragment_state.targets = color_target_states.data();
+
+    wgpu::RenderPipelineDescriptor render_pipeline_descriptor {};
+    // FIXME: Support layout
+    render_pipeline_descriptor.vertex = vertex_state;
+    render_pipeline_descriptor.primitive = primitive_state;
+    // FIXME: Support depthStencil
+    // FIXME: Support multisample
+    render_pipeline_descriptor.fragment = &fragment_state;
+
+    wgpu::RenderPipeline native_render_pipeline = m_impl->device.CreateRenderPipeline(&render_pipeline_descriptor);
+
+    auto& realm = this->realm();
+    return MUST(GPURenderPipeline::create(realm, move(native_render_pipeline)));
+}
+
 }
