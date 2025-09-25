@@ -43,6 +43,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     GC::Ref<GPU> instance() const;
 
+    GC::Ref<WebIDL::Promise> lost() const;
+
     GC::Ref<GPUQueue> queue() const;
 
     GC::Ref<GPUBuffer> create_buffer(GPUBufferDescriptor const&) const;

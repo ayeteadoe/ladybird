@@ -18,12 +18,21 @@ dictionary GPUDeviceDescriptor
     GPUQueueDescriptor defaultQueue = {};
 };
 
+// FIXME: https://github.com/gpuweb/gpuweb/issues/5325
+//  [Exposed=(Window,Worker), SecureContext]
+//  interface GPUDeviceLostInfo {
+//     DOMString message = "";
+//  };
+
 // https://www.w3.org/TR/webgpu/#gpudevice
 [Exposed=(Window,Worker), SecureContext]
 interface GPUDevice : EventTarget {
     // FIXME: [SameObject] readonly attribute GPUSupportedFeatures features;
     // FIXME: [SameObject] readonly attribute GPUSupportedLimits limits;
     // FIXME: [SameObject] readonly attribute GPUAdapterInfo adapterInfo;
+
+    // FIXME: https://github.com/gpuweb/gpuweb/issues/5325
+    [SameObject] readonly attribute Promise<undefined> lost;
 
     [SameObject] readonly attribute GPUQueue queue;
 

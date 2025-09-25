@@ -12,6 +12,7 @@
 #include <LibWeb/WebGPU/GPUDevice.h>
 #include <LibWeb/WebGPU/GPUShaderModule.h>
 #include <LibWeb/WebGPU/GPUTexture.h>
+#include <LibWeb/WebIDL/Promise.h>
 
 #include <webgpu/webgpu_cpp.h>
 
@@ -75,6 +76,15 @@ void GPUDevice::set_label(String const& label)
 GC::Ref<GPU> GPUDevice::instance() const
 {
     return m_impl->instance;
+}
+
+// FIXME: Support device lost promise
+GC::Ref<WebIDL::Promise> GPUDevice::lost() const
+{
+    auto& realm = this->realm();
+    GC::Ref promise = WebIDL::create_promise(realm);
+    // m_impl->device.GetLostFuture()
+    return promise;
 }
 
 GC::Ref<GPUQueue> GPUDevice::queue() const
