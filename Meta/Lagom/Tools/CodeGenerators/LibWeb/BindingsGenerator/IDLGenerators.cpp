@@ -5060,6 +5060,17 @@ void @namespace_class@::initialize(JS::Realm& realm)
 
 )~~~");
 
+    for (auto& constant : interface.constants) {
+        auto constant_generator = generator.fork();
+        constant_generator.set("constant.name", constant.name);
+
+        generate_wrap_statement(constant_generator, constant.value, constant.type, interface, ByteString::formatted("auto constant_{}_value =", constant.name));
+
+        constant_generator.append(R"~~~(
+    define_direct_property("@constant.name@"_utf16_fly_string, constant_@constant.name@_value, JS::Attribute::Enumerable);
+)~~~");
+    }
+
     define_the_operations(generator, interface.overload_sets);
 
     if (interface.extended_attributes.contains("WithInitializer"sv)) {

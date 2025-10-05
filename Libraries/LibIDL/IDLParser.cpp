@@ -858,6 +858,11 @@ void Parser::parse_namespace(Interface& interface)
                 interface.has_unscopable_member = true;
         }
 
+        if (lexer.next_is("const"sv)) {
+            parse_constant(interface);
+            continue;
+        }
+
         parse_function(extended_attributes, interface);
     }
 
