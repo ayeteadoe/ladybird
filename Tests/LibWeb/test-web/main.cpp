@@ -1498,6 +1498,7 @@ static ErrorOr<int> run_tests(Core::AnonymousBuffer const& theme, Web::DevicePix
     return display.fail_count + display.timeout_count + display.crashed_count + tests_remaining;
 }
 
+#if !defined(AK_OS_WINDOWS)
 static void handle_signal(int signal)
 {
     // Quit our event loop. This makes `::exec()` return as soon as possible, and signals to WebView::Application that
@@ -1524,6 +1525,7 @@ static void handle_signal(int signal)
     else
         s_all_tests_complete->reject(Error::from_string_literal("Unexpected signal received"));
 }
+#endif
 
 }
 
@@ -1547,8 +1549,11 @@ ErrorOr<int> ladybird_main(Main::Arguments arguments)
         return 1;
     }
 
+    // FIXME: Implement equivalent test interruption on Windows
+#if !defined(AK_OS_WINDOWS)
     Core::EventLoop::register_signal(SIGINT, TestWeb::handle_signal);
     Core::EventLoop::register_signal(SIGTERM, TestWeb::handle_signal);
+#endif
 
     auto theme_path = LexicalPath::join(WebView::s_ladybird_resource_root, "themes"sv, "Default.ini"sv);
     auto theme = TRY(Gfx::load_system_theme(theme_path.string()));
