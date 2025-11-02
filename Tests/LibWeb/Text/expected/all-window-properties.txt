@@ -169,6 +169,7 @@ Function
 GPU
 GPUAdapter
 GPUDevice
+GPUDeviceLostInfo
 GPUTexture
 GainNode
 Gamepad

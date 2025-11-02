@@ -1,4 +1,5 @@
 #import <DOM/EventTarget.idl>
+#import <WebGPU/GPUDeviceLostInfo.idl>
 #import <WebGPU/GPUObjectBase.idl>
 
 // https://www.w3.org/TR/webgpu/#gpudevicedescriptor
@@ -44,4 +45,3 @@ GPUDevice includes GPUObjectBase;
 
 // FIXME: https://www.w3.org/TR/webgpu/#enumdef-gpudevicelostreason
 // FIXME: https://www.w3.org/TR/webgpu/#gpudevicelostinfo
-// FIXME: https://www.w3.org/TR/webgpu/#dom-gpudevice-lost

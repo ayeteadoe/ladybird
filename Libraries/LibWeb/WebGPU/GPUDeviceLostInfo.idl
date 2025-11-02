@@ -1,0 +1,17 @@
+// https://www.w3.org/TR/webgpu/#enumdef-gpudevicelostreason
+enum GPUDeviceLostReason {
+    "unknown",
+    "destroyed",
+};
+
+// https://www.w3.org/TR/webgpu/#gpudevicelostinfo
+[Exposed=(Window, Worker), SecureContext]
+interface GPUDeviceLostInfo {
+    readonly attribute GPUDeviceLostReason reason;
+    readonly attribute DOMString message;
+};
+
+partial interface GPUDevice {
+    // https://www.w3.org/TR/webgpu/#dom-gpudevice-lost
+    readonly attribute Promise<GPUDeviceLostInfo> lost;
+};

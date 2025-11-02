@@ -1090,6 +1090,7 @@ set(SOURCES
     WebGPU/GPU.cpp
     WebGPU/GPUAdapter.cpp
     WebGPU/GPUDevice.cpp
+    WebGPU/GPUDeviceLostInfo.cpp
     WebGPU/GPUTexture.cpp
     WebIDL/AbstractOperations.cpp
     WebIDL/AsyncIterator.cpp

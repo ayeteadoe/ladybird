@@ -7,6 +7,7 @@
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
+#include <LibWeb/WebIDL/Promise.h>
 
 namespace Web::WebGPU {
 
@@ -32,6 +33,14 @@ void GPUDevice::initialize(JS::Realm& realm)
 void GPUDevice::visit_edges(Visitor& visitor)
 {
     Base::visit_edges(visitor);
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-lost
+GC::Ref<WebIDL::Promise> GPUDevice::lost() const
+{
+    // FIXME: Implement specification
+    GC::Ref promise = WebIDL::create_promise(realm());
+    return promise;
 }
 
 String const& GPUDevice::label() const

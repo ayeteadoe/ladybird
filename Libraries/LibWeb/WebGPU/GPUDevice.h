@@ -18,6 +18,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     static JS::ThrowCompletionOr<GC::Ref<GPUDevice>> create(JS::Realm&, NativeGPUDevice);
 
+    GC::Ref<WebIDL::Promise> lost() const;
+
     String const& label() const;
     void set_label(String const& label);
 
