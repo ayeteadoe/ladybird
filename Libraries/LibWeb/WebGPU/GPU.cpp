@@ -46,4 +46,10 @@ GC::Ref<WebIDL::Promise> GPU::request_adapter(Optional<GPURequestAdapterOptions>
     return promise;
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpu-getpreferredcanvasformat
+Bindings::GPUTextureFormat GPU::get_preferred_canvas_format() const
+{
+    return Bindings::GPUTextureFormat::Bgra8unorm;
+}
+
 }

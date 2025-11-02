@@ -7,6 +7,7 @@
 #pragma once
 
 #include <LibWeb/Bindings/GPUPrototype.h>
+#include <LibWeb/Bindings/GPUTexturePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/WebGPU/Native/NativeGPU.h>
 
@@ -18,6 +19,8 @@ class GPU final : public Bindings::PlatformObject {
 
 public:
     GC::Ref<WebIDL::Promise> request_adapter(Optional<GPURequestAdapterOptions> options = {});
+
+    Bindings::GPUTextureFormat get_preferred_canvas_format() const;
 
 private:
     explicit GPU(JS::Realm&);
