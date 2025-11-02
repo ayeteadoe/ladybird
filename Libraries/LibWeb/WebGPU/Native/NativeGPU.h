@@ -6,7 +6,9 @@
 
 #pragma once
 
+#include <LibWeb/WebGPU/Native/NativeGPUAdapter.h>
 #include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
+#include <LibWeb/WebIDL/Promise.h>
 
 namespace Web::WebGPU {
 
@@ -16,6 +18,8 @@ class NativeGPU {
 
 public:
     static NativeGPU create();
+
+    void request_adapter_initialization_steps(JS::Realm& realm, GC::Ref<WebIDL::Promise>& promise, Optional<GPURequestAdapterOptions> options);
 };
 
 }

@@ -167,6 +167,7 @@ FormData
 FormDataEvent
 Function
 GPU
+GPUAdapter
 GainNode
 Gamepad
 GamepadButton

@@ -17,6 +17,8 @@ class GPU final : public Bindings::PlatformObject {
     GC_DECLARE_ALLOCATOR(GPU);
 
 public:
+    GC::Ref<WebIDL::Promise> request_adapter(Optional<GPURequestAdapterOptions> options = {});
+
 private:
     explicit GPU(JS::Realm&);
 

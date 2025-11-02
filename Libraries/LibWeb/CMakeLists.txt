@@ -1088,6 +1088,7 @@ set(SOURCES
     WebGL/WebGLUniformLocation.cpp
     WebGL/WebGLVertexArrayObject.cpp
     WebGPU/GPU.cpp
+    WebGPU/GPUAdapter.cpp
     WebIDL/AbstractOperations.cpp
     WebIDL/AsyncIterator.cpp
     WebIDL/Buffers.cpp
@@ -1126,6 +1127,7 @@ if (LADYBIRD_WEBGPU_BACKEND STREQUAL "Dawn")
     list(APPEND WEBGPU_TARGETS dawn::webgpu_dawn)
     list(APPEND SOURCES
         WebGPU/Native/Dawn/DawnNativeGPU.cpp
+        WebGPU/Native/Dawn/DawnNativeGPUAdapter.cpp
     )
 elseif(LADYBIRD_WEBGPU_BACKEND STREQUAL "Null")
     list(APPEND SOURCES

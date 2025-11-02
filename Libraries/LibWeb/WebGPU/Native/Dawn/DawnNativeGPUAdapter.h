@@ -6,16 +6,14 @@
 
 #pragma once
 
-#include <LibWeb/WebGPU/Native/NativeGPU.h>
+#include <LibWeb/WebGPU/Native/NativeGPUAdapter.h>
 
 #include <webgpu/webgpu_cpp.h>
 
 namespace Web::WebGPU {
 
-struct NativeGPU::Impl {
-    static ErrorOr<wgpu::Instance> create();
-
-    wgpu::Instance m_instance { nullptr };
+struct NativeGPUAdapter::Impl {
+    wgpu::Adapter m_adapter { nullptr };
 };
 
 }
