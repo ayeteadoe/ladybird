@@ -1,3 +1,5 @@
+#import <WebGPU/GPUDevice.idl>
+
 // https://gpuweb.github.io/gpuweb/#enumdef-gpupowerpreference
 enum GPUPowerPreference {
     "low-power",
@@ -19,5 +21,5 @@ interface GPUAdapter {
     // FIXME: [SameObject] readonly attribute GPUSupportedLimits limits;
     // FIXME: [SameObject] readonly attribute GPUAdapterInfo info;
 
-    // FIXME: Promise<GPUDevice> requestDevice(optional GPUDeviceDescriptor descriptor = {});
+    Promise<GPUDevice> requestDevice(optional GPUDeviceDescriptor descriptor = {});
 };

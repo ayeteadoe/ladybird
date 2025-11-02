@@ -14,6 +14,10 @@ namespace Web::WebGPU {
 
 struct NativeGPUAdapter::Impl {
     wgpu::Adapter m_adapter { nullptr };
+
+    State m_state { State::Valid };
+
+    void request_device_initialization_steps(JS::Realm& realm, GC::Ref<WebIDL::Promise>& promise, Optional<GPUDeviceDescriptor> descriptor);
 };
 
 }

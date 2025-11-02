@@ -8,7 +8,8 @@
 
 #include <AK/NonnullOwnPtr.h>
 #include <LibWeb/Bindings/GPUAdapterPrototype.h>
-#include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
+#include <LibWeb/WebGPU/Native/NativeGPUDevice.h>
+#include <LibWeb/WebIDL/Promise.h>
 
 namespace Web::WebGPU {
 
@@ -28,6 +29,15 @@ public:
     friend NativeGPU;
 
     static NativeGPUAdapter create();
+
+    // https://www.w3.org/TR/webgpu/#dom-adapter-state-slot
+    enum class State {
+        Valid,
+        Consumed,
+        Expired,
+    };
+
+    void request_device_initialization_steps(JS::Realm& realm, GC::Ref<WebIDL::Promise>& promise, Optional<GPUDeviceDescriptor> descriptor);
 };
 
 }

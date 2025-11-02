@@ -31,3 +31,8 @@ private:                               \
     struct Impl;                       \
     c(Impl);                           \
     NonnullOwnPtr<Impl> m_impl;
+
+#define WEBGPU_NATIVE_DECLARE_GPUOBJECT(c) \
+public:                                    \
+    String const& label() const;           \
+    void set_label(String const& label);

@@ -82,6 +82,7 @@ static bool is_platform_object(Type const& type)
         "GamepadHapticActuator"sv,
         "GPU"sv,
         "GPUAdapter"sv,
+        "GPUDevice"sv,
         "GPUTexture"sv,
         "HTMLCollection"sv,
         "IDBCursor"sv,
