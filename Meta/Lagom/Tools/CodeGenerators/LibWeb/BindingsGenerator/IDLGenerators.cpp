@@ -86,6 +86,7 @@ static bool is_platform_object(Type const& type)
         "GPUDevice"sv,
         "GPUDeviceLostInfo"sv,
         "GPUTexture"sv,
+        "GPUTextureView"sv,
         "HTMLCollection"sv,
         "IDBCursor"sv,
         "IDBCursorWithValue"sv,

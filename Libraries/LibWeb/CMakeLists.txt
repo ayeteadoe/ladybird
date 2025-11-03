@@ -1093,6 +1093,7 @@ set(SOURCES
     WebGPU/GPUDevice.cpp
     WebGPU/GPUDeviceLostInfo.cpp
     WebGPU/GPUTexture.cpp
+    WebGPU/GPUTextureView.cpp
     WebIDL/AbstractOperations.cpp
     WebIDL/AsyncIterator.cpp
     WebIDL/Buffers.cpp
@@ -1135,6 +1136,7 @@ if (LADYBIRD_WEBGPU_BACKEND STREQUAL "Dawn")
         WebGPU/Native/Dawn/DawnNativeGPUAdapter.cpp
         WebGPU/Native/Dawn/DawnNativeGPUDevice.cpp
         WebGPU/Native/Dawn/DawnNativeGPUTexture.cpp
+        WebGPU/Native/Dawn/DawnNativeGPUTextureView.cpp
     )
     if (WIN32)
         # The D3D12 dawn backend uses DXC, so to successfully request the logical device we need to ensure the DLLs can be found at runtime

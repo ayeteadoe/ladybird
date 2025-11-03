@@ -9,6 +9,7 @@
 #include <AK/NonnullOwnPtr.h>
 #include <LibWeb/Bindings/GPUTexturePrototype.h>
 #include <LibWeb/WebGPU/Native/NativeDrawingBuffer.h>
+#include <LibWeb/WebGPU/Native/NativeGPUTextureView.h>
 #include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
 
 namespace Web::WebGPU {
@@ -22,6 +23,8 @@ public:
     static NativeGPUTexture create_from_drawing_buffer(NativeDrawingBuffer& drawing_buffer);
 
     bool is_drawing_buffer() const;
+
+    NativeGPUTextureView create_view(Optional<GPUTextureViewDescriptor> descriptor);
 };
 
 }

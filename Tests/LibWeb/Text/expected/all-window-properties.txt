@@ -172,6 +172,7 @@ GPUCanvasContext
 GPUDevice
 GPUDeviceLostInfo
 GPUTexture
+GPUTextureView
 GainNode
 Gamepad
 GamepadButton

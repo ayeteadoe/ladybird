@@ -34,4 +34,10 @@ void GPUTexture::visit_edges(Visitor& visitor)
     Base::visit_edges(visitor);
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gputexture-createview
+GC::Ref<GPUTextureView> GPUTexture::create_view(Optional<GPUTextureViewDescriptor> descriptor)
+{
+    return MUST(GPUTextureView::create(realm(), m_native_gpu_texture.create_view(descriptor)));
+}
+
 }

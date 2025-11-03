@@ -1,0 +1,23 @@
+#import <WebGPU/GPUObjectBase.idl>
+
+// https://www.w3.org/TR/webgpu/#dictdef-gputextureviewdescriptor
+dictionary GPUTextureViewDescriptor
+         : GPUObjectDescriptorBase {
+    // FIXME: GPUTextureFormat format;
+    // FIXME: GPUTextureViewDimension dimension;
+    // FIXME: GPUTextureUsageFlags usage = 0;
+    // FIXME: GPUTextureAspect aspect = "all";
+    // FIXME: GPUIntegerCoordinate baseMipLevel = 0;
+    // FIXME: GPUIntegerCoordinate mipLevelCount;
+    // FIXME: GPUIntegerCoordinate baseArrayLayer = 0;
+    // FIXME: GPUIntegerCoordinate arrayLayerCount;
+
+    // Requires "texture-component-swizzle" feature.
+    // FIXME: DOMString swizzle = "rgba";
+};
+
+// https://www.w3.org/TR/webgpu/#gputextureview
+[Exposed=(Window, Worker), SecureContext]
+interface GPUTextureView {
+};
+GPUTextureView includes GPUObjectBase;

@@ -1,3 +1,5 @@
+#import <WebGPU/GPUTextureView.idl>
+
 // https://www.w3.org/TR/webgpu/#enumdef-gputextureformat
 enum GPUTextureFormat {
     // 8-bit formats
@@ -131,7 +133,7 @@ enum GPUTextureFormat {
 // https://www.w3.org/TR/webgpu/#gputexture
 [Exposed=(Window, Worker), SecureContext]
 interface GPUTexture {
-    // FIXME: GPUTextureView createView(optional GPUTextureViewDescriptor descriptor = {});
+    GPUTextureView createView(optional GPUTextureViewDescriptor descriptor = {});
 
     [FIXME] undefined destroy();
 

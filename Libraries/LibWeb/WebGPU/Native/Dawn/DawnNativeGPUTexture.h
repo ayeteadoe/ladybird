@@ -15,6 +15,8 @@ namespace Web::WebGPU {
 struct NativeGPUTexture::Impl {
     wgpu::Texture m_texture;
     bool m_is_drawing_buffer { false };
+
+    NativeGPUTextureView create_view(Optional<GPUTextureViewDescriptor> descriptor);
 };
 
 }

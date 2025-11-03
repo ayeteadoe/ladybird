@@ -1281,6 +1281,7 @@ class GPUCanvasContext;
 class GPUDevice;
 class GPUDeviceLostInfo;
 class GPUTexture;
+class GPUTextureView;
 
 }
 
