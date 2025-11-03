@@ -26,6 +26,18 @@ void NativeGPUAdapter::Impl::request_device_initialization_steps(JS::Realm& real
             auto const device_label_view = device_label.bytes_as_string_view();
             device_descriptor = { wgpu::DeviceDescriptor::Init { .nextInChain = nullptr, .label = wgpu::StringView { device_label_view.characters_without_null_termination(), device_label_view.length() }, .defaultQueue = wgpu::QueueDescriptor {} } };
         }
+        static Vector<wgpu::FeatureName> const required_features = {
+#if defined(USE_VULKAN_IMAGES)
+        // FIXME: Require wgpu::FeatureName::SharedTextureMemoryDmaBuf or wgpu::FeatureName::SharedTextureMemoryOpaqueFD for Vulkan-based SkiabackendContext on Linux
+#elif defined(AK_OS_MACOS)
+            wgpu::FeatureName::SharedFenceMTLSharedEvent,
+            wgpu::FeatureName::SharedTextureMemoryIOSurface,
+#elif defined(AK_OS_WINDOWS)
+        // FIXME: Require wgpu::FeatureName::SharedTextureMemoryDXGISharedHandle for DirectX-based SkiaBackendContext on Windows
+#endif
+        };
+        device_descriptor.requiredFeatureCount = static_cast<uint32_t>(required_features.size());
+        device_descriptor.requiredFeatures = required_features.data();
 
         // FIXME: https://www.w3.org/TR/webgpu/#dom-gpudevice-lost
         device_descriptor.SetDeviceLostCallback(

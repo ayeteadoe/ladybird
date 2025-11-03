@@ -16,6 +16,7 @@ namespace Web::WebGPU {
 struct GPUDeviceDescriptor : GPUObjectDescriptorBase {
 };
 
+class NativeDrawingBuffer;
 class NativeGPUAdapter;
 
 class NativeGPUDevice {
@@ -24,6 +25,7 @@ class NativeGPUDevice {
     WEBGPU_NATIVE_DECLARE_GPUOBJECT(NativeGPUDevice);
 
 public:
+    friend NativeDrawingBuffer;
     friend NativeGPUAdapter;
 
     static NativeGPUDevice create();

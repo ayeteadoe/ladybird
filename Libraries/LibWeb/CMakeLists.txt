@@ -1130,6 +1130,7 @@ if (LADYBIRD_WEBGPU_BACKEND STREQUAL "Dawn")
     find_package(Dawn CONFIG REQUIRED)
     list(APPEND WEBGPU_TARGETS dawn::webgpu_dawn)
     list(APPEND SOURCES
+        WebGPU/Native/Dawn/DawnNativeDrawingBuffer.cpp
         WebGPU/Native/Dawn/DawnNativeGPU.cpp
         WebGPU/Native/Dawn/DawnNativeGPUAdapter.cpp
         WebGPU/Native/Dawn/DawnNativeGPUDevice.cpp
