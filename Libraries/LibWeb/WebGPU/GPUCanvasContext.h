@@ -37,6 +37,8 @@ class GPUCanvasContext final : public Bindings::PlatformObject {
 
     void configure(GPUCanvasConfiguration const& configuration);
 
+    GC::Ptr<GPUTexture> get_current_texture();
+
 private:
     explicit GPUCanvasContext(JS::Realm&, HTML::HTMLCanvasElement&, NonnullRefPtr<Gfx::SkiaBackendContext> const&);
 
@@ -47,6 +49,8 @@ private:
     void replace_drawing_buffer();
 
     void expire_current_texture();
+
+    void update_the_rendering();
 
     // https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-canvas
     GC::Ref<HTML::HTMLCanvasElement> m_canvas;

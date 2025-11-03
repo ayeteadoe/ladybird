@@ -8,12 +8,13 @@
 
 #include <LibWeb/WebGPU/Native/NativeGPUTexture.h>
 
+#include <webgpu/webgpu_cpp.h>
+
 namespace Web::WebGPU {
 
 struct NativeGPUTexture::Impl {
-    Variant</* FIXME: wgpu::Texture, */ NonnullOwnPtr<NativeDrawingBuffer>, Empty> m_texture;
-
-    Optional<NativeDrawingBuffer const&> drawing_buffer() const;
+    wgpu::Texture m_texture;
+    bool m_is_drawing_buffer { false };
 };
 
 }

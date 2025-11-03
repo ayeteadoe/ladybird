@@ -23,5 +23,5 @@ interface GPUCanvasContext {
     [FIXME] undefined unconfigure();
 
     [FIXME] GPUCanvasConfiguration? getConfiguration();
-    [FIXME] GPUTexture getCurrentTexture();
+    GPUTexture getCurrentTexture();
 };

@@ -4,27 +4,22 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include "DawnNativeDrawingBuffer.h"
+
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUTexture.h>
 
 namespace Web::WebGPU {
 
 WEBGPU_NATIVE_DEFINE_SPECIAL_MEMBERS(NativeGPUTexture);
 
-Optional<NativeDrawingBuffer const&> NativeGPUTexture::Impl::drawing_buffer() const
+NativeGPUTexture NativeGPUTexture::create_from_drawing_buffer(NativeDrawingBuffer& drawing_buffer)
 {
-    if (auto* drawing_buffer = m_texture.get_pointer<NonnullOwnPtr<NativeDrawingBuffer>>())
-        return *drawing_buffer->ptr();
-    return {};
+    return NativeGPUTexture(Impl { .m_texture = drawing_buffer.m_impl->m_texture, .m_is_drawing_buffer = true });
 }
 
-NativeGPUTexture NativeGPUTexture::create_from_drawing_buffer(NonnullOwnPtr<NativeDrawingBuffer> drawing_buffer)
+bool NativeGPUTexture::is_drawing_buffer() const
 {
-    return NativeGPUTexture(Impl { .m_texture = move(drawing_buffer) });
-}
-
-Optional<NativeDrawingBuffer const&> NativeGPUTexture::drawing_buffer() const
-{
-    return m_impl->drawing_buffer();
+    return m_impl->m_is_drawing_buffer;
 }
 
 }

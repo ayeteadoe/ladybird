@@ -13,14 +13,20 @@
 
 namespace Web::WebGPU {
 
+class NativeGPUTexture;
+
 class NativeDrawingBuffer {
     WEBGPU_NATIVE_DECLARE_SPECIAL_MEMBERS(NativeDrawingBuffer);
     WEBGPU_NATIVE_DECLARE_PIMPL(NativeDrawingBuffer);
 
 public:
+    friend NativeGPUTexture;
+
     static ErrorOr<NonnullOwnPtr<NativeDrawingBuffer>> create(NonnullRefPtr<Gfx::SkiaBackendContext> const&, NativeGPUDevice const&, Gfx::IntSize const&);
 
     RefPtr<Gfx::PaintingSurface> surface() const;
+
+    ErrorOr<void> end_access();
 };
 
 }

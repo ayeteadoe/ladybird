@@ -12,14 +12,15 @@ namespace Web::WebGPU {
 
 GC_DEFINE_ALLOCATOR(GPUTexture);
 
-GPUTexture::GPUTexture(JS::Realm& realm)
+GPUTexture::GPUTexture(JS::Realm& realm, NativeGPUTexture native_gpu_texture)
     : PlatformObject(realm)
+    , m_native_gpu_texture(move(native_gpu_texture))
 {
 }
 
-JS::ThrowCompletionOr<GC::Ref<GPUTexture>> GPUTexture::create(JS::Realm& realm)
+JS::ThrowCompletionOr<GC::Ref<GPUTexture>> GPUTexture::create(JS::Realm& realm, NativeGPUTexture native_gpu_texture)
 {
-    return realm.create<GPUTexture>(realm);
+    return realm.create<GPUTexture>(realm, move(native_gpu_texture));
 }
 
 void GPUTexture::initialize(JS::Realm& realm)

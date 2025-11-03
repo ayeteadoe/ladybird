@@ -45,12 +45,39 @@ ErrorOr<NonnullOwnPtr<NativeDrawingBuffer>> NativeDrawingBuffer::create([[maybe_
     wgpu::Texture texture = shared_texture_memory.CreateTexture(&texture_descriptor);
     if (texture == nullptr)
         return Error::from_string_literal("Unable to create texture from shared texture memory");
+
+    wgpu::SharedTextureMemoryBeginAccessDescriptor shared_texture_memory_begin_access_descriptor {};
+    shared_texture_memory_begin_access_descriptor.initialized = false;
+    // FIXME: Expose a begin_access() method so the GPUCanvasContext has full control over texture access/synchronization
+    // FIXME: Synchronize with shared fences, as the Dawn device and the Skia device are both using the same texture memory
+    //        See https://docs.google.com/document/d/1uRGL6vE1mSbpWd2v_KU5--RT5EjTXtruwiC7Ri3ZKz4/edit?tab=t.0#heading=h.953a4uj4vvwh for details.
+    //        In our case, to start we can create the platform specific shared fence abstraction ourselves and import it into Dawn instead of exporting
+    //        from Dawn. See https://docs.google.com/document/d/1uRGL6vE1mSbpWd2v_KU5--RT5EjTXtruwiC7Ri3ZKz4/edit?tab=t.0#heading=h.gsf8tktx1v6j for details
+    //        on imported handle signalling strategies. In terms of intergrating the synchronization into Skia, we can look at populating the GrFlushInfo with
+    //        a GrBackendSemaphore that is signaled when all skia commands have been issued. For Metal, GrBackendSemaphores::MakeMetal() takes in a GrMTLHandle
+    //        which should be compatible with the MTLSharedEvent required for wgpu::SharedFenceMTLSharedEventDescriptor. For Vulkan, GrBackendSemaphores::MakeVk()
+    //        takes in a VkSemaphore which is required for wgpu::SharedFenceVkSemaphore*Descriptor. For Direct3D, GrBackendSemaphore::initDirect3D  takes in a
+    //        wrapper to a ID3D12Fence which can be used to create a shared handle required for wgpu::SharedFenceDXGISharedHandleDescriptor via ID3D12Fence::CreateSharedHandle().
+    auto const shared_texture_memory_begin_access_result = shared_texture_memory.BeginAccess(texture, &shared_texture_memory_begin_access_descriptor);
+    if (shared_texture_memory_begin_access_result != wgpu::Status::Success)
+        return Error::from_string_literal("Unable to begin shared texture memory access");
+
     return adopt_own(*new NativeDrawingBuffer(Impl { .m_surface = surface, .m_shared_texture_memory = shared_texture_memory, .m_shared_texture_memory_properties = shared_texture_memory_properties, .m_texture = texture }));
 }
 
 RefPtr<Gfx::PaintingSurface> NativeDrawingBuffer::surface() const
 {
     return m_impl->m_surface;
+}
+
+ErrorOr<void> NativeDrawingBuffer::end_access()
+{
+    // FIXME: Synchronize with shared fences.
+    wgpu::SharedTextureMemoryEndAccessState shared_texture_memory_end_access_state {};
+    auto const shared_texture_memory_end_access_result = m_impl->m_shared_texture_memory.EndAccess(m_impl->m_texture, &shared_texture_memory_end_access_state);
+    if (shared_texture_memory_end_access_result != wgpu::Status::Success)
+        return Error::from_string_literal("Unable to end shared texture memory access");
+    return {};
 }
 
 }

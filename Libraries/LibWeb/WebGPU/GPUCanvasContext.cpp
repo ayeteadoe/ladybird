@@ -101,6 +101,39 @@ void GPUCanvasContext::configure(GPUCanvasConfiguration const& configuration)
     // 9. FIXME: Issue the subsequent steps on the Device timeline of device.
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-getcurrenttexture
+GC::Ptr<GPUTexture> GPUCanvasContext::get_current_texture()
+{
+    // FIXME: 1. If this.[[configuration]] is null, throw an InvalidStateError and return.
+    // FIXME: 2. Assert this.[[textureDescriptor]] is not null.
+    // FIXME: 3. Let device be this.[[configuration]].device.
+    // 4. If this.[[currentTexture]] is null:
+    if (!m_current_texture) {
+        // 1. Replace the drawing buffer of this.
+        replace_drawing_buffer();
+
+        // 2. Set this.[[currentTexture]] to the result of calling device.createTexture() with this.[[textureDescriptor]], except with the GPUTexture’s underlying storage pointing to this.[[drawingBuffer]].
+        // FIXME: Support this.[[textureDescriptor]] in shared texture memory creation
+        auto native_gpu_texture = NativeGPUTexture::create_from_drawing_buffer(*m_drawing_buffer);
+
+        // FIXME:  If the texture can’t be created (e.g. due to validation failure or out-of-memory), this generates and error and returns an invalidated GPUTexture. Some validation here is redundant with that done in configure(). Implementations must not skip this redundant validation.
+        m_current_texture = MUST(GPUTexture::create(realm(), move(native_gpu_texture)));
+    }
+    // FIXME: 5. Optionally, queue an automatic expiry task with device device and the following steps:
+
+    // AD-HOC: https://www.w3.org/TR/webgpu/#abstract-opdef-updating-the-rendering-of-a-webgpu-canvas states that the event loop is responsible for triggering
+    //         presentation of the canvas surface content. Given how our current event loop is implemented, we need to perform the following to trigger a re-paint
+    //         on the next animation frame. Otherwise, it will only show the initialized canvas surface. Given we know getCurrentTexture() is each for each
+    //         render pass which occurs every frame, this ensures our content will be presented each animation frame.
+    if (auto surface = m_drawing_buffer->surface()) {
+        surface->notify_content_will_change();
+        m_canvas->navigable()->set_needs_repaint();
+    }
+
+    // 6. Return this.[[currentTexture]].
+    return m_current_texture;
+}
+
 // https://www.w3.org/TR/webgpu/#abstract-opdef-replace-the-drawing-buffer
 void GPUCanvasContext::replace_drawing_buffer()
 {
@@ -122,9 +155,24 @@ void GPUCanvasContext::expire_current_texture()
 {
     // 1. If context.[[currentTexture]] is not null:
     if (m_current_texture != nullptr) {
+        // AD-HOC: End access to the shared texture memory held by the drawing buffer
+        if (m_drawing_buffer)
+            MUST(m_drawing_buffer->end_access());
+
         // FIXME: 1. Call context.[[currentTexture]].destroy() (without destroying context.[[drawingBuffer]]) to terminate write access to the image.
         // FIXME: 2. Set context.[[currentTexture]] to null.
     }
+}
+
+// https://www.w3.org/TR/webgpu/#abstract-opdef-updating-the-rendering-of-a-webgpu-canvas
+void GPUCanvasContext::update_the_rendering()
+{
+    auto surface = this->surface();
+    if (!surface)
+        return;
+
+    surface->notify_content_will_change();
+    m_canvas->navigable()->set_needs_repaint();
 }
 
 }

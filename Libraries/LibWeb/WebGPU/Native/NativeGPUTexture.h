@@ -19,9 +19,9 @@ class NativeGPUTexture {
 
 public:
     // We distinguish between creating a texture for a shared drawing buffer vs a texture from a standard texture descriptor to ensure the texture view descriptor that will be passed to rendering pass is compatible with the drawing buffer texture
-    static NativeGPUTexture create_from_drawing_buffer(NonnullOwnPtr<NativeDrawingBuffer> drawing_buffer);
+    static NativeGPUTexture create_from_drawing_buffer(NativeDrawingBuffer& drawing_buffer);
 
-    Optional<NativeDrawingBuffer const&> drawing_buffer() const;
+    bool is_drawing_buffer() const;
 };
 
 }
