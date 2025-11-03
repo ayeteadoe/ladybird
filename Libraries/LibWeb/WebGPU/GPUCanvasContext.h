@@ -10,11 +10,12 @@
 #include <LibWeb/Bindings/GPUCanvasContextPrototype.h>
 #include <LibWeb/Bindings/GPUTexturePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/WebGPU/Native/NativeDrawingBuffer.h>
 
 namespace Web::WebGPU {
 
 struct GPUCanvasConfiguration {
-    GC::Ref<GPUDevice> device;
+    GC::Ptr<GPUDevice> device;
     Bindings::GPUTextureFormat format;
 };
 
@@ -30,9 +31,11 @@ class GPUCanvasContext final : public Bindings::PlatformObject {
 
     void allocate_painting_surface_if_needed();
 
-    RefPtr<Gfx::PaintingSurface> surface() { return m_drawing_buffer; }
+    RefPtr<Gfx::PaintingSurface> surface();
 
     GC::Ref<HTML::HTMLCanvasElement> canvas() const { return m_canvas; }
+
+    void configure(GPUCanvasConfiguration const& configuration);
 
 private:
     explicit GPUCanvasContext(JS::Realm&, HTML::HTMLCanvasElement&, NonnullRefPtr<Gfx::SkiaBackendContext> const&);
@@ -41,18 +44,24 @@ private:
 
     void visit_edges(Visitor&) override;
 
+    void replace_drawing_buffer();
+
+    void expire_current_texture();
+
     // https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-canvas
     GC::Ref<HTML::HTMLCanvasElement> m_canvas;
 
-    // FIXME: https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-configuration-slot
+    // https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-configuration-slot
+    Optional<GPUCanvasConfiguration> m_configuration;
 
     // FIXME: https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-texturedescriptor-slot
 
     // https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-drawingbuffer-slot
     NonnullRefPtr<Gfx::SkiaBackendContext> m_skia_backend_context;
-    RefPtr<Gfx::PaintingSurface> m_drawing_buffer { nullptr };
+    OwnPtr<NativeDrawingBuffer> m_drawing_buffer { nullptr };
 
     // FIXME: https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-currenttexture-slot
+    GC::Ptr<GPUTexture> m_current_texture;
 
     // FIXME: https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-lastpresentedimage-slot
 

@@ -18,7 +18,7 @@ class NativeDrawingBuffer {
     WEBGPU_NATIVE_DECLARE_PIMPL(NativeDrawingBuffer);
 
 public:
-    static ErrorOr<NativeDrawingBuffer> create(NonnullRefPtr<Gfx::SkiaBackendContext> const&, NativeGPUDevice const&, Gfx::IntSize const&);
+    static ErrorOr<NonnullOwnPtr<NativeDrawingBuffer>> create(NonnullRefPtr<Gfx::SkiaBackendContext> const&, NativeGPUDevice const&, Gfx::IntSize const&);
 
     RefPtr<Gfx::PaintingSurface> surface() const;
 };

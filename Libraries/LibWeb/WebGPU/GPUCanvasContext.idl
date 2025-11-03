@@ -19,7 +19,7 @@ interface GPUCanvasContext {
     // FIXME: readonly attribute (HTMLCanvasElement or OffscreenCanvas) canvas;
     readonly attribute HTMLCanvasElement canvas;
 
-    [FIXME] undefined configure(GPUCanvasConfiguration configuration);
+    undefined configure(GPUCanvasConfiguration configuration);
     [FIXME] undefined unconfigure();
 
     [FIXME] GPUCanvasConfiguration? getConfiguration();

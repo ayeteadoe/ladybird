@@ -11,7 +11,7 @@ namespace Web::WebGPU {
 
 WEBGPU_NATIVE_DEFINE_SPECIAL_MEMBERS(NativeDrawingBuffer);
 
-ErrorOr<NativeDrawingBuffer> NativeDrawingBuffer::create([[maybe_unused]] NonnullRefPtr<Gfx::SkiaBackendContext> const& skia_backend_context, NativeGPUDevice const& native_gpu_device, [[maybe_unused]] Gfx::IntSize const& size)
+ErrorOr<NonnullOwnPtr<NativeDrawingBuffer>> NativeDrawingBuffer::create([[maybe_unused]] NonnullRefPtr<Gfx::SkiaBackendContext> const& skia_backend_context, NativeGPUDevice const& native_gpu_device, [[maybe_unused]] Gfx::IntSize const& size)
 {
     wgpu::SharedTextureMemoryDescriptor shared_texture_memory_descriptor {};
     RefPtr<Gfx::PaintingSurface> surface {};
@@ -45,8 +45,12 @@ ErrorOr<NativeDrawingBuffer> NativeDrawingBuffer::create([[maybe_unused]] Nonnul
     wgpu::Texture texture = shared_texture_memory.CreateTexture(&texture_descriptor);
     if (texture == nullptr)
         return Error::from_string_literal("Unable to create texture from shared texture memory");
+    return adopt_own(*new NativeDrawingBuffer(Impl { .m_surface = surface, .m_shared_texture_memory = shared_texture_memory, .m_shared_texture_memory_properties = shared_texture_memory_properties, .m_texture = texture }));
+}
 
-    return NativeDrawingBuffer(Impl { .m_surface = surface, .m_shared_texture_memory = shared_texture_memory, .m_shared_texture_memory_properties = shared_texture_memory_properties, .m_texture = texture });
+RefPtr<Gfx::PaintingSurface> NativeDrawingBuffer::surface() const
+{
+    return m_impl->m_surface;
 }
 
 }
