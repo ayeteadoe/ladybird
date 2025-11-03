@@ -168,6 +168,7 @@ FormDataEvent
 Function
 GPU
 GPUAdapter
+GPUCanvasContext
 GPUDevice
 GPUDeviceLostInfo
 GPUTexture

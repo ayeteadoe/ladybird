@@ -1,0 +1,27 @@
+#import <HTML/HTMLCanvasElement.idl>
+#import <WebGPU/GPUDevice.idl>
+#import <WebGPU/GPUTexture.idl>
+
+// https://www.w3.org/TR/webgpu/#canvas-configuration
+dictionary GPUCanvasConfiguration {
+    required GPUDevice device;
+    required GPUTextureFormat format;
+    // FIXME: GPUTextureUsageFlags usage = 0x10;  // GPUTextureUsage.RENDER_ATTACHMENT
+    // FIXME: sequence<GPUTextureFormat> viewFormats = [];
+    // FIXME: redefinedColorSpace colorSpace = "srgb";
+    // FIXME: GPUCanvasToneMapping toneMapping = {};
+    // FIXME: GPUCanvasAlphaMode alphaMode = "opaque";
+};
+
+// https://www.w3.org/TR/webgpu/#canvas-context
+[Exposed=(Window,Worker), SecureContext]
+interface GPUCanvasContext {
+    // FIXME: readonly attribute (HTMLCanvasElement or OffscreenCanvas) canvas;
+    readonly attribute HTMLCanvasElement canvas;
+
+    [FIXME] undefined configure(GPUCanvasConfiguration configuration);
+    [FIXME] undefined unconfigure();
+
+    [FIXME] GPUCanvasConfiguration? getConfiguration();
+    [FIXME] GPUTexture getCurrentTexture();
+};

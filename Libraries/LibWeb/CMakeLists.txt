@@ -1089,6 +1089,7 @@ set(SOURCES
     WebGL/WebGLVertexArrayObject.cpp
     WebGPU/GPU.cpp
     WebGPU/GPUAdapter.cpp
+    WebGPU/GPUCanvasContext.cpp
     WebGPU/GPUDevice.cpp
     WebGPU/GPUDeviceLostInfo.cpp
     WebGPU/GPUTexture.cpp
