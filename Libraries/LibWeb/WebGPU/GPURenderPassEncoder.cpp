@@ -45,4 +45,10 @@ void GPURenderPassEncoder::set_label(String const& label)
     m_native_gpu_render_pass_encoder.set_label(label);
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-end
+void GPURenderPassEncoder::end()
+{
+    m_native_gpu_render_pass_encoder.end();
+}
+
 }

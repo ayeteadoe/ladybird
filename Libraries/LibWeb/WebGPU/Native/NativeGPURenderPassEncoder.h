@@ -45,6 +45,8 @@ public:
     friend NativeGPUCommandEncoder;
 
     static NativeGPURenderPassEncoder create();
+
+    void end();
 };
 
 }

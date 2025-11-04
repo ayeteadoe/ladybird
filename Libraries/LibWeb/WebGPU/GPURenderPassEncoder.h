@@ -23,6 +23,8 @@ class GPURenderPassEncoder final : public Bindings::PlatformObject {
 
     NativeGPURenderPassEncoder& native_gpu_render_pass_encoder() { return m_native_gpu_render_pass_encoder; }
 
+    void end();
+
 private:
     explicit GPURenderPassEncoder(JS::Realm&, NativeGPURenderPassEncoder);
 

@@ -10,6 +10,13 @@ namespace Web::WebGPU {
 
 WEBGPU_NATIVE_DEFINE_SPECIAL_MEMBERS(NativeGPURenderPassEncoder);
 
+// // https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-end
+void NativeGPURenderPassEncoder::Impl::end()
+{
+    // FIXME: Implement specification
+    m_render_pass_encoder.End();
+}
+
 NativeGPURenderPassEncoder NativeGPURenderPassEncoder::create()
 {
     return NativeGPURenderPassEncoder(Impl {});
@@ -27,6 +34,11 @@ void NativeGPURenderPassEncoder::set_label(String const& label)
     m_impl->m_label = label;
     auto const label_view = label.bytes_as_string_view();
     m_impl->m_render_pass_encoder.SetLabel(wgpu::StringView { label_view.characters_without_null_termination(), label_view.length() });
+}
+
+void NativeGPURenderPassEncoder::end()
+{
+    m_impl->end();
 }
 
 }

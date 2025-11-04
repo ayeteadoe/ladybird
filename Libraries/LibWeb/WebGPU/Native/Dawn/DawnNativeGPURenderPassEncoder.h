@@ -19,6 +19,8 @@ struct NativeGPURenderPassEncoder::Impl {
 
     String const& label() const;
     void set_label(String const& label);
+
+    void end();
 };
 
 }
