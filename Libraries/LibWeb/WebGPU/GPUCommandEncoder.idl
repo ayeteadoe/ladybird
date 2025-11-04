@@ -1,3 +1,4 @@
+#import <WebGPU/GPUCommandBuffer.idl>
 #import <WebGPU/GPUObjectBase.idl>
 #import <WebGPU/GPURenderPassEncoder.idl>
 
@@ -25,7 +26,7 @@ interface GPUCommandEncoder {
 
     // FIXME: undefined resolveQuerySet(GPUQuerySet querySet, GPUSize32 firstQuery, GPUSize32 queryCount, GPUBuffer destination, GPUSize64 destinationOffset);
 
-    // FIXME: GPUCommandBuffer finish(optional GPUCommandBufferDescriptor descriptor = {});
+    GPUCommandBuffer finish(optional GPUCommandBufferDescriptor descriptor = {});
 };
 GPUCommandEncoder includes GPUObjectBase;
 // FIXME: GPUCommandEncoder includes GPUCommandsMixin;

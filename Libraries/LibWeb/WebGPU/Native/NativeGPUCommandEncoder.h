@@ -9,6 +9,7 @@
 #include <AK/NonnullOwnPtr.h>
 #include <LibWeb/Bindings/GPUCommandEncoderPrototype.h>
 #include <LibWeb/WebGPU/GPUObjectBase.h>
+#include <LibWeb/WebGPU/Native/NativeGPUCommandBuffer.h>
 #include <LibWeb/WebGPU/Native/NativeGPURenderPassEncoder.h>
 #include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
 
@@ -30,6 +31,8 @@ public:
     static NativeGPUCommandEncoder create();
 
     NativeGPURenderPassEncoder begin_render_pass(GPURenderPassDescriptor const& descriptor);
+
+    NativeGPUCommandBuffer finish(Optional<GPUCommandBufferDescriptor> descriptor);
 };
 
 }

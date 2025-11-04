@@ -21,6 +21,8 @@ struct NativeGPUCommandEncoder::Impl {
     void set_label(String const& label);
 
     NativeGPURenderPassEncoder begin_render_pass(GPURenderPassDescriptor const& descriptor);
+
+    NativeGPUCommandBuffer finish(Optional<GPUCommandBufferDescriptor> descriptor);
 };
 
 }

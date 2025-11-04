@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include "DawnNativeGPUCommandBuffer.h"
 #include "DawnNativeGPURenderPassEncoder.h"
 #include "DawnNativeGPUTextureView.h"
 
@@ -70,6 +71,16 @@ NativeGPURenderPassEncoder NativeGPUCommandEncoder::Impl::begin_render_pass(GPUR
     return render_pass_encoder;
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpucommandencoder-finish
+NativeGPUCommandBuffer NativeGPUCommandEncoder::Impl::finish([[maybe_unused]] Optional<GPUCommandBufferDescriptor> descriptor)
+{
+    // FIXME: Implement specification
+    wgpu::CommandBufferDescriptor command_buffer_descriptor {};
+    auto command_buffer = NativeGPUCommandBuffer::create();
+    command_buffer.m_impl->m_command_buffer = m_command_encoder.Finish(&command_buffer_descriptor);
+    return command_buffer;
+}
+
 NativeGPUCommandEncoder NativeGPUCommandEncoder::create()
 {
     return NativeGPUCommandEncoder(Impl {});
@@ -92,6 +103,11 @@ void NativeGPUCommandEncoder::set_label(String const& label)
 NativeGPURenderPassEncoder NativeGPUCommandEncoder::begin_render_pass(GPURenderPassDescriptor const& descriptor)
 {
     return m_impl->begin_render_pass(descriptor);
+}
+
+NativeGPUCommandBuffer NativeGPUCommandEncoder::finish(Optional<GPUCommandBufferDescriptor> descriptor)
+{
+    return m_impl->finish(descriptor);
 }
 
 }

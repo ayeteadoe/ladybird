@@ -1,0 +1,12 @@
+#import <WebGPU/GPUObjectBase.idl>
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpucommandbufferdescriptor
+dictionary GPUCommandBufferDescriptor
+         : GPUObjectDescriptorBase {
+};
+
+// https://www.w3.org/TR/webgpu/#gpucommandbuffer
+[Exposed=(Window, Worker), SecureContext]
+interface GPUCommandBuffer {
+};
+GPUCommandBuffer includes GPUObjectBase;

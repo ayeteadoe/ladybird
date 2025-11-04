@@ -51,4 +51,10 @@ GC::Ref<GPURenderPassEncoder> GPUCommandEncoder::begin_render_pass(GPURenderPass
     return MUST(GPURenderPassEncoder::create(realm(), m_native_gpu_command_encoder.begin_render_pass(descriptor)));
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpucommandencoder-finish
+GC::Ref<GPUCommandBuffer> GPUCommandEncoder::finish(Optional<GPUCommandBufferDescriptor> descriptor)
+{
+    return MUST(GPUCommandBuffer::create(realm(), m_native_gpu_command_encoder.finish(descriptor)));
+}
+
 }

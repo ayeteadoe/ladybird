@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/GPUCommandEncoderPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/WebGPU/GPUCommandBuffer.h>
 #include <LibWeb/WebGPU/GPURenderPassEncoder.h>
 #include <LibWeb/WebGPU/Native/NativeGPUCommandEncoder.h>
 
@@ -25,6 +26,8 @@ class GPUCommandEncoder final : public Bindings::PlatformObject {
     NativeGPUCommandEncoder& native_gpu_command_encoder() { return m_native_gpu_command_encoder; }
 
     GC::Ref<GPURenderPassEncoder> begin_render_pass(GPURenderPassDescriptor const& descriptor);
+
+    GC::Ref<GPUCommandBuffer> finish(Optional<GPUCommandBufferDescriptor> descriptor = {});
 
 private:
     explicit GPUCommandEncoder(JS::Realm&, NativeGPUCommandEncoder);
