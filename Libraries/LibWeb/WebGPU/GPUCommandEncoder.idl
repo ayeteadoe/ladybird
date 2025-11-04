@@ -1,4 +1,5 @@
 #import <WebGPU/GPUObjectBase.idl>
+#import <WebGPU/GPURenderPassEncoder.idl>
 
 // https://www.w3.org/TR/webgpu/#dictdef-gpucommandencoderdescriptor
 dictionary GPUCommandEncoderDescriptor
@@ -8,7 +9,7 @@ dictionary GPUCommandEncoderDescriptor
 // https://www.w3.org/TR/webgpu/#gpucommandencoder
 [Exposed=(Window, Worker), SecureContext]
 interface GPUCommandEncoder {
-    // FIXME: GPURenderPassEncoder beginRenderPass(GPURenderPassDescriptor descriptor);
+    GPURenderPassEncoder beginRenderPass(GPURenderPassDescriptor descriptor);
     // FIXME: GPUComputePassEncoder beginComputePass(optional GPUComputePassDescriptor descriptor = {});
 
     // FIXME: undefined copyBufferToBuffer(GPUBuffer source, GPUBuffer destination, optional GPUSize64 size);

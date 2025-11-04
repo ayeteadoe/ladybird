@@ -1281,6 +1281,7 @@ class GPUCanvasContext;
 class GPUCommandEncoder;
 class GPUDevice;
 class GPUDeviceLostInfo;
+class GPURenderPassEncoder;
 class GPUTexture;
 class GPUTextureView;
 

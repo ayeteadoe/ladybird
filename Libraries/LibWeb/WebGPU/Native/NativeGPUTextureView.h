@@ -16,6 +16,7 @@ namespace Web::WebGPU {
 struct GPUTextureViewDescriptor : GPUObjectDescriptorBase {
 };
 
+class NativeGPUCommandEncoder;
 class NativeGPUTexture;
 
 class NativeGPUTextureView {
@@ -24,6 +25,7 @@ class NativeGPUTextureView {
     WEBGPU_NATIVE_DECLARE_GPUOBJECT(NativeGPUTextureView);
 
 public:
+    friend NativeGPUCommandEncoder;
     friend NativeGPUTexture;
 
     static NativeGPUTextureView create();

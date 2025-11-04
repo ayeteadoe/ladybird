@@ -45,4 +45,10 @@ void GPUCommandEncoder::set_label(String const& label)
     m_native_gpu_command_encoder.set_label(label);
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpucommandencoder-beginrenderpass
+GC::Ref<GPURenderPassEncoder> GPUCommandEncoder::begin_render_pass(GPURenderPassDescriptor const& descriptor)
+{
+    return MUST(GPURenderPassEncoder::create(realm(), m_native_gpu_command_encoder.begin_render_pass(descriptor)));
+}
+
 }

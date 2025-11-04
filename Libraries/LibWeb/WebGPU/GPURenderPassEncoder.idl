@@ -1,0 +1,69 @@
+#import <WebGPU/GPUObjectBase.idl>
+#import <WebGPU/GPUTextureView.idl>
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpucolor
+dictionary GPUColorDict {
+    required double r;
+    required double g;
+    required double b;
+    required double a;
+};
+typedef (sequence<double> or GPUColorDict) GPUColor;
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpuloadop
+enum GPULoadOp {
+    "load",
+    "clear",
+};
+
+// https://www.w3.org/TR/webgpu/#enumdef-gpustoreop
+enum GPUStoreOp {
+    "store",
+    "discard",
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpurenderpasscolorattachment
+dictionary GPURenderPassColorAttachment {
+    // FIXME: required (GPUTexture or GPUTextureView) view;
+    required GPUTextureView view;
+    // FIXME: GPUIntegerCoordinate depthSlice;
+    // FIXME: (GPUTexture or GPUTextureView) resolveTarget;
+
+    GPUColor clearValue;
+    required GPULoadOp loadOp;
+    required GPUStoreOp storeOp;
+};
+
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpurenderpassdescriptor
+dictionary GPURenderPassDescriptor
+         : GPUObjectDescriptorBase {
+    // FIXME: Support ? entries in a sequence
+    required sequence<GPURenderPassColorAttachment> colorAttachments;
+    // FIXME: GPURenderPassDepthStencilAttachment depthStencilAttachment;
+    // FIXME: GPUQuerySet occlusionQuerySet;
+    // FIXME: GPURenderPassTimestampWrites timestampWrites;
+    // FIXME: GPUSize64 maxDrawCount = 50000000;
+};
+
+// https://www.w3.org/TR/webgpu/#gpurenderpassencoder
+[Exposed=(Window, Worker), SecureContext]
+interface GPURenderPassEncoder {
+    // FIXME: undefined setViewport(float x, float y, float width, float height, float minDepth, float maxDepth);
+
+    // FIXME: undefined setScissorRect(GPUIntegerCoordinate x, GPUIntegerCoordinate y, GPUIntegerCoordinate width, GPUIntegerCoordinate height);
+
+    // FIXME: undefined setBlendConstant(GPUColor color);
+    // FIXME: undefined setStencilReference(GPUStencilValue reference);
+
+    // FIXME: undefined beginOcclusionQuery(GPUSize32 queryIndex);
+    // FIXME: undefined endOcclusionQuery();
+
+    // FIXME: undefined executeBundles(sequence<GPURenderBundle> bundles);
+    // FIXME: undefined end();
+};
+GPURenderPassEncoder includes GPUObjectBase;
+// FIXME: GPURenderPassEncoder includes GPUCommandsMixin;
+// FIXME: GPURenderPassEncoder includes GPUDebugCommandsMixin;
+// FIXME: GPURenderPassEncoder includes GPUBindingCommandsMixin;
+// FIXME: GPURenderPassEncoder includes GPURenderCommandsMixin;

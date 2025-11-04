@@ -6,21 +6,19 @@
 
 #pragma once
 
-#include <LibWeb/WebGPU/Native/NativeGPUCommandEncoder.h>
+#include <LibWeb/WebGPU/Native/NativeGPURenderPassEncoder.h>
 
 #include <webgpu/webgpu_cpp.h>
 
 namespace Web::WebGPU {
 
-struct NativeGPUCommandEncoder::Impl {
-    wgpu::CommandEncoder m_command_encoder { nullptr };
+struct NativeGPURenderPassEncoder::Impl {
+    wgpu::RenderPassEncoder m_render_pass_encoder { nullptr };
 
     String m_label;
 
     String const& label() const;
     void set_label(String const& label);
-
-    NativeGPURenderPassEncoder begin_render_pass(GPURenderPassDescriptor const& descriptor);
 };
 
 }

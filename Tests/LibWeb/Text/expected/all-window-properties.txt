@@ -172,6 +172,7 @@ GPUCanvasContext
 GPUCommandEncoder
 GPUDevice
 GPUDeviceLostInfo
+GPURenderPassEncoder
 GPUTexture
 GPUTextureView
 GainNode
