@@ -2,6 +2,7 @@
 #import <WebGPU/GPUCommandEncoder.idl>
 #import <WebGPU/GPUDeviceLostInfo.idl>
 #import <WebGPU/GPUObjectBase.idl>
+#import <WebGPU/GPUQueue.idl>
 
 // https://www.w3.org/TR/webgpu/#gpudevicedescriptor
 dictionary GPUDeviceDescriptor
@@ -18,7 +19,7 @@ interface GPUDevice : EventTarget {
     // FIXME: [SameObject] readonly attribute GPUSupportedLimits limits;
     // FIXME: [SameObject] readonly attribute GPUAdapterInfo adapterInfo;
 
-    // FIXME: [SameObject] readonly attribute GPUQueue queue;
+    [SameObject] readonly attribute GPUQueue queue;
 
     [FIXME] undefined destroy();
 

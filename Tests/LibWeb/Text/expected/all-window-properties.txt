@@ -173,6 +173,7 @@ GPUCommandBuffer
 GPUCommandEncoder
 GPUDevice
 GPUDeviceLostInfo
+GPUQueue
 GPURenderPassEncoder
 GPUTexture
 GPUTextureView

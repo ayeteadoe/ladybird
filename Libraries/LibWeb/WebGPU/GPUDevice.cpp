@@ -7,6 +7,7 @@
 #include <LibJS/Runtime/Realm.h>
 #include <LibWeb/Bindings/Intrinsics.h>
 #include <LibWeb/WebGPU/GPUDevice.h>
+#include <LibWeb/WebGPU/GPUQueue.h>
 #include <LibWeb/WebIDL/Promise.h>
 
 namespace Web::WebGPU {
@@ -16,6 +17,7 @@ GC_DEFINE_ALLOCATOR(GPUDevice);
 GPUDevice::GPUDevice(JS::Realm& realm, NativeGPUDevice native_gpu_device)
     : EventTarget(realm)
     , m_native_gpu_device(move(native_gpu_device))
+    , m_queue(MUST(GPUQueue::create(realm, m_native_gpu_device.queue())))
 {
 }
 
@@ -33,6 +35,7 @@ void GPUDevice::initialize(JS::Realm& realm)
 void GPUDevice::visit_edges(Visitor& visitor)
 {
     Base::visit_edges(visitor);
+    visitor.visit(m_queue);
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-lost
@@ -51,6 +54,11 @@ String const& GPUDevice::label() const
 void GPUDevice::set_label(String const& label)
 {
     m_native_gpu_device.set_label(label);
+}
+
+GC::Ref<GPUQueue> GPUDevice::queue() const
+{
+    return m_queue;
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createcommandencoder

@@ -17,6 +17,7 @@ struct GPUCommandBufferDescriptor : GPUObjectDescriptorBase {
 };
 
 class NativeGPUCommandEncoder;
+class NativeGPUQueue;
 
 class NativeGPUCommandBuffer {
     WEBGPU_NATIVE_DECLARE_SPECIAL_MEMBERS(NativeGPUCommandBuffer);
@@ -25,6 +26,7 @@ class NativeGPUCommandBuffer {
 
 public:
     friend NativeGPUCommandEncoder;
+    friend NativeGPUQueue;
 
     static NativeGPUCommandBuffer create();
 };

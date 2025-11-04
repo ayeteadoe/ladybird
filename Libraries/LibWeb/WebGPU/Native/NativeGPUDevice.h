@@ -31,6 +31,8 @@ public:
 
     static NativeGPUDevice create();
 
+    NativeGPUQueue queue() const;
+
     NativeGPUCommandEncoder create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const;
 };
 

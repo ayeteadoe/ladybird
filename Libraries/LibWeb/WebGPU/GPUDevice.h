@@ -26,6 +26,8 @@ class GPUDevice final : public DOM::EventTarget {
 
     NativeGPUDevice& native_gpu_device() { return m_native_gpu_device; }
 
+    GC::Ref<GPUQueue> queue() const;
+
     GC::Ref<GPUCommandEncoder> create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor = {}) const;
 
 private:
@@ -36,6 +38,8 @@ private:
     void visit_edges(Visitor&) override;
 
     NativeGPUDevice m_native_gpu_device;
+
+    GC::Ref<GPUQueue> m_queue;
 };
 
 }
