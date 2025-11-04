@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/Native/NativeGPUDevice.h>
 
 namespace Web::WebGPU {
@@ -24,6 +25,8 @@ class GPUDevice final : public DOM::EventTarget {
     void set_label(String const& label);
 
     NativeGPUDevice& native_gpu_device() { return m_native_gpu_device; }
+
+    GC::Ref<GPUCommandEncoder> create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor = {}) const;
 
 private:
     explicit GPUDevice(JS::Realm&, NativeGPUDevice);

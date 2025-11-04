@@ -169,6 +169,7 @@ Function
 GPU
 GPUAdapter
 GPUCanvasContext
+GPUCommandEncoder
 GPUDevice
 GPUDeviceLostInfo
 GPUTexture

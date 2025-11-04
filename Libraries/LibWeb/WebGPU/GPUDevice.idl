@@ -1,4 +1,5 @@
 #import <DOM/EventTarget.idl>
+#import <WebGPU/GPUCommandEncoder.idl>
 #import <WebGPU/GPUDeviceLostInfo.idl>
 #import <WebGPU/GPUObjectBase.idl>
 
@@ -36,7 +37,7 @@ interface GPUDevice : EventTarget {
     // FIXME: Promise<GPUComputePipeline> createComputePipelineAsync(GPUComputePipelineDescriptor descriptor);
     // FIXME: Promise<GPURenderPipeline> createRenderPipelineAsync(GPURenderPipelineDescriptor descriptor);
 
-    // FIXME: GPUCommandEncoder createCommandEncoder(optional GPUCommandEncoderDescriptor descriptor = {});
+    GPUCommandEncoder createCommandEncoder(optional GPUCommandEncoderDescriptor descriptor = {});
     // FIXME: GPURenderBundleEncoder createRenderBundleEncoder(GPURenderBundleEncoderDescriptor descriptor);
 
     // FIXME: GPUQuerySet createQuerySet(GPUQuerySetDescriptor descriptor);

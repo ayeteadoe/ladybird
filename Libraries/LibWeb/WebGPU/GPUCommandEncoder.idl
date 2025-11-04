@@ -1,0 +1,31 @@
+#import <WebGPU/GPUObjectBase.idl>
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpucommandencoderdescriptor
+dictionary GPUCommandEncoderDescriptor
+         : GPUObjectDescriptorBase {
+};
+
+// https://www.w3.org/TR/webgpu/#gpucommandencoder
+[Exposed=(Window, Worker), SecureContext]
+interface GPUCommandEncoder {
+    // FIXME: GPURenderPassEncoder beginRenderPass(GPURenderPassDescriptor descriptor);
+    // FIXME: GPUComputePassEncoder beginComputePass(optional GPUComputePassDescriptor descriptor = {});
+
+    // FIXME: undefined copyBufferToBuffer(GPUBuffer source, GPUBuffer destination, optional GPUSize64 size);
+    // FIXME: undefined copyBufferToBuffer(GPUBuffer source, GPUSize64 sourceOffset, GPUBuffer destination, GPUSize64 destinationOffset, optional GPUSize64 size);
+
+    // FIXME: undefined copyBufferToTexture(GPUTexelCopyBufferInfo source, GPUTexelCopyTextureInfo destination, GPUExtent3D copySize);
+
+    // FIXME: undefined copyTextureToBuffer(GPUTexelCopyTextureInfo source, GPUTexelCopyBufferInfo destination, GPUExtent3D copySize);
+
+    // FIXME: undefined copyTextureToTexture(GPUTexelCopyTextureInfo source, GPUTexelCopyTextureInfo destination, GPUExtent3D copySize);
+
+    // FIXME: undefined clearBuffer(GPUBuffer buffer, optional GPUSize64 offset = 0, optional GPUSize64 size);
+
+    // FIXME: undefined resolveQuerySet(GPUQuerySet querySet, GPUSize32 firstQuery, GPUSize32 queryCount, GPUBuffer destination, GPUSize64 destinationOffset);
+
+    // FIXME: GPUCommandBuffer finish(optional GPUCommandBufferDescriptor descriptor = {});
+};
+GPUCommandEncoder includes GPUObjectBase;
+// FIXME: GPUCommandEncoder includes GPUCommandsMixin;
+// FIXME: GPUCommandEncoder includes GPUDebugCommandsMixin;

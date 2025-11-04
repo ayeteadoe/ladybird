@@ -1278,6 +1278,7 @@ namespace Web::WebGPU {
 class GPU;
 class GPUAdapter;
 class GPUCanvasContext;
+class GPUCommandEncoder;
 class GPUDevice;
 class GPUDeviceLostInfo;
 class GPUTexture;

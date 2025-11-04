@@ -53,4 +53,10 @@ void GPUDevice::set_label(String const& label)
     m_native_gpu_device.set_label(label);
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createcommandencoder
+GC::Ref<GPUCommandEncoder> GPUDevice::create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const
+{
+    return MUST(GPUCommandEncoder::create(realm(), m_native_gpu_device.create_command_encoder(descriptor)));
+}
+
 }

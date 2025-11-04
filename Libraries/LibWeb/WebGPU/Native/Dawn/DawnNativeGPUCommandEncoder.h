@@ -6,21 +6,19 @@
 
 #pragma once
 
-#include <LibWeb/WebGPU/Native/NativeGPUDevice.h>
+#include <LibWeb/WebGPU/Native/NativeGPUCommandEncoder.h>
 
 #include <webgpu/webgpu_cpp.h>
 
 namespace Web::WebGPU {
 
-struct NativeGPUDevice::Impl {
-    wgpu::Device m_device { nullptr };
+struct NativeGPUCommandEncoder::Impl {
+    wgpu::CommandEncoder m_command_encoder { nullptr };
 
     String m_label;
 
     String const& label() const;
     void set_label(String const& label);
-
-    NativeGPUCommandEncoder create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const;
 };
 
 }

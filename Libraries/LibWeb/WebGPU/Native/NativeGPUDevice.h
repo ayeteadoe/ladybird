@@ -9,6 +9,7 @@
 #include <AK/NonnullOwnPtr.h>
 #include <LibWeb/Bindings/GPUDevicePrototype.h>
 #include <LibWeb/WebGPU/GPUObjectBase.h>
+#include <LibWeb/WebGPU/Native/NativeGPUCommandEncoder.h>
 #include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
 
 namespace Web::WebGPU {
@@ -29,6 +30,8 @@ public:
     friend NativeGPUAdapter;
 
     static NativeGPUDevice create();
+
+    NativeGPUCommandEncoder create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const;
 };
 
 }
