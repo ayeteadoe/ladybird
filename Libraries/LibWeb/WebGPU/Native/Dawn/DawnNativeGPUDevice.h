@@ -22,6 +22,8 @@ struct NativeGPUDevice::Impl {
 
     NativeGPUQueue queue() const;
 
+    NativeGPUBuffer create_buffer(GPUBufferDescriptor const& descriptor) const;
+
     NativeGPUCommandEncoder create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const;
 };
 

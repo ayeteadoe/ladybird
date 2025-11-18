@@ -9,6 +9,7 @@
 #include <AK/NonnullOwnPtr.h>
 #include <LibWeb/Bindings/GPUDevicePrototype.h>
 #include <LibWeb/WebGPU/GPUObjectBase.h>
+#include <LibWeb/WebGPU/Native/NativeGPUBuffer.h>
 #include <LibWeb/WebGPU/Native/NativeGPUCommandEncoder.h>
 #include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
 
@@ -32,6 +33,8 @@ public:
     static NativeGPUDevice create();
 
     NativeGPUQueue queue() const;
+
+    NativeGPUBuffer create_buffer(GPUBufferDescriptor const& descriptor) const;
 
     NativeGPUCommandEncoder create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const;
 };

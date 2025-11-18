@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUBuffer.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUCommandEncoder.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUDevice.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUQueue.h>
@@ -17,6 +18,20 @@ NativeGPUQueue NativeGPUDevice::Impl::queue() const
     auto native_gpu_queue = NativeGPUQueue::create();
     native_gpu_queue.m_impl->m_queue = m_device.GetQueue();
     return native_gpu_queue;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createbuffer
+NativeGPUBuffer NativeGPUDevice::Impl::create_buffer(GPUBufferDescriptor const& descriptor) const
+{
+    // FIXME: Implement specification
+
+    auto buffer = NativeGPUBuffer::create();
+    wgpu::BufferDescriptor buffer_descriptor {};
+    buffer_descriptor.size = descriptor.size;
+    buffer_descriptor.usage = static_cast<wgpu::BufferUsage>(descriptor.usage);
+    buffer_descriptor.mappedAtCreation = descriptor.mapped_at_creation;
+    buffer.m_impl->m_buffer = m_device.CreateBuffer(&buffer_descriptor);
+    return buffer;
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createcommandencoder
@@ -52,6 +67,11 @@ void NativeGPUDevice::set_label(String const& label)
 NativeGPUQueue NativeGPUDevice::queue() const
 {
     return m_impl->queue();
+}
+
+NativeGPUBuffer NativeGPUDevice::create_buffer(GPUBufferDescriptor const& descriptor) const
+{
+    return m_impl->create_buffer(descriptor);
 }
 
 NativeGPUCommandEncoder NativeGPUDevice::create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const

@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/Native/NativeGPUDevice.h>
 
@@ -27,6 +28,8 @@ class GPUDevice final : public DOM::EventTarget {
     NativeGPUDevice& native_gpu_device() { return m_native_gpu_device; }
 
     GC::Ref<GPUQueue> queue() const;
+
+    GC::Ref<GPUBuffer> create_buffer(GPUBufferDescriptor const& descriptor) const;
 
     GC::Ref<GPUCommandEncoder> create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor = {}) const;
 

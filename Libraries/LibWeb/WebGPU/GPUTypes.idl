@@ -3,14 +3,16 @@
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpubufferdynamicoffset
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpustencilvalue
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpudepthbias
-// FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpusize64
+// https://www.w3.org/TR/webgpu/#typedefdef-gpusize64
+typedef [EnforceRange] unsigned long long GPUSize64;
 
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpuintegercoordinate
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpuindex32
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpusize32
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpusignedoffset32
 
-// FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpusize64out
+// https://www.w3.org/TR/webgpu/#typedefdef-gpusize64out
+typedef unsigned long long GPUSize64Out;
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpuintegercoordinateout
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpusize32out
 
