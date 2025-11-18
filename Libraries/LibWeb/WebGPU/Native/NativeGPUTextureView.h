@@ -17,6 +17,7 @@ struct GPUTextureViewDescriptor : GPUObjectDescriptorBase {
 };
 
 class NativeGPUCommandEncoder;
+class NativeGPUDevice;
 class NativeGPUTexture;
 
 class NativeGPUTextureView {
@@ -26,6 +27,7 @@ class NativeGPUTextureView {
 
 public:
     friend NativeGPUCommandEncoder;
+    friend NativeGPUDevice;
     friend NativeGPUTexture;
 
     static NativeGPUTextureView create();

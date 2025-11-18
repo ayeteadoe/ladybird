@@ -24,6 +24,8 @@ struct NativeGPUDevice::Impl {
 
     NativeGPUBuffer create_buffer(GPUBufferDescriptor const& descriptor) const;
 
+    NativeGPUBindGroup create_bind_group(GPUBindGroupDescriptor const& descriptor) const;
+
     NativeGPUShaderModule create_shader_module(GPUShaderModuleDescriptor const& descriptor) const;
 
     NativeGPURenderPipeline create_render_pipeline(GPURenderPipelineDescriptor const& descriptor) const;

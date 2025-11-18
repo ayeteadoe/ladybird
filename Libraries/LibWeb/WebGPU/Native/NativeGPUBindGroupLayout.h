@@ -13,6 +13,7 @@
 
 namespace Web::WebGPU {
 
+class NativeGPUDevice;
 class NativeGPURenderPipeline;
 
 class NativeGPUBindGroupLayout {
@@ -21,6 +22,7 @@ class NativeGPUBindGroupLayout {
     WEBGPU_NATIVE_DECLARE_GPUOBJECT(NativeGPUBindGroupLayout);
 
 public:
+    friend NativeGPUDevice;
     friend NativeGPURenderPipeline;
 
     static NativeGPUBindGroupLayout create();

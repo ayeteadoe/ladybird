@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/PlatformObject.h>
 #include <LibWeb/DOM/EventTarget.h>
+#include <LibWeb/WebGPU/GPUBindGroup.h>
 #include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/GPURenderPipeline.h>
@@ -32,6 +33,8 @@ class GPUDevice final : public DOM::EventTarget {
     GC::Ref<GPUQueue> queue() const;
 
     GC::Ref<GPUBuffer> create_buffer(GPUBufferDescriptor const& descriptor) const;
+
+    GC::Ref<GPUBindGroup> create_bind_group(GPUBindGroupDescriptor const& descriptor) const;
 
     GC::Ref<GPUShaderModule> create_shader_module(GPUShaderModuleDescriptor const& descriptor) const;
 

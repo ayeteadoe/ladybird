@@ -1,0 +1,41 @@
+#import <WebGPU/GPUBindGroupLayout.idl>
+#import <WebGPU/GPUBuffer.idl>
+#import <WebGPU/GPUObjectBase.idl>
+#import <WebGPU/GPUTexture.idl>
+#import <WebGPU/GPUTextureView.idl>
+#import <WebGPU/GPUTypes.idl>
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpubufferbinding
+dictionary GPUBufferBinding {
+    required GPUBuffer buffer;
+    GPUSize64 offset = 0;
+    GPUSize64 size;
+};
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpubindingresource
+typedef (GPUTexture or
+         GPUTextureView or
+         GPUBuffer or
+         GPUBufferBinding
+         // FIXME: GPUSampler or
+         // FIXME: GPUExternalTexture
+        ) GPUBindingResource;
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpubindgroupentry
+dictionary GPUBindGroupEntry {
+    required GPUIndex32 binding;
+    required GPUBindingResource resource;
+};
+
+// https://www.w3.org/TR/webgpu/#dictdef-gpubindgroupdescriptor
+dictionary GPUBindGroupDescriptor
+         : GPUObjectDescriptorBase {
+    required GPUBindGroupLayout layout;
+    required sequence<GPUBindGroupEntry> entries;
+};
+
+// https://www.w3.org/TR/webgpu/#gpubindgroup
+[Exposed=(Window, Worker), SecureContext]
+interface GPUBindGroup {
+};
+GPUBindGroup includes GPUObjectBase;

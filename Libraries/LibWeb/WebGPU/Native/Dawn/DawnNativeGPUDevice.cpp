@@ -4,12 +4,20 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <LibWeb/WebGPU/GPUBindGroupLayout.h>
+#include <LibWeb/WebGPU/GPUBuffer.h>
+#include <LibWeb/WebGPU/GPUTexture.h>
+#include <LibWeb/WebGPU/GPUTextureView.h>
+#include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUBindGroup.h>
+#include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUBindGroupLayout.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUBuffer.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUCommandEncoder.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUDevice.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUQueue.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPURenderPipeline.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUShaderModule.h>
+#include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUTexture.h>
+#include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUTextureView.h>
 
 namespace Web::WebGPU {
 
@@ -34,6 +42,43 @@ NativeGPUBuffer NativeGPUDevice::Impl::create_buffer(GPUBufferDescriptor const& 
     buffer_descriptor.mappedAtCreation = descriptor.mapped_at_creation;
     buffer.m_impl->m_buffer = m_device.CreateBuffer(&buffer_descriptor);
     return buffer;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createbindgroup
+NativeGPUBindGroup NativeGPUDevice::Impl::create_bind_group(GPUBindGroupDescriptor const& descriptor) const
+{
+    // FIXME: Implement specification
+
+    auto bind_group = NativeGPUBindGroup::create();
+    wgpu::BindGroupDescriptor bind_group_descriptor {};
+    bind_group_descriptor.layout = descriptor.layout->native_gpu_bind_group_layout().m_impl->m_bind_group_layout;
+    Vector<wgpu::BindGroupEntry> bind_group_entries {};
+    for (auto const& entry : descriptor.entries) {
+        wgpu::BindGroupEntry bind_group_entry {};
+        bind_group_entry.binding = entry.binding;
+        entry.resource.visit(
+            [](GC::Root<GPUTexture> const&) {
+                // FIXME: Dawn does not support setting a texture resource
+            },
+            [&](GC::Root<GPUTextureView> const& texture_view) {
+                bind_group_entry.textureView = texture_view->native_gpu_texture_view().m_impl->m_texture_view;
+            },
+            [&](GC::Root<GPUBuffer> const& buffer) {
+                bind_group_entry.buffer = buffer->native_gpu_buffer().m_impl->m_buffer;
+            },
+            [&](GPUBufferBinding const& buffer_binding) {
+                bind_group_entry.offset = buffer_binding.offset;
+                if (buffer_binding.size.has_value())
+                    bind_group_entry.size = buffer_binding.size.value();
+                bind_group_entry.buffer = buffer_binding.buffer->native_gpu_buffer().m_impl->m_buffer;
+            },
+            [](Empty) {});
+        bind_group_entries.append(bind_group_entry);
+    }
+    bind_group_descriptor.entryCount = bind_group_entries.size();
+    bind_group_descriptor.entries = bind_group_entries.data();
+    bind_group.m_impl->m_bind_group = m_device.CreateBindGroup(&bind_group_descriptor);
+    return bind_group;
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createshadermodule
@@ -420,6 +465,11 @@ NativeGPUQueue NativeGPUDevice::queue() const
 NativeGPUBuffer NativeGPUDevice::create_buffer(GPUBufferDescriptor const& descriptor) const
 {
     return m_impl->create_buffer(descriptor);
+}
+
+NativeGPUBindGroup NativeGPUDevice::create_bind_group(GPUBindGroupDescriptor const& descriptor) const
+{
+    return m_impl->create_bind_group(descriptor);
 }
 
 NativeGPUShaderModule NativeGPUDevice::create_shader_module(GPUShaderModuleDescriptor const& descriptor) const

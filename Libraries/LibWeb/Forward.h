@@ -1277,6 +1277,7 @@ namespace Web::WebGPU {
 
 class GPU;
 class GPUAdapter;
+class GPUBindGroup;
 class GPUBindGroupLayout;
 class GPUBuffer;
 class GPUCanvasContext;
