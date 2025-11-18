@@ -1,3 +1,4 @@
+#import <WebGPU/GPUBindGroupLayout.idl>
 #import <WebGPU/GPUObjectBase.idl>
 #import <WebGPU/GPUShaderModule.idl>
 #import <WebGPU/GPUTexture.idl>
@@ -16,7 +17,7 @@ dictionary GPUPipelineDescriptorBase
 
 // https://www.w3.org/TR/webgpu/#gpupipelinebase
 interface mixin GPUPipelineBase {
-    // FIXME: [NewObject] GPUBindGroupLayout getBindGroupLayout(unsigned long index);
+    [NewObject] GPUBindGroupLayout getBindGroupLayout(unsigned long index);
 };
 
 // https://www.w3.org/TR/webgpu/#gpuprogrammablestage

@@ -45,4 +45,10 @@ void GPURenderPipeline::set_label(String const& label)
     m_native_gpu_render_pipeline.set_label(label);
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpupipelinebase-getbindgrouplayout
+GC::Ref<GPUBindGroupLayout> GPURenderPipeline::get_bind_group_layout(WebIDL::UnsignedLong index) const
+{
+    return MUST(GPUBindGroupLayout::create(realm(), m_native_gpu_render_pipeline.get_bind_group_layout(index)));
+}
+
 }

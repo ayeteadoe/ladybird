@@ -8,7 +8,9 @@
 
 #include <LibWeb/Bindings/GPURenderPipelinePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/WebGPU/GPUBindGroupLayout.h>
 #include <LibWeb/WebGPU/Native/NativeGPURenderPipeline.h>
+#include <LibWeb/WebIDL/Types.h>
 
 namespace Web::WebGPU {
 
@@ -22,6 +24,8 @@ class GPURenderPipeline final : public Bindings::PlatformObject {
     void set_label(String const& label);
 
     NativeGPURenderPipeline& native_gpu_render_pipeline() { return m_native_gpu_render_pipeline; }
+
+    GC::Ref<GPUBindGroupLayout> get_bind_group_layout(WebIDL::UnsignedLong index) const;
 
 private:
     explicit GPURenderPipeline(JS::Realm&, NativeGPURenderPipeline);

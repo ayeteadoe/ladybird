@@ -1,0 +1,7 @@
+#import <WebGPU/GPUObjectBase.idl>
+
+// https://www.w3.org/TR/webgpu/#gpubindgrouplayout
+[Exposed=(Window, Worker), SecureContext]
+interface GPUBindGroupLayout {
+};
+GPUBindGroupLayout includes GPUObjectBase;

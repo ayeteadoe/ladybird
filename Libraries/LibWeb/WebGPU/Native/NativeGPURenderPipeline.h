@@ -11,6 +11,7 @@
 #include <LibWeb/Bindings/GPUTexturePrototype.h>
 #include <LibWeb/WebGPU/GPUObjectBase.h>
 #include <LibWeb/WebGPU/GPUShaderModule.h>
+#include <LibWeb/WebGPU/Native/NativeGPUBindGroupLayout.h>
 #include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
 #include <LibWeb/WebIDL/Types.h>
 
@@ -80,6 +81,8 @@ public:
     friend NativeGPUDevice;
 
     static NativeGPURenderPipeline create();
+
+    NativeGPUBindGroupLayout get_bind_group_layout(WebIDL::UnsignedLong index) const;
 };
 
 }

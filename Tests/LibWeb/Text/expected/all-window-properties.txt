@@ -168,6 +168,7 @@ FormDataEvent
 Function
 GPU
 GPUAdapter
+GPUBindGroupLayout
 GPUBuffer
 GPUCanvasContext
 GPUCommandBuffer

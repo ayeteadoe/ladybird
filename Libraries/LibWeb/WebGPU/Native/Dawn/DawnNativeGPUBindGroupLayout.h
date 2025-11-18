@@ -6,21 +6,19 @@
 
 #pragma once
 
-#include <LibWeb/WebGPU/Native/NativeGPURenderPipeline.h>
+#include <LibWeb/WebGPU/Native/NativeGPUBindGroupLayout.h>
 
 #include <webgpu/webgpu_cpp.h>
 
 namespace Web::WebGPU {
 
-struct NativeGPURenderPipeline::Impl {
-    wgpu::RenderPipeline m_render_pipeline { nullptr };
+struct NativeGPUBindGroupLayout::Impl {
+    wgpu::BindGroupLayout m_bind_group_layout { nullptr };
 
     String m_label;
 
     String const& label() const;
     void set_label(String const& label);
-
-    NativeGPUBindGroupLayout get_bind_group_layout(WebIDL::UnsignedLong index) const;
 };
 
 }
