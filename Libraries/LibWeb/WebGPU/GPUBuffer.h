@@ -29,6 +29,8 @@ class GPUBuffer final : public Bindings::PlatformObject {
 
     Bindings::GPUBufferMapState map_state() const;
 
+    GC::Root<JS::ArrayBuffer> get_mapped_range(Optional<WebIDL::UnsignedLongLong> offset = 0, Optional<WebIDL::UnsignedLongLong> size = {}) const;
+
     void unmap();
 
 private:

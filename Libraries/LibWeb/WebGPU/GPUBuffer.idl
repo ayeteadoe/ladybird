@@ -19,7 +19,7 @@ interface GPUBuffer {
     readonly attribute GPUBufferMapState mapState;
 
     // FIXME: Promise<undefined> mapAsync(GPUMapModeFlags mode, optional GPUSize64 offset = 0, optional GPUSize64 size);
-    // FIXME: ArrayBuffer getMappedRange(optional GPUSize64 offset = 0, optional GPUSize64 size);
+    ArrayBuffer getMappedRange(optional GPUSize64 offset = 0, optional GPUSize64 size);
     undefined unmap();
 
     [FIXME] undefined destroy();

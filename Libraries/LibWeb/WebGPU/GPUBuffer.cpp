@@ -59,6 +59,12 @@ Bindings::GPUBufferMapState GPUBuffer::map_state() const
     return m_native_gpu_buffer.map_state();
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpubuffer-getmappedrange
+GC::Root<JS::ArrayBuffer> GPUBuffer::get_mapped_range(Optional<WebIDL::UnsignedLongLong> offset, Optional<WebIDL::UnsignedLongLong> size) const
+{
+    return m_native_gpu_buffer.get_mapped_range(realm(), offset, size);
+}
+
 // https://www.w3.org/TR/webgpu/#dom-gpubuffer-unmap
 void GPUBuffer::unmap()
 {

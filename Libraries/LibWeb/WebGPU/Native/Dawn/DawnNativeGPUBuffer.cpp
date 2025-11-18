@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <LibJS/Runtime/ArrayBuffer.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUBuffer.h>
 
 namespace Web::WebGPU {
@@ -32,6 +33,25 @@ Bindings::GPUBufferMapState NativeGPUBuffer::Impl::map_state() const
     default:
         VERIFY_NOT_REACHED();
     }
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpubuffer-getmappedrange
+GC::Root<JS::ArrayBuffer> NativeGPUBuffer::Impl::get_mapped_range(JS::Realm& realm, Optional<WebIDL::UnsignedLongLong> offset, Optional<WebIDL::UnsignedLongLong> size) const
+{
+    auto range_offset = offset.value_or(0);
+
+    // 1. If size is missing:
+    //      1. Let rangeSize be max(0, this.size - offset).
+    //    Otherwise, let rangeSize be size.
+    auto range_size = size.value_or(max(0, m_buffer.GetSize() - range_offset));
+
+    // FIXME: Implement remaining specification
+
+    void* mapped_range = m_buffer.GetMappedRange(range_offset, range_size);
+    VERIFY(mapped_range);
+
+    auto mapped_ranged_buffer = MUST(ByteBuffer::copy(mapped_range, range_size));
+    return JS::ArrayBuffer::create(realm, mapped_ranged_buffer);
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpubuffer-unmap
@@ -73,6 +93,11 @@ WebIDL::UnsignedLong NativeGPUBuffer::usage() const
 Bindings::GPUBufferMapState NativeGPUBuffer::map_state() const
 {
     return m_impl->map_state();
+}
+
+GC::Root<JS::ArrayBuffer> NativeGPUBuffer::get_mapped_range(JS::Realm& realm, Optional<WebIDL::UnsignedLongLong> offset, Optional<WebIDL::UnsignedLongLong> size) const
+{
+    return m_impl->get_mapped_range(realm, offset, size);
 }
 
 void NativeGPUBuffer::unmap()

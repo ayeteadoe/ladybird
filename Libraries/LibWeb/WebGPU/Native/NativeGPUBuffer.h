@@ -36,6 +36,7 @@ public:
     WebIDL::UnsignedLong usage() const;
     Bindings::GPUBufferMapState map_state() const;
 
+    GC::Root<JS::ArrayBuffer> get_mapped_range(JS::Realm& realm, Optional<WebIDL::UnsignedLongLong> offset, Optional<WebIDL::UnsignedLongLong> size) const;
     void unmap();
 };
 
