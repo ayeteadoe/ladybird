@@ -1097,6 +1097,7 @@ set(SOURCES
     WebGPU/GPUDevice.cpp
     WebGPU/GPUDeviceLostInfo.cpp
     WebGPU/GPUQueue.cpp
+    WebGPU/GPUShaderModule.cpp
     WebGPU/GPUTexture.cpp
     WebGPU/GPUTextureView.cpp
     WebIDL/AbstractOperations.cpp
@@ -1145,6 +1146,7 @@ if (LADYBIRD_WEBGPU_BACKEND STREQUAL "Dawn")
         WebGPU/Native/Dawn/DawnNativeGPUDevice.cpp
         WebGPU/Native/Dawn/DawnNativeGPUQueue.cpp
         WebGPU/Native/Dawn/DawnNativeGPURenderPassEncoder.cpp
+        WebGPU/Native/Dawn/DawnNativeGPUShaderModule.cpp
         WebGPU/Native/Dawn/DawnNativeGPUTexture.cpp
         WebGPU/Native/Dawn/DawnNativeGPUTextureView.cpp
     )

@@ -8,6 +8,7 @@
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUCommandEncoder.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUDevice.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUQueue.h>
+#include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPUShaderModule.h>
 
 namespace Web::WebGPU {
 
@@ -32,6 +33,19 @@ NativeGPUBuffer NativeGPUDevice::Impl::create_buffer(GPUBufferDescriptor const& 
     buffer_descriptor.mappedAtCreation = descriptor.mapped_at_creation;
     buffer.m_impl->m_buffer = m_device.CreateBuffer(&buffer_descriptor);
     return buffer;
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createshadermodule
+NativeGPUShaderModule NativeGPUDevice::Impl::create_shader_module(GPUShaderModuleDescriptor const& descriptor) const
+{
+    // FIXME: Implement specification
+
+    auto shader_module = NativeGPUShaderModule::create();
+    auto code_view = descriptor.code.bytes_as_string_view();
+    wgpu::ShaderSourceWGSL shader_source_wgsl { wgpu::ShaderSourceWGSL::Init { .nextInChain = nullptr, .code = wgpu::StringView { code_view.characters_without_null_termination(), code_view.length() } } };
+    wgpu::ShaderModuleDescriptor shader_module_descriptor { .nextInChain = &shader_source_wgsl };
+    shader_module.m_impl->m_shader_module = m_device.CreateShaderModule(&shader_module_descriptor);
+    return shader_module;
 }
 
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createcommandencoder
@@ -72,6 +86,11 @@ NativeGPUQueue NativeGPUDevice::queue() const
 NativeGPUBuffer NativeGPUDevice::create_buffer(GPUBufferDescriptor const& descriptor) const
 {
     return m_impl->create_buffer(descriptor);
+}
+
+NativeGPUShaderModule NativeGPUDevice::create_shader_module(GPUShaderModuleDescriptor const& descriptor) const
+{
+    return m_impl->create_shader_module(descriptor);
 }
 
 NativeGPUCommandEncoder NativeGPUDevice::create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const
