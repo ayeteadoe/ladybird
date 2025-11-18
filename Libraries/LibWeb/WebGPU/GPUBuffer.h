@@ -29,6 +29,8 @@ class GPUBuffer final : public Bindings::PlatformObject {
 
     Bindings::GPUBufferMapState map_state() const;
 
+    void unmap();
+
 private:
     explicit GPUBuffer(JS::Realm&, NativeGPUBuffer);
 

@@ -59,4 +59,10 @@ Bindings::GPUBufferMapState GPUBuffer::map_state() const
     return m_native_gpu_buffer.map_state();
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpubuffer-unmap
+void GPUBuffer::unmap()
+{
+    m_native_gpu_buffer.unmap();
+}
+
 }

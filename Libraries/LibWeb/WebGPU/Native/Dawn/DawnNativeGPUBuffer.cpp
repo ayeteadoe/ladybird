@@ -34,6 +34,13 @@ Bindings::GPUBufferMapState NativeGPUBuffer::Impl::map_state() const
     }
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpubuffer-unmap
+void NativeGPUBuffer::Impl::unmap()
+{
+    // FIXME: Implement specification
+    m_buffer.Unmap();
+}
+
 NativeGPUBuffer NativeGPUBuffer::create()
 {
     return NativeGPUBuffer(Impl {});
@@ -66,6 +73,11 @@ WebIDL::UnsignedLong NativeGPUBuffer::usage() const
 Bindings::GPUBufferMapState NativeGPUBuffer::map_state() const
 {
     return m_impl->map_state();
+}
+
+void NativeGPUBuffer::unmap()
+{
+    m_impl->unmap();
 }
 
 }

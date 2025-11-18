@@ -23,6 +23,8 @@ struct NativeGPUBuffer::Impl {
     WebIDL::UnsignedLongLong size() const;
     WebIDL::UnsignedLong usage() const;
     Bindings::GPUBufferMapState map_state() const;
+
+    void unmap();
 };
 
 }
