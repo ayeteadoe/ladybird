@@ -176,6 +176,7 @@ GPUDevice
 GPUDeviceLostInfo
 GPUQueue
 GPURenderPassEncoder
+GPURenderPipeline
 GPUShaderModule
 GPUTexture
 GPUTextureView

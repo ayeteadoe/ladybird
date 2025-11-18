@@ -1285,6 +1285,7 @@ class GPUDevice;
 class GPUDeviceLostInfo;
 class GPUQueue;
 class GPURenderPassEncoder;
+class GPURenderPipeline;
 class GPUShaderModule;
 class GPUTexture;
 class GPUTextureView;

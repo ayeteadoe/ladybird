@@ -7,7 +7,8 @@
 typedef [EnforceRange] unsigned long long GPUSize64;
 
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpuintegercoordinate
-// FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpuindex32
+// https://www.w3.org/TR/webgpu/#typedefdef-gpuindex32
+typedef [EnforceRange] unsigned long GPUIndex32;
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpusize32
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpusignedoffset32
 

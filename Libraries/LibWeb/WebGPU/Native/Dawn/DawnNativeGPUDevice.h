@@ -26,6 +26,8 @@ struct NativeGPUDevice::Impl {
 
     NativeGPUShaderModule create_shader_module(GPUShaderModuleDescriptor const& descriptor) const;
 
+    NativeGPURenderPipeline create_render_pipeline(GPURenderPipelineDescriptor const& descriptor) const;
+
     NativeGPUCommandEncoder create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const;
 };
 

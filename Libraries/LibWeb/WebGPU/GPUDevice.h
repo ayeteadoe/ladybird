@@ -10,6 +10,7 @@
 #include <LibWeb/DOM/EventTarget.h>
 #include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
+#include <LibWeb/WebGPU/GPURenderPipeline.h>
 #include <LibWeb/WebGPU/GPUShaderModule.h>
 #include <LibWeb/WebGPU/Native/NativeGPUDevice.h>
 
@@ -33,6 +34,8 @@ class GPUDevice final : public DOM::EventTarget {
     GC::Ref<GPUBuffer> create_buffer(GPUBufferDescriptor const& descriptor) const;
 
     GC::Ref<GPUShaderModule> create_shader_module(GPUShaderModuleDescriptor const& descriptor) const;
+
+    GC::Ref<GPURenderPipeline> create_render_pipeline(GPURenderPipelineDescriptor const& descriptor) const;
 
     GC::Ref<GPUCommandEncoder> create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor = {}) const;
 

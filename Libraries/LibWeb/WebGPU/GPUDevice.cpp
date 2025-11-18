@@ -73,6 +73,12 @@ GC::Ref<GPUShaderModule> GPUDevice::create_shader_module(GPUShaderModuleDescript
     return MUST(GPUShaderModule::create(realm(), m_native_gpu_device.create_shader_module(descriptor)));
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createrenderpipeline
+GC::Ref<GPURenderPipeline> GPUDevice::create_render_pipeline(GPURenderPipelineDescriptor const& descriptor) const
+{
+    return MUST(GPURenderPipeline::create(realm(), m_native_gpu_device.create_render_pipeline(descriptor)));
+}
+
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createcommandencoder
 GC::Ref<GPUCommandEncoder> GPUDevice::create_command_encoder(Optional<GPUCommandEncoderDescriptor> descriptor) const
 {
