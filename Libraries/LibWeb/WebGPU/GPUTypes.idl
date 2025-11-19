@@ -6,10 +6,12 @@
 // https://www.w3.org/TR/webgpu/#typedefdef-gpusize64
 typedef [EnforceRange] unsigned long long GPUSize64;
 
-// FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpuintegercoordinate
+// https://www.w3.org/TR/webgpu/#typedefdef-gpuintegercoordinate
+typedef [EnforceRange] unsigned long GPUIntegerCoordinate;
 // https://www.w3.org/TR/webgpu/#typedefdef-gpuindex32
 typedef [EnforceRange] unsigned long GPUIndex32;
-// FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpusize32
+// https://www.w3.org/TR/webgpu/#typedefdef-gpusize32
+typedef [EnforceRange] unsigned long GPUSize32;
 // FIXME: https://www.w3.org/TR/webgpu/#typedefdef-gpusignedoffset32
 
 // https://www.w3.org/TR/webgpu/#typedefdef-gpusize64out

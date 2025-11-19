@@ -13,6 +13,7 @@
 #include <LibWeb/WebGPU/GPUCommandEncoder.h>
 #include <LibWeb/WebGPU/GPURenderPipeline.h>
 #include <LibWeb/WebGPU/GPUShaderModule.h>
+#include <LibWeb/WebGPU/GPUTexture.h>
 #include <LibWeb/WebGPU/Native/NativeGPUDevice.h>
 
 namespace Web::WebGPU {
@@ -33,6 +34,8 @@ class GPUDevice final : public DOM::EventTarget {
     GC::Ref<GPUQueue> queue() const;
 
     GC::Ref<GPUBuffer> create_buffer(GPUBufferDescriptor const& descriptor) const;
+
+    GC::Ref<GPUTexture> create_texture(GPUTextureDescriptor const& descriptor) const;
 
     GC::Ref<GPUBindGroup> create_bind_group(GPUBindGroupDescriptor const& descriptor) const;
 

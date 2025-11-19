@@ -25,9 +25,28 @@ NativeGPUTextureView NativeGPUTexture::Impl::create_view([[maybe_unused]] Option
     return view;
 }
 
+NativeGPUTexture NativeGPUTexture::create()
+{
+    return NativeGPUTexture(Impl {});
+}
+
+// NOTE: wgpu::Texture does not have a GetLabel() method exposed
+
+String const& NativeGPUTexture::label() const
+{
+    return m_impl->m_label;
+}
+
+void NativeGPUTexture::set_label(String const& label)
+{
+    m_impl->m_label = label;
+    auto const label_view = label.bytes_as_string_view();
+    m_impl->m_texture.SetLabel(wgpu::StringView { label_view.characters_without_null_termination(), label_view.length() });
+}
+
 NativeGPUTexture NativeGPUTexture::create_from_drawing_buffer(NativeDrawingBuffer& drawing_buffer)
 {
-    return NativeGPUTexture(Impl { .m_texture = drawing_buffer.m_impl->m_texture, .m_is_drawing_buffer = true });
+    return NativeGPUTexture(Impl { .m_texture = drawing_buffer.m_impl->m_texture, .m_is_drawing_buffer = true, .m_label = ""_string });
 }
 
 bool NativeGPUTexture::is_drawing_buffer() const

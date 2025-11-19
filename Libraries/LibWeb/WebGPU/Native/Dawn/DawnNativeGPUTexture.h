@@ -16,6 +16,8 @@ struct NativeGPUTexture::Impl {
     wgpu::Texture m_texture;
     bool m_is_drawing_buffer { false };
 
+    String m_label;
+
     NativeGPUTextureView create_view(Optional<GPUTextureViewDescriptor> descriptor);
 };
 

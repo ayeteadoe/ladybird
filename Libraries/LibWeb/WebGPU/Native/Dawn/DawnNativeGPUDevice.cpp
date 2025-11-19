@@ -44,6 +44,72 @@ NativeGPUBuffer NativeGPUDevice::Impl::create_buffer(GPUBufferDescriptor const& 
     return buffer;
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createtexture
+NativeGPUTexture NativeGPUDevice::Impl::create_texture(GPUTextureDescriptor const& descriptor) const
+{
+    // FIXME: Implement specification
+
+    auto texture = NativeGPUTexture::create();
+    wgpu::TextureDescriptor texture_descriptor {};
+    wgpu::Extent3D extent_3d {};
+    descriptor.size.visit(
+        [&](Vector<WebIDL::UnsignedLong> const& extent_3d_list) {
+            auto width = extent_3d_list.get(0);
+            extent_3d.width = width.value();
+            auto height = extent_3d_list.get(1);
+            if (height.has_value())
+                extent_3d.height = height.value();
+            auto depth_or_array_layers = extent_3d_list.get(2);
+            if (depth_or_array_layers.has_value())
+                extent_3d.depthOrArrayLayers = depth_or_array_layers.value();
+        },
+        [&](GPUExtent3DDict const& extent_3d_dict) {
+            extent_3d.width = extent_3d_dict.width;
+            extent_3d.height = extent_3d_dict.height;
+            extent_3d.depthOrArrayLayers = extent_3d_dict.depth_or_array_layers;
+        },
+        [](Empty) {});
+    texture_descriptor.size = extent_3d;
+    texture_descriptor.mipLevelCount = descriptor.mip_level_count;
+    texture_descriptor.sampleCount = descriptor.sample_count;
+
+    wgpu::TextureDimension texture_dimension = wgpu::TextureDimension::Undefined;
+    switch (descriptor.dimension) {
+    case Bindings::GPUTextureDimension::_1d:
+        texture_dimension = wgpu::TextureDimension::e1D;
+        break;
+    case Bindings::GPUTextureDimension::_2d:
+        texture_dimension = wgpu::TextureDimension::e2D;
+        break;
+    case Bindings::GPUTextureDimension::_3d:
+        texture_dimension = wgpu::TextureDimension::e3D;
+        break;
+    }
+    texture_descriptor.dimension = texture_dimension;
+
+    auto to_texture_format = [](Bindings::GPUTextureFormat texture_format_binding) {
+        // FIXME: Support remaining texture formats
+        switch (texture_format_binding) {
+        case Bindings::GPUTextureFormat::Bgra8unorm:
+            return wgpu::TextureFormat::BGRA8Unorm;
+        case Bindings::GPUTextureFormat::Depth24plus:
+            return wgpu::TextureFormat::Depth24Plus;
+        default:
+            VERIFY_NOT_REACHED();
+        }
+    };
+    texture_descriptor.format = to_texture_format(descriptor.format);
+    texture_descriptor.usage = static_cast<wgpu::TextureUsage>(descriptor.usage);
+    Vector<wgpu::TextureFormat> texture_view_formats {};
+    for (auto const& view_format : descriptor.view_formats) {
+        texture_view_formats.append(to_texture_format(view_format));
+    }
+    texture_descriptor.viewFormatCount = texture_view_formats.size();
+    texture_descriptor.viewFormats = texture_view_formats.data();
+    texture.m_impl->m_texture = m_device.CreateTexture(&texture_descriptor);
+    return texture;
+}
+
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createbindgroup
 NativeGPUBindGroup NativeGPUDevice::Impl::create_bind_group(GPUBindGroupDescriptor const& descriptor) const
 {
@@ -465,6 +531,11 @@ NativeGPUQueue NativeGPUDevice::queue() const
 NativeGPUBuffer NativeGPUDevice::create_buffer(GPUBufferDescriptor const& descriptor) const
 {
     return m_impl->create_buffer(descriptor);
+}
+
+NativeGPUTexture NativeGPUDevice::create_texture(GPUTextureDescriptor const& descriptor) const
+{
+    return m_impl->create_texture(descriptor);
 }
 
 NativeGPUBindGroup NativeGPUDevice::create_bind_group(GPUBindGroupDescriptor const& descriptor) const

@@ -14,6 +14,7 @@
 #include <LibWeb/WebGPU/Native/NativeGPUCommandEncoder.h>
 #include <LibWeb/WebGPU/Native/NativeGPURenderPipeline.h>
 #include <LibWeb/WebGPU/Native/NativeGPUShaderModule.h>
+#include <LibWeb/WebGPU/Native/NativeGPUTexture.h>
 #include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
 
 namespace Web::WebGPU {
@@ -38,6 +39,8 @@ public:
     NativeGPUQueue queue() const;
 
     NativeGPUBuffer create_buffer(GPUBufferDescriptor const& descriptor) const;
+
+    NativeGPUTexture create_texture(GPUTextureDescriptor const& descriptor) const;
 
     NativeGPUBindGroup create_bind_group(GPUBindGroupDescriptor const& descriptor) const;
 

@@ -19,6 +19,9 @@ class GPUTexture final : public Bindings::PlatformObject {
 
     static JS::ThrowCompletionOr<GC::Ref<GPUTexture>> create(JS::Realm&, NativeGPUTexture);
 
+    String const& label() const;
+    void set_label(String const& label);
+
     NativeGPUTexture& native_gpu_texture() { return m_native_gpu_texture; }
 
     GC::Ref<GPUTextureView> create_view(Optional<GPUTextureViewDescriptor> descriptor = {});

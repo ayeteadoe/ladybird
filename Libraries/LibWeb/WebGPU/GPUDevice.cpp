@@ -67,6 +67,12 @@ GC::Ref<GPUBuffer> GPUDevice::create_buffer(GPUBufferDescriptor const& descripto
     return MUST(GPUBuffer::create(realm(), m_native_gpu_device.create_buffer(descriptor)));
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpudevice-createtexture
+GC::Ref<GPUTexture> GPUDevice::create_texture(GPUTextureDescriptor const& descriptor) const
+{
+    return MUST(GPUTexture::create(realm(), m_native_gpu_device.create_texture(descriptor)));
+}
+
 // https://www.w3.org/TR/webgpu/#dom-gpudevice-createbindgroup
 GC::Ref<GPUBindGroup> GPUDevice::create_bind_group(GPUBindGroupDescriptor const& descriptor) const
 {

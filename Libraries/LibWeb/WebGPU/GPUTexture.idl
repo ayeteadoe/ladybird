@@ -1,4 +1,6 @@
+#import <WebGPU/GPUTextureUsage.idl>
 #import <WebGPU/GPUTextureView.idl>
+#import <WebGPU/GPUTypes.idl>
 
 // https://www.w3.org/TR/webgpu/#enumdef-gputextureformat
 enum GPUTextureFormat {
@@ -128,7 +130,34 @@ enum GPUTextureFormat {
     "astc-12x12-unorm-srgb",
 };
 
-// FIXME: https://www.w3.org/TR/webgpu/#gputexturedescriptor
+// https://www.w3.org/TR/webgpu/#dictdef-gpuextent3ddict
+dictionary GPUExtent3DDict {
+    required GPUIntegerCoordinate width;
+    GPUIntegerCoordinate height = 1;
+    GPUIntegerCoordinate depthOrArrayLayers = 1;
+};
+
+// https://www.w3.org/TR/webgpu/#typedefdef-gpuextent3d
+typedef (sequence<GPUIntegerCoordinate> or GPUExtent3DDict) GPUExtent3D;
+
+// https://www.w3.org/TR/webgpu/#enumdef-gputexturedimension
+enum GPUTextureDimension {
+    "1d",
+    "2d",
+    "3d",
+};
+
+// https://www.w3.org/TR/webgpu/#gputexturedescriptor
+dictionary GPUTextureDescriptor
+         : GPUObjectDescriptorBase {
+    required GPUExtent3D size;
+    GPUIntegerCoordinate mipLevelCount = 1;
+    GPUSize32 sampleCount = 1;
+    GPUTextureDimension dimension = "2d";
+    required GPUTextureFormat format;
+    required GPUTextureUsageFlags usage;
+    sequence<GPUTextureFormat> viewFormats = [];
+};
 
 // https://www.w3.org/TR/webgpu/#gputexture
 [Exposed=(Window, Worker), SecureContext]

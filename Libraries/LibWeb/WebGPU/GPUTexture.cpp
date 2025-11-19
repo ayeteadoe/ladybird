@@ -34,6 +34,16 @@ void GPUTexture::visit_edges(Visitor& visitor)
     Base::visit_edges(visitor);
 }
 
+String const& GPUTexture::label() const
+{
+    return m_native_gpu_texture.label();
+}
+
+void GPUTexture::set_label(String const& label)
+{
+    m_native_gpu_texture.set_label(label);
+}
+
 // https://www.w3.org/TR/webgpu/#dom-gputexture-createview
 GC::Ref<GPUTextureView> GPUTexture::create_view(Optional<GPUTextureViewDescriptor> descriptor)
 {
