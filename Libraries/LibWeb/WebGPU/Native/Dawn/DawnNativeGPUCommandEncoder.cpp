@@ -17,6 +17,27 @@ WEBGPU_NATIVE_DEFINE_SPECIAL_MEMBERS(NativeGPUCommandEncoder);
 // https://www.w3.org/TR/webgpu/#dom-gpucommandencoder-beginrenderpass
 NativeGPURenderPassEncoder NativeGPUCommandEncoder::Impl::begin_render_pass(GPURenderPassDescriptor const& descriptor)
 {
+    auto to_load_op = [](Bindings::GPULoadOp load_op_binding) {
+        switch (load_op_binding) {
+        case Bindings::GPULoadOp::Clear:
+            return wgpu::LoadOp::Clear;
+        case Bindings::GPULoadOp::Load:
+            return wgpu::LoadOp::Load;
+        default:
+            VERIFY_NOT_REACHED();
+        }
+    };
+    auto to_store_op = [](Bindings::GPUStoreOp store_op_binding) {
+        switch (store_op_binding) {
+        case Bindings::GPUStoreOp::Store:
+            return wgpu::StoreOp::Store;
+        case Bindings::GPUStoreOp::Discard:
+            return wgpu::StoreOp::Discard;
+        default:
+            VERIFY_NOT_REACHED();
+        }
+    };
+
     wgpu::RenderPassDescriptor render_pass_encoder_descriptor {};
     Vector<wgpu::RenderPassColorAttachment> render_pass_color_attachments;
     for (auto const& color_attachment : descriptor.color_attachments) {
@@ -39,30 +60,28 @@ NativeGPURenderPassEncoder NativeGPUCommandEncoder::Impl::begin_render_pass(GPUR
                     wgpu_color_attachment.clearValue.a = cv.a;
                 });
         }
-        switch (color_attachment.load_op) {
-        case Bindings::GPULoadOp::Clear:
-            wgpu_color_attachment.loadOp = wgpu::LoadOp::Clear;
-            break;
-        case Bindings::GPULoadOp::Load:
-            wgpu_color_attachment.loadOp = wgpu::LoadOp::Load;
-            break;
-        default:
-            break;
-        }
-        switch (color_attachment.store_op) {
-        case Bindings::GPUStoreOp::Store:
-            wgpu_color_attachment.storeOp = wgpu::StoreOp::Store;
-            break;
-        case Bindings::GPUStoreOp::Discard:
-            wgpu_color_attachment.storeOp = wgpu::StoreOp::Discard;
-            break;
-        default:
-            break;
-        }
+        wgpu_color_attachment.loadOp = to_load_op(color_attachment.load_op);
+        wgpu_color_attachment.storeOp = to_store_op(color_attachment.store_op);
         render_pass_color_attachments.append(wgpu_color_attachment);
     }
     render_pass_encoder_descriptor.colorAttachmentCount = descriptor.color_attachments.size();
     render_pass_encoder_descriptor.colorAttachments = render_pass_color_attachments.data();
+
+    Optional<wgpu::RenderPassDepthStencilAttachment> maybe_depth_stencil_attachment {};
+    if (auto const& depth_stencil_attachment_binding = descriptor.depth_stencil_attachment; depth_stencil_attachment_binding.has_value()) {
+        wgpu::RenderPassDepthStencilAttachment depth_stencil_attachment {};
+        depth_stencil_attachment.view = depth_stencil_attachment_binding->view->native_gpu_texture_view().m_impl->m_texture_view;
+        if (auto const& depth_clear_value_binding = depth_stencil_attachment_binding->depth_clear_value; depth_clear_value_binding.has_value())
+            depth_stencil_attachment.depthClearValue = depth_clear_value_binding.value();
+        if (auto const& depth_load_op_binding = depth_stencil_attachment_binding->depth_load_op; depth_load_op_binding.has_value())
+            depth_stencil_attachment.depthLoadOp = to_load_op(depth_load_op_binding.value());
+        if (auto const& depth_store_op_binding = depth_stencil_attachment_binding->depth_store_op; depth_store_op_binding.has_value())
+            depth_stencil_attachment.depthStoreOp = to_store_op(depth_store_op_binding.value());
+
+        maybe_depth_stencil_attachment = depth_stencil_attachment;
+    }
+    if (maybe_depth_stencil_attachment.has_value())
+        render_pass_encoder_descriptor.depthStencilAttachment = &maybe_depth_stencil_attachment.value();
 
     // FIXME: Implement specification
 

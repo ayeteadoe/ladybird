@@ -20,6 +20,9 @@ NativeGPUTextureView NativeGPUTexture::Impl::create_view([[maybe_unused]] Option
     // AD-HOC: Use textures default descriptor when we are a drawing buffer, as we need to ensure we match the configuration of the implicitly created shared texture memory
     if (m_is_drawing_buffer)
         view.m_impl->m_texture_view = m_texture.CreateView();
+    else
+        // FIXME: Setup Dawn descriptor
+        view.m_impl->m_texture_view = m_texture.CreateView();
 
     // FIXME: Implement specification
     return view;

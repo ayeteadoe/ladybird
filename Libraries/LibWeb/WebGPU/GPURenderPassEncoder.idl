@@ -34,13 +34,28 @@ dictionary GPURenderPassColorAttachment {
     required GPUStoreOp storeOp;
 };
 
+// https://www.w3.org/TR/webgpu/#dictdef-gpurenderpassdepthstencilattachment
+dictionary GPURenderPassDepthStencilAttachment {
+    // FIXME: required (GPUTexture or GPUTextureView) view;
+    required GPUTextureView view;
+
+    float depthClearValue;
+    GPULoadOp depthLoadOp;
+    GPUStoreOp depthStoreOp;
+    // FIXME: boolean depthReadOnly = false;
+
+    // FIXME: GPUStencilValue stencilClearValue = 0;
+    // FIXME: GPULoadOp stencilLoadOp;
+    // FIXME: GPUStoreOp stencilStoreOp;
+    // FIXME: boolean stencilReadOnly = false;
+};
 
 // https://www.w3.org/TR/webgpu/#dictdef-gpurenderpassdescriptor
 dictionary GPURenderPassDescriptor
          : GPUObjectDescriptorBase {
     // FIXME: Support ? entries in a sequence
     required sequence<GPURenderPassColorAttachment> colorAttachments;
-    // FIXME: GPURenderPassDepthStencilAttachment depthStencilAttachment;
+    GPURenderPassDepthStencilAttachment depthStencilAttachment;
     // FIXME: GPUQuerySet occlusionQuerySet;
     // FIXME: GPURenderPassTimestampWrites timestampWrites;
     // FIXME: GPUSize64 maxDrawCount = 50000000;

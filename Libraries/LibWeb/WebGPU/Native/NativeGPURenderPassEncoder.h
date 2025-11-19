@@ -30,8 +30,17 @@ struct GPURenderPassColorAttachment {
     Bindings::GPUStoreOp store_op;
 };
 
+struct GPURenderPassDepthStencilAttachment {
+    GC::Ptr<GPUTextureView> view;
+
+    Optional<float> depth_clear_value;
+    Optional<Bindings::GPULoadOp> depth_load_op;
+    Optional<Bindings::GPUStoreOp> depth_store_op;
+};
+
 struct GPURenderPassDescriptor : GPUObjectDescriptorBase {
     Vector<GPURenderPassColorAttachment> color_attachments;
+    Optional<GPURenderPassDepthStencilAttachment> depth_stencil_attachment;
 };
 
 class NativeGPUCommandEncoder;
