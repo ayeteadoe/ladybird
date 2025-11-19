@@ -23,6 +23,8 @@ struct NativeGPURenderPassEncoder::Impl {
     void end();
 
     void set_pipeline(GC::Root<GPURenderPipeline> pipeline);
+
+    void draw(WebIDL::UnsignedLong vertex_count, WebIDL::UnsignedLong instance_count, WebIDL::UnsignedLong first_vertex, WebIDL::UnsignedLong first_instance);
 };
 
 }

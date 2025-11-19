@@ -57,4 +57,10 @@ void GPURenderPassEncoder::set_pipeline(GC::Root<GPURenderPipeline> pipeline)
     m_native_gpu_render_pass_encoder.set_pipeline(move(pipeline));
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-draw
+void GPURenderPassEncoder::draw(WebIDL::UnsignedLong vertex_count, WebIDL::UnsignedLong instance_count, WebIDL::UnsignedLong first_vertex, WebIDL::UnsignedLong first_instance)
+{
+    m_native_gpu_render_pass_encoder.draw(vertex_count, instance_count, first_vertex, first_instance);
+}
+
 }

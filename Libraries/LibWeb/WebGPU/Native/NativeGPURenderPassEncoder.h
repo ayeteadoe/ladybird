@@ -11,6 +11,7 @@
 #include <LibWeb/WebGPU/GPUObjectBase.h>
 #include <LibWeb/WebGPU/GPUTextureView.h>
 #include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
+#include <LibWeb/WebIDL/Types.h>
 
 namespace Web::WebGPU {
 
@@ -58,6 +59,8 @@ public:
     void end();
 
     void set_pipeline(GC::Root<GPURenderPipeline> pipeline);
+
+    void draw(WebIDL::UnsignedLong vertex_count, WebIDL::UnsignedLong instance_count, WebIDL::UnsignedLong first_vertex, WebIDL::UnsignedLong first_instance);
 };
 
 }

@@ -27,6 +27,13 @@ void NativeGPURenderPassEncoder::Impl::set_pipeline(GC::Root<GPURenderPipeline> 
     m_render_pass_encoder.SetPipeline(pipeline->native_gpu_render_pipeline().m_impl->m_render_pipeline);
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-draw
+void NativeGPURenderPassEncoder::Impl::draw(WebIDL::UnsignedLong vertex_count, WebIDL::UnsignedLong instance_count, WebIDL::UnsignedLong first_vertex, WebIDL::UnsignedLong first_instance)
+{
+    // FIXME: Implement specification
+    m_render_pass_encoder.Draw(vertex_count, instance_count, first_vertex, first_instance);
+}
+
 NativeGPURenderPassEncoder NativeGPURenderPassEncoder::create()
 {
     return NativeGPURenderPassEncoder(Impl {});
@@ -54,6 +61,11 @@ void NativeGPURenderPassEncoder::end()
 void NativeGPURenderPassEncoder::set_pipeline(GC::Root<GPURenderPipeline> pipeline)
 {
     m_impl->set_pipeline(move(pipeline));
+}
+
+void NativeGPURenderPassEncoder::draw(WebIDL::UnsignedLong vertex_count, WebIDL::UnsignedLong instance_count, WebIDL::UnsignedLong first_vertex, WebIDL::UnsignedLong first_instance)
+{
+    m_impl->draw(vertex_count, instance_count, first_vertex, first_instance);
 }
 
 }

@@ -28,6 +28,8 @@ class GPURenderPassEncoder final : public Bindings::PlatformObject {
 
     void set_pipeline(GC::Root<GPURenderPipeline> pipeline);
 
+    void draw(WebIDL::UnsignedLong vertex_count, WebIDL::UnsignedLong instance_count = 1, WebIDL::UnsignedLong first_vertex = 0, WebIDL::UnsignedLong first_instance = 0);
+
 private:
     explicit GPURenderPassEncoder(JS::Realm&, NativeGPURenderPassEncoder);
 
