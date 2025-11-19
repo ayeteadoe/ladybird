@@ -4,6 +4,9 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include "DawnNativeGPURenderPipeline.h"
+
+#include <LibWeb/WebGPU/GPURenderPipeline.h>
 #include <LibWeb/WebGPU/Native/Dawn/DawnNativeGPURenderPassEncoder.h>
 
 namespace Web::WebGPU {
@@ -15,6 +18,13 @@ void NativeGPURenderPassEncoder::Impl::end()
 {
     // FIXME: Implement specification
     m_render_pass_encoder.End();
+}
+
+// https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-setpipeline
+void NativeGPURenderPassEncoder::Impl::set_pipeline(GC::Root<GPURenderPipeline> pipeline)
+{
+    // FIXME: Implement specification
+    m_render_pass_encoder.SetPipeline(pipeline->native_gpu_render_pipeline().m_impl->m_render_pipeline);
 }
 
 NativeGPURenderPassEncoder NativeGPURenderPassEncoder::create()
@@ -39,6 +49,11 @@ void NativeGPURenderPassEncoder::set_label(String const& label)
 void NativeGPURenderPassEncoder::end()
 {
     m_impl->end();
+}
+
+void NativeGPURenderPassEncoder::set_pipeline(GC::Root<GPURenderPipeline> pipeline)
+{
+    m_impl->set_pipeline(move(pipeline));
 }
 
 }

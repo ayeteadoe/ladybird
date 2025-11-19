@@ -71,6 +71,7 @@ struct GPURenderPipelineDescriptor : GPUPipelineDescriptorBase {
     Optional<GPUFragmentState> fragment;
 };
 class NativeGPUDevice;
+class NativeGPURenderPassEncoder;
 
 class NativeGPURenderPipeline {
     WEBGPU_NATIVE_DECLARE_SPECIAL_MEMBERS(NativeGPURenderPipeline);
@@ -79,6 +80,7 @@ class NativeGPURenderPipeline {
 
 public:
     friend NativeGPUDevice;
+    friend NativeGPURenderPassEncoder;
 
     static NativeGPURenderPipeline create();
 

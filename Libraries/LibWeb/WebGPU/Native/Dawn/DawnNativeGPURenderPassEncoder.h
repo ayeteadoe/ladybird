@@ -21,6 +21,8 @@ struct NativeGPURenderPassEncoder::Impl {
     void set_label(String const& label);
 
     void end();
+
+    void set_pipeline(GC::Root<GPURenderPipeline> pipeline);
 };
 
 }

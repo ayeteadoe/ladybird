@@ -8,6 +8,7 @@
 
 #include <LibWeb/Bindings/GPURenderPassEncoderPrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/WebGPU/GPURenderPipeline.h>
 #include <LibWeb/WebGPU/Native/NativeGPURenderPassEncoder.h>
 
 namespace Web::WebGPU {
@@ -24,6 +25,8 @@ class GPURenderPassEncoder final : public Bindings::PlatformObject {
     NativeGPURenderPassEncoder& native_gpu_render_pass_encoder() { return m_native_gpu_render_pass_encoder; }
 
     void end();
+
+    void set_pipeline(GC::Root<GPURenderPipeline> pipeline);
 
 private:
     explicit GPURenderPassEncoder(JS::Realm&, NativeGPURenderPassEncoder);

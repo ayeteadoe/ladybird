@@ -1,0 +1,17 @@
+#import <WebGPU/GPUBuffer.idl>
+#import <WebGPU/GPURenderPipeline.idl>
+#import <WebGPU/GPUTypes.idl>
+
+// https://www.w3.org/TR/webgpu/#gpurendercommandsmixin
+interface mixin GPURenderCommandsMixin {
+    undefined setPipeline(GPURenderPipeline pipeline);
+
+    // FIXME: undefined setIndexBuffer(GPUBuffer buffer, GPUIndexFormat indexFormat, optional GPUSize64 offset = 0, optional GPUSize64 size);
+    [FIXME] undefined setVertexBuffer(GPUIndex32 slot, GPUBuffer? buffer, optional GPUSize64 offset = 0, optional GPUSize64 size);
+
+    [FIXME] undefined draw(GPUSize32 vertexCount, optional GPUSize32 instanceCount = 1, optional GPUSize32 firstVertex = 0, optional GPUSize32 firstInstance = 0);
+    // FIXME: undefined drawIndexed(GPUSize32 indexCount, optional GPUSize32 instanceCount = 1, optional GPUSize32 firstIndex = 0, optional GPUSignedOffset32 baseVertex = 0, optional GPUSize32 firstInstance = 0);
+
+    [FIXME] undefined drawIndirect(GPUBuffer indirectBuffer, GPUSize64 indirectOffset);
+    [FIXME] undefined drawIndexedIndirect(GPUBuffer indirectBuffer, GPUSize64 indirectOffset);
+};

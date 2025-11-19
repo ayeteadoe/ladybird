@@ -51,4 +51,10 @@ void GPURenderPassEncoder::end()
     m_native_gpu_render_pass_encoder.end();
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-setpipeline
+void GPURenderPassEncoder::set_pipeline(GC::Root<GPURenderPipeline> pipeline)
+{
+    m_native_gpu_render_pass_encoder.set_pipeline(move(pipeline));
+}
+
 }

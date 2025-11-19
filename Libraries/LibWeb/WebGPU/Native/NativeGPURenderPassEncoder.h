@@ -56,6 +56,8 @@ public:
     static NativeGPURenderPassEncoder create();
 
     void end();
+
+    void set_pipeline(GC::Root<GPURenderPipeline> pipeline);
 };
 
 }
