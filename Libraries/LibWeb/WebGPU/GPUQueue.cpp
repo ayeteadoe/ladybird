@@ -51,4 +51,10 @@ void GPUQueue::submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_
     m_native_gpu_queue.submit(command_buffers);
 }
 
+// https://www.w3.org/TR/webgpu/#dom-gpuqueue-writebuffer
+void GPUQueue::write_buffer(GC::Root<GPUBuffer> buffer, WebIDL::UnsignedLongLong buffer_offset, GC::Root<WebIDL::BufferSource> const& data, Optional<WebIDL::UnsignedLongLong> data_offset, Optional<WebIDL::UnsignedLongLong> size)
+{
+    m_native_gpu_queue.write_buffer(move(buffer), buffer_offset, data, data_offset, size);
+}
+
 }

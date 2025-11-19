@@ -8,8 +8,10 @@
 
 #include <LibWeb/Bindings/GPUQueuePrototype.h>
 #include <LibWeb/Bindings/PlatformObject.h>
+#include <LibWeb/WebGPU/GPUBuffer.h>
 #include <LibWeb/WebGPU/GPUCommandBuffer.h>
 #include <LibWeb/WebGPU/Native/NativeGPUQueue.h>
+#include <LibWeb/WebIDL/Types.h>
 
 namespace Web::WebGPU {
 
@@ -25,6 +27,8 @@ class GPUQueue final : public Bindings::PlatformObject {
     NativeGPUQueue& native_gpu_queue() { return m_native_gpu_queue; }
 
     void submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_buffers);
+
+    void write_buffer(GC::Root<GPUBuffer> buffer, WebIDL::UnsignedLongLong buffer_offset, GC::Root<WebIDL::BufferSource> const& data, Optional<WebIDL::UnsignedLongLong> data_offset = 0, Optional<WebIDL::UnsignedLongLong> size = {});
 
 private:
     explicit GPUQueue(JS::Realm&, NativeGPUQueue);

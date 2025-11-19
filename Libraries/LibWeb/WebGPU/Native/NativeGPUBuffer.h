@@ -21,6 +21,7 @@ struct GPUBufferDescriptor : GPUObjectDescriptorBase {
 };
 
 class NativeGPUDevice;
+class NativeGPUQueue;
 
 class NativeGPUBuffer {
     WEBGPU_NATIVE_DECLARE_SPECIAL_MEMBERS(NativeGPUBuffer);
@@ -29,6 +30,7 @@ class NativeGPUBuffer {
 
 public:
     friend NativeGPUDevice;
+    friend NativeGPUQueue;
 
     static NativeGPUBuffer create();
 

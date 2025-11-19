@@ -21,6 +21,8 @@ struct NativeGPUQueue::Impl {
     void set_label(String const& label);
 
     void submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_buffers);
+
+    void write_buffer(GC::Root<GPUBuffer> buffer, WebIDL::UnsignedLongLong buffer_offset, GC::Root<WebIDL::BufferSource> const& data, Optional<WebIDL::UnsignedLongLong> data_offset, Optional<WebIDL::UnsignedLongLong> size);
 };
 
 }

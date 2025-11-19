@@ -11,6 +11,7 @@
 #include <LibWeb/WebGPU/GPUCommandBuffer.h>
 #include <LibWeb/WebGPU/GPUObjectBase.h>
 #include <LibWeb/WebGPU/Native/WebGPUNativeMacros.h>
+#include <LibWeb/WebIDL/Types.h>
 
 namespace Web::WebGPU {
 
@@ -30,6 +31,8 @@ public:
     static NativeGPUQueue create();
 
     void submit(GC::RootVector<GC::Root<GPUCommandBuffer>> const& command_buffers);
+
+    void write_buffer(GC::Root<GPUBuffer> buffer, WebIDL::UnsignedLongLong buffer_offset, GC::Root<WebIDL::BufferSource> const& data, Optional<WebIDL::UnsignedLongLong> data_offset, Optional<WebIDL::UnsignedLongLong> size);
 };
 
 }
