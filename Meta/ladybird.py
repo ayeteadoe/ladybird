@@ -22,6 +22,7 @@ from Meta.find_compiler import pick_swift_compilers
 from Meta.host_platform import HostArchitecture
 from Meta.host_platform import HostSystem
 from Meta.host_platform import Platform
+from Meta.utils import ensure_ladybird_source_dir
 from Meta.utils import run_command
 from Toolchain.BuildVcpkg import build_vcpkg
 
@@ -318,20 +319,6 @@ def validate_cmake_version():
     if major < 3 or (major == 3 and minor < 25):
         print(f"CMake version {major}.{minor}.{patch} is too old. {cmake_install_message}", file=sys.stderr)
         sys.exit(1)
-
-
-def ensure_ladybird_source_dir() -> Path:
-    ladybird_source_dir = os.environ.get("LADYBIRD_SOURCE_DIR", None)
-    ladybird_source_dir = Path(ladybird_source_dir) if ladybird_source_dir else None
-
-    if not ladybird_source_dir or not ladybird_source_dir.is_dir():
-        root_dir = run_command(["git", "rev-parse", "--show-toplevel"], return_output=True, exit_on_failure=True)
-        assert root_dir
-
-        os.environ["LADYBIRD_SOURCE_DIR"] = root_dir
-        ladybird_source_dir = Path(root_dir)
-
-    return ladybird_source_dir
 
 
 def build_main(build_dir: Path, jobs: Optional[str], target: Optional[str] = None, args: Optional[list[str]] = None):

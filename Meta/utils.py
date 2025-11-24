@@ -1,7 +1,9 @@
 # Copyright (c) 2025, Tim Flynn <trflynn89@ladybird.org>
+# Copyright (c) 2025, ayeteadoe <ayeteadoe@gmail.com>
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
+import os
 import signal
 import subprocess
 import sys
@@ -9,6 +11,20 @@ import sys
 from pathlib import Path
 from typing import Optional
 from typing import Union
+
+
+def ensure_ladybird_source_dir() -> Path:
+    ladybird_source_dir = os.environ.get("LADYBIRD_SOURCE_DIR", None)
+    ladybird_source_dir = Path(ladybird_source_dir) if ladybird_source_dir else None
+
+    if not ladybird_source_dir or not ladybird_source_dir.is_dir():
+        root_dir = run_command(["git", "rev-parse", "--show-toplevel"], return_output=True, exit_on_failure=True)
+        assert root_dir
+
+        os.environ["LADYBIRD_SOURCE_DIR"] = root_dir
+        ladybird_source_dir = Path(root_dir)
+
+    return ladybird_source_dir
 
 
 def run_command(
