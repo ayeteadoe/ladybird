@@ -65,7 +65,7 @@ public:
     template<typename T>
     T sk_image_snapshot() const;
 
-    void flush();
+    void flush() const;
 
     ~PaintingSurface();
 

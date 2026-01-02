@@ -10,9 +10,10 @@
 #include <LibGfx/PaintingSurface.h>
 #include <LibWeb/WebGL/OpenGLContext.h>
 
+#define EGL_EGLEXT_PROTOTYPES 1
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
-#define EGL_EGLEXT_PROTOTYPES 1
+#include <gpu/ganesh/GrDirectContext.h>
 extern "C" {
 #include <EGL/eglext_angle.h>
 }
@@ -30,10 +31,19 @@ extern "C" {
 #endif
 
 #if defined(AK_OS_WINDOWS)
+#    define ENABLE_GPU_SYNC 1
+#endif
+
+#if defined(AK_OS_WINDOWS)
 #    include <LibGfx/Direct3DContext.h>
+
+#    include <core/SkSurface.h>
+#    include <gpu/ganesh/GrBackendSemaphore.h>
+#    include <gpu/ganesh/d3d/GrD3DTypes.h>
 
 #    include <windows.h>
 
+#    include <d3d11_4.h>
 #    include <d3d12.h>
 #    include <winrt/base.h>
 #endif
@@ -50,8 +60,13 @@ struct OpenGLContext::Impl {
     GLuint color_buffer { 0 };
     GLuint depth_buffer { 0 };
     EGLint texture_target { 0 };
-
-#ifdef USE_VULKAN_IMAGES
+#if defined(AK_OS_WINDOWS) && defined(ENABLE_GPU_SYNC)
+    winrt::com_ptr<ID3D11Device5> d11_angle_device { nullptr };
+    winrt::com_ptr<ID3D11DeviceContext4> d11_angle_device_context { nullptr };
+    winrt::com_ptr<ID3D11Fence> d11_angle_fence { nullptr };
+    winrt::com_ptr<ID3D12Fence> d12_skia_fence { nullptr };
+    UINT64 fence_value { 0 };
+#elif USE_VULKAN_IMAGES
     EGLImage egl_image { EGL_NO_IMAGE };
     struct {
         PFNEGLQUERYDMABUFFORMATSEXTPROC query_dma_buf_formats { nullptr };
@@ -421,6 +436,72 @@ void OpenGLContext::allocate_d3d11texture_painting_surface()
     VERIFY(d12_resource != nullptr);
     m_painting_surface = Gfx::PaintingSurface::create_from_d3dtexture(m_skia_backend_context, *d12_resource, Gfx::PaintingSurface::Origin::BottomLeft);
 
+#if defined(ENABLE_GPU_SYNC)
+    EGLDeviceEXT egl_device = nullptr;
+    if (eglQueryDisplayAttribANGLE(m_impl->display, EGL_DEVICE_EXT, reinterpret_cast<EGLAttrib*>(&egl_device))) {
+        ID3D11Device* angle_device = nullptr;
+        if (!eglQueryDeviceAttribEXT(egl_device, EGL_D3D11_DEVICE_ANGLE, reinterpret_cast<EGLAttrib*>(&angle_device))) {
+            dbgln("Failed to query device attrib EGL_D3D11_DEVICE_ANGLE");
+        }
+        if (angle_device != nullptr) {
+            if (HRESULT const hr = angle_device->QueryInterface(IID_PPV_ARGS(&m_impl->d11_angle_device)); FAILED(hr)) {
+                dbgln("QueryInterface failed: {}", Error::from_windows_error(hr));
+            }
+            ID3D11DeviceContext* angle_device_context = nullptr;
+            angle_device->GetImmediateContext(&angle_device_context);
+            if (HRESULT const hr = angle_device_context->QueryInterface(IID_PPV_ARGS(&m_impl->d11_angle_device_context)); FAILED(hr)) {
+                dbgln("QueryInterface failed: {}", Error::from_windows_error(hr));
+                return;
+            }
+        }
+    }
+
+    if (m_impl->d11_angle_device && m_impl->d11_angle_device_context) {
+        if (HRESULT const hr = m_impl->d11_angle_device->CreateFence(m_impl->fence_value, D3D11_FENCE_FLAG_SHARED, IID_PPV_ARGS(&m_impl->d11_angle_fence)); FAILED(hr)) {
+            dbgln("CreateFence failed: {}", Error::from_windows_error(hr));
+        } else {
+            // HANDLE shared_fence_handle = INVALID_HANDLE_VALUE;
+            // if (HRESULT const hr1 = m_impl->d11_angle_fence->CreateSharedHandle(nullptr, GENERIC_READ | GENERIC_WRITE, nullptr, &shared_fence_handle); FAILED(hr1)) {
+            //     dbgln("CreateSharedHandle failed: {}", Error::from_windows_error(hr1));
+            // }
+            // else {
+            //
+            //
+            // }
+
+            auto* d11_fence = m_impl->d11_angle_fence.get();
+            VERIFY(d11_fence);
+
+            m_impl->d12_skia_fence.attach(&m_skia_backend_context->open_shared_fence(m_painting_surface->sk_surface(), *d11_fence).value());
+
+            m_painting_surface->on_flush = [this](auto& surface) {
+                //m_skia_backend_context->lock();
+                SkSurface& sk_surface = const_cast<Gfx::PaintingSurface&>(surface).sk_surface();
+                GrD3DFenceInfo fence_info {};
+                fence_info.fFence = gr_cp(m_impl->d12_skia_fence.get());
+                fence_info.fValue = m_impl->fence_value;
+                auto backend_semaphore = new GrBackendSemaphore;
+                backend_semaphore->initDirect3D(fence_info);
+                // GrFlushInfo flush_info {};
+                // flush_info.fNumSemaphores = 1;
+                // flush_info.fSignalSemaphores = &backend_semaphore;
+                //auto ctx = m_skia_backend_context->sk_context();
+                //ctx->flush(&sk_surface, SkSurfaces::BackendSurfaceAccess::kPresent, flush_info);
+                //ctx->submit(GrSyncCpu::kYes);
+
+                //dbgln("skia flush thread: {}", pthread_self().p);
+                //m_skia_backend_context->unlock();
+
+                // m_skia_backend_context->sk_context()->flush()
+                // //dbgln("Waiting for fence to read from surface {}", &sk_surface);
+                // TODO: https://api.skia.org/classSkSurface.html#aebf60b11a45f03386aecc5f673d36bac, we should instead allocate this on the heap and transfer ownership to skia
+                if (!sk_surface.wait(1, backend_semaphore, /*deleteSemaphoresAfterWait*/ true))
+                    VERIFY_NOT_REACHED();
+            };
+        }
+    }
+#endif
+
     EGLint attribs[] = {
         EGL_WIDTH, m_size.width(),
         EGL_HEIGHT, m_size.height(),
@@ -502,7 +583,23 @@ void OpenGLContext::present(bool preserve_drawing_buffer)
     // eglWaitUntilWorkScheduledANGLE only has an effect on CGL and Metal backends, so we only use it on macOS.
 #    if defined(AK_OS_MACOS)
     eglWaitUntilWorkScheduledANGLE(m_impl->display);
-#    elif defined(USE_VULKAN_IMAGES) || defined(AK_OS_WINDOWS)
+#    elif defined(AK_OS_WINDOWS)
+#        if defined(ENABLE_GPU_SYNC)
+    if (m_impl->d11_angle_fence && m_impl->d11_angle_device_context && m_painting_surface) {
+        //dbgln("Signalling fence for surface {}", &m_painting_surface->sk_surface());
+        auto const fence_value = ++m_impl->fence_value;
+        m_impl->d11_angle_device_context->Signal(m_impl->d11_angle_fence.get(), fence_value);
+        dbgln("angle signal thread: {}", pthread_self().p);
+        //m_impl->d11_angle_device_context->Wait(m_impl->d11_angle_fence.Get(), fence_value);
+        // glFinish();
+    } else {
+        //dbgln("UNABLE TO SIGNAL FENCE");
+        glFinish();
+    }
+#        else
+    glFinish();
+#        endif
+#    elif defined(USE_VULKAN_IMAGES)
     // FIXME: CPU sync for now, but it would be better to export a fence and have Skia wait for it before reading from the surface
     glFinish();
 #    endif

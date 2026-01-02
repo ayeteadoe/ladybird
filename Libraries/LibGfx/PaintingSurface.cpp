@@ -246,10 +246,10 @@ sk_sp<SkImage> PaintingSurface::sk_image_snapshot() const
     return m_impl->surface->makeImageSnapshot();
 }
 
-void PaintingSurface::flush()
+void PaintingSurface::flush() const
 {
     if (on_flush)
-        on_flush(*this);
+        on_flush(*const_cast<PaintingSurface*>(this));
 }
 
 void PaintingSurface::lock_context() const

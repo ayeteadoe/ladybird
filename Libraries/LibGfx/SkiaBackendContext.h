@@ -18,6 +18,11 @@
 #    include <LibGfx/MetalContext.h>
 #endif
 
+#if defined(AK_OS_WINDOWS)
+struct ID3D11Fence;
+struct ID3D12Fence;
+#endif
+
 class GrDirectContext;
 class SkSurface;
 
@@ -42,10 +47,13 @@ public:
 
 #if defined(AK_OS_WINDOWS)
     static RefPtr<SkiaBackendContext> create_direct3d_context(NonnullOwnPtr<Direct3DContext>);
+
+    Optional<ID3D12Fence&> open_shared_fence(SkSurface& surface, ID3D11Fence& shared_d11_fence);
+
 #endif
 
     SkiaBackendContext() { }
-    virtual ~SkiaBackendContext() { }
+    virtual ~SkiaBackendContext();
 
     virtual void flush_and_submit(SkSurface*) { }
     virtual GrDirectContext* sk_context() const = 0;

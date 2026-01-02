@@ -22,6 +22,7 @@ using HANDLE = void*;
 // NOTE: We can't include the header that defines ComPtr as it transitively includes other headers that define conflicting macros
 struct IDXGIAdapter1;
 struct ID3D11Device;
+struct ID3D11DeviceContext;
 struct ID3D12Device;
 struct ID3D12CommandQueue;
 
@@ -39,6 +40,7 @@ public:
     ID3D12CommandQueue& d12_command_queue() const;
 
     ID3D11Device& d11_device() const;
+    ID3D11DeviceContext& d11_device_context() const;
 
 private:
     Direct3DContext();

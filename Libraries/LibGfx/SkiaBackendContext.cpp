@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <AK/HashMap.h>
 #include <AK/NonnullOwnPtr.h>
 #include <AK/RefPtr.h>
 #include <LibGfx/Bitmap.h>
@@ -11,6 +12,7 @@
 
 #include <core/SkSurface.h>
 #include <gpu/ganesh/GrDirectContext.h>
+#include <gpu/ganesh/GrBackendSemaphore.h>
 
 #ifdef USE_VULKAN
 #    include <gpu/ganesh/vk/GrVkDirectContext.h>
@@ -28,9 +30,15 @@
 #if defined(AK_OS_WINDOWS)
 #    include <LibGfx/Direct3DContext.h>
 #    include <gpu/ganesh/d3d/GrD3DBackendContext.h>
+
+#    include <d3d11_4.h>
+#    include <d3d12.h>
+#    include <winrt/base.h>
 #endif
 
 namespace Gfx {
+
+SkiaBackendContext::~SkiaBackendContext() = default;
 
 #ifdef USE_VULKAN
 class SkiaVulkanBackendContext final : public SkiaBackendContext {
@@ -170,9 +178,16 @@ public:
 
     Direct3DContext const& direct3d_context() override { return *m_direct3d_context; }
 
+    ID3D12Fence& add_exported_fence(SkSurface& surface, winrt::com_ptr<ID3D12Fence> d12_fence)
+    {
+        return *m_exported_fences.ensure(&surface, [d12_fence = move(d12_fence)] { return d12_fence; }).get();
+    }
+
 private:
     sk_sp<GrDirectContext> m_context;
     NonnullOwnPtr<Direct3DContext> m_direct3d_context;
+    // FIXME: Allow multiple fences to be associated with a single surface
+    HashMap<SkSurface*, winrt::com_ptr<ID3D12Fence>> m_exported_fences;
 };
 
 RefPtr<SkiaBackendContext> SkiaBackendContext::create_direct3d_context(NonnullOwnPtr<Direct3DContext> direct3d_context)
@@ -185,6 +200,28 @@ RefPtr<SkiaBackendContext> SkiaBackendContext::create_direct3d_context(NonnullOw
     VERIFY(ctx);
     return adopt_ref(*new SkiaDirect3DBackendContext(ctx, move(direct3d_context)));
 }
+
+Optional<ID3D12Fence&> SkiaBackendContext::open_shared_fence(SkSurface& surface, ID3D11Fence& shared_d11_fence)
+{
+    HANDLE shared_fence_handle = INVALID_HANDLE_VALUE;
+    if (HRESULT const hr = shared_d11_fence.CreateSharedHandle(nullptr, GENERIC_READ | GENERIC_WRITE, nullptr, &shared_fence_handle); FAILED(hr)) {
+        dbgln("CreateSharedHandle failed: {}", Error::from_windows_error(hr));
+        return {};
+    }
+
+    winrt::com_ptr<ID3D12Fence> d12_fence;
+    if (HRESULT const hr = direct3d_context().d12_device().OpenSharedHandle(shared_fence_handle, IID_PPV_ARGS(d12_fence.put())); FAILED(hr)) {
+        dbgln("OpenSharedHandle failed: {}", Error::from_windows_error(hr));
+        return {};
+    }
+
+    auto d3d_ctx = static_cast<SkiaDirect3DBackendContext*>(this);
+    d3d_ctx->add_exported_fence(surface, move(d12_fence));
+
+    dbgln("Created backend semaphore for {}", &surface);
+    return d3d_ctx->add_exported_fence(surface, move(d12_fence));
+}
+
 #endif
 
 }

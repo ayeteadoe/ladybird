@@ -63,6 +63,13 @@ ID3D11Device& Direct3DContext::d11_device() const
     return *d11_device;
 }
 
+ID3D11DeviceContext& Direct3DContext::d11_device_context() const
+{
+    auto* d11_device_context = m_impl->d11_device_context.get();
+    VERIFY(d11_device_context != nullptr);
+    return *d11_device_context;
+}
+
 ErrorOr<NonnullOwnPtr<Direct3DContext>> Direct3DContext::try_create()
 {
     winrt::com_ptr<IDXGIFactory1> factory;
