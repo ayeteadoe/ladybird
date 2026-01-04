@@ -8,7 +8,6 @@ function(create_ladybird_bundle target_name)
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         MACOSX_BUNDLE_INFO_PLIST "${LADYBIRD_SOURCE_DIR}/UI/Info.plist"
         MACOSX_BUNDLE TRUE
-        WIN32_EXECUTABLE TRUE
         XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER org.ladybird.Ladybird
     )
 
@@ -53,6 +52,9 @@ elseif (APPLE)
    add_subdirectory(AppKit)
 elseif(ANDROID)
    add_subdirectory(Android)
+elseif(WIN32)
+    # FIXME: Use vcpkg project manifest features to exclude the qt-base port on Windows when ENABLE_QT is OFF
+    add_subdirectory(Win32)
 else()
     # TODO: Check for other GUI frameworks here when we move them in-tree
     return()

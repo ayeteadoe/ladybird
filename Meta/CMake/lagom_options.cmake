@@ -25,7 +25,7 @@ ladybird_option(LAGOM_LINK_POOL_SIZE "" CACHE STRING "The maximum number of para
 ladybird_option(ENABLE_LTO_FOR_RELEASE ${RELEASE_LTO_DEFAULT} CACHE BOOL "Enable link-time optimization for release builds")
 ladybird_option(ENABLE_LAGOM_COVERAGE_COLLECTION OFF CACHE STRING "Enable code coverage instrumentation for lagom binaries in clang")
 
-if (ANDROID OR APPLE)
+if (ANDROID OR APPLE OR WIN32)
     ladybird_option(ENABLE_QT OFF CACHE BOOL "Build ladybird application using Qt GUI")
 else()
     ladybird_option(ENABLE_QT ON CACHE BOOL "Build ladybird application using Qt GUI")
