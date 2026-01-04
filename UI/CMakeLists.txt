@@ -54,6 +54,12 @@ elseif(ANDROID)
    add_subdirectory(Android)
 elseif(WIN32)
     # FIXME: Use vcpkg project manifest features to exclude the qt-base port on Windows when ENABLE_QT is OFF
+    # FIXME: See https://github.com/microsoft/WindowsAppSDK/issues/3901 and use overlay port/example at https://github.com/microsoft/WindowsAppSDK-Samples/tree/release/experimental/Samples/WindowsAIFoundry/cpp-console-sparse
+    #       to use a WinUI3 island for our Win32 App. This folder should then change to "WinAppSDK". See https://github.com/microsoft/WindowsAppSDK-Samples/tree/release/experimental/Samples/Islands/cpp-win32-unpackaged for how to
+    #       intraget Winui3/Xaml islands into a Win32 app and interop between both. We'll need to figure out how the include the .xaml/.idl and generated files in the Cmake-based project isntead.
+    #       Looks like https://github.com/res2k/winui3_cmake is how you do it without VIsual Studio. Very complex and not worth the effort IMO
+    #
+    #       See the GTK4 draft for how we'll want to only conditionally build/use the ports when this UI framework is specified
     add_subdirectory(Win32)
 else()
     # TODO: Check for other GUI frameworks here when we move them in-tree
