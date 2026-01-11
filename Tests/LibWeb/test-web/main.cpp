@@ -72,10 +72,19 @@ static ErrorOr<void> load_test_config(StringView test_root_path)
     }
 
     auto config = config_or_error.release_value();
+    auto add_to_skipped_tests = [&](auto const& group) -> ErrorOr<void> {
+        for (auto& key : config->keys(group))
+            s_skipped_tests.append(TRY(FileSystem::real_path(LexicalPath::join(test_root_path, key).string())));
+        return {};
+    };
+
     for (auto const& group : config->groups()) {
         if (group == "Skipped"sv) {
-            for (auto& key : config->keys(group))
-                s_skipped_tests.append(TRY(FileSystem::real_path(LexicalPath::join(test_root_path, key).string())));
+            TRY(add_to_skipped_tests(group));
+        } else if (group == "Skipped:windows"sv) {
+#if defined(AK_OS_WINDOWS)
+            TRY(add_to_skipped_tests(group));
+#endif
         } else {
             warnln("Unknown group '{}' in config {}", group, config_path);
         }

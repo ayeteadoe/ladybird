@@ -207,7 +207,7 @@ size_t EventLoopImplementationWindows::pump(PumpMode pump_mode)
                 auto* notifier_data = static_cast<EventLoopNotifier*>(packet);
                 event_queue.post_event(notifier_data->notifier, Core::Event::Type::NotifierActivation);
                 NTSTATUS status = g_system.NtAssociateWaitCompletionPacket(notifier_data->wait_packet.handle, thread_data->iocp.handle, notifier_data->wait_event.handle, notifier_data, NULL, 0, 0, NULL);
-                VERIFY(NT_SUCCESS(status));
+                VERIFY(status == static_cast<NTSTATUS>(STATUS_INVALID_HANDLE) || NT_SUCCESS(status));
                 continue;
             }
             VERIFY_NOT_REACHED();
@@ -286,7 +286,7 @@ void EventLoopManagerWindows::unregister_notifier(Notifier& notifier)
     auto notifier_data = move(maybe_notifier_data.value());
     // We are removing the signalled packets since the caller no longer expects them
     NTSTATUS status = g_system.NtCancelWaitCompletionPacket(notifier_data->wait_packet.handle, TRUE);
-    VERIFY(NT_SUCCESS(status));
+    VERIFY(status == STATUS_CANCELLED || NT_SUCCESS(status));
     // TODO: Reuse the data structure
 }
 
