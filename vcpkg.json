@@ -215,6 +215,11 @@
       ]
     },
     "vulkan-headers",
+    {
+      "name": "windowsappsdk",
+      "default-features": false,
+      "platform": "windows"
+    },
     "woff2",
     "zlib"
   ],
@@ -318,6 +323,10 @@
     {
       "name": "sqlite3",
       "version": "3.50.4#0"
+    },
+    {
+      "name": "windowsappsdk",
+      "version": "1.8.250515001-experimental2#0"
     },
     {
       "name": "woff2",
