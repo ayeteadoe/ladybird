@@ -39,4 +39,12 @@ if(NOT TARGET Microsoft::WindowsAppSdk)
    )
 endif()
 
+if(NOT TARGET Windows::CppWinRT)
+   add_executable(Windows::CppWinRT IMPORTED)
+   set_target_properties(Windows::CppWinRT
+      PROPERTIES
+        IMPORTED_LOCATION "${_packages_dir}/bin/cppwinrt.exe"
+    )
+endif()
+
 unset(_packages_dir)

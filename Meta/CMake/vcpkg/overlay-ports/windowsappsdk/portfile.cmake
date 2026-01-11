@@ -1,5 +1,6 @@
 # Experimental WindowsAppSDK vcpkg port
 # https://github.com/microsoft/WindowsAppSDK-Samples/tree/1b5c3142509c31e730a6af4ee72bcef5787ed798/Samples/WindowsAIFoundry/cpp-console-sparse/vcpkg_ports/windowsappsdk
+
 vcpkg_find_acquire_program(NUGET)
 
 set(ENV{NUGET_PACKAGES} "${BUILDTREES_DIR}/nuget")
@@ -69,21 +70,28 @@ string(APPEND cppwinrt_args "-verbose\n")
 
 file(WRITE "${cppwinrt_rsp}" "${cppwinrt_args}")
 
+# The WindowsAppSDK nuget package does not explicitly depend on the CppWinRT nuget package, so lets just pin the version manually.
+set(CPPWINRT_VERSION "2.0.250303.1")
 vcpkg_execute_required_process(
     ALLOW_IN_DOWNLOAD_MODE
-    COMMAND ${NUGET} install "Microsoft.Windows.CppWinRT" -NonInteractive
+    COMMAND ${NUGET} install "Microsoft.Windows.CppWinRT" -version ${CPPWINRT_VERSION} -NonInteractive
         -OutputDirectory "${CURRENT_BUILDTREES_DIR}"
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
     LOGNAME nuget-${TARGET_TRIPLET})
 
-file(GLOB
-    cppwinrt_tool
-    LIST_DIRECTORIES false 
-    "${CURRENT_BUILDTREES_DIR}/Microsoft.Windows.CppWinRT*/bin/cppwinrt.exe")
+
+# CppWinRT is needed as a tool to build the port and also as a target for consumers of the port. Tools require direct downloads to the executable which does not exist here,
+find_program(CPPWINRT NAMES cppwinrt.exe PATHS "${CURRENT_BUILDTREES_DIR}/Microsoft.Windows.CppWinRT.${CPPWINRT_VERSION}/bin" NO_DEFAULT_PATH REQUIRED)
+
+file(INSTALL ${CPPWINRT}
+    DESTINATION "${CURRENT_PACKAGES_DIR}/bin")
 
 vcpkg_execute_required_process(
-    COMMAND "${cppwinrt_tool}" "@${cppwinrt_rsp}"
+    COMMAND "${CPPWINRT}" "@${cppwinrt_rsp}"
     WORKING_DIRECTORY "${CURRENT_PACKAGES_DIR}"
     LOGNAME "wasdk-project-${TARGET_TRIPLET}")
+
+# TODO: Copy XAML compiler toolchain via "${CURRENT_BUILDTREES_DIR}/Microsoft.Windows.CppWinRT.${CPPWINRT_VERSION}/tools/net472"
+find_program(XAMLCOMPILER NAMES 
 
 include_guard(GLOBAL)
