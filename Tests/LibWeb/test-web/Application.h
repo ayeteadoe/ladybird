@@ -23,7 +23,12 @@ public:
 
     virtual void create_platform_arguments(Core::ArgsParser&) override;
     virtual void create_platform_options(WebView::BrowserOptions&, WebView::RequestServerOptions&, WebView::WebContentOptions&) override;
+#if defined(AK_OS_WINDOWS)
+    // FIXME: Support output capture on Windows
+    virtual bool should_capture_web_content_output() const override { return false; }
+#else
     virtual bool should_capture_web_content_output() const override { return true; }
+#endif
 
     ErrorOr<void> launch_test_fixtures();
 
