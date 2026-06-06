@@ -91,7 +91,6 @@ TransportSocketWindows::TransportSocketWindows(NonnullOwnPtr<Core::LocalSocket> 
     : m_socket(move(socket))
 {
     dbgln_if(IPC_DEBUG, "TransportSocketWindows({:p}) created with socket {:p}", this, m_socket.ptr());
-    initiate_wsa();
 
     // Set the main IPC socket to non-blocking mode for async I/O
     unsigned long non_blocking = 1;
@@ -145,7 +144,6 @@ TransportSocketWindows::~TransportSocketWindows()
     }
 
     m_read_hook_notifier.clear();
-    terminate_wsa();
 }
 
 void TransportSocketWindows::stop_io_thread(IOThreadState desired_state)
