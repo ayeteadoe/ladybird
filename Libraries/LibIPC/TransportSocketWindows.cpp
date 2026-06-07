@@ -125,24 +125,7 @@ TransportSocketWindows::TransportSocketWindows(NonnullOwnPtr<Core::LocalSocket> 
 TransportSocketWindows::~TransportSocketWindows()
 {
     dbgln_if(IPC_DEBUG, "TransportSocketWindows({:p}) destroyed", this);
-
-    // During process shutdown (especially via _exit), pthread infrastructure may be torn down.
-    // Try to stop the thread gracefully, but if it can't be joined safely, detach it instead.
-    if (m_io_thread && m_io_thread->needs_to_be_joined()) {
-        m_io_thread_state.store(IOThreadState::Stopped, AK::MemoryOrder::memory_order_release);
-        wake_io_thread();
-
-        // If the thread has already exited, we can join safely
-        if (m_io_thread->has_exited()) {
-            (void)m_io_thread->join();
-        } else {
-            // Thread hasn't exited yet. During normal shutdown this shouldn't happen,
-            // but during abrupt process termination (_exit), detaching is safer than blocking.
-            dbgln_if(IPC_DEBUG, "TransportSocketWindows({:p}): I/O thread hasn't exited, detaching", this);
-            m_io_thread->detach();
-        }
-    }
-
+    stop_io_thread(IOThreadState::Stopped);
     m_read_hook_notifier.clear();
 }
 
