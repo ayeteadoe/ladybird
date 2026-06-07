@@ -231,11 +231,11 @@ size_t EventLoopImplementationWindows::pump(PumpMode pump_mode)
                 // states that this field represents the event type indicator
                 DWORD const event_type = entry.dwNumberOfBytesTransferred;
                 if (reinterpret_cast<intptr_t>(entry.lpOverlapped) == process_id && (event_type == JOB_OBJECT_MSG_EXIT_PROCESS || event_type == JOB_OBJECT_MSG_ABNORMAL_EXIT_PROCESS)) {
-                    Optional<NonnullOwnPtr<EventLoopProcess>> owned_process = s_processes.with_locked([&](auto& processes) {
-                        return processes.take(process_id);
+                    auto const owned_process = s_processes.with_locked([&](auto const& processes) {
+                        return processes.get(process_id);
                     });
                     if (owned_process.has_value())
-                        owned_process.release_value()->exit_handler(process_id);
+                        owned_process.value()->exit_handler(process_id);
                 }
                 continue;
             }
