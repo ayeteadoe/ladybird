@@ -10,6 +10,7 @@
 #include <AK/Assertions.h>
 #include <AK/Diagnostics.h>
 #include <AK/HashMap.h>
+#include <AK/NeverDestroyed.h>
 #include <AK/NonnullOwnPtr.h>
 #include <AK/Windows.h>
 #include <LibCore/EventLoopImplementationWindows.h>
@@ -18,6 +19,9 @@
 #include <LibCore/Timer.h>
 #include <LibSync/Mutex.h>
 #include <LibSync/MutexProtected.h>
+#include <LibSync/Once.h>
+#include <LibSync/RWLock.h>
+#include <pthread.h>
 
 struct OwnHandle {
     HANDLE handle = NULL;
@@ -61,6 +65,23 @@ struct Traits<OwnHandle> : DefaultTraits<OwnHandle> {
 template<>
 constexpr bool IsHashCompatible<HANDLE, OwnHandle> = true;
 
+namespace AK {
+
+template<>
+struct Traits<pthread_t> : public DefaultTraits<pthread_t> {
+    static unsigned hash(pthread_t thread_id)
+    {
+        return Traits<intptr_t>::hash(reinterpret_cast<intptr_t>(thread_id.p));
+    }
+
+    static constexpr bool equals(pthread_t a, pthread_t b)
+    {
+        return Traits<intptr_t>::equals(reinterpret_cast<intptr_t>(a.p), reinterpret_cast<intptr_t>(b.p));
+    }
+};
+
+}
+
 namespace Core {
 
 enum class CompletionType : u8 {
@@ -90,6 +111,7 @@ struct EventLoopTimer final : CompletionPacket {
     OwnHandle wait_packet;
     bool is_periodic;
     WeakPtr<EventReceiver> owner;
+    pthread_t owner_thread { };
 };
 
 struct EventLoopNotifier final : CompletionPacket {
@@ -98,7 +120,7 @@ struct EventLoopNotifier final : CompletionPacket {
     {
     }
 
-    Notifier* notifier;
+    WeakPtr<EventReceiver> notifier;
     OwnHandle wait_packet;
     OwnHandle wait_event;
 };
@@ -112,17 +134,64 @@ struct EventLoopProcess final : CompletionPacket {
     OwnHandle jobobject;
 };
 
+struct ThreadData;
+
+thread_local ThreadData* s_this_thread_data;
+static pthread_key_t s_this_thread_data_key;
+
+static void destroy_thread_data(void*);
+
+static auto& thread_data()
+{
+    static NeverDestroyed<HashMap<pthread_t, ThreadData*>> thread_data;
+    return *thread_data;
+}
+
+static auto& thread_data_lock()
+{
+    static NeverDestroyed<Sync::RWLock> lock;
+    return *lock;
+}
+
+static auto& thread_data_key_once()
+{
+    static NeverDestroyed<Sync::OnceFlag> once;
+    return *once;
+}
+
+static void ensure_thread_data_key()
+{
+    Sync::call_once(thread_data_key_once(), [] {
+        VERIFY(pthread_key_create(&s_this_thread_data_key, destroy_thread_data) == 0);
+    });
+}
+
 struct ThreadData {
-    static ThreadData* the()
+    static ThreadData& the()
     {
-        thread_local OwnPtr<ThreadData> thread_data = make<ThreadData>();
-        if (thread_data)
-            return &*thread_data;
-        return nullptr;
+        ensure_thread_data_key();
+        ThreadData* data = nullptr;
+        if (!s_this_thread_data) {
+            data = new ThreadData;
+            s_this_thread_data = data;
+            VERIFY(pthread_setspecific(s_this_thread_data_key, s_this_thread_data) == 0);
+
+            Sync::RWLockLocker<Sync::LockMode::Write> locker(thread_data_lock());
+            thread_data().set(s_this_thread_data->thread_id, s_this_thread_data);
+        } else {
+            data = s_this_thread_data;
+        }
+        return *data;
+    }
+
+    static ThreadData* for_thread(pthread_t thread_id)
+    {
+        // NOTE: thread_data_lock() is supposed to be held by the caller.
+        return thread_data().get(thread_id).value_or(nullptr);
     }
 
     ThreadData()
-        : wake_data(make<EventLoopWake>())
+        : thread_id(pthread_self()), wake_data(make<EventLoopWake>())
     {
         wake_data->type = CompletionType::Wake;
         wake_data->wait_event.handle = CreateEvent(NULL, FALSE, FALSE, NULL);
@@ -142,6 +211,10 @@ struct ThreadData {
         VERIFY(NT_SUCCESS(status));
     }
 
+    Sync::RecursiveMutex mutex;
+
+    pthread_t thread_id { };
+
     OwnHandle iocp;
 
     // These are only used to register and unregister. The event loop doesn't access these.
@@ -152,10 +225,16 @@ struct ThreadData {
     NonnullOwnPtr<EventLoopWake> wake_data;
 };
 
+static void destroy_thread_data(void* value)
+{
+    s_this_thread_data = nullptr;
+    delete static_cast<ThreadData*>(value);
+}
+
 static Sync::MutexProtected<HashMap<pid_t, NonnullOwnPtr<EventLoopProcess>>> s_processes;
 
 EventLoopImplementationWindows::EventLoopImplementationWindows()
-    : m_wake_event(ThreadData::the()->wake_data->wait_event.handle)
+    : m_wake_event(ThreadData::the().wake_data->wait_event.handle)
 {
     VERIFY(m_wake_event);
 }
@@ -178,8 +257,10 @@ static constexpr bool debug_event_loop = false;
 
 size_t EventLoopImplementationWindows::pump(PumpMode pump_mode)
 {
+    auto& thread_data = ThreadData::the();
+    Sync::MutexLocker locker(thread_data.mutex);
+    
     auto& event_queue = ThreadEventQueue::current();
-    auto* thread_data = ThreadData::the();
 
     // NOTE: The number of entries to dequeue is to be optimized. Ideally we always dequeue all outstanding packets,
     // but we don't want to increase the cost of each pump unnecessarily. If more than one entry is never dequeued
@@ -193,7 +274,7 @@ size_t EventLoopImplementationWindows::pump(PumpMode pump_mode)
     if (!has_pending_events && pump_mode == PumpMode::WaitForEvents)
         timeout = INFINITE;
 
-    BOOL success = GetQueuedCompletionStatusEx(thread_data->iocp.handle, entries, entry_count, &entries_removed, timeout, FALSE);
+    BOOL success = GetQueuedCompletionStatusEx(thread_data.iocp.handle, entries, entry_count, &entries_removed, timeout, FALSE);
     dbgln_if(debug_event_loop, "Event loop dequed {} events", entries_removed);
 
     if (success) {
@@ -203,7 +284,7 @@ size_t EventLoopImplementationWindows::pump(PumpMode pump_mode)
 
             if (packet->type == CompletionType::Wake) {
                 auto* wake_data = static_cast<EventLoopWake*>(packet);
-                NTSTATUS status = g_system.NtAssociateWaitCompletionPacket(wake_data->wait_packet.handle, thread_data->iocp.handle, wake_data->wait_event.handle, wake_data, NULL, 0, 0, NULL);
+                NTSTATUS status = g_system.NtAssociateWaitCompletionPacket(wake_data->wait_packet.handle, thread_data.iocp.handle, wake_data->wait_event.handle, wake_data, NULL, 0, 0, NULL);
                 VERIFY(NT_SUCCESS(status));
                 continue;
             }
@@ -212,15 +293,16 @@ size_t EventLoopImplementationWindows::pump(PumpMode pump_mode)
                 if (auto owner = timer->owner.strong_ref())
                     event_queue.post_event(owner, Event::Type::Timer);
                 if (timer->is_periodic) {
-                    NTSTATUS status = g_system.NtAssociateWaitCompletionPacket(timer->wait_packet.handle, thread_data->iocp.handle, timer->timer.handle, timer, NULL, 0, 0, NULL);
+                    NTSTATUS status = g_system.NtAssociateWaitCompletionPacket(timer->wait_packet.handle, thread_data.iocp.handle, timer->timer.handle, timer, NULL, 0, 0, NULL);
                     VERIFY(NT_SUCCESS(status));
                 }
                 continue;
             }
             if (packet->type == CompletionType::Notifer) {
                 auto* notifier_data = static_cast<EventLoopNotifier*>(packet);
-                event_queue.post_event(notifier_data->notifier, Core::Event::Type::NotifierActivation);
-                NTSTATUS status = g_system.NtAssociateWaitCompletionPacket(notifier_data->wait_packet.handle, thread_data->iocp.handle, notifier_data->wait_event.handle, notifier_data, NULL, 0, 0, NULL);
+                if (auto notifier = notifier_data->notifier.strong_ref())
+                    event_queue.post_event(notifier, Core::Event::Type::NotifierActivation);
+                NTSTATUS status = g_system.NtAssociateWaitCompletionPacket(notifier_data->wait_packet.handle, thread_data.iocp.handle, notifier_data->wait_event.handle, notifier_data, NULL, 0, 0, NULL);
                 VERIFY(NT_SUCCESS(status));
                 continue;
             }
@@ -296,8 +378,10 @@ static int notifier_type_to_network_event(NotificationType type)
 
 void EventLoopManagerWindows::register_notifier(Notifier& notifier)
 {
-    auto* thread_data = ThreadData::the();
-    auto& notifiers = thread_data->notifiers;
+    auto& thread_data = ThreadData::the();
+    Sync::MutexLocker locker(thread_data.mutex);
+    
+    auto& notifiers = thread_data.notifiers;
 
     if (notifiers.contains(&notifier))
         return;
@@ -309,25 +393,23 @@ void EventLoopManagerWindows::register_notifier(Notifier& notifier)
 
     auto notifier_data = make<EventLoopNotifier>();
     notifier_data->type = CompletionType::Notifer;
-    notifier_data->notifier = &notifier;
+    notifier_data->notifier = notifier.make_weak_ptr();;
     notifier_data->wait_event.handle = event;
     NTSTATUS status = g_system.NtCreateWaitCompletionPacket(&notifier_data->wait_packet.handle, GENERIC_READ | GENERIC_WRITE, NULL);
     VERIFY(NT_SUCCESS(status));
-    status = g_system.NtAssociateWaitCompletionPacket(notifier_data->wait_packet.handle, thread_data->iocp.handle, event, notifier_data.ptr(), NULL, 0, 0, NULL);
+    status = g_system.NtAssociateWaitCompletionPacket(notifier_data->wait_packet.handle, thread_data.iocp.handle, event, notifier_data.ptr(), NULL, 0, 0, NULL);
     VERIFY(NT_SUCCESS(status));
     notifiers.set(&notifier, move(notifier_data));
 }
 
 void EventLoopManagerWindows::unregister_notifier(Notifier& notifier)
 {
-    auto* thread_data = ThreadData::the();
-    if (!thread_data) {
-        // ThreadData may not exist if we're being called during shutdown or from a thread
-        // that never created an event loop. In this case, the notifier was never registered,
-        // so there's nothing to unregister.
+    Sync::RWLockLocker<Sync::LockMode::Read> locker(thread_data_lock());
+    auto* thread_data = ThreadData::for_thread(notifier.owner_thread());
+    if (!thread_data)
         return;
-    }
-
+    Sync::MutexLocker thread_data_content_locker(thread_data->mutex);
+    
     auto& notifiers = thread_data->notifiers;
     auto maybe_notifier_data = notifiers.take(&notifier);
     if (!maybe_notifier_data.has_value())
@@ -342,9 +424,9 @@ void EventLoopManagerWindows::unregister_notifier(Notifier& notifier)
 intptr_t EventLoopManagerWindows::register_timer(EventReceiver& object, int milliseconds, bool should_reload)
 {
     VERIFY(milliseconds >= 0);
-    auto* thread_data = ThreadData::the();
-    VERIFY(thread_data);
-    auto& timers = thread_data->timers;
+    auto& thread_data = ThreadData::the();
+    Sync::MutexLocker locker(thread_data.mutex);
+    auto& timers = thread_data.timers;
 
     // FIXME: This is a temporary fix for issue #3641
     bool manual_reset = static_cast<Timer&>(object).is_single_shot();
@@ -355,6 +437,7 @@ intptr_t EventLoopManagerWindows::register_timer(EventReceiver& object, int mill
     timer_data->type = CompletionType::Timer;
     timer_data->timer.handle = timer;
     timer_data->owner = object.make_weak_ptr();
+    timer_data->owner_thread = thread_data.thread_id;
     timer_data->is_periodic = should_reload;
     VERIFY(timer_data->timer.handle);
 
@@ -367,7 +450,7 @@ intptr_t EventLoopManagerWindows::register_timer(EventReceiver& object, int mill
     BOOL succeeded = SetWaitableTimer(timer_data->timer.handle, &first_time, should_reload ? milliseconds : 0, NULL, NULL, FALSE);
     VERIFY(succeeded);
 
-    status = g_system.NtAssociateWaitCompletionPacket(timer_data->wait_packet.handle, thread_data->iocp.handle, timer_data->timer.handle, timer_data.ptr(), NULL, 0, 0, NULL);
+    status = g_system.NtAssociateWaitCompletionPacket(timer_data->wait_packet.handle, thread_data.iocp.handle, timer_data->timer.handle, timer_data.ptr(), NULL, 0, 0, NULL);
     VERIFY(NT_SUCCESS(status));
 
     auto timer_id = reinterpret_cast<intptr_t>(timer_data.ptr());
@@ -378,14 +461,21 @@ intptr_t EventLoopManagerWindows::register_timer(EventReceiver& object, int mill
 
 void EventLoopManagerWindows::unregister_timer(intptr_t timer_id)
 {
-    if (auto* thread_data = ThreadData::the()) {
-        auto maybe_timer = thread_data->timers.take(timer_id);
-        if (!maybe_timer.has_value())
-            return;
-        auto timer = move(maybe_timer.value());
-        NTSTATUS status = g_system.NtCancelWaitCompletionPacket(timer->wait_packet.handle, TRUE);
-        VERIFY(NT_SUCCESS(status));
-    }
+    auto* timer_ptr = bit_cast<EventLoopTimer*>(timer_id);
+    Sync::RWLockLocker<Sync::LockMode::Read> locker(thread_data_lock());
+    auto* thread_data_ptr = ThreadData::for_thread(timer_ptr->owner_thread);
+    if (!thread_data_ptr)
+        return;
+    
+    Sync::MutexLocker thread_data_content_locker(thread_data_ptr->mutex);
+    auto& thread_data = *thread_data_ptr;
+    
+    auto maybe_timer = thread_data.timers.take(timer_id);
+    if (!maybe_timer.has_value())
+        return;
+    auto timer = move(maybe_timer.value());
+    NTSTATUS status = g_system.NtCancelWaitCompletionPacket(timer->wait_packet.handle, TRUE);
+    VERIFY(NT_SUCCESS(status));
 }
 
 int EventLoopManagerWindows::register_signal([[maybe_unused]] int signal_number, [[maybe_unused]] Function<void(int)> handler)
@@ -402,9 +492,6 @@ void EventLoopManagerWindows::unregister_signal([[maybe_unused]] int handler_id)
 
 void EventLoopManagerWindows::register_process(pid_t pid, ESCAPING Function<void(pid_t)> exit_handler)
 {
-    auto* thread_data = ThreadData::the();
-    VERIFY(thread_data);
-
     s_processes.with_locked([&](auto& processes) {
         if (processes.contains(pid))
             return;
@@ -425,7 +512,7 @@ void EventLoopManagerWindows::register_process(pid_t pid, ESCAPING Function<void
         process_data->exit_handler = move(exit_handler);
         process_data->jobobject.handle = job_object_handle;
 
-        JOBOBJECT_ASSOCIATE_COMPLETION_PORT joacp = { .CompletionKey = process_data.ptr(), .CompletionPort = thread_data->iocp.handle };
+        JOBOBJECT_ASSOCIATE_COMPLETION_PORT joacp = { .CompletionKey = process_data.ptr(), .CompletionPort = ThreadData::the().iocp.handle };
         succeeded = SetInformationJobObject(job_object_handle, JobObjectAssociateCompletionPortInformation, &joacp, sizeof(JOBOBJECT_ASSOCIATE_COMPLETION_PORT));
         VERIFY(succeeded);
 
