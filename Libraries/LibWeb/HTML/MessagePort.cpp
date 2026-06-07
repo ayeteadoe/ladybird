@@ -217,6 +217,11 @@ void MessagePort::entangle_with(MessagePort& remote_port)
     auto paired = MUST(IPC::Transport::create_paired());
     m_transport = move(paired.local);
     m_remote_port->m_transport = MUST(paired.remote_handle.create_transport());
+    
+#ifdef AK_OS_WINDOWS
+    m_transport->set_peer_pid(Core::System::getpid());
+    m_remote_port->m_transport->set_peer_pid(Core::System::getpid());
+#endif
 
     m_transport->set_up_read_hook([strong_this = GC::make_root(this)]() {
         strong_this->read_from_transport();
